@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Chaos Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Chaos Blogs">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Chaos Blogs">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chaos Blogs">
+  
+    <link rel="alternate" href="/atom.xml" title="Chaos Blogs" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Chaos Blogs</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Front End</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-My-New-Post" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/My-New-Post/" class="article-date">
+  <time datetime="2018-09-18T14:03:41.000Z" itemprop="datePublished">2018-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/My-New-Post/">使用Geoserver，MapboxGL搭建离线地图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 最近一直在开发基于mapboxgl的项目，由于某些众所周知的原因，导致最近mapboxgl的后端服务一直不稳定。</p>
+<p>与此同时 mapbox中国版后端服务对于小型To B 项目来说又比较贵，同时有些项目需要离线部署。在这个背景下我调研了一些方案 比如 <a href="https://openmaptiles.com/server/" target="_blank" rel="noopener">tiles-serve</a>和<a href="http://blog.geoserver.org/" target="_blank" rel="noopener">geoserver</a> 因为懒得使用docker 就放弃了这个方案，直接使用 geoserver 来搭建。</p>
+<p>乘着这个机会把自己最近的工作内容分享给大家，因为涉及到的技术栈，概念比较多，所以主要讲实践。</p>
+<h2 id="1-GeoServer-环境搭建"><a href="#1-GeoServer-环境搭建" class="headerlink" title="1. GeoServer 环境搭建"></a>1. GeoServer 环境搭建</h2><p>GeoServer 是 OpenGIS Web 服务器规范的 J2EE 实现，使用它可以非常方便的发布地图数据。</p>
+<p>简而言之使用它可以非常快速的搭建自己的地图后端服务器。然后只要你使用类似Openlayer，leaflet，mapboxgl等前端工具，你就可以非常迅速的搭建属于自己的离线地图应用。</p>
+<p>因为我们的项目主要是可视化，所以本文的内容主要是搭建底图服务，展示地图，不涉及定位，导航，搜索等其他服务。</p>
+<p>但是目前Geoserver 主要用来发布栅格瓦片也就是图片，所幸现在有矢量瓦片的插件，我们可以使用Geoserver 发布瓦片数据</p>
+<ol>
+<li><p>下载 安装 <a href="http://geoserver.org/release/2.12.4/" target="_blank" rel="noopener">Geoserver</a><br>Geoserver 支持Tomcat，windows，OSX，Platform Independent Binary安装。但是最新版本已经不能OSX了,鉴于为大家提供尽可能多的选择的原则，我们使用Geoserver 2.12.4 这个版本</p>
+</li>
+<li><p>安装 Geoserver<br>若是采用Tomcat这种方式的话，应该不要要说，毕竟没几个前端会安装这个玩意，方式的话，基本一路install 即可。出问题的地方可能就是JDK没有安装或者配置好吧。</p>
+</li>
+<li><p>下载矢量切片插件<a href="http://geoserver.org/release/2.12.4/" target="_blank" rel="noopener"> Vector Tiles</a><br>插件也在Geoserver  这个页面上</p>
+</li>
+</ol>
+<h2 id="2-导入地图数据"><a href="#2-导入地图数据" class="headerlink" title="2. 导入地图数据"></a>2. 导入地图数据</h2><h2 id="3-mapboxgl配置"><a href="#3-mapboxgl配置" class="headerlink" title="3. mapboxgl配置"></a>3. mapboxgl配置</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/18/My-New-Post/" data-id="cjn5io8020000cyfybj3f8ekf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mapboxgl-geoserver-gis/">mapboxgl,geoserver,gis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-geoserver创建离线地图展示3D建筑" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/geoserver创建离线地图展示3D建筑/" class="article-date">
+  <time datetime="2018-09-18T14:03:41.000Z" itemprop="datePublished">2018-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/geoserver创建离线地图展示3D建筑/">使用Geoserver，MapboxGL搭建离线地图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 最近一直在开发基于mapboxgl的项目，由于某些众所周知的原因，导致最近mapboxgl的后端服务一直不稳定。</p>
+<p>与此同时 mapbox中国版后端服务对于小型To B 项目来说又比较贵，同时有些项目需要离线部署。在这个背景下我调研了一些方案 比如 <a href="https://openmaptiles.com/server/" target="_blank" rel="noopener">tiles-serve</a>和<a href="http://blog.geoserver.org/" target="_blank" rel="noopener">geoserver</a> 因为懒得使用docker 就放弃了这个方案，直接使用 geoserver 来搭建。</p>
+<p>乘着这个机会把自己最近的工作内容分享给大家，因为涉及到的技术栈，概念比较多，所以主要讲实践。</p>
+<h2 id="1-GeoServer-环境搭建"><a href="#1-GeoServer-环境搭建" class="headerlink" title="1. GeoServer 环境搭建"></a>1. GeoServer 环境搭建</h2><p>GeoServer 是 OpenGIS Web 服务器规范的 J2EE 实现，使用它可以非常方便的发布地图数据。</p>
+<p>简而言之使用它可以非常快速的搭建自己的地图后端服务器。然后只要你使用类似Openlayer，leaflet，mapboxgl等前端工具，你就可以非常迅速的搭建属于自己的离线地图应用。</p>
+<p>因为我们的项目主要是可视化，所以本文的内容主要是搭建底图服务，展示地图，不涉及定位，导航，搜索等其他服务。</p>
+<p>但是目前Geoserver 主要用来发布栅格瓦片也就是图片，所幸现在有矢量瓦片的插件，我们可以使用Geoserver 发布瓦片数据</p>
+<ol>
+<li><p>下载 安装 <a href="http://geoserver.org/release/2.12.4/" target="_blank" rel="noopener">Geoserver</a><br>Geoserver 支持Tomcat，windows，OSX，Platform Independent Binary安装。但是最新版本已经不能OSX了,鉴于为大家提供尽可能多的选择的原则，我们使用Geoserver 2.12.4 这个版本</p>
+</li>
+<li><p>安装 Geoserver<br>若是采用Tomcat这种方式的话，应该不需要我说，毕竟没几个前端会安装这个玩意，安装了Tomcat的多少会点java 不需要我教，其他方式的话，基本一路install 即可。出问题的地方可能就是JDK没有安装或者配置好吧。</p>
+</li>
+<li><p>下载矢量切片插件<a href="http://geoserver.org/release/2.12.4/" target="_blank" rel="noopener"> Vector Tiles</a><br>插件也在Geoserver  下载页面的Extensions里面 如图</p>
+<!-- ![vectorTilesPlugin](vectorTilesPlugin.png =200x300) -->
+<p><img src="/2018/09/18/geoserver创建离线地图展示3D建筑/./vectorTilesPlugin.png" style="width: 400px;height: 400px"></p>
+</li>
+</ol>
+<h2 id="2-导入地图数据"><a href="#2-导入地图数据" class="headerlink" title="2. 导入地图数据"></a>2. 导入地图数据</h2><h2 id="3-mapboxgl配置"><a href="#3-mapboxgl配置" class="headerlink" title="3. mapboxgl配置"></a>3. mapboxgl配置</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/18/geoserver创建离线地图展示3D建筑/" data-id="cjn5io80h0004cyfygk6wop04" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mapboxgl-geoserver-gis/">mapboxgl,geoserver,gis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/hello-world/" class="article-date">
+  <time datetime="2018-09-18T13:49:22.828Z" itemprop="datePublished">2018-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/18/hello-world/" data-id="cjn5io80e0003cyfyjlb3b0pu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/mapboxgl-geoserver-gis/">mapboxgl,geoserver,gis</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/mapboxgl-geoserver-gis/" style="font-size: 10px;">mapboxgl,geoserver,gis</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/18/My-New-Post/">使用Geoserver，MapboxGL搭建离线地图</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/18/geoserver创建离线地图展示3D建筑/">使用Geoserver，MapboxGL搭建离线地图</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Chaos Wang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
