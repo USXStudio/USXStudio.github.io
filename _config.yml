@@ -85,5 +85,5 @@ theme_config:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:ChowBu/ChowBu.github.io.git
-  branch: master
+  repo: https://github.com/USXStudio/USXStudio.github.io.git
+  branch: hexo
