@@ -2,6 +2,9 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 # 键值对 的冒号后面需要一个空格
+# 增加新的主题的时候，将加了新主题的源文件放到
+# hexo 里面，上传到github会出现新主题无法上传，因为新出题创建的时候就是以仓库的形式部署的
+# 导致两个仓库叠加，故新主题无法上传到 github
 
 # Site
 title: USXStudio
