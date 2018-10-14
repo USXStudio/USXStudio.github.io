@@ -1,6 +1,7 @@
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
+# 键值对 的冒号后面需要一个空格
 
 # Site
 title: USXStudio
