@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="练习1 进入my_test数据库  1use my_test  向 my_test中 user集合插入一个文档  集合习惯会在其后加s  所以 user在操作时是 db.users 1db.users.insert(&amp;#123;username:&amp;quot;猪八戒&amp;quot;&amp;#125;)  查询user集合中的文档  1db.users.find()  向user集合中插入一个文档  1db.u">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mongoDb练习一">
+<meta property="og:url" content="https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="练习1 进入my_test数据库  1use my_test  向 my_test中 user集合插入一个文档  集合习惯会在其后加s  所以 user在操作时是 db.users 1db.users.insert(&amp;#123;username:&amp;quot;猪八戒&amp;quot;&amp;#125;)  查询user集合中的文档  1db.users.find()  向user集合中插入一个文档  1db.u">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mongoDb练习一">
+<meta name="twitter:description" content="练习1 进入my_test数据库  1use my_test  向 my_test中 user集合插入一个文档  集合习惯会在其后加s  所以 user在操作时是 db.users 1db.users.insert(&amp;#123;username:&amp;quot;猪八戒&amp;quot;&amp;#125;)  查询user集合中的文档  1db.users.find()  向user集合中插入一个文档  1db.u">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>mongoDb练习一</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/05/10/MONGODB_003_练习2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/05/10/MONGODB_001_入门1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&text=mongoDb练习一"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&is_video=false&description=mongoDb练习一"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=mongoDb练习一&body=Check out this article: https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&name=mongoDb练习一&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#练习1"><span class="toc-number">1.</span> <span class="toc-text">练习1</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        mongoDb练习一
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-10T13:01:23.000Z" itemprop="datePublished">2018-05-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/mongodb/">mongodb</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h3><ol>
+<li>进入my_test数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use my_test</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>向 my_test中 user集合插入一个文档</li>
+</ol>
+<p>集合习惯会在其后加s  所以 user在操作时是 db.users</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.insert(&#123;username:&quot;猪八戒&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>查询user集合中的文档</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find()</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>向user集合中插入一个文档</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.insert(&#123;username:&quot;孙悟空&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>统计user集合中文档document的数量</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find().count()</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>查询user集合中 username为孙悟空的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;username:&quot;孙悟空&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>向user集合中 username=”孙悟空”的文档添加一个 address= 花果山</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;username:&quot;孙悟空&quot;&#125;,&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        $set:&#123;</span><br><span class="line">            &#123;address:&quot;花果山&quot;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>使用{username:”唐僧”}替换  username为 猪八戒 的文档</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.replaceOne(&#123;username:&quot;猪八戒&quot;&#125;,&#123;username:&quot;唐僧&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>删除 username 为 孙悟空 的 address属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;username:&quot;孙悟空&quot;&#125;,&#123;$unset:&#123;address:&quot;&quot;&#125;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>向 username 为 孙悟空 的文档中 添加一个 hobby:{cities:[“北京”,”上海”,”深圳”],movies:[“三国”,”英雄”]}</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;username:&quot;孙悟空&quot;&#125;,&#123;</span><br><span class="line">    $set:&#123;</span><br><span class="line">        hobby:&#123;</span><br><span class="line">            cities:[&quot;北京&quot;,&quot;上海&quot;,&quot;深圳&quot;],</span><br><span class="line">            movies:[&quot;三国&quot;,&quot;英雄&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>mongodb 中的属性值也可以是一个文档，当一个文档的一个属性值是文档时，我们称之为「内嵌文档」</p>
+</blockquote>
+<ol start="11">
+<li>向 username 为 唐僧 的文档中 添加一个 hobby:{movies:[“大话西游”,”天下第一”]}</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;username:&quot;孙悟空&quot;&#125;,&#123;</span><br><span class="line">    $set:&#123;</span><br><span class="line">        hobby:&#123;</span><br><span class="line">           movies:[&quot;大话西游&quot;,&quot;天下第一&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="12">
+<li>查询喜欢 电影 movies = 英雄 的文档</li>
+</ol>
+<ul>
+<li>mongodb支持直接通过内嵌文档的属性进行查询，使用「.」进行操作 形如 hobby.movies的形式</li>
+<li>通过内嵌文档查询 必须使用引号包起来 形如 “hobby.movies”</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.find(&#123;&quot;hobby.movies&quot;:&quot;英雄&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="13">
+<li>向 唐僧 的文档中,电影 movies 中添加 “寒战”</li>
+</ol>
+<ul>
+<li>注意此时不要用 $set 修改操作符</li>
+<li>使用 $push 用于向数组中添加一个新的元素(可重复添加)</li>
+<li>$addToSet 向数组中添加一个元素 (如果添加元素已经存在就不会再去添加了，不可重复添加)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">db.users.update(&#123;username:&quot;唐僧&quot;&#125;,&#123;</span><br><span class="line">    $push:&#123;</span><br><span class="line">        &quot;hobby.movies&quot;:&quot;寒战&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">db.users.update(&#123;username:&quot;唐僧&quot;&#125;,&#123;</span><br><span class="line">    $addToSet:&#123;</span><br><span class="line">        &quot;hobby.movies&quot;:&quot;寒战&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="14">
+<li>删除 喜欢 北京 的用户</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.users.remove(&#123;&quot;hobby.cities&quot;:&quot;北京&quot;&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="15">
+<li>删除 users集合</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.users.remove(&#123;&#125;) </span><br><span class="line">db.users.drop()</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#练习1"><span class="toc-number">1.</span> <span class="toc-text">练习1</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&text=mongoDb练习一"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&is_video=false&description=mongoDb练习一"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=mongoDb练习一&body=Check out this article: https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&title=mongoDb练习一"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/05/10/MONGODB_002_练习1/&name=mongoDb练习一&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

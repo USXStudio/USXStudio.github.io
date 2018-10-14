@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="机器语言就是机器能看懂的语言，形如010101010010101010101010010101。  优点：最底层，速度最快 缺点：复杂，开发效率最低  汇编语言 优点：比较底层，速度低于机器语言 缺点：复杂，开发效率仅仅高于机器语言  高级语言 编译型 C，C++  优点：如C++等语言在运行前必须经过编译后才能运行，编译后是机器可直接运行的二进制的代码。 缺点：每次改动必须经过重新编译，跨平台性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py001_01_01编程语言介绍">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="机器语言就是机器能看懂的语言，形如010101010010101010101010010101。  优点：最底层，速度最快 缺点：复杂，开发效率最低  汇编语言 优点：比较底层，速度低于机器语言 缺点：复杂，开发效率仅仅高于机器语言  高级语言 编译型 C，C++  优点：如C++等语言在运行前必须经过编译后才能运行，编译后是机器可直接运行的二进制的代码。 缺点：每次改动必须经过重新编译，跨平台性">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py001_01_01编程语言介绍">
+<meta name="twitter:description" content="机器语言就是机器能看懂的语言，形如010101010010101010101010010101。  优点：最底层，速度最快 缺点：复杂，开发效率最低  汇编语言 优点：比较底层，速度低于机器语言 缺点：复杂，开发效率仅仅高于机器语言  高级语言 编译型 C，C++  优点：如C++等语言在运行前必须经过编译后才能运行，编译后是机器可直接运行的二进制的代码。 缺点：每次改动必须经过重新编译，跨平台性">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py001_01_01编程语言介绍</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/13/Py001_01_02Python变量_用户交互_注释/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/10/MJ_001_01前端面经/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&text=Py001_01_01编程语言介绍"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&is_video=false&description=Py001_01_01编程语言介绍"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_01_01编程语言介绍&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&name=Py001_01_01编程语言介绍&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器语言"><span class="toc-number">1.</span> <span class="toc-text">机器语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汇编语言"><span class="toc-number">2.</span> <span class="toc-text">汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级语言"><span class="toc-number">3.</span> <span class="toc-text">高级语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编译型"><span class="toc-number">3.1.</span> <span class="toc-text">编译型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释型"><span class="toc-number">3.2.</span> <span class="toc-text">解释型</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py001_01_01编程语言介绍
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-13T11:47:40.000Z" itemprop="datePublished">2018-08-13</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="机器语言"><a href="#机器语言" class="headerlink" title="机器语言"></a>机器语言</h3><p>就是机器能看懂的语言，形如010101010010101010101010010101。</p>
+<ul>
+<li>优点：最底层，速度最快</li>
+<li>缺点：复杂，开发效率最低</li>
+</ul>
+<h3 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h3><ul>
+<li>优点：比较底层，速度低于机器语言</li>
+<li>缺点：复杂，开发效率仅仅高于机器语言</li>
+</ul>
+<h3 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h3><blockquote>
+<h4 id="编译型"><a href="#编译型" class="headerlink" title="编译型"></a>编译型</h4></blockquote>
+<p>C，C++</p>
+<ul>
+<li>优点：如C++等语言在运行前必须经过编译后才能运行，编译后是机器可直接运行的二进制的代码。</li>
+<li>缺点：每次改动必须经过重新编译，跨平台性差</li>
+</ul>
+<blockquote>
+<h4 id="解释型"><a href="#解释型" class="headerlink" title="解释型"></a>解释型</h4></blockquote>
+<p>Python，JavaScript，Php</p>
+<p>类似日常生活中的“同声翻译”，边翻译边运行，因此运行效率低.而且不能生成二进制文件,应用程序不能脱离解释器。</p>
+<p>但是mac或linux上默认有python解释器。</p>
+<ul>
+<li>优点：跨平台开发，开发效率高</li>
+<li>缺点：运行效率低，依赖解释器(为什么效率低还如此火爆，因为现在的硬件水平上去了。)<br>比如C语言执行一段程序0.001秒 如果python比它慢10倍那就是0.01秒(人类的最快反应时间是0.3s所以几乎感受不到)</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#机器语言"><span class="toc-number">1.</span> <span class="toc-text">机器语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#汇编语言"><span class="toc-number">2.</span> <span class="toc-text">汇编语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级语言"><span class="toc-number">3.</span> <span class="toc-text">高级语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编译型"><span class="toc-number">3.1.</span> <span class="toc-text">编译型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解释型"><span class="toc-number">3.2.</span> <span class="toc-text">解释型</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&text=Py001_01_01编程语言介绍"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&is_video=false&description=Py001_01_01编程语言介绍"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_01_01编程语言介绍&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&title=Py001_01_01编程语言介绍"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_01_01编程语言介绍/&name=Py001_01_01编程语言介绍&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

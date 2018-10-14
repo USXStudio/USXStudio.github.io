@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="计算机基础（进制转换） 我觉得这个只要你会开机关机就差不多了，如果不方便理解给你举个例子：   计算机主要就是二进制，二进制就是0/1 逢二进一(实在不好理解你就想现实中的电线插头 左零右火) 计算机通过电信号来判断是0还是1 比如电压低于50%就代表0 高于50%代表 1 于是这些 01组成的东西就被机器所认识也叫 机器语言但是这很反人类啊！多么复杂的大脑才能识别这个啊！于是出现了汇编，还是不够">
+<meta name="keywords" content="M01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py001_02_01Python进制转换和字符编码and浮点数">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="计算机基础（进制转换） 我觉得这个只要你会开机关机就差不多了，如果不方便理解给你举个例子：   计算机主要就是二进制，二进制就是0/1 逢二进一(实在不好理解你就想现实中的电线插头 左零右火) 计算机通过电信号来判断是0还是1 比如电压低于50%就代表0 高于50%代表 1 于是这些 01组成的东西就被机器所认识也叫 机器语言但是这很反人类啊！多么复杂的大脑才能识别这个啊！于是出现了汇编，还是不够">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.274Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py001_02_01Python进制转换和字符编码and浮点数">
+<meta name="twitter:description" content="计算机基础（进制转换） 我觉得这个只要你会开机关机就差不多了，如果不方便理解给你举个例子：   计算机主要就是二进制，二进制就是0/1 逢二进一(实在不好理解你就想现实中的电线插头 左零右火) 计算机通过电信号来判断是0还是1 比如电压低于50%就代表0 高于50%代表 1 于是这些 01组成的东西就被机器所认识也叫 机器语言但是这很反人类啊！多么复杂的大脑才能识别这个啊！于是出现了汇编，还是不够">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py001_02_01Python进制转换和字符编码and浮点数</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/13/Py001_02_02Python列表和元组/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/13/Py001_01_04Python逻辑运算和分支语句和循环/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&text=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&is_video=false&description=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_01Python进制转换和字符编码and浮点数&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&name=Py001_02_01Python进制转换和字符编码and浮点数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机基础（进制转换）"><span class="toc-number">1.</span> <span class="toc-text">计算机基础（进制转换）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机表示数字到汉字的过程"><span class="toc-number">2.</span> <span class="toc-text">计算机表示数字到汉字的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python里使用字符编码"><span class="toc-number">3.</span> <span class="toc-text">python里使用字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数"><span class="toc-number">4.</span> <span class="toc-text">浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精确度"><span class="toc-number">4.1.</span> <span class="toc-text">精确度</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py001_02_01Python进制转换和字符编码and浮点数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-13T13:10:25.000Z" itemprop="datePublished">2018-08-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M01/">M01</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="计算机基础（进制转换）"><a href="#计算机基础（进制转换）" class="headerlink" title="计算机基础（进制转换）"></a>计算机基础（进制转换）</h3><blockquote>
+<p>我觉得这个只要你会开机关机就差不多了，如果不方便理解给你举个例子：</p>
+</blockquote>
+<ol>
+<li>计算机主要就是二进制，二进制就是0/1 逢二进一<br>(实在不好理解你就想现实中的电线插头 左零右火)</li>
+<li>计算机通过电信号来判断是0还是1 比如电压低于50%就代表0 高于50%代表 1</li>
+<li>于是这些 01组成的东西就被机器所认识也叫 机器语言<br>但是这很反人类啊！多么复杂的大脑才能识别这个啊！<br>于是出现了汇编，还是不够好，于是 C / C++ /JAVA等高级语言横空出世</li>
+<li>8位 0、1组成的序列代表1字节  <ul>
+<li>1B(byte) = 8位(bit)</li>
+<li>1KB = 1024B</li>
+<li>1MB = 1024KB</li>
+<li>1GB = 1024MB</li>
+<li>1T  = 1024GB</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>买手机可千万注意别被那些卖家忽悠了，老说啥机身内存大运行速度快啥的！大错特错  如果你买手机建议运行内存买高点</p>
+</blockquote>
+<ul>
+<li>电脑和手机这些设备分为  内存(RAM随机存储) 和 外存(ROM只读存储)</li>
+<li>内存就是 01这堆组成的电信号 没电了只要你编辑的word文档没保存就丢了</li>
+<li>外存就是 电脑上存的小说啊 mp3 短视频等 只要你不手动删除怎么开关机都在</li>
+</ul>
+<p>如下是一些进制转换:</p>
+<blockquote>
+<p>口诀：逢二进一 逢八进一 逢十进一 逢十六进一</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">如:</span><br><span class="line">二进制       十进制     八进制     十六进制</span><br><span class="line">0000 0000    0          0         0</span><br><span class="line">0000 0001    1          1         1</span><br><span class="line">0000 0010    2          2         2</span><br><span class="line">0000 0011    3          3         3</span><br><span class="line">0000 0100    4          4         4</span><br><span class="line">0000 0101    5          5         5</span><br><span class="line">0000 0110    6          6         6</span><br><span class="line">0000 0111    7          7         7</span><br><span class="line">0000 1000    8         10         8</span><br><span class="line">0000 1001    9         11         9</span><br><span class="line">0000 1010   10         12         a</span><br><span class="line">0000 1011   11         13         b</span><br><span class="line">0000 1100   12         14         c</span><br><span class="line">0000 1101   13         15         d</span><br><span class="line">0000 1110   14         16         e</span><br><span class="line">0000 1111   15         17         f</span><br></pre></td></tr></table></figure>
+<h3 id="计算机表示数字到汉字的过程"><a href="#计算机表示数字到汉字的过程" class="headerlink" title="计算机表示数字到汉字的过程"></a>计算机表示数字到汉字的过程</h3><ol>
+<li>内存里如何存0和1</li>
+<li>如何存数字</li>
+<li>存字符</li>
+<li>存中文 GB2312 GBK GB18030 </li>
+<li>存所有字符(所有国家的字符Unicode万国码)</li>
+<li>将Unicode存到计算机里(utf-8编码变长存储)</li>
+</ol>
+<p>可以参考我之前写的文章 <a href="https://sltrust.github.io/2017/09/22/N002_%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%98%AF%E5%A6%82%E4%BD%95%E5%AD%98%E6%95%B0%E6%8D%AE%E7%9A%84/" target="_blank" rel="noopener">计算机是如何存数据的</a></p>
+<blockquote>
+<p>windows系统中文版默认是gbk</p>
+</blockquote>
+<blockquote>
+<p>mac\linux系统默认编码是utf-8</p>
+</blockquote>
+<h3 id="python里使用字符编码"><a href="#python里使用字符编码" class="headerlink" title="python里使用字符编码"></a>python里使用字符编码</h3><p>python3和 python2最大的区别就是字符编码改了</p>
+<ul>
+<li>python2 默认编码ascⅡ(默认不支持中文)</li>
+<li>python3 默认编码utf-8</li>
+</ul>
+<blockquote>
+<p>如果python2想支持中文呢？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.py文件程序首行声明编码</span><br><span class="line"></span><br><span class="line">第一种 官方推荐的</span><br><span class="line">#! -*-coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">第二种</span><br><span class="line">#!encoding:utf-8</span><br><span class="line"></span><br><span class="line">python3里默认支持中文</span><br></pre></td></tr></table></figure>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><blockquote>
+<p>科学记数法：以10为基数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(1.399e3) # 1399.0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>复数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 可以用来做量子力学(编程基本用不到)</span><br><span class="line">print(-5+4j)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="精确度"><a href="#精确度" class="headerlink" title="精确度"></a>精确度</h4></blockquote>
+<ul>
+<li>浮点数占据的存储空间远大于整数的</li>
+<li>python里能精确的存储17位超过就不准了可能有四舍五入的误差</li>
+</ul>
+<p>如果你就想计算高精度的浮点数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">借助 decimal 模块的 getcontext 和 Decimal方法(自行百度吧！)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机基础（进制转换）"><span class="toc-number">1.</span> <span class="toc-text">计算机基础（进制转换）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机表示数字到汉字的过程"><span class="toc-number">2.</span> <span class="toc-text">计算机表示数字到汉字的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python里使用字符编码"><span class="toc-number">3.</span> <span class="toc-text">python里使用字符编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数"><span class="toc-number">4.</span> <span class="toc-text">浮点数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#精确度"><span class="toc-number">4.1.</span> <span class="toc-text">精确度</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&text=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&is_video=false&description=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_01Python进制转换和字符编码and浮点数&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&title=Py001_02_01Python进制转换和字符编码and浮点数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/&name=Py001_02_01Python进制转换和字符编码and浮点数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

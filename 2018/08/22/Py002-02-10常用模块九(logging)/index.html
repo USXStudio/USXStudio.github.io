@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="logging (日志模块)logging的日志可以分为5个级别  debug() info() warning() error() critical()  最简单用法1234567891011import logginglogging.warning(&amp;quot;user [alex] attempted wrong password more than 3 times&amp;quot;)loggin">
+<meta name="keywords" content="M02">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py002-02-10常用模块九(logging)">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="logging (日志模块)logging的日志可以分为5个级别  debug() info() warning() error() critical()  最简单用法1234567891011import logginglogging.warning(&amp;quot;user [alex] attempted wrong password more than 3 times&amp;quot;)loggin">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py002-02-10常用模块九(logging)">
+<meta name="twitter:description" content="logging (日志模块)logging的日志可以分为5个级别  debug() info() warning() error() critical()  最简单用法1234567891011import logginglogging.warning(&amp;quot;user [alex] attempted wrong password more than 3 times&amp;quot;)loggin">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py002-02-10常用模块九(logging)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/22/Py002-02-11正则re/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/22/Py002-02-09常用模块八(subprocess)/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&text=Py002-02-10常用模块九(logging)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&is_video=false&description=Py002-02-10常用模块九(logging)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py002-02-10常用模块九(logging)&body=Check out this article: https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&name=Py002-02-10常用模块九(logging)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#logging-日志模块"><span class="toc-number">1.</span> <span class="toc-text">logging (日志模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最简单用法"><span class="toc-number">1.1.</span> <span class="toc-text">最简单用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果想把日志写到文件里，也很简单"><span class="toc-number">1.2.</span> <span class="toc-text">如果想把日志写到文件里，也很简单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义日志格式"><span class="toc-number">1.3.</span> <span class="toc-text">自定义日志格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日志同时输出到屏幕和文件"><span class="toc-number">1.4.</span> <span class="toc-text">日志同时输出到屏幕和文件</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py002-02-10常用模块九(logging)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-22T13:44:06.000Z" itemprop="datePublished">2018-08-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M02/">M02</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="logging-日志模块"><a href="#logging-日志模块" class="headerlink" title="logging (日志模块)"></a>logging (日志模块)</h3><p>logging的日志可以分为5个级别</p>
+<ul>
+<li>debug()</li>
+<li>info()</li>
+<li>warning()</li>
+<li>error()</li>
+<li>critical()</li>
+</ul>
+<h4 id="最简单用法"><a href="#最简单用法" class="headerlink" title="最简单用法"></a>最简单用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import logging</span><br><span class="line"></span><br><span class="line">logging.warning(&quot;user [alex] attempted wrong password more than 3 times&quot;)</span><br><span class="line">logging.critical(&quot;server is down&quot;)</span><br><span class="line"></span><br><span class="line">输出</span><br><span class="line"></span><br><span class="line">WARNING:root:user [alex] attempted wrong password more than 3 times</span><br><span class="line">CRITICAL:root:server is down</span><br><span class="line"></span><br><span class="line"># 默认以root执行的，就是你没指定用户的情况下</span><br></pre></td></tr></table></figure>
+<p>其中下面这句中的level=loggin.INFO意思是，把日志纪录级别设置为INFO，也就是说，只有比日志是INFO或比INFO级别更高的日志才会被纪录到文件里，在这个例子， 第一条日志是不会被纪录的，如果希望纪录debug的日志，那把日志级别改成DEBUG就行了。</p>
+<h4 id="如果想把日志写到文件里，也很简单"><a href="#如果想把日志写到文件里，也很简单" class="headerlink" title="如果想把日志写到文件里，也很简单"></a>如果想把日志写到文件里，也很简单</h4><ul>
+<li>filename 日志写入的文件</li>
+<li>level 输入指定的级别以及以上级别的信息</li>
+</ul>
+<p>当你再次运行的时候，日志会追加而不是覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(filename=&apos;example.log&apos;,level=logging.INFO)</span><br><span class="line">logging.debug(&apos;This message should go to the log file&apos;)</span><br><span class="line">logging.info(&apos;So should this&apos;)</span><br><span class="line">logging.warning(&apos;And this, too&apos;)</span><br><span class="line"></span><br><span class="line"># example.log内容如下</span><br><span class="line">INFO:root:So should this</span><br><span class="line">WARNING:root:And this, too</span><br></pre></td></tr></table></figure>
+<h4 id="自定义日志格式"><a href="#自定义日志格式" class="headerlink" title="自定义日志格式"></a>自定义日志格式</h4><p>日志起码要有时间吧！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import logging</span><br><span class="line">logging.basicConfig(format=&apos;%(asctime)s %(message)s&apos;, datefmt=&apos;%m/%d/%Y %I:%M:%S %p&apos;)</span><br><span class="line">logging.warning(&apos;is when this event was logged.&apos;)</span><br><span class="line"></span><br><span class="line">#输出</span><br><span class="line">12/12/2010 11:46:36 AM is when this event was logged.</span><br></pre></td></tr></table></figure>
+<p>除了加时间，还可以自定义一大堆格式，下表就是所有支持的格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">%(name)s	Logger的名字</span><br><span class="line">%(levelno)s	数字形式的日志级别</span><br><span class="line">%(levelname)s	文本形式的日志级别</span><br><span class="line">%(pathname)s	调用日志输出函数的模块的完整路径名，可能没有</span><br><span class="line">%(filename)s	调用日志输出函数的模块的文件名</span><br><span class="line">%(module)s	调用日志输出函数的模块名</span><br><span class="line">%(funcName)s	调用日志输出函数的函数名</span><br><span class="line">%(lineno)d	调用日志输出函数的语句所在的代码行</span><br><span class="line">%(created)f	当前时间，用UNIX标准的表示时间的浮 点数表示</span><br><span class="line">%(relativeCreated)d	输出日志信息时的，自Logger创建以 来的毫秒数</span><br><span class="line">%(asctime)s	字符串形式的当前时间。默认格式是 “2003-07-08 16:49:45,896”。逗号后面的是毫秒</span><br><span class="line">%(thread)d	线程ID。可能没有</span><br><span class="line">%(threadName)s	线程名。可能没有</span><br><span class="line">%(process)d	进程ID。可能没有</span><br><span class="line">%(message)s	用户输出的消息</span><br></pre></td></tr></table></figure>
+<h4 id="日志同时输出到屏幕和文件"><a href="#日志同时输出到屏幕和文件" class="headerlink" title="日志同时输出到屏幕和文件"></a>日志同时输出到屏幕和文件</h4><p>如果想同时把log打印在屏幕和文件日志里，就需要了解一点复杂的知识 了</p>
+<p>Python 使用logging模块记录日志涉及四个主要类，使用官方文档中的概括最为合适：</p>
+<ul>
+<li>logger提供了应用程序可以直接使用的接口；</li>
+<li>handler将(logger创建的)日志记录发送到合适的目的输出；</li>
+<li>filter提供了细度设备来决定输出哪条日志记录；</li>
+<li>formatter决定日志记录的最终输出格式。</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#logging-日志模块"><span class="toc-number">1.</span> <span class="toc-text">logging (日志模块)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最简单用法"><span class="toc-number">1.1.</span> <span class="toc-text">最简单用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果想把日志写到文件里，也很简单"><span class="toc-number">1.2.</span> <span class="toc-text">如果想把日志写到文件里，也很简单</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义日志格式"><span class="toc-number">1.3.</span> <span class="toc-text">自定义日志格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日志同时输出到屏幕和文件"><span class="toc-number">1.4.</span> <span class="toc-text">日志同时输出到屏幕和文件</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&text=Py002-02-10常用模块九(logging)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&is_video=false&description=Py002-02-10常用模块九(logging)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py002-02-10常用模块九(logging)&body=Check out this article: https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&title=Py002-02-10常用模块九(logging)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/22/Py002-02-10常用模块九(logging)/&name=Py002-02-10常用模块九(logging)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

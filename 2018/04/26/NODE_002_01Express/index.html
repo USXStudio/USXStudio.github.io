@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="express 基于 Node.js 平台，快速、开放、极简的 web 开发框架。  express express helloworld 初始化项目(请确保你安装了node)  123456mkdir democd demo# 初始化 package.json 一路回车npm init   # 安装express 我的是4.16.3版本npm install express --save  创建">
+<meta name="keywords" content="express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express三连(一)">
+<meta property="og:url" content="https://usxstudio.github.io/2018/04/26/NODE_002_01Express/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="express 基于 Node.js 平台，快速、开放、极简的 web 开发框架。  express express helloworld 初始化项目(请确保你安装了node)  123456mkdir democd demo# 初始化 package.json 一路回车npm init   # 安装express 我的是4.16.3版本npm install express --save  创建">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.220Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express三连(一)">
+<meta name="twitter:description" content="express 基于 Node.js 平台，快速、开放、极简的 web 开发框架。  express express helloworld 初始化项目(请确保你安装了node)  123456mkdir democd demo# 初始化 package.json 一路回车npm init   # 安装express 我的是4.16.3版本npm install express --save  创建">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>express三连(一)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/04/27/NODE_002_02Express/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/26/NODE_001_01小型node服务器/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&text=express三连(一)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&is_video=false&description=express三连(一)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=express三连(一)&body=Check out this article: https://usxstudio.github.io/2018/04/26/NODE_002_01Express/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&name=express三连(一)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#express"><span class="toc-number">1.</span> <span class="toc-text">express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#express-helloworld"><span class="toc-number">2.</span> <span class="toc-text">express helloworld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数信息"><span class="toc-number">3.</span> <span class="toc-text">参数信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取请求头和设置响应头"><span class="toc-number">4.</span> <span class="toc-text">获取请求头和设置响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置json格式的响应类型"><span class="toc-number">5.</span> <span class="toc-text">设置json格式的响应类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置状态码"><span class="toc-number">6.</span> <span class="toc-text">设置状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-amp-amp-post"><span class="toc-number">7.</span> <span class="toc-text">get &amp;&amp; post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-use"><span class="toc-number">8.</span> <span class="toc-text">app.use()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中间件"><span class="toc-number">9.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#next-控制流程"><span class="toc-number">9.1.</span> <span class="toc-text">next() 控制流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#中间件的兜底处理"><span class="toc-number">9.2.</span> <span class="toc-text">中间件的兜底处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理请求体-body-parser"><span class="toc-number">10.</span> <span class="toc-text">处理请求体 body-parser</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        express三连(一)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-26T15:08:17.000Z" itemprop="datePublished">2018-04-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/express/">express</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><blockquote>
+<p>基于 Node.js 平台，快速、开放、极简的 web 开发框架。</p>
+</blockquote>
+<p><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">express</a></p>
+<h3 id="express-helloworld"><a href="#express-helloworld" class="headerlink" title="express helloworld"></a>express helloworld</h3><ol>
+<li>初始化项目(请确保你安装了node)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir demo</span><br><span class="line">cd demo</span><br><span class="line"># 初始化 package.json 一路回车</span><br><span class="line">npm init   </span><br><span class="line"># 安装express 我的是4.16.3版本</span><br><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建server.js</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">  res.send(&apos;hello world&apos;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(8001,()=&gt;&#123;</span><br><span class="line">    console.log(&apos;port 8001 is listening!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>开启服务器  node server.js</p>
+</li>
+<li><p>浏览器访问 localhost:8001</p>
+</li>
+</ol>
+<h3 id="参数信息"><a href="#参数信息" class="headerlink" title="参数信息"></a>参数信息</h3><blockquote>
+<p>请求url为 <a href="http://localhost:8001/?name=22" target="_blank" rel="noopener">http://localhost:8001/?name=22</a> </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">  //获取请求方式</span><br><span class="line">  console.log(req.method)</span><br><span class="line">  //请求参数为 k/v形式</span><br><span class="line">  console.log(JSON.stringify(req.query));</span><br><span class="line">  //根据url取参数 </span><br><span class="line">  console.log(req.query.name);</span><br><span class="line">  //返回数据</span><br><span class="line">  return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>restful风格的匹配参数</p>
+</blockquote>
+<p>restful风格 <a href="http://localhost:8001/aa/18/man" target="_blank" rel="noopener">http://localhost:8001/aa/18/man</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.get(&apos;/:name/:age/:gender&apos;, function(req, res)&#123;</span><br><span class="line">  console.log(req.params.name);</span><br><span class="line">  console.log(req.params.age);</span><br><span class="line">  console.log(req.params.gender);</span><br><span class="line">  return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="获取请求头和设置响应头"><a href="#获取请求头和设置响应头" class="headerlink" title="获取请求头和设置响应头"></a>获取请求头和设置响应头</h3><ul>
+<li>request.get()</li>
+<li>response.set()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 获取请求头 和设置响应头</span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">  console.log(req.get(&apos;Accept&apos;));</span><br><span class="line">  res.set(&apos;token&apos;,&apos;fdsalkjljjfadslkjfds&apos;)</span><br><span class="line">  return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="设置json格式的响应类型"><a href="#设置json格式的响应类型" class="headerlink" title="设置json格式的响应类型"></a>设置json格式的响应类型</h3><ul>
+<li>res.json({code:0})</li>
+<li>麻烦的方式 先设置Content-Type 在去调对象序列化字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 响应json格式</span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">   return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 响应json格式</span><br><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">    res.set(&apos;Content-Type&apos;,&apos;application/json;charset=utf-8&apos;)</span><br><span class="line">    return res.send(JSON.stringify(&#123;code:0&#125;))</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="设置状态码"><a href="#设置状态码" class="headerlink" title="设置状态码"></a>设置状态码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.status(404)</span><br></pre></td></tr></table></figure>
+<h3 id="get-amp-amp-post"><a href="#get-amp-amp-post" class="headerlink" title="get &amp;&amp; post"></a>get &amp;&amp; post</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.get(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">   return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.post(&apos;/&apos;, function(req, res)&#123;</span><br><span class="line">   return res.json(&#123;code:0&#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="app-use"><a href="#app-use" class="headerlink" title="app.use()"></a>app.use()</h3><blockquote>
+<p>可以直接包含 get、post 等的匹配就不用同一路径分开写了 app.get(‘/user’,[args…]) app.post(‘/user’,[args..])</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;,(req,res,next)=&gt;&#123;</span><br><span class="line">    res.json(&#123;msg:&quot;use&quot;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(8001,()=&gt;&#123;</span><br><span class="line">    console.log(&apos;port 8001 is listening!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><blockquote>
+<p>类似promise里的 .then().then().then() 的加工处理</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">// const Router = express.Router();</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;,mod1,mod2)</span><br><span class="line"></span><br><span class="line">function mod1(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod1 厂房&apos;)</span><br><span class="line">    return next();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mod2(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod2 厂房&apos;)</span><br><span class="line">    res.json(&#123;msg:&apos;数据返回结束&apos;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.listen(8001,()=&gt;&#123;</span><br><span class="line">    console.log(&apos;port 8001 is listening!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>use使用中间件的方式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.use(&apos;/&apos;,mod1,mod2)</span><br><span class="line">app.use(&apos;/&apos;,[mod1,mod2])</span><br><span class="line">app.use(&apos;/&apos;,[mod1],mod2)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>处理过程中通过req携带参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">app.use(&apos;/&apos;,mod1,mod2)</span><br><span class="line"></span><br><span class="line">function mod1(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod1 厂房&apos;)</span><br><span class="line">    req.user = &#123;name:&quot;fsafsdfas&quot;&#125;;</span><br><span class="line">    return next();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mod2(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod2 厂房&apos;)</span><br><span class="line">    console.log(JSON.stringify(req.user))</span><br><span class="line">    res.json(&#123;msg:&apos;数据返回结束&apos;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="next-控制流程"><a href="#next-控制流程" class="headerlink" title="next() 控制流程"></a>next() 控制流程</h4><ul>
+<li>不传递参数就会进入下一个中间件</li>
+<li>传递Error对象 就会走进错误的处理分支</li>
+<li>传递字符串 也会进入错误的处理分支 但是获取不到错误信息</li>
+<li>传递字符串除非你是’route’ 否则都会进入错误分支</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">next()</span><br><span class="line">next(new Error(&apos;fdsfdsa&apos;))</span><br><span class="line">next(&apos;fdsafsa&apos;)</span><br><span class="line">next(&apos;route&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="中间件的兜底处理"><a href="#中间件的兜底处理" class="headerlink" title="中间件的兜底处理"></a>中间件的兜底处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;,mod1,mod2)</span><br><span class="line"></span><br><span class="line">function mod1(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod1 厂房&apos;)</span><br><span class="line">    return next(new Error(&apos;少了一个零件，请求召回&apos;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mod2(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod2 厂房&apos;)</span><br><span class="line">    res.json(&#123;msg:&apos;数据返回结束&apos;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//兜底处理</span><br><span class="line">app.use((err,req,res,next)=&gt;&#123;</span><br><span class="line">    res.status(401)</span><br><span class="line">    res.json(&#123;code:-1,msg:err.message&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(8001,()=&gt;&#123;</span><br><span class="line">    console.log(&apos;port 8001 is listening!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="处理请求体-body-parser"><a href="#处理请求体-body-parser" class="headerlink" title="处理请求体 body-parser"></a>处理请求体 body-parser</h3><blockquote>
+<p>安装 body-parser</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install body-parser --save</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">var express = require(&apos;express&apos;);</span><br><span class="line">var app = express();</span><br><span class="line"></span><br><span class="line">const bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line"></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;extended:false&#125;))</span><br><span class="line"></span><br><span class="line">app.use(&apos;/&apos;,mod1,mod2)</span><br><span class="line"></span><br><span class="line">function mod1(req,res,next)&#123;</span><br><span class="line">    //打印解析后的请求体</span><br><span class="line">    console.log(req.body)</span><br><span class="line">    console.log(&apos;进入 mod1 厂房&apos;)</span><br><span class="line">    return next()</span><br><span class="line">    // return next(new Error(&apos;少了一个零件，请求召回&apos;));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mod2(req,res,next)&#123;</span><br><span class="line">    console.log(&apos;进入 mod2 厂房&apos;)</span><br><span class="line">    res.json(&#123;msg:&apos;数据返回结束&apos;&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.use((err,req,res,next)=&gt;&#123;</span><br><span class="line">    res.status(401)</span><br><span class="line">    res.json(&#123;code:-1,msg:err.message&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(8001,()=&gt;&#123;</span><br><span class="line">    console.log(&apos;port 8001 is listening!&apos;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#express"><span class="toc-number">1.</span> <span class="toc-text">express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#express-helloworld"><span class="toc-number">2.</span> <span class="toc-text">express helloworld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数信息"><span class="toc-number">3.</span> <span class="toc-text">参数信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取请求头和设置响应头"><span class="toc-number">4.</span> <span class="toc-text">获取请求头和设置响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置json格式的响应类型"><span class="toc-number">5.</span> <span class="toc-text">设置json格式的响应类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置状态码"><span class="toc-number">6.</span> <span class="toc-text">设置状态码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-amp-amp-post"><span class="toc-number">7.</span> <span class="toc-text">get &amp;&amp; post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-use"><span class="toc-number">8.</span> <span class="toc-text">app.use()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中间件"><span class="toc-number">9.</span> <span class="toc-text">中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#next-控制流程"><span class="toc-number">9.1.</span> <span class="toc-text">next() 控制流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#中间件的兜底处理"><span class="toc-number">9.2.</span> <span class="toc-text">中间件的兜底处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理请求体-body-parser"><span class="toc-number">10.</span> <span class="toc-text">处理请求体 body-parser</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&text=express三连(一)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&is_video=false&description=express三连(一)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=express三连(一)&body=Check out this article: https://usxstudio.github.io/2018/04/26/NODE_002_01Express/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&title=express三连(一)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/04/26/NODE_002_01Express/&name=express三连(一)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

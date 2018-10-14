@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="实现如下目标如下命令你应该看得懂 12345cd ~/Desktopmkdir democd demoecho &amp;quot;hi&amp;quot; &amp;gt; index.htmlcd ~/Desktop 脚本就是给计算机照着做的。这是我们对「脚本」的一个感性认识。接下来我们写一个脚本。 写一个脚本 找个地方新建文件，后缀随意，一般来说脚本的后缀是 .sh。我喜欢把脚本放在 ~/local 目录里。（我知">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单脚本的编写">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="实现如下目标如下命令你应该看得懂 12345cd ~/Desktopmkdir democd demoecho &amp;quot;hi&amp;quot; &amp;gt; index.htmlcd ~/Desktop 脚本就是给计算机照着做的。这是我们对「脚本」的一个感性认识。接下来我们写一个脚本。 写一个脚本 找个地方新建文件，后缀随意，一般来说脚本的后缀是 .sh。我喜欢把脚本放在 ~/local 目录里。（我知">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.172Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单脚本的编写">
+<meta name="twitter:description" content="实现如下目标如下命令你应该看得懂 12345cd ~/Desktopmkdir democd demoecho &amp;quot;hi&amp;quot; &amp;gt; index.htmlcd ~/Desktop 脚本就是给计算机照着做的。这是我们对「脚本」的一个感性认识。接下来我们写一个脚本。 写一个脚本 找个地方新建文件，后缀随意，一般来说脚本的后缀是 .sh。我喜欢把脚本放在 ~/local 目录里。（我知">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>简单脚本的编写</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/12/N006_HTTP入门/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/11/N005_01_脚本/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&text=简单脚本的编写"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&is_video=false&description=简单脚本的编写"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=简单脚本的编写&body=Check out this article: https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&name=简单脚本的编写&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现如下目标"><span class="toc-number">1.</span> <span class="toc-text">实现如下目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写一个脚本"><span class="toc-number">2.</span> <span class="toc-text">写一个脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#细节"><span class="toc-number">3.</span> <span class="toc-text">细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">4.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断目录是否已存在"><span class="toc-number">5.</span> <span class="toc-text">判断目录是否已存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回值"><span class="toc-number">6.</span> <span class="toc-text">返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-写脚本"><span class="toc-number">7.</span> <span class="toc-text">Node.js 写脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-切换目录"><span class="toc-number">7.1.</span> <span class="toc-text">用 JS 切换目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本创建目录"><span class="toc-number">7.2.</span> <span class="toc-text">用 JS 脚本创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本创建文件"><span class="toc-number">7.3.</span> <span class="toc-text">用 JS 脚本创建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本来重写-demo-sh"><span class="toc-number">7.4.</span> <span class="toc-text">用 JS 脚本来重写 demo.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shebang"><span class="toc-number">7.5.</span> <span class="toc-text">shebang</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        简单脚本的编写
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-11T01:50:18.000Z" itemprop="datePublished">2017-10-11</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="实现如下目标"><a href="#实现如下目标" class="headerlink" title="实现如下目标"></a>实现如下目标</h2><p>如下命令你应该看得懂</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Desktop</span><br><span class="line">mkdir demo</span><br><span class="line">cd demo</span><br><span class="line">echo &quot;hi&quot; &gt; index.html</span><br><span class="line">cd ~/Desktop</span><br></pre></td></tr></table></figure>
+<p>脚本就是给计算机照着做的。这是我们对「脚本」的一个感性认识。接下来我们写一个脚本。</p>
+<h2 id="写一个脚本"><a href="#写一个脚本" class="headerlink" title="写一个脚本"></a>写一个脚本</h2><ol>
+<li>找个地方新建文件，后缀随意，一般来说脚本的后缀是 .sh。我喜欢把脚本放在 ~/local 目录里。（我知道你没有这个目录，创建这个目录不就行了）<ol>
+<li><code>mkdir ~/local</code></li>
+<li><code>cd ~/local</code></li>
+<li><code>touch demo.txt</code></li>
+</ol>
+</li>
+<li><p>编辑 demo.txt，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir demo</span><br><span class="line">cd demo</span><br><span class="line">mkdir css js</span><br><span class="line">touch index.html css/style.css js/main.js</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（Windows 用户请跳过这一步）给 demo.sh 添加执行权限</p>
+<p><code>chmod +x demo.txt</code></p>
+</li>
+<li><p>在任意位置执行</p>
+<p><code>sh ~/local/demo.txt</code></p>
+<p>即可运行此脚本</p>
+<ol>
+<li><code>cd ~/Desktop</code></li>
+<li><code>sh ~/local/demo.txt</code></li>
+<li>你会看到当前目录里多出一个 demo 目录，demo 目录里面还有一些文件<br>好了，这个 demo.txt 就是你写出的第一个 Bash 脚本了。</li>
+</ol>
+</li>
+<li><p>将 ~/local 添加到 PATH 里</p>
+<ol>
+<li><p><code>cd ~/local; pwd</code></p>
+<p>得到 local 的绝对路径</p>
+</li>
+<li>创建 ~/.bashrc：<code>touch ~/.bashrc</code></li>
+<li><p>编辑 ~/.bashrc：<code>start ~/.bashrc</code>，在最后一行添加</p>
+<p><code>export PATH=&quot;local的绝对路径:$PATH&quot;</code></p>
+</li>
+<li>source ~/.bashrc</li>
+<li><p>之前你要运行</p>
+<p><code>sh ~/local/demo.txt</code>，现在你只需要运行 demo.txt 就行了（想想为什么，道理显而易见）</p>
+</li>
+</ol>
+</li>
+<li><p>demo.txt 的后缀 .txt 很无聊，删掉它</p>
+<ol>
+<li><code>mv ~/local/demo.txt ~/local/demo</code></li>
+<li><p>现在你只要运行</p>
+<p><code>demo</code></p>
+<p>就能执行该脚本了。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><ol>
+<li>PATH 的作用<br>你每次在 Bash 里面输入一个命令时（比如 ls、cp、demo），Bash 都会去 PATH 列表里面寻找对应的文件，如果找到了就执行。</li>
+<li>使用 type demo 可以看到寻找过程</li>
+<li>使用 which demo 可以看到寻找结果</li>
+<li>文件后缀的作用：毫无作用<br>你以为一个文件以 .exe 结尾就一定可以双击吗？你以为一个文件以 .png 结尾就一定是图片吗？图样图森破！</li>
+</ol>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>demo 脚本只能创建名字为 demo 的目录，太无聊了，我们让目录名是可变的吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir $1</span><br><span class="line">cd $1</span><br><span class="line">mkdir css js</span><br><span class="line">touch index.html css/style.css js/main.js</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>$1 表示你传的第一个参数。</p>
+<blockquote>
+<p>老师你怎么知道 $1 表示第一个参数？</p>
+</blockquote>
+<p>好问题，答案是</p>
+<blockquote>
+<p>我 Google 出来的</p>
+<p><a href="http://lmgtfy.com/?q=bash+first+param" title="null" target="_blank" rel="noopener">http://lmgtfy.com/?q=bash+first+param</a><br>用百度也行</p>
+<p><a href="http://www.baidu-x.com/?q=bash+%E7%AC%AC%E4%B8%80%E4%B8%AA+%E5%8F%82%E6%95%B0" title="null" target="_blank" rel="noopener">http://www.baidu-x.com/?q=bash+%E7%AC%AC%E4%B8%80%E4%B8%AA+%E5%8F%82%E6%95%B0</a></p>
+</blockquote>
+<h2 id="判断目录是否已存在"><a href="#判断目录是否已存在" class="headerlink" title="判断目录是否已存在"></a>判断目录是否已存在</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if [ -d $1 ]; then</span><br><span class="line">  echo &apos;error: dir exists&apos;</span><br><span class="line">  exit</span><br><span class="line">else</span><br><span class="line">  mkdir $1</span><br><span class="line">  cd $1</span><br><span class="line">  mkdir css js</span><br><span class="line">  touch index.html css/style.css js/main.js</span><br><span class="line">  echo &apos;success&apos;</span><br><span class="line">  exit</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你怎么知道 -d $1 可以判断目录是否存在？</p>
+<p>我 Google 出来的</p>
+<p><a href="http://lmgtfy.com/?q=bash+dir+exists" title="null" target="_blank" rel="noopener">http://lmgtfy.com/?q=bash+dir+exists</a></p>
+</blockquote>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><ul>
+<li><p><code>exit 0</code></p>
+<p>表示没有错误</p>
+</li>
+<li><p><code>exit 1</code></p>
+<p>表示错误代码为 1</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">demo &amp;&amp; echo &apos;结束&apos;</span><br></pre></td></tr></table></figure>
+<p>只有在 demo 成功时，才会执行</p>
+<p><code>echo &#39;结束&#39;</code></p>
+<h2 id="Node-js-写脚本"><a href="#Node-js-写脚本" class="headerlink" title="Node.js 写脚本"></a>Node.js 写脚本</h2><p>上面我们写的脚本叫做 Bash Script（Bash脚本）。</p>
+<p>JS 的全称叫做 JavaScript（Java脚本），虽然 JS 和 Java 没什么关系，但是 JS 依然是一种脚本。</p>
+<ol>
+<li>我们在 Bash 命令行里输入 Bash 命令，也可以在 Node.js 命令行里输入 JS 命令（<kbd>Ctrl</kbd> + <kbd>D</kbd> 退出）</li>
+<li><p>Bash 脚本能做的事情，JS 脚本也能做。(<code>sh demo.sh</code></p>
+<p>对应</p>
+<p><code>node demo.js</code>）</p>
+</li>
+</ol>
+<h3 id="用-JS-切换目录"><a href="#用-JS-切换目录" class="headerlink" title="用 JS 切换目录"></a>用 JS 切换目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(process.cwd()) // 打印当前目录</span><br><span class="line">// process.chdir(&apos;~/Desktop&apos;); // 这句话不行的，因为 JS 不认识 ~ 目录</span><br><span class="line">process.chdir(&quot;/Users/frank/Desktop&quot;)</span><br><span class="line">console.log(process.cwd()) // 打印当前目录</span><br></pre></td></tr></table></figure>
+<p>console.log 就相当于 echo</p>
+<h3 id="用-JS-脚本创建目录"><a href="#用-JS-脚本创建目录" class="headerlink" title="用 JS 脚本创建目录"></a>用 JS 脚本创建目录</h3><p>Google nodejs create dir</p>
+<p>文档：<a href="https://nodejs.org/api/fs.html#fs_fs_mkdirsync_path_mode" title="null" target="_blank" rel="noopener">https://nodejs.org/api/fs.html#fs_fs_mkdirsync_path_mode</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let fs = require(&quot;fs&quot;)</span><br><span class="line">fs.mkdirSync(&quot;demo&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="用-JS-脚本创建文件"><a href="#用-JS-脚本创建文件" class="headerlink" title="用 JS 脚本创建文件"></a>用 JS 脚本创建文件</h3><p>Google nodejs create file</p>
+<p>文档：</p>
+<p><a href="https://nodejs.org/api/fs.html#fs_fs_writefilesync_file_data_options" title="null" target="_blank" rel="noopener">https://nodejs.org/api/fs.html#fs_fs_writefilesync_file_data_options</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let fs = require(&apos;fs&apos;)</span><br><span class="line">fs.writeFileSync(&quot;./index.html&quot;, &quot;&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="用-JS-脚本来重写-demo-sh"><a href="#用-JS-脚本来重写-demo-sh" class="headerlink" title="用 JS 脚本来重写 demo.sh"></a>用 JS 脚本来重写 demo.sh</h3><ol>
+<li><p>创建 ~/local/jsdemo.js，内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(&apos;fs&apos;)</span><br><span class="line"></span><br><span class="line">var dirName = process.argv[2] // 你传的参数是从第 2 个开始的</span><br><span class="line"></span><br><span class="line">process.chdir(&quot;/Users/frank/Desktop&quot;) // cd ~/Desktop</span><br><span class="line">fs.mkdirSync(&quot;./&quot; + dirName) // mkdir $1</span><br><span class="line">process.chdir(&quot;./&quot; + dirName) // cd $1</span><br><span class="line">fs.mkdirSync(&apos;css&apos;) // mkdir css</span><br><span class="line">fs.mkdirSync(&apos;js&apos;) // mkdir js</span><br><span class="line"></span><br><span class="line">fs.writeFileSync(&quot;./index.html&quot;, &quot;&quot;)</span><br><span class="line">fs.writeFileSync(&quot;css/style.css&quot;, &quot;&quot;)</span><br><span class="line">fs.writeFileSync(&quot;./js/main.js&quot;, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">process.exit(0)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>（Windows 用户跳过这一步）给 jsdemo.js 加上执行权限</p>
+<p><code>chmod +x ~/local/jsdemo.js</code></p>
+</li>
+<li><code>cd ~/Desktop</code></li>
+<li><code>node ~/local/jsdemo.js zzz</code>，就可以看到 zzz 目录创建成功了</li>
+</ol>
+<h3 id="shebang"><a href="#shebang" class="headerlink" title="shebang"></a>shebang</h3><p>我们每次执行 ~/local/jsdemo.js 都要用 node 来执行，能不能做到不加 node 也能执行呢（也就是指定执行环境），可以，在 jsdemo.js 第一行加上这一句即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node</span><br></pre></td></tr></table></figure>
+<p>（以下操作在 Windows 上可能失败，失败了就算了）</p>
+<ol>
+<li><p>然后你就可以直接用</p>
+<p><code>~/local/jsdemo.js zzz</code></p>
+<p>了（省得输入 node 了）。</p>
+</li>
+<li><p>如果你已经把 ~/local 加入了 PATH，那么甚至可以直接输入</p>
+<p><code>jsdemo.js zzz</code></p>
+<p>来执行。</p>
+</li>
+<li><p>如果你再把 jsdemo.js 的后缀 .js 去掉，就可以直接</p>
+<p><code>jsdemo zzz</code></p>
+<p>了。</p>
+</li>
+</ol>
+<p>注意，你每次执行前最好删掉 zzz 目录，以免发生冲突。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现如下目标"><span class="toc-number">1.</span> <span class="toc-text">实现如下目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写一个脚本"><span class="toc-number">2.</span> <span class="toc-text">写一个脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#细节"><span class="toc-number">3.</span> <span class="toc-text">细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-number">4.</span> <span class="toc-text">参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断目录是否已存在"><span class="toc-number">5.</span> <span class="toc-text">判断目录是否已存在</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回值"><span class="toc-number">6.</span> <span class="toc-text">返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-写脚本"><span class="toc-number">7.</span> <span class="toc-text">Node.js 写脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-切换目录"><span class="toc-number">7.1.</span> <span class="toc-text">用 JS 切换目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本创建目录"><span class="toc-number">7.2.</span> <span class="toc-text">用 JS 脚本创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本创建文件"><span class="toc-number">7.3.</span> <span class="toc-text">用 JS 脚本创建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-JS-脚本来重写-demo-sh"><span class="toc-number">7.4.</span> <span class="toc-text">用 JS 脚本来重写 demo.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shebang"><span class="toc-number">7.5.</span> <span class="toc-text">shebang</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&text=简单脚本的编写"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&is_video=false&description=简单脚本的编写"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=简单脚本的编写&body=Check out this article: https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&title=简单脚本的编写"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/11/N005_02简单脚本的编写/&name=简单脚本的编写&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

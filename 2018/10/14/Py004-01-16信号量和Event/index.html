@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="title: Py004-01-16信号量和Eventdate: 2018-10-13 14:04:20 tags: M04信号量信号量也是一把锁，可以指定信号量为5，对比互斥锁同一时间只能有一个任务抢到锁去执行，信号量同一时间可以有5个任务拿到锁去执行，如果说互斥锁是合租房屋的人去抢一个厕所，那么信号量就相当于一群路人争抢公共厕所，公共厕所有多个坑位，这意味着同一时间可以有多个人上公共厕所，但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="USXStudio">
+<meta property="og:url" content="https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="title: Py004-01-16信号量和Eventdate: 2018-10-13 14:04:20 tags: M04信号量信号量也是一把锁，可以指定信号量为5，对比互斥锁同一时间只能有一个任务抢到锁去执行，信号量同一时间可以有5个任务拿到锁去执行，如果说互斥锁是合租房屋的人去抢一个厕所，那么信号量就相当于一群路人争抢公共厕所，公共厕所有多个坑位，这意味着同一时间可以有多个人上公共厕所，但">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/py/py004_01_1601.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="USXStudio">
+<meta name="twitter:description" content="title: Py004-01-16信号量和Eventdate: 2018-10-13 14:04:20 tags: M04信号量信号量也是一把锁，可以指定信号量为5，对比互斥锁同一时间只能有一个任务抢到锁去执行，信号量同一时间可以有5个任务拿到锁去执行，如果说互斥锁是合租房屋的人去抢一个厕所，那么信号量就相当于一群路人争抢公共厕所，公共厕所有多个坑位，这意味着同一时间可以有多个人上公共厕所，但">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/py/py004_01_1601.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>USXStudio</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/10/14/es-test/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&text="><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&is_video=false&description="><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&name=&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-M04"><span class="toc-number">1.</span> <span class="toc-text">tags: M04</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信号量"><span class="toc-number">1.1.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Event"><span class="toc-number">1.2.</span> <span class="toc-text">Event</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上课实例"><span class="toc-number">1.2.1.</span> <span class="toc-text">上课实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置超时时间"><span class="toc-number">1.2.2.</span> <span class="toc-text">设置超时时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定时器"><span class="toc-number">1.3.</span> <span class="toc-text">定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python-的定时器，指定n秒后执行某操作"><span class="toc-number">1.3.1.</span> <span class="toc-text">python 的定时器，指定n秒后执行某操作</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-14T05:14:26.419Z" itemprop="datePublished">2018-10-14</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <hr>
+<p>title: Py004-01-16信号量和Event<br>date: 2018-10-13 14:04:20</p>
+<h2 id="tags-M04"><a href="#tags-M04" class="headerlink" title="tags: M04"></a>tags: M04</h2><h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><p>信号量也是一把锁，可以指定信号量为5，对比互斥锁同一时间只能有一个任务抢到锁去执行，信号量同一时间可以有5个任务拿到锁去执行，如果说互斥锁是合租房屋的人去抢一个厕所，那么信号量就相当于一群路人争抢公共厕所，公共厕所有多个坑位，这意味着同一时间可以有多个人上公共厕所，但公共厕所容纳的人数是一定的，这便是信号量的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from threading import Thread,Semaphore</span><br><span class="line">import threading</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def func():</span><br><span class="line">    sm.acquire()</span><br><span class="line">    print(&apos;%s 占住了坑位&apos; %threading.current_thread().getName())</span><br><span class="line">    time.sleep(3)</span><br><span class="line">    print(&apos;%s 解脱了-------------------\n&apos; % threading.current_thread().getName())</span><br><span class="line">    sm.release()</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    # 公共厕所只有3个坑</span><br><span class="line">    sm=Semaphore(3)</span><br><span class="line"></span><br><span class="line">    # 23个人冲进厕所</span><br><span class="line">    for i in range(23):</span><br><span class="line">        t=Thread(target=func)</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">from threading import Thread,Semaphore,currentThread</span><br><span class="line">import time,random</span><br><span class="line"></span><br><span class="line"># 公共厕所只有三个坑</span><br><span class="line">sm=Semaphore(3)</span><br><span class="line"></span><br><span class="line">def task():</span><br><span class="line">    with sm:</span><br><span class="line">        print(&apos;%s get 厕所&apos; %currentThread().getName())</span><br><span class="line">        time.sleep(random.randint(1,3))</span><br><span class="line">        print(&apos;%s out 厕所----------\n&apos; % currentThread().getName())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    for i in range(10):</span><br><span class="line">        t=Thread(target=task)</span><br><span class="line">        t.start()</span><br></pre></td></tr></table></figure>
+<p>解析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Semaphore管理一个内置的计数器，</span><br><span class="line">每当调用acquire()时内置计数器-1；</span><br><span class="line">调用release() 时内置计数器+1；</span><br><span class="line">计数器不能小于0；当计数器为0时，acquire()将阻塞线程直到其他线程调用release()。</span><br></pre></td></tr></table></figure>
+<h3 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h3><p>线程的一个关键特性是每个线程都是独立运行且状态不可预测。</p>
+<p>如果程序中的其 他线程需要通过判断某个线程的状态来确定自己下一步的操作,这时线程同步问题就会变得非常棘手。为了解决这些问题,我们需要使用threading库中的Event对象。 对象包含一个可由线程设置的信号标志,它允许线程等待某些事件的发生。在 初始情况下,Event对象中的信号标志被设置为假。如果有线程等待一个Event对象, 而这个Event对象的标志为假,那么这个线程将会被一直阻塞直至该标志为真。一个线程如果将一个Event对象的信号标志设置为真,它将唤醒所有等待这个Event对象的线程。如果一个线程等待一个已经被设置为真的Event对象,那么它将忽略这个事件, 继续执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from threading import Event</span><br><span class="line"></span><br><span class="line">event.isSet()：返回event的状态值；是否被触发</span><br><span class="line"></span><br><span class="line">event.wait()：如果 event.isSet()==False将阻塞线程；</span><br><span class="line"></span><br><span class="line">event.set()： 设置event的状态值为True，所有阻塞池的线程激活进入就绪状态， 等待操作系统调度；</span><br><span class="line"></span><br><span class="line">event.clear()：恢复event的状态值为False。</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/py/py004_01_1601.png" alt=""></p>
+<blockquote>
+<h4 id="上课实例"><a href="#上课实例" class="headerlink" title="上课实例"></a>上课实例</h4></blockquote>
+<p>在高中以下，老师没宣布下课大部分人都会停在座位上。。。佯装上课。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">from threading import Thread,Event</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">event=Event()</span><br><span class="line"></span><br><span class="line">def student(name):</span><br><span class="line">    print(&apos;学生%s 正在听课----------&apos; %name)</span><br><span class="line">    event.wait()</span><br><span class="line">    print(&apos;学生%s 下课并开始自由活动--吃鸡吃鸡！！！&apos; %name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def teacher(name):</span><br><span class="line">    print(&apos;老师%s 正在授课&apos; %name)</span><br><span class="line">    time.sleep(7)</span><br><span class="line">    event.set()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    stu1=Thread(target=student,args=(&apos;刘备&apos;,))</span><br><span class="line">    stu2=Thread(target=student,args=(&apos;关羽&apos;,))</span><br><span class="line">    stu3=Thread(target=student,args=(&apos;张飞&apos;,))</span><br><span class="line">    t1=Thread(target=teacher,args=(&apos;诸葛&apos;,))</span><br><span class="line"></span><br><span class="line">    stu1.start()</span><br><span class="line">    stu2.start()</span><br><span class="line">    stu3.start()</span><br><span class="line">    t1.start()</span><br><span class="line">    </span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">学生调用 event.wait() 就会一直等待老师 宣布下课（调用event.set()）</span><br><span class="line">所以开始上课后  直到老师 通知下课（event.set()）学生才被释放</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有木有学生不等老师的情况？</p>
+</blockquote>
+<p>有，大学里   老师讲课学生不会等老师宣布，因为你会逃课</p>
+<blockquote>
+<h4 id="设置超时时间"><a href="#设置超时时间" class="headerlink" title="设置超时时间"></a>设置超时时间</h4></blockquote>
+<p>如果20分钟内你不点名，我就走了。。。哈哈哈</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># wait能接受参数，单位是秒——超时时间</span><br><span class="line">def student(name):</span><br><span class="line">    print(&apos;学生%s 正在听课----------&apos; %name)</span><br><span class="line">    event.wait(2)</span><br><span class="line">    print(&apos;学生%s 下课并开始自由活动--吃鸡吃鸡！！！&apos; %name)</span><br></pre></td></tr></table></figure>
+<p>例如，有多个工作线程尝试链接MySQL，我们想要在链接前确保MySQL服务正常才让那些工作线程去连接MySQL服务器，如果连接不成功，都会去尝试重新连接。那么我们就可以采用threading.Event机制来协调各个工作线程的连接操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">from threading import Thread,Event,currentThread</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">event=Event()</span><br><span class="line"></span><br><span class="line">def conn():</span><br><span class="line">    n=0</span><br><span class="line">    while not event.is_set():</span><br><span class="line">        if n == 3:</span><br><span class="line">            print(&apos;%s try too many times&apos; %currentThread().getName())</span><br><span class="line">            return</span><br><span class="line">        print(&apos;%s try %s&apos; %(currentThread().getName(),n))</span><br><span class="line">        event.wait(0.5)</span><br><span class="line">        n+=1</span><br><span class="line"></span><br><span class="line">    print(&apos;%s is connected&apos; %currentThread().getName())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def check():</span><br><span class="line">    print(&apos;%s is checking&apos; %currentThread().getName())</span><br><span class="line">    time.sleep(5)</span><br><span class="line">    event.set()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    for i in range(3):</span><br><span class="line">        t=Thread(target=conn)</span><br><span class="line">        t.start()</span><br><span class="line">    t=Thread(target=check)</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><blockquote>
+<p>看看javascript的定时器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(function()&#123;</span><br><span class="line">    console.log(&apos;冲咖啡。。。&apos;)</span><br><span class="line">&#125;,1000)</span><br><span class="line">// 一秒后 执行该函数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">setInterval(function()&#123;</span><br><span class="line">    console.log(&apos;抢票。。。&apos;)</span><br><span class="line">&#125;,5000)</span><br><span class="line">// 每5秒 看一下出票信息</span><br></pre></td></tr></table></figure>
+<h4 id="python-的定时器，指定n秒后执行某操作"><a href="#python-的定时器，指定n秒后执行某操作" class="headerlink" title="python 的定时器，指定n秒后执行某操作"></a>python 的定时器，指定n秒后执行某操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Timer(延迟时间,执行的函数,args=?,kwargs=?) </span><br><span class="line">支持给 执行函数传递参数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from threading import Timer</span><br><span class="line"></span><br><span class="line">def hello():</span><br><span class="line">    print(&quot;hello, world&quot;)</span><br><span class="line"></span><br><span class="line">t = Timer(1, hello)</span><br><span class="line">t.start()  # after 1 seconds, &quot;hello, world&quot; will be printed</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#tags-M04"><span class="toc-number">1.</span> <span class="toc-text">tags: M04</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#信号量"><span class="toc-number">1.1.</span> <span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Event"><span class="toc-number">1.2.</span> <span class="toc-text">Event</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#上课实例"><span class="toc-number">1.2.1.</span> <span class="toc-text">上课实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置超时时间"><span class="toc-number">1.2.2.</span> <span class="toc-text">设置超时时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定时器"><span class="toc-number">1.3.</span> <span class="toc-text">定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#python-的定时器，指定n秒后执行某操作"><span class="toc-number">1.3.1.</span> <span class="toc-text">python 的定时器，指定n秒后执行某操作</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&text="><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&is_video=false&description="><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=&body=Check out this article: https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&title="><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/14/Py004-01-16信号量和Event/&name=&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

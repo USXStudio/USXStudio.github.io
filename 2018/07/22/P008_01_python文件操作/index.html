@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="文件处理1.只读 和 读写 ‘r’ 只读模式【默认模式，文件必须存在，不存在则抛出异常】   123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r&amp;apos;,encoding=&amp;apos;utf-8&amp;apos;)data = f.read()f.close()  ‘r+’ 读写【可读，可写】  123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r+&amp;a">
+<meta name="keywords" content="fullstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P008_01_python文件操作">
+<meta property="og:url" content="https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="文件处理1.只读 和 读写 ‘r’ 只读模式【默认模式，文件必须存在，不存在则抛出异常】   123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r&amp;apos;,encoding=&amp;apos;utf-8&amp;apos;)data = f.read()f.close()  ‘r+’ 读写【可读，可写】  123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r+&amp;a">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P008_01_python文件操作">
+<meta name="twitter:description" content="文件处理1.只读 和 读写 ‘r’ 只读模式【默认模式，文件必须存在，不存在则抛出异常】   123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r&amp;apos;,encoding=&amp;apos;utf-8&amp;apos;)data = f.read()f.close()  ‘r+’ 读写【可读，可写】  123f = open(&amp;apos;a.txt&amp;apos;,&amp;apos;r+&amp;a">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>P008_01_python文件操作</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/22/P009_01_python函数/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/22/P007_01_python集合和深浅拷贝/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&text=P008_01_python文件操作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&is_video=false&description=P008_01_python文件操作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P008_01_python文件操作&body=Check out this article: https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&name=P008_01_python文件操作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件处理"><span class="toc-number">1.</span> <span class="toc-text">文件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-只读-和-读写"><span class="toc-number">1.1.</span> <span class="toc-text">1.只读 和 读写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-只写-和-写读："><span class="toc-number">1.2.</span> <span class="toc-text">2.只写 和 写读：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-追加-和-追加写"><span class="toc-number">1.3.</span> <span class="toc-text">3.追加 和 追加写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-只写-和-写读"><span class="toc-number">1.4.</span> <span class="toc-text">4.只写 和 写读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-rb、wb、ab、xb的用法："><span class="toc-number">1.5.</span> <span class="toc-text">5.rb、wb、ab、xb的用法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-操作文件的方法："><span class="toc-number">1.6.</span> <span class="toc-text">6.操作文件的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-truncate的用法："><span class="toc-number">1.7.</span> <span class="toc-text">7.truncate的用法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-强大装逼打开和关闭文件结合代码："><span class="toc-number">1.8.</span> <span class="toc-text">8.强大装逼打开和关闭文件结合代码：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-修改文件"><span class="toc-number">1.9.</span> <span class="toc-text">9.修改文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.10.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P008_01_python文件操作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-22T09:10:01.000Z" itemprop="datePublished">2018-07-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/fullstack/">fullstack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h3><h4 id="1-只读-和-读写"><a href="#1-只读-和-读写" class="headerlink" title="1.只读 和 读写"></a>1.只读 和 读写</h4><blockquote>
+<p>‘r’ 只读模式【默认模式，文件必须存在，不存在则抛出异常】 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;a.txt&apos;,&apos;r&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">data = f.read()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘r+’ 读写【可读，可写】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;a.txt&apos;,&apos;r+&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">data = f.read()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h4 id="2-只写-和-写读："><a href="#2-只写-和-写读：" class="headerlink" title="2.只写 和 写读："></a>2.只写 和 写读：</h4><blockquote>
+<p>‘w’ 只写模式【不可读；不存在则创建；存在则清空内容】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;log&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">f.write(&apos;aaa&apos;)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘w+’ 写读【可读，可写】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;log&apos;,&apos;w+&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">f.write(&apos;aaa&apos;)</span><br><span class="line">print(f.read())</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h4 id="3-追加-和-追加写"><a href="#3-追加-和-追加写" class="headerlink" title="3.追加 和 追加写"></a>3.追加 和 追加写</h4><blockquote>
+<p>‘a’ 之追加写模式【不可读；不存在则创建；存在则只追加内容】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;log&apos;,&apos;a&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">f.write(&apos;aaa&apos;)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘a+’ 写读【可读，可写】</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;log&apos;,mode=&apos;a+&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">f.write(&apos;aaa&apos;)</span><br><span class="line">print(f.read())</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h4 id="4-只写-和-写读"><a href="#4-只写-和-写读" class="headerlink" title="4.只写 和 写读"></a>4.只写 和 写读</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&apos;x&apos;    只写模式【不可读；不存在则创建，存在则报错】</span><br><span class="line"></span><br><span class="line">&apos;x+&apos;    写读【可读，可写】</span><br></pre></td></tr></table></figure>
+<h4 id="5-rb、wb、ab、xb的用法："><a href="#5-rb、wb、ab、xb的用法：" class="headerlink" title="5.rb、wb、ab、xb的用法："></a>5.rb、wb、ab、xb的用法：</h4><ol>
+<li><p>对于非文本文件，我们只能使用b模式，”b”表示以字节的方式操作（而所有文件也都是以字节的形式存储的，使用这种模式无需考虑文本文件的字符编码、图片文件的jgp格式、视频文件的avi格式）</p>
+</li>
+<li><p>以b方式打开时，读取到的内容是字节类型，写入时也需要提供字节类型，不能指定编码</p>
+</li>
+</ol>
+<blockquote>
+<p>b模式写入的时候如果是汉字就得转换为进制码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">f = open(&apos;log&apos;,mode=&apos;rb&apos;)</span><br><span class="line">f.read() # 进制码</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;log&apos;,mode=&apos;wb&apos;)</span><br><span class="line">f.write(&apos;纠纷&apos;.encode(&apos;utf-8&apos;))</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h4 id="6-操作文件的方法："><a href="#6-操作文件的方法：" class="headerlink" title="6.操作文件的方法："></a>6.操作文件的方法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">f.read() #读取所有内容,光标移动到文件末尾</span><br><span class="line">f.readline() #读取一行内容,光标移动到第二行首部</span><br><span class="line">f.readlines() #读取每一行内容,存放于列表中</span><br><span class="line"></span><br><span class="line">f.write(&apos;1111\n222\n&apos;) #针对文本模式的写,需要自己写换行符</span><br><span class="line">f.write(&apos;1111\n222\n&apos;.encode(&apos;utf-8&apos;)) #针对b模式的写,需要自己写换行符</span><br><span class="line">f.writelines([&apos;333\n&apos;,&apos;444\n&apos;]) #文件模式</span><br><span class="line">f.writelines([bytes(&apos;333\n&apos;,encoding=&apos;utf-8&apos;),&apos;444\n&apos;.encode(&apos;utf-8&apos;)]) #b模式</span><br><span class="line"></span><br><span class="line">#seek 光标移动到第几个字节的位置</span><br><span class="line">f.seek()    移动到最开始</span><br><span class="line">f.seek(2)   </span><br><span class="line"></span><br><span class="line">#tell    告诉你光标的位置</span><br><span class="line">f.tell()</span><br><span class="line"></span><br><span class="line">#readable    #文件是否可读</span><br><span class="line">f.readable()</span><br></pre></td></tr></table></figure>
+<h4 id="7-truncate的用法："><a href="#7-truncate的用法：" class="headerlink" title="7.truncate的用法："></a>7.truncate的用法：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">truncate是截断文件，所有文件的打开方式必须可写，但是不能用w或w+等方式打开，因为那样直接清空文件了，所以truncate要在r+或a或a+等模式下测试效果</span><br></pre></td></tr></table></figure>
+<h4 id="8-强大装逼打开和关闭文件结合代码："><a href="#8-强大装逼打开和关闭文件结合代码：" class="headerlink" title="8.强大装逼打开和关闭文件结合代码："></a>8.强大装逼打开和关闭文件结合代码：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;log&apos;,mode=&apos;r+&apos;,encoding=&apos;utf-8&apos;) as f：</span><br><span class="line">    f.read()</span><br><span class="line"># 自动调用close()</span><br></pre></td></tr></table></figure>
+<p>对俩文件执行读写操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;log&apos;,mode=&apos;r+&apos;,encoding=&apos;utf-8&apos;) as f1, open(&apos;log&apos;,mode=&apos;w+&apos;,encoding=&apos;utf-8&apos;) as f2：</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意实现 with后的读写操作必须在with的缩进内</p>
+</blockquote>
+<h4 id="9-修改文件"><a href="#9-修改文件" class="headerlink" title="9.修改文件"></a>9.修改文件</h4><blockquote>
+<p>需求：实现文件的编辑效果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">with open(&apos;小护士班主任&apos;,encoding=&apos;utf-8&apos;) as f,open(&apos;小护士班主任.bak&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;) as f2:</span><br><span class="line">    for line in f:</span><br><span class="line">        if &apos;星儿&apos; in line:  #班主任:星儿</span><br><span class="line">            line = line.replace(&apos;星儿&apos;,&apos;啊娇&apos;)</span><br><span class="line">        #写文件</span><br><span class="line">        f2.write(line) #小护士:金老板</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">os.remove(&apos;小护士班主任&apos;) #删除文件</span><br><span class="line">os.rename(&apos;小护士班主任.bak&apos;,&apos;小护士班主任&apos;)  #重命名文件</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>打开文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#open(&apos;路径&apos;，&apos;打开方式&apos;，&apos;指定编码方式&apos;)</span><br><span class="line"># 打开方式 r w a r+ w+ a+ b</span><br><span class="line">    #r+ 打开文件直接写 和读完再写</span><br><span class="line"># 编码方式 —— utf-8</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>操作文件</p>
+</blockquote>
+<ul>
+<li>读</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">read 一次性读</span><br><span class="line">readlines 一次性读</span><br><span class="line">readline 一行一行读</span><br><span class="line">    不知道在哪儿结束</span><br><span class="line">    视频 图片 rb bytes 按照字节读</span><br><span class="line">    </span><br><span class="line">for循环 —— 最好！！！</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write</span><br></pre></td></tr></table></figure>
+<ul>
+<li>光标 —— 文件指针</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seek _ 指定光标移动到某个位置</span><br><span class="line">tell _ 获取光标当前的位置</span><br><span class="line">truncate _ 截取文件</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关闭文件</p>
+</blockquote>
+<ul>
+<li>close</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件处理"><span class="toc-number">1.</span> <span class="toc-text">文件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-只读-和-读写"><span class="toc-number">1.1.</span> <span class="toc-text">1.只读 和 读写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-只写-和-写读："><span class="toc-number">1.2.</span> <span class="toc-text">2.只写 和 写读：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-追加-和-追加写"><span class="toc-number">1.3.</span> <span class="toc-text">3.追加 和 追加写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-只写-和-写读"><span class="toc-number">1.4.</span> <span class="toc-text">4.只写 和 写读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-rb、wb、ab、xb的用法："><span class="toc-number">1.5.</span> <span class="toc-text">5.rb、wb、ab、xb的用法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-操作文件的方法："><span class="toc-number">1.6.</span> <span class="toc-text">6.操作文件的方法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-truncate的用法："><span class="toc-number">1.7.</span> <span class="toc-text">7.truncate的用法：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-强大装逼打开和关闭文件结合代码："><span class="toc-number">1.8.</span> <span class="toc-text">8.强大装逼打开和关闭文件结合代码：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-修改文件"><span class="toc-number">1.9.</span> <span class="toc-text">9.修改文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">1.10.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&text=P008_01_python文件操作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&is_video=false&description=P008_01_python文件操作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P008_01_python文件操作&body=Check out this article: https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&title=P008_01_python文件操作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/22/P008_01_python文件操作/&name=P008_01_python文件操作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

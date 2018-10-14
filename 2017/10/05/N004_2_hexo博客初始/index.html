@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Welcome to  My First Hexo Blog!  hexo环境搭建前置条件  请先确保你有node  一路next 不要手残把默认选中的add to path取消 请先确保你有 git bash 否则没有往下看的必要了  在 GitHub 上新建一个空仓库 repo仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.githu">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo环境搭建">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="Welcome to  My First Hexo Blog!  hexo环境搭建前置条件  请先确保你有node  一路next 不要手残把默认选中的add to path取消 请先确保你有 git bash 否则没有往下看的必要了  在 GitHub 上新建一个空仓库 repo仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.githu">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/hexo/blog0_001.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/hexo/blog0_002.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.168Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo环境搭建">
+<meta name="twitter:description" content="Welcome to  My First Hexo Blog!  hexo环境搭建前置条件  请先确保你有node  一路next 不要手残把默认选中的add to path取消 请先确保你有 git bash 否则没有往下看的必要了  在 GitHub 上新建一个空仓库 repo仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.githu">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/hexo/blog0_001.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>hexo环境搭建</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/05/N004_3_hexo换主题/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/09/25/N004_0_命令行基础/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&text=hexo环境搭建"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&is_video=false&description=hexo环境搭建"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo环境搭建&body=Check out this article: https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&name=hexo环境搭建&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo环境搭建"><span class="toc-number">1.</span> <span class="toc-text">hexo环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在-GitHub-上新建一个空仓库-repo"><span class="toc-number">2.</span> <span class="toc-text">在 GitHub 上新建一个空仓库 repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#仓库名称是你github账户名-比如我的是slTrust-那么你新建的仓库名就会是这个格式-slTrust-github-io"><span class="toc-number">2.1.</span> <span class="toc-text">仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.github.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Hexo-命令行工具"><span class="toc-number">2.2.</span> <span class="toc-text">安装 Hexo 命令行工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化你的博客比如-myBlog"><span class="toc-number">2.3.</span> <span class="toc-text">初始化你的博客比如 myBlog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入你的博客目录"><span class="toc-number">2.4.</span> <span class="toc-text">进入你的博客目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖"><span class="toc-number">2.5.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建第一个博客-firstBlog"><span class="toc-number">2.6.</span> <span class="toc-text">新建第一个博客 firstBlog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑这个文件-注意是markdown语法"><span class="toc-number">2.7.</span> <span class="toc-text">编辑这个文件,注意是markdown语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-config-yml，编辑网站配置"><span class="toc-number">2.8.</span> <span class="toc-text">start _config.yml，编辑网站配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-git-部署插件"><span class="toc-number">2.9.</span> <span class="toc-text">安装 git 部署插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布"><span class="toc-number">2.10.</span> <span class="toc-text">发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入你的github仓库"><span class="toc-number">2.11.</span> <span class="toc-text">进入你的github仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何创建博客"><span class="toc-number">3.</span> <span class="toc-text">如何创建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建博客"><span class="toc-number">3.1.</span> <span class="toc-text">新建博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑你的博客-复制显示的路径，使用-start-路径-来编辑它"><span class="toc-number">3.2.</span> <span class="toc-text">编辑你的博客 复制显示的路径，使用 start 路径 来编辑它</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新初始化你的博客"><span class="toc-number">3.3.</span> <span class="toc-text">重新初始化你的博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-number">3.4.</span> <span class="toc-text">部署</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        hexo环境搭建
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-05T09:53:53.000Z" itemprop="datePublished">2017-10-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Welcome to  <a href="https://sltrust.github.io/index.html" target="_blank" rel="noopener">My First Hexo Blog</a>! </p>
+<h2 id="hexo环境搭建"><a href="#hexo环境搭建" class="headerlink" title="hexo环境搭建"></a>hexo环境搭建</h2><p>前置条件</p>
+<ol>
+<li>请先确保你有node  一路next 不要手残把默认选中的add to path取消</li>
+<li>请先确保你有 git bash 否则没有往下看的必要了</li>
+</ol>
+<h2 id="在-GitHub-上新建一个空仓库-repo"><a href="#在-GitHub-上新建一个空仓库-repo" class="headerlink" title="在 GitHub 上新建一个空仓库 repo"></a>在 GitHub 上新建一个空仓库 repo</h2><h3 id="仓库名称是你github账户名-比如我的是slTrust-那么你新建的仓库名就会是这个格式-slTrust-github-io"><a href="#仓库名称是你github账户名-比如我的是slTrust-那么你新建的仓库名就会是这个格式-slTrust-github-io" class="headerlink" title="仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.github.io"></a>仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.github.io</h3><h3 id="安装-Hexo-命令行工具"><a href="#安装-Hexo-命令行工具" class="headerlink" title="安装 Hexo 命令行工具"></a>安装 Hexo 命令行工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h3 id="初始化你的博客比如-myBlog"><a href="#初始化你的博客比如-myBlog" class="headerlink" title="初始化你的博客比如 myBlog"></a>初始化你的博客比如 myBlog</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init myBlog</span><br></pre></td></tr></table></figure>
+<h3 id="进入你的博客目录"><a href="#进入你的博客目录" class="headerlink" title="进入你的博客目录"></a>进入你的博客目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span>  myBlog</span><br></pre></td></tr></table></figure>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i</span><br></pre></td></tr></table></figure>
+<h3 id="新建第一个博客-firstBlog"><a href="#新建第一个博客-firstBlog" class="headerlink" title="新建第一个博客 firstBlog"></a>新建第一个博客 firstBlog</h3><p>这样会出现一个 .md文件 在 source/_posts目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new  firstBlog</span><br></pre></td></tr></table></figure>
+<h3 id="编辑这个文件-注意是markdown语法"><a href="#编辑这个文件-注意是markdown语法" class="headerlink" title="编辑这个文件,注意是markdown语法"></a>编辑这个文件,注意是markdown语法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ start <span class="built_in">source</span>/_posts/firstBlog.md</span><br></pre></td></tr></table></figure>
+<h3 id="start-config-yml，编辑网站配置"><a href="#start-config-yml，编辑网站配置" class="headerlink" title="start _config.yml，编辑网站配置"></a>start _config.yml，编辑网站配置</h3><ul>
+<li>把第 6 行的 title 改成你想要的名字</li>
+<li>把第 9 行的 author 就是作者</li>
+<li>把最后一行的 type 改成 git</li>
+<li>在最后一行，与 type 平齐，加上一行 repo: 仓库地址 如 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:slTrust/slTrust.github.io.git  <blockquote>
+<p>注意这个配置的 repo参数 仓库名是  你新建的空仓库 一定一定一定是你账号名的格式 slTrust.github.io<br>这样你的 repo 参数就可以设置为这个 <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:slTrust/slTrust.github.io.git </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/hexo/blog0_001.png" alt="step"></p>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/hexo/blog0_002.png" alt="step"></p>
+<h3 id="安装-git-部署插件"><a href="#安装-git-部署插件" class="headerlink" title="安装 git 部署插件"></a>安装 git 部署插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="进入你的github仓库"><a href="#进入你的github仓库" class="headerlink" title="进入你的github仓库"></a>进入你的github仓库</h3><p>注意注意 你刚刚新建的仓库名  一定是这个格式  你的github用户名.github.io  如 我的是 slTrust.github.io<br><a href="https://sltrust.github.io/index.html" target="_blank" rel="noopener">预览地址</a>! </p>
+<h2 id="如何创建博客"><a href="#如何创建博客" class="headerlink" title="如何创建博客"></a>如何创建博客</h2><h3 id="新建博客"><a href="#新建博客" class="headerlink" title="新建博客"></a>新建博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  hexo new <span class="string">'test002'</span></span><br></pre></td></tr></table></figure>
+<h3 id="编辑你的博客-复制显示的路径，使用-start-路径-来编辑它"><a href="#编辑你的博客-复制显示的路径，使用-start-路径-来编辑它" class="headerlink" title="编辑你的博客 复制显示的路径，使用 start 路径 来编辑它"></a>编辑你的博客 复制显示的路径，使用 start 路径 来编辑它</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  start <span class="string">'source/_posts/test002.md'</span></span><br></pre></td></tr></table></figure>
+<h3 id="重新初始化你的博客"><a href="#重新初始化你的博客" class="headerlink" title="重新初始化你的博客"></a>重新初始化你的博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#hexo环境搭建"><span class="toc-number">1.</span> <span class="toc-text">hexo环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在-GitHub-上新建一个空仓库-repo"><span class="toc-number">2.</span> <span class="toc-text">在 GitHub 上新建一个空仓库 repo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#仓库名称是你github账户名-比如我的是slTrust-那么你新建的仓库名就会是这个格式-slTrust-github-io"><span class="toc-number">2.1.</span> <span class="toc-text">仓库名称是你github账户名 比如我的是slTrust 那么你新建的仓库名就会是这个格式 slTrust.github.io</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-Hexo-命令行工具"><span class="toc-number">2.2.</span> <span class="toc-text">安装 Hexo 命令行工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化你的博客比如-myBlog"><span class="toc-number">2.3.</span> <span class="toc-text">初始化你的博客比如 myBlog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入你的博客目录"><span class="toc-number">2.4.</span> <span class="toc-text">进入你的博客目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖"><span class="toc-number">2.5.</span> <span class="toc-text">安装依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建第一个博客-firstBlog"><span class="toc-number">2.6.</span> <span class="toc-text">新建第一个博客 firstBlog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑这个文件-注意是markdown语法"><span class="toc-number">2.7.</span> <span class="toc-text">编辑这个文件,注意是markdown语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#start-config-yml，编辑网站配置"><span class="toc-number">2.8.</span> <span class="toc-text">start _config.yml，编辑网站配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-git-部署插件"><span class="toc-number">2.9.</span> <span class="toc-text">安装 git 部署插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布"><span class="toc-number">2.10.</span> <span class="toc-text">发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入你的github仓库"><span class="toc-number">2.11.</span> <span class="toc-text">进入你的github仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何创建博客"><span class="toc-number">3.</span> <span class="toc-text">如何创建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建博客"><span class="toc-number">3.1.</span> <span class="toc-text">新建博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编辑你的博客-复制显示的路径，使用-start-路径-来编辑它"><span class="toc-number">3.2.</span> <span class="toc-text">编辑你的博客 复制显示的路径，使用 start 路径 来编辑它</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新初始化你的博客"><span class="toc-number">3.3.</span> <span class="toc-text">重新初始化你的博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署"><span class="toc-number">3.4.</span> <span class="toc-text">部署</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&text=hexo环境搭建"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&is_video=false&description=hexo环境搭建"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=hexo环境搭建&body=Check out this article: https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&title=hexo环境搭建"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/05/N004_2_hexo博客初始/&name=hexo环境搭建&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

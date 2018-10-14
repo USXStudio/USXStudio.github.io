@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="装饰器 不影响你正常工作写代码，但是应试的时候如果你不会就代表你不深入python  先看下面一段代码，(理解函数的覆盖) 123456789101112131415161718def t():    print(1)def t():    print(2)t # 代表函数t的内存地址t() # 执行函数  打印 2#########################################">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python025装饰器">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/22/Python025装饰器/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="装饰器 不影响你正常工作写代码，但是应试的时候如果你不会就代表你不深入python  先看下面一段代码，(理解函数的覆盖) 123456789101112131415161718def t():    print(1)def t():    print(2)t # 代表函数t的内存地址t() # 执行函数  打印 2#########################################">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.616Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python025装饰器">
+<meta name="twitter:description" content="装饰器 不影响你正常工作写代码，但是应试的时候如果你不会就代表你不深入python  先看下面一段代码，(理解函数的覆盖) 123456789101112131415161718def t():    print(1)def t():    print(2)t # 代表函数t的内存地址t() # 执行函数  打印 2#########################################">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python025装饰器</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/22/Python026作用域/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/22/Python024闭包/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/22/Python025装饰器/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&text=Python025装饰器"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&is_video=false&description=Python025装饰器"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python025装饰器&body=Check out this article: https://usxstudio.github.io/2018/06/22/Python025装饰器/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&name=Python025装饰器&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰器"><span class="toc-number">1.</span> <span class="toc-text">装饰器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器的应用"><span class="toc-number">1.1.</span> <span class="toc-text">装饰器的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器执行顺序"><span class="toc-number">1.2.</span> <span class="toc-text">装饰器执行顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器对带有参数的函数的处理"><span class="toc-number">1.3.</span> <span class="toc-text">装饰器对带有参数的函数的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带返回值的装饰器"><span class="toc-number">1.4.</span> <span class="toc-text">带返回值的装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通用装饰器"><span class="toc-number">1.5.</span> <span class="toc-text">通用装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带参数装饰器"><span class="toc-number">1.6.</span> <span class="toc-text">带参数装饰器</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python025装饰器
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-22T06:58:16.000Z" itemprop="datePublished">2018-06-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><blockquote>
+<p>不影响你正常工作写代码，但是应试的时候如果你不会就代表你不深入python</p>
+</blockquote>
+<p>先看下面一段代码，(理解函数的覆盖)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def t():</span><br><span class="line">    print(1)</span><br><span class="line"></span><br><span class="line">def t():</span><br><span class="line">    print(2)</span><br><span class="line"></span><br><span class="line">t # 代表函数t的内存地址</span><br><span class="line"></span><br><span class="line">t() # 执行函数  打印 2</span><br><span class="line"></span><br><span class="line">################################################</span><br><span class="line"></span><br><span class="line">def xxx(a):</span><br><span class="line">    print(a)</span><br><span class="line"></span><br><span class="line">xxx = lambda x:x+1</span><br><span class="line"></span><br><span class="line">xxx(1) # 打印2 被匿名函数覆盖</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>重现公司场景</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">############基础平台提供功能############################</span><br><span class="line">def f1():</span><br><span class="line">    print(1)</span><br><span class="line">def f2():</span><br><span class="line">    print(2)</span><br><span class="line">def f3():</span><br><span class="line">    print(3)</span><br><span class="line">def f4():</span><br><span class="line">    print(4)</span><br><span class="line">#############业务部门A###########################</span><br><span class="line">f1()</span><br><span class="line">f2()</span><br><span class="line">f3()</span><br><span class="line">f4()</span><br><span class="line">#############业务部门B###########################</span><br><span class="line">f1()</span><br><span class="line">f2()</span><br><span class="line">f3()</span><br><span class="line">f4()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>公司发展后发现需要职责分离每个部门分配的功能调用不一样</p>
+</blockquote>
+<ul>
+<li>如A部门只能调用 f1 f2</li>
+<li>如B部门只能调用 f3 f4</li>
+</ul>
+<p>然后交给你实现一个鉴权功能,你修改后如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def check_login():</span><br><span class="line">    #验证1</span><br><span class="line">    #验证2</span><br><span class="line">    #验证3</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">def f1():</span><br><span class="line">    check_login()</span><br><span class="line">    print(1)</span><br><span class="line">def f2():</span><br><span class="line">    check_login()</span><br><span class="line">    print(2)</span><br><span class="line">def f3():</span><br><span class="line">    check_login()</span><br><span class="line">    print(3)</span><br><span class="line">def f4():</span><br><span class="line">    check_login()</span><br><span class="line">    print(4)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后部门老大说要遵循「开放封闭」原则，最后给了一个代码的实现</p>
+</blockquote>
+<ul>
+<li>封闭：已实现的功能(不该进行更改功能代码的内部)</li>
+<li>开放：对扩展开发(改外面)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner():</span><br><span class="line">        #验证1</span><br><span class="line">        #验证2</span><br><span class="line">        #验证3</span><br><span class="line">        func()</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1():</span><br><span class="line">    print(1)</span><br><span class="line">@w1</span><br><span class="line">def f2():</span><br><span class="line">    print(2)</span><br><span class="line">@w1    </span><br><span class="line">def f3():</span><br><span class="line">    print(3)</span><br><span class="line">@w1</span><br><span class="line">def f4():</span><br><span class="line">    print(4)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">##########################################</span><br><span class="line">@w1是一个语法糖</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1():</span><br><span class="line">    print(1)</span><br><span class="line">实际上代码是这样</span><br><span class="line">def w1(func):</span><br><span class="line">    def inner():</span><br><span class="line">        print(&apos;鉴权通过&apos;)</span><br><span class="line">        func()</span><br><span class="line">    return inner</span><br><span class="line">程序执行到 @w1的时候 </span><br><span class="line">##########################################</span><br><span class="line">#第一步理解</span><br><span class="line">innerFunc = w1(f1)</span><br><span class="line">innerFunc()</span><br><span class="line">##########################################</span><br><span class="line">#第二步理解——原理</span><br><span class="line">f1 = w1(f1)</span><br><span class="line">f1()</span><br></pre></td></tr></table></figure>
+<h4 id="装饰器的应用"><a href="#装饰器的应用" class="headerlink" title="装饰器的应用"></a>装饰器的应用</h4><blockquote>
+<p>包裹数据给字符串加上 b标签</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#定义函数：完成包裹数据</span><br><span class="line">def makeBold(fn):</span><br><span class="line">    def wrapped():</span><br><span class="line">        print(&quot;----1---&quot;)</span><br><span class="line">        return &quot;&lt;b&gt;&quot; + fn() + &quot;&lt;/b&gt;&quot;</span><br><span class="line">    return wrapped</span><br><span class="line"></span><br><span class="line">@makeBold</span><br><span class="line">def test3():</span><br><span class="line">    print(&quot;----3---&quot;)</span><br><span class="line">    return &quot;hello world-3&quot;</span><br><span class="line"></span><br><span class="line">ret = test3()</span><br><span class="line">print(ret)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>思考？多个装饰器的会如何处理</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#定义函数：完成包裹数据</span><br><span class="line">def makeBold(fn):</span><br><span class="line">    def wrapped():</span><br><span class="line">        print(&quot;----1---&quot;)</span><br><span class="line">        return &quot;&lt;b&gt;&quot; + fn() + &quot;&lt;/b&gt;&quot;</span><br><span class="line">    return wrapped</span><br><span class="line"></span><br><span class="line">#定义函数：完成包裹数据</span><br><span class="line">def makeItalic(fn):</span><br><span class="line">    def wrapped():</span><br><span class="line">        print(&quot;----2---&quot;)</span><br><span class="line">        return &quot;&lt;i&gt;&quot; + fn() + &quot;&lt;/i&gt;&quot;</span><br><span class="line">    return wrapped</span><br><span class="line"></span><br><span class="line">@makeBold</span><br><span class="line">@makeItalic</span><br><span class="line">def test3():</span><br><span class="line">    print(&quot;----3---&quot;)</span><br><span class="line">    return &quot;hello world-3&quot;</span><br><span class="line"></span><br><span class="line">ret = test3()</span><br><span class="line">print(ret) # &lt;b&gt;&lt;i&gt;hello world-3&lt;/i&gt;&lt;/b&gt;</span><br><span class="line"></span><br><span class="line">###########原理############</span><br><span class="line">1.因为此时还存在装饰器所以不会立刻执行test3的返回结果  return &quot;hello world-3&quot;</span><br><span class="line">2.此时返回的是</span><br><span class="line">    def wrapped():</span><br><span class="line">            print(&quot;----1---&quot;)</span><br><span class="line">            return &quot;&lt;b&gt;&quot; + fn() + &quot;&lt;/b&gt;&quot;</span><br><span class="line">test3 = makeBold(test3)</span><br><span class="line">发现可以把  wrapped 返回了</span><br><span class="line">test3 = makeItalic(test3)</span><br></pre></td></tr></table></figure>
+<h4 id="装饰器执行顺序"><a href="#装饰器执行顺序" class="headerlink" title="装饰器执行顺序"></a>装饰器执行顺序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner():</span><br><span class="line">        #验证1</span><br><span class="line">        #验证2</span><br><span class="line">        #验证3</span><br><span class="line">        func()</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1():</span><br><span class="line">    print(1)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> @w1这一行的时候 只要python解释器执行到这里，就自动进行装饰，而不是等调用的时候才装饰</p>
+</blockquote>
+<blockquote>
+<p>如果是多个装饰器</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@w1</span><br><span class="line">@w2</span><br><span class="line">实际是</span><br><span class="line">1.w2包装了一下</span><br><span class="line">2.w1继续包装了一下</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">调用的时候</span><br><span class="line">先拆开w1</span><br><span class="line">再拆开w2</span><br></pre></td></tr></table></figure>
+<h4 id="装饰器对带有参数的函数的处理"><a href="#装饰器对带有参数的函数的处理" class="headerlink" title="装饰器对带有参数的函数的处理"></a>装饰器对带有参数的函数的处理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner(a,b):</span><br><span class="line">        func(a,b)</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1(a,b):</span><br><span class="line">    print(a+b)</span><br><span class="line"></span><br><span class="line">f1(1,2) # 实际调的是inner(1,2)</span><br></pre></td></tr></table></figure>
+<p>如何做到接受任意参数的函数的装饰器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner(*args,**kwargs):</span><br><span class="line">        func(*args,**kwargs)</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1(a,b):</span><br><span class="line">    print(a+b)</span><br></pre></td></tr></table></figure>
+<h4 id="带返回值的装饰器"><a href="#带返回值的装饰器" class="headerlink" title="带返回值的装饰器"></a>带返回值的装饰器</h4><blockquote>
+<p>又来了一个坑如果f1带有返回值装饰器返回的是什么</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner():</span><br><span class="line">        func()</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1():</span><br><span class="line">    print(&apos;test&apos;)</span><br><span class="line">    return &apos;haha&apos;</span><br><span class="line"></span><br><span class="line">f1() # None</span><br></pre></td></tr></table></figure>
+<p>再看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner():</span><br><span class="line">        print(&apos;1&apos;)</span><br><span class="line">        x = func() # 保存返回值 &apos;haha&apos;</span><br><span class="line">        print(&apos;2&apos;)</span><br><span class="line">        return x</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1():</span><br><span class="line">    print(&apos;test&apos;)</span><br><span class="line">    return &apos;haha&apos;</span><br><span class="line"></span><br><span class="line">f1() # None</span><br></pre></td></tr></table></figure>
+<h4 id="通用装饰器"><a href="#通用装饰器" class="headerlink" title="通用装饰器"></a>通用装饰器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def w1(func):</span><br><span class="line">    def inner(*args,**kwargs):</span><br><span class="line">        x =func(*args,**kwargs)</span><br><span class="line">        return x</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">@w1</span><br><span class="line">def f1(a,b):</span><br><span class="line">    return a+b</span><br></pre></td></tr></table></figure>
+<h4 id="带参数装饰器"><a href="#带参数装饰器" class="headerlink" title="带参数装饰器"></a>带参数装饰器</h4><blockquote>
+<p>装饰器是一次闭包，如果装饰器带参就在进行一次闭包</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def func_arg(arg):</span><br><span class="line">    def func(functionName):</span><br><span class="line">        def func_in():</span><br><span class="line">            print(&quot;---记录日志-arg=%s--&quot;%arg)</span><br><span class="line">            if arg==&quot;heihei&quot;:</span><br><span class="line">                functionName()</span><br><span class="line">                functionName()</span><br><span class="line">            else:</span><br><span class="line">                functionName()</span><br><span class="line">        return func_in</span><br><span class="line">    return func</span><br><span class="line"></span><br><span class="line">#1. 先执行func_arg(&quot;heihei&quot;)函数,这个函数return 的结果是func这个函数的引用</span><br><span class="line">#2. @func</span><br><span class="line">#3. 使用@func对test进行装饰</span><br><span class="line">@func_arg(&quot;heihei&quot;)</span><br><span class="line">def test():</span><br><span class="line">    print(&quot;--test--&quot;)</span><br><span class="line"></span><br><span class="line">#带有参数的装饰器,能够起到在运行时,有不同的功能</span><br><span class="line">@func_arg(&quot;haha&quot;)</span><br><span class="line">def test2():</span><br><span class="line">    print(&quot;--test2--&quot;)</span><br><span class="line"></span><br><span class="line">test()</span><br><span class="line">test2()</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰器"><span class="toc-number">1.</span> <span class="toc-text">装饰器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器的应用"><span class="toc-number">1.1.</span> <span class="toc-text">装饰器的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器执行顺序"><span class="toc-number">1.2.</span> <span class="toc-text">装饰器执行顺序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#装饰器对带有参数的函数的处理"><span class="toc-number">1.3.</span> <span class="toc-text">装饰器对带有参数的函数的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带返回值的装饰器"><span class="toc-number">1.4.</span> <span class="toc-text">带返回值的装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通用装饰器"><span class="toc-number">1.5.</span> <span class="toc-text">通用装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#带参数装饰器"><span class="toc-number">1.6.</span> <span class="toc-text">带参数装饰器</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/22/Python025装饰器/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&text=Python025装饰器"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&is_video=false&description=Python025装饰器"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python025装饰器&body=Check out this article: https://usxstudio.github.io/2018/06/22/Python025装饰器/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&title=Python025装饰器"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/22/Python025装饰器/&name=Python025装饰器&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

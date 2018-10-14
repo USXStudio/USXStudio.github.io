@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="www（World Wide Web） 主要有三个概念  URI 俗称网址 HTTP 两台电脑之间的传输协议 HTML 超文本标记语言，用于页面跳转URL的作用是让你访问一个网页，HTTP的作用是让你能下载这个页面，HTML是让你能看懂这个网页。   URI 是什么（统一资源标识符）URI分为两种URL（统一资源定位符）和URN（统一资源名称） URN ISBN:9934123123123 书号，">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP入门">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/12/N006_HTTP入门/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="www（World Wide Web） 主要有三个概念  URI 俗称网址 HTTP 两台电脑之间的传输协议 HTML 超文本标记语言，用于页面跳转URL的作用是让你访问一个网页，HTTP的作用是让你能下载这个页面，HTML是让你能看懂这个网页。   URI 是什么（统一资源标识符）URI分为两种URL（统一资源定位符）和URN（统一资源名称） URN ISBN:9934123123123 书号，">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note006_1.png">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note006_2.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP入门">
+<meta name="twitter:description" content="www（World Wide Web） 主要有三个概念  URI 俗称网址 HTTP 两台电脑之间的传输协议 HTML 超文本标记语言，用于页面跳转URL的作用是让你访问一个网页，HTTP的作用是让你能下载这个页面，HTML是让你能看懂这个网页。   URI 是什么（统一资源标识符）URI分为两种URL（统一资源定位符）和URN（统一资源名称） URN ISBN:9934123123123 书号，">
+<meta name="twitter:image" content="https://sltrust.github.io/note/img/note006_1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HTTP入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/15/N007_网络_ip_server/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/11/N005_02简单脚本的编写/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&text=HTTP入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&is_video=false&description=HTTP入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTTP入门&body=Check out this article: https://usxstudio.github.io/2017/10/12/N006_HTTP入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&name=HTTP入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#www（World-Wide-Web）"><span class="toc-number">1.</span> <span class="toc-text">www（World Wide Web）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-是什么（统一资源标识符）"><span class="toc-number">2.</span> <span class="toc-text">URI 是什么（统一资源标识符）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URN"><span class="toc-number">2.1.</span> <span class="toc-text">URN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL"><span class="toc-number">2.2.</span> <span class="toc-text">URL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL的常见组成"><span class="toc-number">3.</span> <span class="toc-text">URL的常见组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-域名解析器"><span class="toc-number">3.1.</span> <span class="toc-text">DNS 域名解析器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http"><span class="toc-number">3.2.</span> <span class="toc-text">http</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#curl-命令"><span class="toc-number">3.3.</span> <span class="toc-text">curl 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get和post的区别"><span class="toc-number">3.4.</span> <span class="toc-text">get和post的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求的格式"><span class="toc-number">4.</span> <span class="toc-text">请求的格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求包含的内容"><span class="toc-number">4.1.</span> <span class="toc-text">请求包含的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用-Chrome-查看响应"><span class="toc-number">4.2.</span> <span class="toc-text">用 Chrome 查看响应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http-和https"><span class="toc-number">4.3.</span> <span class="toc-text">http 和https</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应"><span class="toc-number">5.</span> <span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#状态码要背，是服务器对浏览器说的话"><span class="toc-number">5.1.</span> <span class="toc-text">状态码要背，是服务器对浏览器说的话</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HTTP入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-12T04:51:02.000Z" itemprop="datePublished">2017-10-12</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="www（World-Wide-Web）"><a href="#www（World-Wide-Web）" class="headerlink" title="www（World Wide Web）"></a>www（World Wide Web）</h3><blockquote>
+<p>主要有三个概念</p>
+<ul>
+<li>URI 俗称网址</li>
+<li>HTTP 两台电脑之间的传输协议</li>
+<li>HTML 超文本标记语言，用于页面跳转<br>URL的作用是让你访问一个网页，HTTP的作用是让你能下载这个页面，HTML是让你能看懂这个网页。</li>
+</ul>
+</blockquote>
+<h3 id="URI-是什么（统一资源标识符）"><a href="#URI-是什么（统一资源标识符）" class="headerlink" title="URI 是什么（统一资源标识符）"></a>URI 是什么（统一资源标识符）</h3><p>URI分为两种URL（统一资源定位符）和URN（统一资源名称）</p>
+<h4 id="URN"><a href="#URN" class="headerlink" title="URN"></a>URN</h4><blockquote>
+<p>ISBN:9934123123123 书号，这就是一个URN 可以确定一个”唯一的”资源</p>
+</blockquote>
+<h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><blockquote>
+<p><a href="https://www.baidu.com/s?wd=hello&amp;rev_spt=1#5" target="_blank" rel="noopener">https://www.baidu.com/s?wd=hello&amp;rev_spt=1#5</a></p>
+</blockquote>
+<ul>
+<li>https代表–协议</li>
+<li><a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 代表–域名</li>
+<li>/s代表–路径</li>
+<li>wd=hello&amp;rev_spt=1代表–查询参数</li>
+<li>“#5” 代表–锚点 </li>
+</ul>
+<blockquote>
+<p>.com代表一级(顶级)域名 baidu代表二级域名 www是三级域名</p>
+</blockquote>
+<blockquote>
+<p>但是一般的工程师都会把.com忽略掉,把baidu叫做一级域名 此时要脑补他说的是错的</p>
+</blockquote>
+<h3 id="URL的常见组成"><a href="#URL的常见组成" class="headerlink" title="URL的常见组成"></a>URL的常见组成</h3><h4 id="DNS-域名解析器"><a href="#DNS-域名解析器" class="headerlink" title="DNS 域名解析器"></a>DNS 域名解析器</h4><blockquote>
+<p>命令行里输入 nslookup <a href="http://www.baidu.com就可以看见这个网址对应服务器相关信息" target="_blank" rel="noopener">www.baidu.com就可以看见这个网址对应服务器相关信息</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Server: 192.168.5.1   </span><br><span class="line">这个是我的路由(他去问的电信，电信帮你解析网址对应的ip电信为什么知道你花钱啦)</span><br><span class="line">Address:  192.168.5.1#53</span><br><span class="line"></span><br><span class="line">Name:  www.baidu.com </span><br><span class="line">Address:  119.75.213.61 这个服务器告诉你百度的ip 每个人返回的IP不一样</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>dns会根据一个域名返回一个ip<br>那我可以不可以指定一个ip（可以）这就是如何绕过dns自己指定一个ip<br>非常时期可以修改host文件(window系统)自己指定google的ip<br>因为电信返回的ip是错的。</p>
+</blockquote>
+<p><img src="https://sltrust.github.io/note/img/note006_1.png" alt="示意图"></p>
+<h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p><img src="https://sltrust.github.io/note/img/note006_2.png" alt="示意图"></p>
+<h4 id="curl-命令"><a href="#curl-命令" class="headerlink" title="curl 命令"></a>curl 命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -s -v -H &quot;hjx:xxx&quot; -- &quot;https://www.baidu.com&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>-s代表不显示进度</li>
+<li>-v代表显示请求和响应</li>
+<li>-H “hjx:xxx” 添加一个请求头</li>
+<li>– ‘<a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> ‘ 代表要请求的网址</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">* Rebuilt URL to: https://www.baidu.com/</span><br><span class="line">*   Trying 119.75.216.20...</span><br><span class="line">* TCP_NODELAY set</span><br><span class="line">...</span><br><span class="line">*  SSL certificate verify ok.</span><br><span class="line"></span><br><span class="line">&gt; GET / HTTP/1.1    &quot;/&quot;代表根目录 HTTP/1.1代表协议和版本号</span><br><span class="line">&gt; Host: www.baidu.com   就是访问的域名</span><br><span class="line">&gt; User-Agent: curl/7.55.1  我用的什么软件发起的响应</span><br><span class="line">&gt; Accept: */*   我接受你返回给我的任何内容</span><br><span class="line">&gt; hjx:xxx   可以删掉没有任何意义  删除 - H参数就可以</span><br><span class="line">&gt;    </span><br><span class="line"></span><br><span class="line">&lt; HTTP/1.1 200 OK</span><br><span class="line">&lt; Accept-Ranges: bytes</span><br><span class="line">&lt; Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform</span><br><span class="line">&lt; Connection: Keep-Alive</span><br><span class="line">&lt; Content-Length: 2443</span><br><span class="line">&lt; Content-Type: text/html</span><br><span class="line">&lt; Date: Tue, 02 Jan 2018 15:44:59 GMT</span><br><span class="line">&lt; Etag: &quot;588603ec-98b&quot;</span><br><span class="line">&lt; Last-Modified: Mon, 23 Jan 2017 13:23:56 GMT</span><br><span class="line">&lt; Pragma: no-cache</span><br><span class="line">&lt; Server: bfe/1.0.8.18</span><br><span class="line">&lt; Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/</span><br><span class="line">&lt;</span><br><span class="line">* Connection #0 to host www.baidu.com left intact</span><br></pre></td></tr></table></figure>
+<ul>
+<li>*开头的代表注释</li>
+<li>“&gt;” 代表请求内容</li>
+<li>”&lt;“ 代表响应内容</li>
+</ul>
+<blockquote>
+<p>重新修改请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -s -v -H &quot;hjx:xxx&quot; -- &quot;https://www.baidu.com&quot;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>请求的内容为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: www.baidu.com</span><br><span class="line">User-Agent: curl/7.54.0</span><br><span class="line">Accept: */*</span><br><span class="line">hjx: xxx</span><br></pre></td></tr></table></figure></p>
+<p>继续修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST -d &quot;1234567890&quot; -s -v -H &quot;hjx: xxx&quot; -- &quot;https://www.baidu.com&quot;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: www.baidu.com</span><br><span class="line">User-Agent: curl/7.54.0</span><br><span class="line">Accept: */*</span><br><span class="line">hjx: xxx</span><br><span class="line">Content-Length: 10  代表上传数据的字节</span><br><span class="line">Content-Type: application/x-www-form-urlencoded 上传的格式</span><br><span class="line"></span><br><span class="line">1234567890</span><br></pre></td></tr></table></figure>
+<h4 id="get和post的区别"><a href="#get和post的区别" class="headerlink" title="get和post的区别"></a>get和post的区别</h4><ul>
+<li>get就是获取内容 </li>
+<li>post就是上传内容<blockquote>
+<p>疑问 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -s -v -H &quot;host:www.qq.com&quot; -- &quot;https://www.baidu.com&quot; 修改访问的域名</span><br><span class="line">相当于你去麦当劳问有没有老北京鸡肉卷</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="请求的格式"><a href="#请求的格式" class="headerlink" title="请求的格式"></a>请求的格式</h3><blockquote>
+</blockquote>
+<ol>
+<li>动词 路径 协议/版本   第一部分路径随便写 一定要以”/“开头</li>
+<li>第二部分 键值对<ul>
+<li>Key1: value1     </li>
+<li>Key2: value2</li>
+<li>Key3: value3</li>
+<li>Content-Type: application/x-www-form-urlencoded</li>
+<li>Host: <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li>User-Agent: curl/7.54.0</li>
+</ul>
+</li>
+<li>回车     就一个目的区分 第二部分和第四部分 </li>
+<li>要上传的数据</li>
+</ol>
+<h4 id="请求包含的内容"><a href="#请求包含的内容" class="headerlink" title="请求包含的内容"></a>请求包含的内容</h4><ol>
+<li>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）</li>
+<li>第三部分永远都是一个回车（\n）</li>
+<li><p>动词有 GET POST PUT PATCH DELETE HEAD OPTIONS 等</p>
+<ul>
+<li>PUT 代表 五行话替换成一行 整体更新</li>
+<li>PATCH 代表 五行话里其中一行替换 一行 局部更新</li>
+<li>DELETE 删除</li>
+</ul>
+</li>
+<li><p>这里的路径包括「查询参数」，但不包括「锚点」</p>
+</li>
+<li>如果你没有写路径，那么路径默认为 /</li>
+<li>第 2 部分中的 Content-Type 标注了第 4 部分的格式<blockquote>
+<p>x-www-form-urlencoded </p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>x 代表没有被写入规范的格式</li>
+<li>www 万维网</li>
+<li>urlencoded 解析中文</li>
+</ul>
+<h4 id="用-Chrome-查看响应"><a href="#用-Chrome-查看响应" class="headerlink" title="用 Chrome 查看响应"></a>用 Chrome 查看响应</h4><ol>
+<li>打开 Network</li>
+<li>输入网址</li>
+<li>选中第一个响应</li>
+<li>查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</li>
+<li>你会看到响应的前两部分</li>
+<li>查看 Response 或者 Preview，你会看到响应的第 4 部分</li>
+</ol>
+<h4 id="http-和https"><a href="#http-和https" class="headerlink" title="http 和https"></a>http 和https</h4><blockquote>
+<p>http是明文传输 就是你的登录密码，别人可以看到不是加密的</p>
+</blockquote>
+<blockquote>
+<p>https 就是 密码这些东西是经过加密的 无法直接看到内容</p>
+</blockquote>
+<h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><p>请求了之后，应该都能得到一个响应，除非断网了，或者服务器宕机了。</p>
+<p>响应示例<br>上面三个请求示例，前两个请求对应的响应分别为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Length: 2443</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Date: Tue, 10 Oct 2017 09:14:05 GMT</span><br><span class="line">Etag: &quot;5886041d-98b&quot;</span><br><span class="line">Last-Modified: Mon, 23 Jan 2017 13:24:45 GMT</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: bfe/1.0.8.18</span><br><span class="line">Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;!--STATUS OK--&gt;&lt;html&gt; &lt;head&gt; 后面太长，省略了……</span><br><span class="line">HTTP/1.1 302 Found</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Content-Length: 17931</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Date: Tue, 10 Oct 2017 09:19:47 GMT</span><br><span class="line">Etag: &quot;54d9749e-460b&quot;</span><br><span class="line">Server: bfe/1.0.8.18</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt; 后面太长，省略了……</span><br></pre></td></tr></table></figure></p>
+<p>GET 请求和 POST 请求对应的响应可以一样，也可以不一样<br>响应的第四部分可以很长很长很长<br>响应的格式</p>
+<blockquote>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 协议/版本号 状态码 状态解释</span><br><span class="line">2. Key1: value1</span><br><span class="line">2. Key2: value2</span><br><span class="line">2 Content-Length: 17931</span><br><span class="line">2 Content-Type: text/html </span><br><span class="line">3</span><br><span class="line">4 要下载的内容</span><br></pre></td></tr></table></figure>
+<h4 id="状态码要背，是服务器对浏览器说的话"><a href="#状态码要背，是服务器对浏览器说的话" class="headerlink" title="状态码要背，是服务器对浏览器说的话"></a>状态码要背，是服务器对浏览器说的话</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1xx 不常用</span><br><span class="line">2xx 表示成功  </span><br><span class="line">3xx 表示滚吧</span><br><span class="line">4xx 表示你丫错了</span><br><span class="line">5xx 表示好吧，我错了</span><br><span class="line">200 一般的成功  </span><br><span class="line">204 创建成功 一般post返回204</span><br><span class="line">301 表示你访问的资源已经不在了 迁移到其他域名返还给你新的地址</span><br><span class="line">302 表示你访问的资源只是临时不在了 敏感信息封禁了一段时间</span><br><span class="line">304 表示你访问的内容和上一次一样,返回上一次的内容</span><br><span class="line">404 未找到页面  网址错了</span><br><span class="line">502 服务器挂了</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">状态解释没什么用</span><br><span class="line">第 2 部分中的 Content-Type 标注了第 4 部分的格式</span><br><span class="line">第 2 部分中的 Content-Type 遵循 MIME 规范</span><br><span class="line">用 Chrome 查看响应</span><br><span class="line">打开 Network</span><br><span class="line">输入网址</span><br><span class="line">选中第一个响应</span><br><span class="line">查看 Response Headers，点击「view source」，点击「view source」，点击「view source」</span><br><span class="line">你会看到响应的前两部分</span><br><span class="line">查看 Response 或者 Preview，你会看到响应的第 4 部分</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#www（World-Wide-Web）"><span class="toc-number">1.</span> <span class="toc-text">www（World Wide Web）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-是什么（统一资源标识符）"><span class="toc-number">2.</span> <span class="toc-text">URI 是什么（统一资源标识符）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URN"><span class="toc-number">2.1.</span> <span class="toc-text">URN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#URL"><span class="toc-number">2.2.</span> <span class="toc-text">URL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL的常见组成"><span class="toc-number">3.</span> <span class="toc-text">URL的常见组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-域名解析器"><span class="toc-number">3.1.</span> <span class="toc-text">DNS 域名解析器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http"><span class="toc-number">3.2.</span> <span class="toc-text">http</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#curl-命令"><span class="toc-number">3.3.</span> <span class="toc-text">curl 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#get和post的区别"><span class="toc-number">3.4.</span> <span class="toc-text">get和post的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求的格式"><span class="toc-number">4.</span> <span class="toc-text">请求的格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求包含的内容"><span class="toc-number">4.1.</span> <span class="toc-text">请求包含的内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用-Chrome-查看响应"><span class="toc-number">4.2.</span> <span class="toc-text">用 Chrome 查看响应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http-和https"><span class="toc-number">4.3.</span> <span class="toc-text">http 和https</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应"><span class="toc-number">5.</span> <span class="toc-text">响应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#状态码要背，是服务器对浏览器说的话"><span class="toc-number">5.1.</span> <span class="toc-text">状态码要背，是服务器对浏览器说的话</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&text=HTTP入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&is_video=false&description=HTTP入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTTP入门&body=Check out this article: https://usxstudio.github.io/2017/10/12/N006_HTTP入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&title=HTTP入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/12/N006_HTTP入门/&name=HTTP入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="列表一个数据的集合,集合里可以放置任何数据类型,可对集合方便的进行增删改查操作  创建 查询 切片 增加 修改 删除 循环 排序   创建  1234567# 方法一a1 = [] # 定义空列表a2 = [1,2,3,4] # 存4个值 索引0-3a3 = [1,[2,3,4]] # 嵌套列表# 方法二(不推荐)b1 = list() # 空列表  查询  123456a = [&amp;apos;a&amp;">
+<meta name="keywords" content="M01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py001_02_02Python列表">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="列表一个数据的集合,集合里可以放置任何数据类型,可对集合方便的进行增删改查操作  创建 查询 切片 增加 修改 删除 循环 排序   创建  1234567# 方法一a1 = [] # 定义空列表a2 = [1,2,3,4] # 存4个值 索引0-3a3 = [1,[2,3,4]] # 嵌套列表# 方法二(不推荐)b1 = list() # 空列表  查询  123456a = [&amp;apos;a&amp;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.275Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py001_02_02Python列表">
+<meta name="twitter:description" content="列表一个数据的集合,集合里可以放置任何数据类型,可对集合方便的进行增删改查操作  创建 查询 切片 增加 修改 删除 循环 排序   创建  1234567# 方法一a1 = [] # 定义空列表a2 = [1,2,3,4] # 存4个值 索引0-3a3 = [1,[2,3,4]] # 嵌套列表# 方法二(不推荐)b1 = list() # 空列表  查询  123456a = [&amp;apos;a&amp;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py001_02_02Python列表</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/13/Py001_02_03Python深浅拷贝/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/13/Py001_02_01Python进制转换和字符编码and浮点数/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&text=Py001_02_02Python列表"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&is_video=false&description=Py001_02_02Python列表"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_02Python列表&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&name=Py001_02_02Python列表&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习"><span class="toc-number">2.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-number">3.</span> <span class="toc-text">元组</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py001_02_02Python列表
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-13T13:38:21.000Z" itemprop="datePublished">2018-08-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M01/">M01</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>一个数据的集合,集合里可以放置任何数据类型,可对集合方便的进行增删改查操作</p>
+<ul>
+<li>创建</li>
+<li>查询</li>
+<li>切片</li>
+<li>增加</li>
+<li>修改</li>
+<li>删除</li>
+<li>循环</li>
+<li>排序</li>
+</ul>
+<blockquote>
+<p>创建</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 方法一</span><br><span class="line">a1 = [] # 定义空列表</span><br><span class="line">a2 = [1,2,3,4] # 存4个值 索引0-3</span><br><span class="line">a3 = [1,[2,3,4]] # 嵌套列表</span><br><span class="line"></span><br><span class="line"># 方法二(不推荐)</span><br><span class="line">b1 = list() # 空列表</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查询</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;a&apos;,&apos;a&apos;,1,2]</span><br><span class="line"></span><br><span class="line">a[2] # 通过索引 &apos;c&apos;</span><br><span class="line">a[-1] # 通过索引从右开始取值 2</span><br><span class="line">a.index(&apos;b&apos;) # 查找元素(从左往右)对应的索引 1</span><br><span class="line">a.count(&apos;a&apos;) # 返回元素的个数 3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>切片</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;f&apos;,&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;]</span><br><span class="line"></span><br><span class="line"># 取前三个</span><br><span class="line">a[0:3] # 包头不包尾</span><br><span class="line"></span><br><span class="line"># 取最后四个</span><br><span class="line">a[-1:-4] # []</span><br><span class="line">a[-4:] # [&apos;f&apos;,&apos;aa&apos;,&apos;bb&apos;,&apos;cc&apos;]</span><br><span class="line"></span><br><span class="line"># 取前三</span><br><span class="line">a[:3]</span><br><span class="line"></span><br><span class="line"># 取所有</span><br><span class="line">a[:]</span><br><span class="line"></span><br><span class="line"># 跳指定步子取值</span><br><span class="line">a[::2]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>增加</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4,5]</span><br><span class="line">a.append(&apos;peiqi&apos;)</span><br><span class="line">print(a) # [1,2,3,4,5,&apos;peiqi&apos;]</span><br><span class="line"></span><br><span class="line"># 指定位置插入</span><br><span class="line">a.insert(0,&apos;a&apos;) </span><br><span class="line">print(a) # [&apos;a&apos;,1,2,3,4,5,&apos;peiqi&apos;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4,5]</span><br><span class="line">a[2] = &apos;a&apos;</span><br><span class="line">print(a) # [1,2,&apos;a&apos;,4,5]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除</p>
+</blockquote>
+<ul>
+<li>pop</li>
+<li>remove</li>
+<li>del</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4,5,6,7,8,9,10]</span><br><span class="line">a.pop() # 删除最后一个</span><br><span class="line">print(a) # [1,2,3,4,5,6,7,8,9]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">b = [1,2,3,4,&apos;a&apos;,4,&apos;b&apos;]</span><br><span class="line">b.remove(4) # 删除指定元素  从左往右匹配的第一个</span><br><span class="line">print(b) # [1,2,3,&apos;a&apos;,4,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">c = [1,2,3,4,5,6,7,8,9]</span><br><span class="line">del c[2]</span><br><span class="line">print(c) # [1,2,4,5,6,7,8,9]</span><br><span class="line"></span><br><span class="line">del c[0:3] # 切片删</span><br><span class="line"></span><br><span class="line">del c # 删除整个数组</span><br><span class="line">print(c) # 报错</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>循环</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4,5,5]</span><br><span class="line">for i in a:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>排序</p>
+</blockquote>
+<ul>
+<li>sort</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">n = [&apos;a&apos;,&apos;e&apos;,&apos;b&apos;,&apos;c&apos;,34,23]</span><br><span class="line">n.sort() # 报错 不支持 int和 str一起排</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">m = [&apos;a&apos;,&apos;e&apos;,&apos;A&apos;,&apos;b&apos;,&apos;c&apos;,&apos;z&apos;,&apos;h&apos;]</span><br><span class="line">m.sort() # [&apos;A&apos;,&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;,&apos;h&apos;,&apos;z&apos;]</span><br><span class="line">m.insert(3,&apos;#&apos;)</span><br><span class="line">m.insert(3,&apos;*&apos;)</span><br><span class="line">m.insert(1,&apos;!&apos;)</span><br><span class="line">m.sort() # [&apos;!&apos;,&apos;#&apos;,&apos;*&apos;,&apos;A&apos;,&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;e&apos;,&apos;h&apos;,&apos;z&apos;]</span><br><span class="line"># 字符按ascⅡ排序</span><br><span class="line"></span><br><span class="line">m.reverse() # 翻转</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 列表拼接</span><br><span class="line">[1,2,3] + [4,5,6] ==&gt; [1,2,3,4,5,6]</span><br><span class="line"></span><br><span class="line"># n.extent(n2)</span><br><span class="line"></span><br><span class="line">a = [1,2,3]</span><br><span class="line">a.clear() # []</span><br><span class="line"></span><br><span class="line">b = [1,2,3]</span><br><span class="line">c = b.copy() # b 和 c是完全独立的</span><br></pre></td></tr></table></figure>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
+<li>将一个列表的索引打印出来</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;]</span><br><span class="line"></span><br><span class="line">count = 0;</span><br><span class="line">for i in a:</span><br><span class="line">    print(i,count)</span><br><span class="line">    count += 1</span><br><span class="line"></span><br><span class="line">方法二 enumerate 枚举</span><br><span class="line"></span><br><span class="line">for i in enumerate(a):</span><br><span class="line">    print(i) </span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">&#123;0:&apos;a&apos;&#125;</span><br><span class="line">&#123;1:&apos;b&apos;&#125;</span><br><span class="line">&#123;2:&apos;c&apos;&#125;</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">for index,value in enumerate(a):</span><br><span class="line">    print(index,value)</span><br></pre></td></tr></table></figure>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>特性</p>
+<ul>
+<li>不可变</li>
+<li>元组本身不可变，如果元组里还包含其他可变元素(嵌套列表)，这些元素可以变</li>
+</ul>
+<p>功能</p>
+<ul>
+<li>index</li>
+<li>count</li>
+<li>切片</li>
+</ul>
+<p>使用场景</p>
+<ul>
+<li>显示的告诉别人，数据不可改变</li>
+<li>数据库连接配置信息</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#列表"><span class="toc-number">1.</span> <span class="toc-text">列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#练习"><span class="toc-number">2.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元组"><span class="toc-number">3.</span> <span class="toc-text">元组</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&text=Py001_02_02Python列表"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&is_video=false&description=Py001_02_02Python列表"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_02Python列表&body=Check out this article: https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&title=Py001_02_02Python列表"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/13/Py001_02_02Python列表和元组/&name=Py001_02_02Python列表&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

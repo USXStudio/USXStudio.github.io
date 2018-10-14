@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="多用户一个电脑多个用户可以同时登录 多任务一个电脑可以跑很多程序 QQ 微信 浏览器 QQ音乐 ifconfig查看网卡信息(一般能看到俩个代表你的虚拟机能上网了) 1ifconfig | grep &amp;apos;192&amp;apos; 查找一大堆文档中的关键字 vmware虚拟机的网络设置123NAT模式  比如你的window能上网，你想让虚拟机借助它上网(对于交换机来说它只看到一台电脑window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux003多用户多任务操作">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="多用户一个电脑多个用户可以同时登录 多任务一个电脑可以跑很多程序 QQ 微信 浏览器 QQ音乐 ifconfig查看网卡信息(一般能看到俩个代表你的虚拟机能上网了) 1ifconfig | grep &amp;apos;192&amp;apos; 查找一大堆文档中的关键字 vmware虚拟机的网络设置123NAT模式  比如你的window能上网，你想让虚拟机借助它上网(对于交换机来说它只看到一台电脑window">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.143Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux003多用户多任务操作">
+<meta name="twitter:description" content="多用户一个电脑多个用户可以同时登录 多任务一个电脑可以跑很多程序 QQ 微信 浏览器 QQ音乐 ifconfig查看网卡信息(一般能看到俩个代表你的虚拟机能上网了) 1ifconfig | grep &amp;apos;192&amp;apos; 查找一大堆文档中的关键字 vmware虚拟机的网络设置123NAT模式  比如你的window能上网，你想让虚拟机借助它上网(对于交换机来说它只看到一台电脑window">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux003多用户多任务操作</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/14/Vim001编辑器使用/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/13/Linux002难点命令/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&text=Linux003多用户多任务操作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&is_video=false&description=Linux003多用户多任务操作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux003多用户多任务操作&body=Check out this article: https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&name=Linux003多用户多任务操作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#多用户"><span class="toc-number">1.</span> <span class="toc-text">多用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多任务"><span class="toc-number">2.</span> <span class="toc-text">多任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig"><span class="toc-number">3.</span> <span class="toc-text">ifconfig</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vmware虚拟机的网络设置"><span class="toc-number">3.1.</span> <span class="toc-text">vmware虚拟机的网络设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping"><span class="toc-number">4.</span> <span class="toc-text">ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh远程登录"><span class="toc-number">5.</span> <span class="toc-text">ssh远程登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#who命令"><span class="toc-number">6.</span> <span class="toc-text">who命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加用户账号useradd"><span class="toc-number">7.</span> <span class="toc-text">添加用户账号useradd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#su切换用户"><span class="toc-number">8.</span> <span class="toc-text">su切换用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#userdel删除用户"><span class="toc-number">9.</span> <span class="toc-text">userdel删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo添加权限"><span class="toc-number">10.</span> <span class="toc-text">sudo添加权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户组的查看"><span class="toc-number">11.</span> <span class="toc-text">用户组的查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加用户组"><span class="toc-number">11.1.</span> <span class="toc-text">添加用户组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改用户所在用户组"><span class="toc-number">11.2.</span> <span class="toc-text">修改用户所在用户组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod修改文件权限"><span class="toc-number">12.</span> <span class="toc-text">chmod修改文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字代表权限"><span class="toc-number">12.1.</span> <span class="toc-text">数字代表权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal和date查看时间（自行百度）"><span class="toc-number">13.</span> <span class="toc-text">cal和date查看时间（自行百度）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ps查看进程"><span class="toc-number">14.</span> <span class="toc-text">ps查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill终止进程"><span class="toc-number">15.</span> <span class="toc-text">kill终止进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关机重启"><span class="toc-number">15.1.</span> <span class="toc-text">关机重启</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看磁盘占用-du"><span class="toc-number">16.</span> <span class="toc-text">查看磁盘占用 du</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用文本编辑器gedit"><span class="toc-number">17.</span> <span class="toc-text">用文本编辑器gedit</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux003多用户多任务操作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-14T13:33:48.000Z" itemprop="datePublished">2018-06-14</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="多用户"><a href="#多用户" class="headerlink" title="多用户"></a>多用户</h3><p>一个电脑多个用户可以同时登录</p>
+<h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>一个电脑可以跑很多程序 QQ 微信 浏览器 QQ音乐</p>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p>查看网卡信息(一般能看到俩个代表你的虚拟机能上网了)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig | grep &apos;192&apos; 查找一大堆文档中的关键字</span><br></pre></td></tr></table></figure>
+<h4 id="vmware虚拟机的网络设置"><a href="#vmware虚拟机的网络设置" class="headerlink" title="vmware虚拟机的网络设置"></a>vmware虚拟机的网络设置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAT模式  比如你的window能上网，你想让虚拟机借助它上网(对于交换机来说它只看到一台电脑window)</span><br><span class="line">桥接模式  你想让window上网，而且虚拟机也能上网而不是间接的通过window就用这个(对于交换机它看到了两台电脑)</span><br><span class="line">仅主机模式 在没有网的情况下和windows进行通讯</span><br></pre></td></tr></table></figure>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>测试是否能通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.2.123</span><br></pre></td></tr></table></figure>
+<h3 id="ssh远程登录"><a href="#ssh远程登录" class="headerlink" title="ssh远程登录"></a>ssh远程登录</h3><p>比如阿里云服务器跟这效果一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh hjx@192.168.17.76 代表远程登录服务器</span><br><span class="line"></span><br><span class="line">如果你第一次登录会让你确认是否连接  ==&gt; yes</span><br><span class="line">然后让你输入密码如果成功了就能远程登录 并且对系统进行远程操作</span><br></pre></td></tr></table></figure>
+<h3 id="who命令"><a href="#who命令" class="headerlink" title="who命令"></a>who命令</h3><p>查看当前登录的用户信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">如果你的电脑被攻击了</span><br><span class="line">who可以查看当前谁登录了</span><br></pre></td></tr></table></figure>
+<p>whoami当前终端的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami</span><br></pre></td></tr></table></figure>
+<p>exit退出登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+<h3 id="添加用户账号useradd"><a href="#添加用户账号useradd" class="headerlink" title="添加用户账号useradd"></a>添加用户账号useradd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-m 自动创建家目录</span><br><span class="line">-d 路径  指定家目录 </span><br><span class="line">useradd aaa -m -d /home/aaa</span><br><span class="line">创建用户 aaa 同时指定家目录为 aaa</span><br><span class="line">通常提示你权限不够</span><br><span class="line"></span><br><span class="line">sudo useradd aaa -m -d /home/aaa</span><br><span class="line">会提示你输入这个用户的密码</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改密码passwd</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">passwd aaa</span><br><span class="line">可能会提示权限不够</span><br><span class="line"></span><br><span class="line">sudo passwd aaa</span><br><span class="line">请输入新密码</span><br></pre></td></tr></table></figure>
+<h3 id="su切换用户"><a href="#su切换用户" class="headerlink" title="su切换用户"></a>su切换用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su aaa </span><br><span class="line">输入密码</span><br><span class="line">su hjx</span><br><span class="line">输入密码</span><br></pre></td></tr></table></figure>
+<p>问题 如果你切换了多个用户然后exit会怎样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">su aaa</span><br><span class="line">su bbb</span><br><span class="line">su ccc</span><br><span class="line">su ddd</span><br><span class="line"></span><br><span class="line">你当前在 ddd用户 然后输入exit 退出会在 ccc用户</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su aaa 切换后你当前目录在哪还在哪</span><br><span class="line">su - aaa 切换后跳到家目录</span><br></pre></td></tr></table></figure>
+<h3 id="userdel删除用户"><a href="#userdel删除用户" class="headerlink" title="userdel删除用户"></a>userdel删除用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">userdel abc 删除abc用户但不删除用户的主目录 (一般删除这个)</span><br><span class="line">userdel -r abc 删除abc用户同时删除用户的主目录</span><br></pre></td></tr></table></figure>
+<h3 id="sudo添加权限"><a href="#sudo添加权限" class="headerlink" title="sudo添加权限"></a>sudo添加权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo -s 一段时间内不询问你密码(最高权限)</span><br><span class="line"></span><br><span class="line">以$结尾代表普通用户</span><br><span class="line">以#结尾代表root用户</span><br></pre></td></tr></table></figure>
+<h3 id="用户组的查看"><a href="#用户组的查看" class="headerlink" title="用户组的查看"></a>用户组的查看</h3><ol>
+<li>cat etc/group</li>
+<li>groupmod + 三次tab键</li>
+</ol>
+<p>什么是用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">比如你输入 ls -al后显示如下信息</span><br><span class="line">-rw-r--r-- root root </span><br><span class="line">第一个root代表用户</span><br><span class="line">第二个root代表用户组</span><br><span class="line">如果其他用户也在 root用户组那他就有 root用户的权限</span><br></pre></td></tr></table></figure>
+<h4 id="添加用户组"><a href="#添加用户组" class="headerlink" title="添加用户组"></a>添加用户组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">groupadd YYY</span><br><span class="line">groupdel YYY</span><br><span class="line"></span><br><span class="line">权限不够请加sudo</span><br></pre></td></tr></table></figure>
+<h4 id="修改用户所在用户组"><a href="#修改用户所在用户组" class="headerlink" title="修改用户所在用户组"></a>修改用户所在用户组</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-g 代表你将来默认的组(主组)</span><br><span class="line">-G 代表向其他组添加用户</span><br><span class="line"></span><br><span class="line">usermod -g 用户组 用户名 </span><br><span class="line"></span><br><span class="line">usermod -g aaa bbb 把bbb用户修改到aaa用户组里</span><br></pre></td></tr></table></figure>
+<p>一个用户可以有多个用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G XXX bbb 将 bbb添加到 XXX组里</span><br></pre></td></tr></table></figure>
+<h3 id="chmod修改文件权限"><a href="#chmod修改文件权限" class="headerlink" title="chmod修改文件权限"></a>chmod修改文件权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">drwxrwxrwx </span><br><span class="line">第一个rwx代表文件拥有者(用户)的权限</span><br><span class="line">第二个rwx代表同组者里的(用户)的权限</span><br><span class="line">第三个rwx代表其他人的权限</span><br><span class="line"></span><br><span class="line">r代表读</span><br><span class="line">w代表写</span><br><span class="line">x代表执行</span><br><span class="line">-代表没有权限</span><br></pre></td></tr></table></figure>
+<p>chmod的选项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">u 代表该文件的所有者user</span><br><span class="line">g 代表用户组的用户group</span><br><span class="line">o 代表其他 other</span><br><span class="line">a 代表所有人 all</span><br><span class="line">+ 增加权限</span><br><span class="line">- 减少权限</span><br><span class="line">= 把当前权限改为现在的权限   =左边是u/g/o/a =右边是 r/w/x</span><br></pre></td></tr></table></figure>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x 1.txt 用户增加执行权限</span><br><span class="line">chmod g-w 1.txt 同组者去掉写入权限</span><br><span class="line">chmod u=rwx 1.txt</span><br></pre></td></tr></table></figure>
+<h4 id="数字代表权限"><a href="#数字代表权限" class="headerlink" title="数字代表权限"></a>数字代表权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">r读 ==&gt; 对应数字4</span><br><span class="line">w写 ==&gt; 对应数字2</span><br><span class="line">x执行 ==&gt; 对应数字1</span><br><span class="line"></span><br><span class="line">chmod 444  1.txt 可读权限</span><br><span class="line">chmod 761 1.txt 用户=可读可写可执行 用户组=可读可写 其他用户=可执行权限</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chmod 777 aa 只会修改aa文件夹的权限</span><br><span class="line">chmod 777 aa -R aa目录里的东西全部权限</span><br></pre></td></tr></table></figure>
+<h3 id="cal和date查看时间（自行百度）"><a href="#cal和date查看时间（自行百度）" class="headerlink" title="cal和date查看时间（自行百度）"></a>cal和date查看时间（自行百度）</h3><h3 id="ps查看进程"><a href="#ps查看进程" class="headerlink" title="ps查看进程"></a>ps查看进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps</span><br><span class="line">ps -aux 显示全部信息</span><br><span class="line"></span><br><span class="line">PID代表程序运行的进程号</span><br></pre></td></tr></table></figure>
+<h3 id="kill终止进程"><a href="#kill终止进程" class="headerlink" title="kill终止进程"></a>kill终止进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kill pid</span><br><span class="line">kill 进程号</span><br></pre></td></tr></table></figure>
+<h4 id="关机重启"><a href="#关机重启" class="headerlink" title="关机重启"></a>关机重启</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reboot 重启</span><br><span class="line">shutdown -r now 重启 但是会给用户提示</span><br><span class="line">shutdown -h now 立刻关机</span><br><span class="line">shutdown -h 20:25 系统在 20:25关机</span><br><span class="line">shutdown -h +10 10分钟后关机</span><br></pre></td></tr></table></figure>
+<h3 id="查看磁盘占用-du"><a href="#查看磁盘占用-du" class="headerlink" title="查看磁盘占用 du"></a>查看磁盘占用 du</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -h</span><br></pre></td></tr></table></figure>
+<h3 id="用文本编辑器gedit"><a href="#用文本编辑器gedit" class="headerlink" title="用文本编辑器gedit"></a>用文本编辑器gedit</h3>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#多用户"><span class="toc-number">1.</span> <span class="toc-text">多用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多任务"><span class="toc-number">2.</span> <span class="toc-text">多任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifconfig"><span class="toc-number">3.</span> <span class="toc-text">ifconfig</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vmware虚拟机的网络设置"><span class="toc-number">3.1.</span> <span class="toc-text">vmware虚拟机的网络设置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ping"><span class="toc-number">4.</span> <span class="toc-text">ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh远程登录"><span class="toc-number">5.</span> <span class="toc-text">ssh远程登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#who命令"><span class="toc-number">6.</span> <span class="toc-text">who命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加用户账号useradd"><span class="toc-number">7.</span> <span class="toc-text">添加用户账号useradd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#su切换用户"><span class="toc-number">8.</span> <span class="toc-text">su切换用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#userdel删除用户"><span class="toc-number">9.</span> <span class="toc-text">userdel删除用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sudo添加权限"><span class="toc-number">10.</span> <span class="toc-text">sudo添加权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户组的查看"><span class="toc-number">11.</span> <span class="toc-text">用户组的查看</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#添加用户组"><span class="toc-number">11.1.</span> <span class="toc-text">添加用户组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改用户所在用户组"><span class="toc-number">11.2.</span> <span class="toc-text">修改用户所在用户组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod修改文件权限"><span class="toc-number">12.</span> <span class="toc-text">chmod修改文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字代表权限"><span class="toc-number">12.1.</span> <span class="toc-text">数字代表权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cal和date查看时间（自行百度）"><span class="toc-number">13.</span> <span class="toc-text">cal和date查看时间（自行百度）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ps查看进程"><span class="toc-number">14.</span> <span class="toc-text">ps查看进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill终止进程"><span class="toc-number">15.</span> <span class="toc-text">kill终止进程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#关机重启"><span class="toc-number">15.1.</span> <span class="toc-text">关机重启</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看磁盘占用-du"><span class="toc-number">16.</span> <span class="toc-text">查看磁盘占用 du</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用文本编辑器gedit"><span class="toc-number">17.</span> <span class="toc-text">用文本编辑器gedit</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&text=Linux003多用户多任务操作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&is_video=false&description=Linux003多用户多任务操作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux003多用户多任务操作&body=Check out this article: https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&title=Linux003多用户多任务操作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/14/Linux003多用户多任务操作/&name=Linux003多用户多任务操作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

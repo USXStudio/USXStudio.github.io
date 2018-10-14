@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="DOM_API 我们写HTML时会先写一个文档头&amp;lt;!Doctype html&amp;gt; 然后html head body  12345&amp;lt;!Doctype html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;    &amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;  head/body是可以省略的，这其实就是一棵树">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM_API">
+<meta property="og:url" content="https://usxstudio.github.io/2017/11/27/N027_DOM_API/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="DOM_API 我们写HTML时会先写一个文档头&amp;lt;!Doctype html&amp;gt; 然后html head body  12345&amp;lt;!Doctype html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;    &amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;  head/body是可以省略的，这其实就是一棵树">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note027_0.png">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note027_1.png">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note027_2.png">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note027_3.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.194Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM_API">
+<meta name="twitter:description" content="DOM_API 我们写HTML时会先写一个文档头&amp;lt;!Doctype html&amp;gt; 然后html head body  12345&amp;lt;!Doctype html&amp;gt;&amp;lt;html&amp;gt;    &amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;    &amp;lt;body&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;  head/body是可以省略的，这其实就是一棵树">
+<meta name="twitter:image" content="https://sltrust.github.io/note/img/note027_0.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>DOM_API</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/11/29/N028_自己实现一个jQuery/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/11/25/N026_JS里的Function/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/11/27/N027_DOM_API/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&text=DOM_API"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&is_video=false&description=DOM_API"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DOM_API&body=Check out this article: https://usxstudio.github.io/2017/11/27/N027_DOM_API/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&name=DOM_API&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-API"><span class="toc-number">1.</span> <span class="toc-text">DOM_API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#childNodes-amp-amp-children"><span class="toc-number">1.1.</span> <span class="toc-text">childNodes &amp;&amp; children</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#firstChild-lastChild-amp-amp-firstElementChild-lastElementChild"><span class="toc-number">1.2.</span> <span class="toc-text">firstChild/lastChild &amp;&amp; firstElementChild lastElementChild</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#previousSibling-nextSibling-amp-amp-previousElementSibling-nextElementSibling"><span class="toc-number">1.3.</span> <span class="toc-text">previousSibling nextSibling &amp;&amp; previousElementSibling nextElementSibling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeName"><span class="toc-number">1.4.</span> <span class="toc-text">nodeName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeType"><span class="toc-number">1.5.</span> <span class="toc-text">nodeType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#innerText-amp-amp-textContent"><span class="toc-number">1.6.</span> <span class="toc-text">innerText &amp;&amp; textContent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#到底用谁"><span class="toc-number">1.7.</span> <span class="toc-text">到底用谁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-接口"><span class="toc-number">2.</span> <span class="toc-text">Document 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">2.1.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法："><span class="toc-number">2.2.</span> <span class="toc-text">方法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#考点"><span class="toc-number"></span> <span class="toc-text">考点</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        DOM_API
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-11-27T09:58:43.000Z" itemprop="datePublished">2017-11-27</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="DOM-API"><a href="#DOM-API" class="headerlink" title="DOM_API"></a>DOM_API</h3><blockquote>
+<p>我们写HTML时会先写一个文档头&lt;!Doctype html&gt; 然后html head body</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!Doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;&lt;/head&gt;</span><br><span class="line">    &lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>head/body是可以省略的，这其实就是一棵树 </p>
+</blockquote>
+<p><img src="https://sltrust.github.io/note/img/note027_0.png" alt="1"></p>
+<p>这是我们大脑中对html的理解，而不是内存中的理解 </p>
+<p><img src="https://sltrust.github.io/note/img/note027_1.png" alt="2"></p>
+<p>内存里是DOM（Document Object Model）文档对象模型</p>
+<p><img src="https://sltrust.github.io/note/img/note027_2.png" alt="3"><br><img src="https://sltrust.github.io/note/img/note027_3.png" alt="4"></p>
+<ul>
+<li>页面上所有标签都有跟它对应的构造函数</li>
+<li>浏览器只要看到一个标签就会给给它构造出来一个对应的内存中的对象</li>
+<li>页面中的节点通过（构造函数）==&gt; 对象</li>
+</ul>
+<blockquote>
+<p>这就是DOM api 如果你想操作一个节点就可以操作这个对象对应的api</p>
+</blockquote>
+<p>Node接口</p>
+<p>1.属性</p>
+<blockquote>
+<p>childNodes,firstChild,innerText,lastChild,nextSibling,nodeName,nodeType,nodeValue,outerText,ownerDocument,parentElement,parentNode,previousSibling,textContent</p>
+</blockquote>
+<ul>
+<li>document //  document</li>
+<li>document.documentElement //html</li>
+<li>document.body  // 代表body</li>
+</ul>
+<h4 id="childNodes-amp-amp-children"><a href="#childNodes-amp-amp-children" class="headerlink" title="childNodes &amp;&amp; children"></a>childNodes &amp;&amp; children</h4><blockquote>
+<p>如果是节点是包含回车的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.body.childNodes //获取body下所有子节点 (注意子节点不是子元素,回车也是文本节点)</span><br><span class="line">document.body.children //获取body下所有子元素</span><br></pre></td></tr></table></figure>
+<h4 id="firstChild-lastChild-amp-amp-firstElementChild-lastElementChild"><a href="#firstChild-lastChild-amp-amp-firstElementChild-lastElementChild" class="headerlink" title="firstChild/lastChild &amp;&amp; firstElementChild lastElementChild"></a>firstChild/lastChild &amp;&amp; firstElementChild lastElementChild</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">document.body.firstChild  //body的第一个子节点  注意是子节点  回车也是文本节点</span><br><span class="line">document.body.lastChild   //body的最后一个子节点  注意是子节点  回车也是文本节点</span><br><span class="line"></span><br><span class="line">document.body.firstElementChild  //body的第一个子节点  注意是子节点  回车也是文本节点</span><br><span class="line">document.body.lastElementChild   //body的最后一个子节点  注意是子节点  回车也是文本节点</span><br></pre></td></tr></table></figure>
+<h4 id="previousSibling-nextSibling-amp-amp-previousElementSibling-nextElementSibling"><a href="#previousSibling-nextSibling-amp-amp-previousElementSibling-nextElementSibling" class="headerlink" title="previousSibling nextSibling &amp;&amp; previousElementSibling nextElementSibling"></a>previousSibling nextSibling &amp;&amp; previousElementSibling nextElementSibling</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//兄弟节点 与 兄弟元素</span><br><span class="line">document.head.previousSibling  //head前一个节点</span><br><span class="line">document.head.nextSibling      //head后一个节点</span><br><span class="line"></span><br><span class="line">document.head.previousElementSibling  //head前一个元素</span><br><span class="line">document.head.nextElementSibling      //head后一个元素</span><br></pre></td></tr></table></figure>
+<h4 id="nodeName"><a href="#nodeName" class="headerlink" title="nodeName"></a>nodeName</h4><blockquote>
+<p>只有svg元素 返回的是小写”svg” 其他标签返回的都是大写</p>
+</blockquote>
+<h4 id="nodeType"><a href="#nodeType" class="headerlink" title="nodeType"></a>nodeType</h4><ul>
+<li>返回节点的节点类型 是数值（为啥是数值，因为以前的内存紧张 节省内存 8M是豪华配置 ）</li>
+<li>1代表元素节点</li>
+<li>3代表文本节点 </li>
+<li>除了这个 1、3它还存了一个常量 用来表示节点类型 Node.ELEMENT_NODE &gt;</li>
+</ul>
+<blockquote>
+<p>自行MDN</p>
+</blockquote>
+<ul>
+<li>1 元素节点</li>
+<li>3 文本节点</li>
+<li>7</li>
+<li>8 注释节点</li>
+<li>9 Document节点</li>
+<li>11 DocumentFragment 节点</li>
+</ul>
+<h4 id="innerText-amp-amp-textContent"><a href="#innerText-amp-amp-textContent" class="headerlink" title="innerText &amp;&amp; textContent"></a>innerText &amp;&amp; textContent</h4><blockquote>
+<p>在IE发明innerText之前 前端想要获取htmk代码的文本需要这样写</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    1&lt;span&gt;2&lt;/span&gt;3&lt;span&gt;&lt;/span&gt;4</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">var text =&apos;&apos;;</span><br><span class="line">for(var i=0;i&lt;div.childNodes.length;i++)&#123;</span><br><span class="line">    if(div.childNodes[i].nodeType === 3)&#123;</span><br><span class="line">        text += div.childNodes[i].nodeValue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>于是IE发明了 innerText 你爱用不用我自己觉得很爽</p>
+</blockquote>
+<blockquote>
+<p>FF说了 你IE又搞特殊 于是FF出了个 textContent</p>
+</blockquote>
+<p>innerText &amp;&amp; textContent区别</p>
+<ul>
+<li>textContent 会获取所有元素的内容，包括 script 和 style 元素，然而 innerText 不会。</li>
+<li>innerText意识到样式，并且不会返回隐藏元素的文本，而textContent会。</li>
+<li>由于 innerText 受 CSS 样式的影响，它会触发重排（reflow），但textContent 不会。</li>
+<li>与 textContent 不同的是, 在 Internet Explorer (对于小于等于 IE11 的版本) 中对 innerText 进行修改， 不仅会移除当前元素的子节点，而且还会永久性地破坏所有后代文本节点（所以不可能再次将节点再次插入到任何其他元素或同一元素中）。</li>
+</ul>
+<h4 id="到底用谁"><a href="#到底用谁" class="headerlink" title="到底用谁"></a>到底用谁</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;textContent&apos; in document.body ? document.body.textContent : document.body.innerText</span><br></pre></td></tr></table></figure>
+<p>2.方法（如果一个属性是函数，那么这个属性就也叫做方法；换言之，方法是函数属性）</p>
+<ul>
+<li>createElement()  //创建节点</li>
+<li>appendChild()  </li>
+<li>cloneNode()   //复制一个节点   有一个参数[param] true/false 默认false true代表深拷贝</li>
+<li>contains()    //Node.contains()返回的是一个布尔值，来表示传入的节点是否为该节点的后代节点。</li>
+<li>hasChildNodes() //判断一个节点是否有后代节点</li>
+<li>insertBefore() </li>
+<li>isEqualNode()  //节点是否相等 div2 = div1.cloneNode(true);   div2.isEqualNode(div1) 返回true</li>
+<li>isSameNode()   //判断是否相同(就是是不是同一个)  你与你自己肯定是同一个人  1===1</li>
+<li>removeChild()  //移除一个节点，但是这个节点不是真的没了，还在内存里 只是从页面移除了</li>
+<li>replaceChild() //替换一个节点，但是这个节点不是真的没了，还在内存里 只是从页面移除了</li>
+<li>normalize() // 常规化 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var wrapper = document.createElement(&quot;div&quot;);</span><br><span class="line"></span><br><span class="line">wrapper.appendChild(document.createTextNode(&quot;Part 1 &quot;));</span><br><span class="line">wrapper.appendChild(document.createTextNode(&quot;Part 2 &quot;));</span><br><span class="line"></span><br><span class="line">// 这时(规范化之前),wrapper.childNodes.length === 2</span><br><span class="line">// wrapper.childNodes[0].textContent === &quot;Part 1 &quot;</span><br><span class="line">// wrapper.childNodes[1].textContent === &quot;Part 2 &quot;</span><br><span class="line"></span><br><span class="line">wrapper.normalize();</span><br><span class="line">// 现在(规范化之后), wrapper.childNodes.length === 1</span><br><span class="line">// wrapper.childNodes[0].textContent === &quot;Part 1 Part 2&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>搞清楚英文单词的意思就知道用法</p>
+</blockquote>
+<p>如果发现知道英文后依然不明白用法，看 MDN 的例子即可，如 normalize</p>
+<blockquote>
+<p>DOM APi 无外乎「增删改查」</p>
+</blockquote>
+<h3 id="Document-接口"><a href="#Document-接口" class="headerlink" title="Document 接口"></a>Document 接口</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><ul>
+<li>anchors  //废弃 详情mdn 返回a标签 集合</li>
+<li>body </li>
+<li>characterSet  //返回字符集</li>
+<li>childElementCount  //返回元素个数</li>
+<li>children //返回子元素 伪数组</li>
+<li>doctype //返回文档头</li>
+<li>documentElement //返回页面根元素 html</li>
+<li>domain  //返回域名</li>
+<li>fullscreen</li>
+<li>head</li>
+<li>hidden</li>
+<li>images </li>
+<li>links</li>
+<li>location</li>
+<li>onxxxxxxxxx  //监听事件</li>
+<li>origin   </li>
+<li>plugins //安装的插件 静态集合</li>
+<li>readyState </li>
+<li>referrer  //你访问一个网址  浏览器会问你的引荐者是谁  不然就会被拒之门外</li>
+<li>scripts </li>
+<li>scrollingElement</li>
+<li>styleSheets</li>
+<li>title</li>
+<li>visibilityState</li>
+</ul>
+<h4 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h4><ul>
+<li>close()</li>
+<li>createDocumentFragment()</li>
+<li>createElement()</li>
+<li>createTextNode()</li>
+<li>execCommand()</li>
+<li>exitFullscreen()</li>
+<li>getElementById()</li>
+<li>getElementsByClassName()</li>
+<li>getElementsByName()</li>
+<li>getElementsByTagName()</li>
+<li>getSelection()</li>
+<li>hasFocus()</li>
+<li>open()</li>
+<li>querySelector()</li>
+<li>querySelectorAll()</li>
+<li>registerElement()</li>
+<li>write()</li>
+<li>writeln()</li>
+</ul>
+<h2 id="考点"><a href="#考点" class="headerlink" title="考点"></a>考点</h2><ol>
+<li>previousSibling nextSibling </li>
+<li>innerText 和 textContent 的区别</li>
+<li>nodeType  1代表元素节点  3代表文本节点</li>
+<li>cloneNode() 设置参数可以深拷贝</li>
+<li>isEqualNode isSameNode 的区别  isEqualNode是两个节点是否一个样 isSameNode 是 是否是同一个  </li>
+<li>normalize() 主要体现mdn的作用</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-API"><span class="toc-number">1.</span> <span class="toc-text">DOM_API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#childNodes-amp-amp-children"><span class="toc-number">1.1.</span> <span class="toc-text">childNodes &amp;&amp; children</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#firstChild-lastChild-amp-amp-firstElementChild-lastElementChild"><span class="toc-number">1.2.</span> <span class="toc-text">firstChild/lastChild &amp;&amp; firstElementChild lastElementChild</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#previousSibling-nextSibling-amp-amp-previousElementSibling-nextElementSibling"><span class="toc-number">1.3.</span> <span class="toc-text">previousSibling nextSibling &amp;&amp; previousElementSibling nextElementSibling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeName"><span class="toc-number">1.4.</span> <span class="toc-text">nodeName</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodeType"><span class="toc-number">1.5.</span> <span class="toc-text">nodeType</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#innerText-amp-amp-textContent"><span class="toc-number">1.6.</span> <span class="toc-text">innerText &amp;&amp; textContent</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#到底用谁"><span class="toc-number">1.7.</span> <span class="toc-text">到底用谁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-接口"><span class="toc-number">2.</span> <span class="toc-text">Document 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#属性"><span class="toc-number">2.1.</span> <span class="toc-text">属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法："><span class="toc-number">2.2.</span> <span class="toc-text">方法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#考点"><span class="toc-number"></span> <span class="toc-text">考点</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/11/27/N027_DOM_API/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&text=DOM_API"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&is_video=false&description=DOM_API"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DOM_API&body=Check out this article: https://usxstudio.github.io/2017/11/27/N027_DOM_API/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&title=DOM_API"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/11/27/N027_DOM_API/&name=DOM_API&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

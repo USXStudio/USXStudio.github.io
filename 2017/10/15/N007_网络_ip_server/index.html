@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="打电话是如何运作的 1.将你的”音波”变成”电波”–调制器2.电波传递到电话的另一边3.电话那头将你的”电波”变成”音波”–解调器  网络与IP http（控制书写内容的）协议是建立在TCP（传输协议）和IP（控制连接）协议的基础之上的  TCP 传输控制协议（Transmission Control Protocol）面试要点 TCP 和 UDP 的区别是什么简答：TCP 可靠、面向连接、相对">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络_ip_server">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="打电话是如何运作的 1.将你的”音波”变成”电波”–调制器2.电波传递到电话的另一边3.电话那头将你的”电波”变成”音波”–解调器  网络与IP http（控制书写内容的）协议是建立在TCP（传输协议）和IP（控制连接）协议的基础之上的  TCP 传输控制协议（Transmission Control Protocol）面试要点 TCP 和 UDP 的区别是什么简答：TCP 可靠、面向连接、相对">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://sltrust.github.io/note/img/note007.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络_ip_server">
+<meta name="twitter:description" content="打电话是如何运作的 1.将你的”音波”变成”电波”–调制器2.电波传递到电话的另一边3.电话那头将你的”电波”变成”音波”–解调器  网络与IP http（控制书写内容的）协议是建立在TCP（传输协议）和IP（控制连接）协议的基础之上的  TCP 传输控制协议（Transmission Control Protocol）面试要点 TCP 和 UDP 的区别是什么简答：TCP 可靠、面向连接、相对">
+<meta name="twitter:image" content="https://sltrust.github.io/note/img/note007.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>网络_ip_server</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/17/N008_HTML/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/12/N006_HTTP入门/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&text=网络_ip_server"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&is_video=false&description=网络_ip_server"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络_ip_server&body=Check out this article: https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&name=网络_ip_server&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#打电话是如何运作的"><span class="toc-number">1.</span> <span class="toc-text">打电话是如何运作的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络与IP"><span class="toc-number">2.</span> <span class="toc-text">网络与IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-传输控制协议（Transmission-Control-Protocol）"><span class="toc-number">3.</span> <span class="toc-text">TCP 传输控制协议（Transmission Control Protocol）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面试要点"><span class="toc-number">4.</span> <span class="toc-text">面试要点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP-网络协议（英语：Internet-Protocol）"><span class="toc-number"></span> <span class="toc-text">IP 网络协议（英语：Internet Protocol）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#端口"><span class="toc-number">0.1.</span> <span class="toc-text">端口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题1：我怎么知道应该使用什么端口？"><span class="toc-number"></span> <span class="toc-text">问题1：我怎么知道应该使用什么端口？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题2：一共有多少端口？"><span class="toc-number"></span> <span class="toc-text">问题2：一共有多少端口？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        网络_ip_server
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-15T04:54:44.000Z" itemprop="datePublished">2017-10-15</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="打电话是如何运作的"><a href="#打电话是如何运作的" class="headerlink" title="打电话是如何运作的"></a>打电话是如何运作的</h4><blockquote>
+<p>1.将你的”音波”变成”电波”–调制器<br>2.电波传递到电话的另一边<br>3.电话那头将你的”电波”变成”音波”–解调器</p>
+</blockquote>
+<h4 id="网络与IP"><a href="#网络与IP" class="headerlink" title="网络与IP"></a>网络与IP</h4><blockquote>
+<p>http（控制书写内容的）协议是建立在TCP（传输协议）和IP（控制连接）协议的基础之上的</p>
+</blockquote>
+<h4 id="TCP-传输控制协议（Transmission-Control-Protocol）"><a href="#TCP-传输控制协议（Transmission-Control-Protocol）" class="headerlink" title="TCP 传输控制协议（Transmission Control Protocol）"></a>TCP 传输控制协议（Transmission Control Protocol）</h4><h4 id="面试要点"><a href="#面试要点" class="headerlink" title="面试要点"></a>面试要点</h4><ol>
+<li><p><a href="https://www.nowcoder.com/questionTerminal/63c8b45c91a544bd8febc1f1ff02e3b5?toCommentId=73766" title="null" target="_blank" rel="noopener">TCP 和 UDP 的区别是什么</a><br>简答：TCP 可靠、面向连接、相对 UDP 较慢；UDP 不可靠，不面向连接、相对 TCP 较快。搞定。</p>
+<ol start="2">
+<li><a href="https://github.com/jawil/blog/issues/14" title="null" target="_blank" rel="noopener">TCP 的三次握手指的是什么</a><br>简答：每次建立连接前，客户端和服务端之前都要先进行三次对话才开始正式传输内容，三次对话大概是这样的：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 客户端：我要连接你了，可以吗</span><br><span class="line">2. 服务端：嗯，我准备好了，连接我吧</span><br><span class="line">3. 客户端：那我连接你咯。</span><br><span class="line">4. 开始后面步骤</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>上面内容足以应付前端面试中关于 TCP 的考题 :)</li>
+</ol>
+<p>如果你想更了解 TCP 可以看 <a href="http://www.ruanyifeng.com/blog/2017/06/tcp-protocol.html" title="null" target="_blank" rel="noopener">此文</a>，也可以买一本《TCP/IP 详解（卷一）》（共三卷，先只买一卷即可）。</p>
+<p>不过再强调一遍，这不是前端的内容，以后的课程中我也不会再对 TCP 有任何涉及，你只需稍微了解一下 TCP 即可。</p>
+<h2 id="IP-网络协议（英语：Internet-Protocol）"><a href="#IP-网络协议（英语：Internet-Protocol）" class="headerlink" title="IP 网络协议（英语：Internet Protocol）"></a>IP 网络协议（英语：Internet Protocol）</h2><p>只要你在互联网中，那么你就会有一个 IP。通俗上理解，IP 分为「内网 IP」 和「外网 IP」，以下图为例：<br><img src="https://sltrust.github.io/note/img/note007.png" alt="示意图"></p>
+<ul>
+<li>你从电信那里买来带宽，一年一千多。</li>
+<li>电信为你提供 DNS 服务。</li>
+<li>你买了一个路由器，然后用电脑和手机分别连接路由器广播出来的无线 WIFI。</li>
+<li>只要路由器连上电信的服务器，那么路由器就会有一个「外网 IP」，比如「14.17.32.211」就是一个外网 IP。这就是你在互联网中的地址。</li>
+<li>但是如果你重启路由器，那么你很有「可能」被重新分配一个「外网 IP」，也就是说 <strong>你的路由器没有「固定的外网 IP」</strong></li>
+<li>你可以花每年几千块钱租用一个「固定的外网 IP」，但是显然不会这么浪费钱。像腾讯、阿里这样的大公司租用了很多外网 IP，这样才能对我们提供稳定的服务。</li>
+<li>但是有个问题，你的路由器的外网 IP 如果是14.17.32.211，那么你的手机和电脑的 IP 又是什么呢？答案是「内网 IP」</li>
+<li>路由器会在你家里创建一个内网，内网中的设备使用内网 IP，一般来说这个 IP 的格式都是 192.168.xxx.xxx。<ul>
+<li>一般路由会给自己分配一个好记的内网 IP，如 192.168.1.1</li>
+<li>然后路由会给每一个内网中的设备分配一个不同的内网 IP，如电脑是 192.168.1.2，手机是 192.168.1.3，以此类推。</li>
+<li>现在路由器有两个 IP，一个外网 IP（14.17.32.211）和一个内网 IP（192.168.1.1）<ul>
+<li>内网中的设备可以互相访问（比如你可以用电脑或手机进入 <a href="http://192.168.1.1/" title="null" target="_blank" rel="noopener">http://192.168.1.1</a> 来查看你的路由器），但是不能<strong>直接</strong>访问外网，内网设备想要访问外网，就必须经过路由器中转。</li>
+<li>外网中的设备可以互相访问（比如 qq.com 可以把首页发送给你的路由器，你的路由器有外网 IP），但是外网中的设备无法访问你的内网设备（这很好理解，内网是一个封闭的网络，外人进不来，所以实际上 qq.com 无法直接把首页放送给你的电脑和手机）<ul>
+<li>问题来了，那 qq.com 是怎么把首页发送到我的手机上的呢？答案是通过路由器来中转。</li>
+<li>路由器接收到 qq.com 的页面后，把页面发送给你的电脑或手机。路由器知道如何给这些信息<strong>指路</strong>，路由器就是一个指路人，这就是「路由」两个字的来历。</li>
+<li>路，就是「必由之路」中的路。由，就是「必由之路」中的由（由是经过、缘由的意思）。所有的信息都要经过路由器，然后被指向一条它该去的路。</li>
+</ul>
+</li>
+<li>也就是说内网和外网就像两个隔绝的空间，无法互通，唯一的联通点就是路由器（因为路由器既有外网 IP 也有内网 IP），所以路由器有时候也被叫做「网关」，这个「关」是「一夫当关，万夫莫开」的「关」。如果路由器到电信的连接中断了，那么内网中所有的设备也就无法上网了。（这很好理解，相当于唯一一条出去的路断了）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>除了内网 IP 和外网 IP，还有两个特别特殊的 IP，就是本地 IP：127.0.0.1。本地 IP 永远表示设备自己。不信你可以 ping 127.0.0.1 一下，会发现只需要 0.01 ms 就得到了响应（你 ping qq.com 需要几十毫秒才得到响应）<ul>
+<li>默认情况下，hosts 文件里会有一行<code>127.0.0.1 localhost</code>，意思就是 localhost 指向 127.0.0.1，所以 localhost 也表示设备自己。不信你 ping localhost 试试，会发现实际上是在 ping 127.0.0.1</li>
+</ul>
+</li>
+<li>还有一个特别特殊的 IP：0.0.0.0，它不表示任何设备。这个 IP 不同的地方含义不同，以后我们会用到，用到的时候再说意思。</li>
+</ul>
+<blockquote>
+<p>内网之间可以相互访问<br>外网之间可以相互访问<br>内网和外网不可相互访问<br>内网想要与外网互相访问必须有一个路由器<br>路由器的主要功能就是内容分发<br> 0.0.0.0 不表示任何设备 它是一个不该使用的IP<br>127.0.0.1 表示本机<br>localhost 表示本机</p>
+</blockquote>
+<h5 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h5><p>你想要访问一个设备（前提是你使用的是 TCP 或 UDP 协议。还记得吗，HTTP 就使用了 TCP），只指定 IP 是不够的，还<strong>必须</strong>指定端口（Port）。</p>
+<p>端口其实就是一个编号，并不是一种硬件。</p>
+<p>一个服务器（硬件）不一定只提供一种服务，比如一个服务器既提供 HTTP 服务，又提供 FTP 服务，还提供 SMTP 服务（邮件服务），那么只用一个 IP 是无法告诉服务器你想要使用哪种服务。</p>
+<blockquote>
+<p>所以这里有一个重要的原则：一个端口对应一个服务。</p>
+</blockquote>
+<p>比如</p>
+<ol>
+<li>要提供 HTTP 服务你最好使用 80 端口（能不能使用别的端口？可以，不过不建议你违反约定）</li>
+<li>要提供 HTTPS 服务你最好使用 443 端口（能不能使用别的端口？可以，不过不建议你违反约定）</li>
+<li>要提供 FTP 服务你最好使用 21 端口（能不能使用别的端口？可以，不过不建议你违反约定）</li>
+</ol>
+<h3 id="问题1：我怎么知道应该使用什么端口？"><a href="#问题1：我怎么知道应该使用什么端口？" class="headerlink" title="问题1：我怎么知道应该使用什么端口？"></a>问题1：我怎么知道应该使用什么端口？</h3><p><a href="https://zh.wikipedia.org/wiki/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8#0.E5.88.B01023.E5.8F.B7.E7.AB.AF.E5.8F.A3" title="null" target="_blank" rel="noopener">维基百科</a> 把 0 到 1023 号端口对应的服务都告诉你了，点进去看看吧。</p>
+<h3 id="问题2：一共有多少端口？"><a href="#问题2：一共有多少端口？" class="headerlink" title="问题2：一共有多少端口？"></a>问题2：一共有多少端口？</h3><p>每个机器一共有 65535（2的16次方减1）个端口（这是协议规定的）。不过这些端口的使用由一些规定</p>
+<ol>
+<li>0 到 1023（2的10次方减1）号端口是留给系统使用的，你只有拥有了管理员权限后，才能使用这 1024 个端口。</li>
+<li>其他端口可以给普通用户使用</li>
+<li>如果一个端口正在提供服务，也就是被占用了，那么就不能再使用这个端口。除非你先停掉正在占用这个端口的服务。以后你们会经常遇到这个问题。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面都是 TCP/IP 相关的知识，如果你记不住，就记住下面这句话：</p>
+<blockquote>
+<p>使用 HTTP 协议访问另一个 IP 时，比如同时提供 IP 和端口号，缺一不可。</p>
+</blockquote>
+<p>那么问题来了</p>
+<blockquote>
+<p>我访问<a href="http://qq.com/" target="_blank" rel="noopener">http://qq.com</a>时并没有提供端口号，为什么我依然可以访问</p>
+</blockquote>
+<p>答：因为<strong>浏览器</strong>帮你加了默认端口号 80。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#打电话是如何运作的"><span class="toc-number">1.</span> <span class="toc-text">打电话是如何运作的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络与IP"><span class="toc-number">2.</span> <span class="toc-text">网络与IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-传输控制协议（Transmission-Control-Protocol）"><span class="toc-number">3.</span> <span class="toc-text">TCP 传输控制协议（Transmission Control Protocol）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面试要点"><span class="toc-number">4.</span> <span class="toc-text">面试要点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP-网络协议（英语：Internet-Protocol）"><span class="toc-number"></span> <span class="toc-text">IP 网络协议（英语：Internet Protocol）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#端口"><span class="toc-number">0.1.</span> <span class="toc-text">端口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题1：我怎么知道应该使用什么端口？"><span class="toc-number"></span> <span class="toc-text">问题1：我怎么知道应该使用什么端口？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题2：一共有多少端口？"><span class="toc-number"></span> <span class="toc-text">问题2：一共有多少端口？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number"></span> <span class="toc-text">总结</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&text=网络_ip_server"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&is_video=false&description=网络_ip_server"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络_ip_server&body=Check out this article: https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&title=网络_ip_server"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/15/N007_网络_ip_server/&name=网络_ip_server&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="字符串查找 字符串内查找字符串返回索引   find 从左往右，找不到返回 -1 rfind 从右往左，找不到返回 -1 index 从左往右，找不到报错 rindex 从右往左，找不到报错  12345str = &amp;apos;aa bbb cc dd ee&amp;apos;str.find(&amp;apos;aa&amp;apos;) 1str.find(&amp;apos;ff&amp;apos;) -1... 懒得写了自己试吧">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python002字符串">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/16/Python002字符串/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="字符串查找 字符串内查找字符串返回索引   find 从左往右，找不到返回 -1 rfind 从右往左，找不到返回 -1 index 从左往右，找不到报错 rindex 从右往左，找不到报错  12345str = &amp;apos;aa bbb cc dd ee&amp;apos;str.find(&amp;apos;aa&amp;apos;) 1str.find(&amp;apos;ff&amp;apos;) -1... 懒得写了自己试吧">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.587Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python002字符串">
+<meta name="twitter:description" content="字符串查找 字符串内查找字符串返回索引   find 从左往右，找不到返回 -1 rfind 从右往左，找不到返回 -1 index 从左往右，找不到报错 rindex 从右往左，找不到报错  12345str = &amp;apos;aa bbb cc dd ee&amp;apos;str.find(&amp;apos;aa&amp;apos;) 1str.find(&amp;apos;ff&amp;apos;) -1... 懒得写了自己试吧">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python002字符串</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/16/Python003列表和元组和字典/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/16/Python001基础/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/16/Python002字符串/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&text=Python002字符串"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&is_video=false&description=Python002字符串"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python002字符串&body=Check out this article: https://usxstudio.github.io/2018/06/16/Python002字符串/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&name=Python002字符串&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串查找"><span class="toc-number">1.</span> <span class="toc-text">字符串查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串替换replace"><span class="toc-number">2.</span> <span class="toc-text">字符串替换replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-number">3.</span> <span class="toc-text">split</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capitalize"><span class="toc-number">4.</span> <span class="toc-text">capitalize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#swapcase"><span class="toc-number">5.</span> <span class="toc-text">swapcase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#title"><span class="toc-number">6.</span> <span class="toc-text">title</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大小写"><span class="toc-number">7.</span> <span class="toc-text">大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串各种处理"><span class="toc-number">8.</span> <span class="toc-text">字符串各种处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组拼接"><span class="toc-number">9.</span> <span class="toc-text">数组拼接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#format的三种玩法-格式化输出"><span class="toc-number">10.</span> <span class="toc-text">format的三种玩法 格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strip"><span class="toc-number">11.</span> <span class="toc-text">strip</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python002字符串
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-16T06:11:27.000Z" itemprop="datePublished">2018-06-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h3><blockquote>
+<p>字符串内查找字符串返回索引</p>
+</blockquote>
+<ul>
+<li>find 从左往右，找不到返回 -1</li>
+<li>rfind 从右往左，找不到返回 -1</li>
+<li>index 从左往右，找不到报错</li>
+<li>rindex 从右往左，找不到报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;aa bbb cc dd ee&apos;</span><br><span class="line"></span><br><span class="line">str.find(&apos;aa&apos;) 1</span><br><span class="line">str.find(&apos;ff&apos;) -1</span><br><span class="line">... 懒得写了自己试吧！！！</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>返回字符串在字符串内出现的次数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;aa bb cc dd aa&apos;</span><br><span class="line">str.count(&apos;aa&apos;)  #2</span><br></pre></td></tr></table></figure>
+<h3 id="字符串替换replace"><a href="#字符串替换replace" class="headerlink" title="字符串替换replace"></a>字符串替换replace</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;python&apos;</span><br><span class="line">str.replace(&apos;py&apos;,&apos;Py&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="split"><a href="#split" class="headerlink" title="split"></a>split</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;hello world ha ha&apos;</span><br><span class="line"></span><br><span class="line">str.split(&quot; &quot;)  </span><br><span class="line"># [&apos;hello&apos;,&apos;world&apos;,&apos;ha&apos;,&apos;ha&apos;]</span><br><span class="line"></span><br><span class="line">str.split(&quot; &quot;,2)  </span><br><span class="line"># [&apos;hello&apos;,&apos;world&apos;,&apos;ha ha&apos;]</span><br></pre></td></tr></table></figure>
+<h3 id="capitalize"><a href="#capitalize" class="headerlink" title="capitalize"></a>capitalize</h3><p>把字符串第一个字母变大写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;aa bb cc&apos;</span><br><span class="line">a.capitalize()</span><br><span class="line">Aa bb cc</span><br></pre></td></tr></table></figure>
+<h3 id="swapcase"><a href="#swapcase" class="headerlink" title="swapcase"></a>swapcase</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;aa bb cc&apos;</span><br><span class="line">print(a.swapcase()) #大小写翻转</span><br><span class="line"># AA BB CC</span><br></pre></td></tr></table></figure>
+<h3 id="title"><a href="#title" class="headerlink" title="title"></a>title</h3><p>把字符串每个单词首字母大写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;aa bb cc&apos;</span><br><span class="line">a.title()</span><br><span class="line">Aa Bb Cc</span><br></pre></td></tr></table></figure>
+<h3 id="大小写"><a href="#大小写" class="headerlink" title="大小写"></a>大小写</h3><ul>
+<li>startswith </li>
+<li>endswith</li>
+</ul>
+<p>判断字符串是否以字符串 开头/结尾 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;Hello&apos;</span><br><span class="line"></span><br><span class="line">a.startswith(&apos;He&apos;)</span><br><span class="line"># True</span><br><span class="line"></span><br><span class="line">b = &apos;World&apos;</span><br><span class="line">a.endswith(&apos;aa&apos;)</span><br><span class="line"># False</span><br></pre></td></tr></table></figure>
+<ul>
+<li>lower 全部转小写</li>
+<li>upper 全部转大写</li>
+</ul>
+<h3 id="字符串各种处理"><a href="#字符串各种处理" class="headerlink" title="字符串各种处理"></a>字符串各种处理</h3><ul>
+<li>ljust 指定一个字符长度，返回原字符串左对齐，并用空格填充剩余部分</li>
+<li>rjust 指定一个字符长度，返回原字符串右对齐，并用空格填充剩余部分</li>
+<li>center 指定一个字符长度，返回原字符居中对齐，并用空格填充剩余部分</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;hello&apos;</span><br><span class="line">a.ljust(10)</span><br><span class="line"># &apos;hello     &apos;</span><br><span class="line"></span><br><span class="line">a = &apos;hello&apos;</span><br><span class="line">a.rjust(10)</span><br><span class="line"># &apos;     hello&apos;</span><br><span class="line"></span><br><span class="line">a = &apos;hello&apos;</span><br><span class="line">a.center(30)</span><br><span class="line"># &apos;          hello          &apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>lstrip 删除字符串左面空白</li>
+<li>rstrip 删除字符串右面空白</li>
+<li>strip 删除字符串空白</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;   hello&apos;</span><br><span class="line">a.lstrip()</span><br><span class="line"># &apos;hello&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>partition 把字符分成三部分从左开始</li>
+<li>rpartition 把字符分成三部分从右开始</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;What are you doing&apos;</span><br><span class="line">a.partition(&apos;are&apos;)</span><br><span class="line"># [&apos;What&apos;,&apos;are&apos;,&apos;you doing&apos;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>splitlines 按照换行符分割</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &apos;hello\nworld&apos;</span><br><span class="line">a.splitlines()</span><br><span class="line"># [&apos;hello&apos;,&apos;world&apos;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>isalpha 如果字符串所有字符都是字母返回True</li>
+<li>isdigit 如果字符串所有字符都是数字返回True</li>
+<li>isalnum 如果字符串所有字符都是字母或数字返回True</li>
+<li>isspace 如果字符串所有字符都是空格返回True</li>
+</ul>
+<h3 id="数组拼接"><a href="#数组拼接" class="headerlink" title="数组拼接"></a>数组拼接</h3><p>join</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = &apos;_&apos;</span><br><span class="line">a = [&apos;Hi&apos;,&apos;boy&apos;]</span><br><span class="line">str.join(a)</span><br><span class="line"># &apos;Hi_boy&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="format的三种玩法-格式化输出"><a href="#format的三种玩法-格式化输出" class="headerlink" title="format的三种玩法 格式化输出"></a>format的三种玩法 格式化输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res=&apos;&#123;&#125; &#123;&#125; &#123;&#125;&apos;.format(&apos;egon&apos;,18,&apos;male&apos;)</span><br><span class="line">res=&apos;&#123;1&#125; &#123;0&#125; &#123;1&#125;&apos;.format(&apos;egon&apos;,18,&apos;male&apos;)</span><br><span class="line">res=&apos;&#123;name&#125; &#123;age&#125; &#123;sex&#125;&apos;.format(sex=&apos;male&apos;,name=&apos;egon&apos;,age=18)</span><br></pre></td></tr></table></figure>
+<h3 id="strip"><a href="#strip" class="headerlink" title="strip"></a>strip</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name=&apos;*egon**&apos;</span><br><span class="line">print(name.strip(&apos;*&apos;))</span><br><span class="line">print(name.lstrip(&apos;*&apos;))</span><br><span class="line">print(name.rstrip(&apos;*&apos;))</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">egon</span><br><span class="line">egon**</span><br><span class="line">*egon</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串查找"><span class="toc-number">1.</span> <span class="toc-text">字符串查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串替换replace"><span class="toc-number">2.</span> <span class="toc-text">字符串替换replace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#split"><span class="toc-number">3.</span> <span class="toc-text">split</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capitalize"><span class="toc-number">4.</span> <span class="toc-text">capitalize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#swapcase"><span class="toc-number">5.</span> <span class="toc-text">swapcase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#title"><span class="toc-number">6.</span> <span class="toc-text">title</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大小写"><span class="toc-number">7.</span> <span class="toc-text">大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串各种处理"><span class="toc-number">8.</span> <span class="toc-text">字符串各种处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组拼接"><span class="toc-number">9.</span> <span class="toc-text">数组拼接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#format的三种玩法-格式化输出"><span class="toc-number">10.</span> <span class="toc-text">format的三种玩法 格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strip"><span class="toc-number">11.</span> <span class="toc-text">strip</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/16/Python002字符串/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&text=Python002字符串"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&is_video=false&description=Python002字符串"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python002字符串&body=Check out this article: https://usxstudio.github.io/2018/06/16/Python002字符串/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&title=Python002字符串"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/16/Python002字符串/&name=Python002字符串&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

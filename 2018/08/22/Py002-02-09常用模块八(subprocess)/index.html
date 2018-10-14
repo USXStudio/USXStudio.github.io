@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="subprocess 模块跟操作系统打交道的模块  run call Popen 前两种的底层实现  12345678import subprocessa = subprocess.run([&amp;apos;df&amp;apos;,&amp;apos;-h&amp;apos;])print(a.args) # 命令的参数print(a.returncode) # 命令行的返回结果 0代表成功a.stderra.stdout">
+<meta name="keywords" content="M02">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py002-02-09常用模块八(subprocess)">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="subprocess 模块跟操作系统打交道的模块  run call Popen 前两种的底层实现  12345678import subprocessa = subprocess.run([&amp;apos;df&amp;apos;,&amp;apos;-h&amp;apos;])print(a.args) # 命令的参数print(a.returncode) # 命令行的返回结果 0代表成功a.stderra.stdout">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py002-02-09常用模块八(subprocess)">
+<meta name="twitter:description" content="subprocess 模块跟操作系统打交道的模块  run call Popen 前两种的底层实现  12345678import subprocessa = subprocess.run([&amp;apos;df&amp;apos;,&amp;apos;-h&amp;apos;])print(a.args) # 命令的参数print(a.returncode) # 命令行的返回结果 0代表成功a.stderra.stdout">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py002-02-09常用模块八(subprocess)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/22/Py002-02-10常用模块九(logging)/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/22/Py002-02-08常用模块七(hashlib)/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&text=Py002-02-09常用模块八(subprocess)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&is_video=false&description=Py002-02-09常用模块八(subprocess)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py002-02-09常用模块八(subprocess)&body=Check out this article: https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&name=Py002-02-09常用模块八(subprocess)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#subprocess-模块"><span class="toc-number">1.</span> <span class="toc-text">subprocess 模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#subprocess-执行时会开启一个进程，那返回的结果-如何获取呢？-答案是通过操作系统的桥梁"><span class="toc-number">1.1.</span> <span class="toc-text">subprocess 执行时会开启一个进程，那返回的结果  如何获取呢？ 答案是通过操作系统的桥梁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果我想执行-带管道的命令呢？-答案是报错-因为subprocess本身就带管道里-如果命令还带就报错"><span class="toc-number">1.2.</span> <span class="toc-text">如果我想执行 带管道的命令呢？  答案是报错  因为subprocess本身就带管道里  如果命令还带就报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call方法"><span class="toc-number">1.3.</span> <span class="toc-text">call方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Popen-方法"><span class="toc-number">1.4.</span> <span class="toc-text">Popen()方法</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py002-02-09常用模块八(subprocess)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-22T13:43:01.000Z" itemprop="datePublished">2018-08-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M02/">M02</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="subprocess-模块"><a href="#subprocess-模块" class="headerlink" title="subprocess 模块"></a>subprocess 模块</h3><p>跟操作系统打交道的模块</p>
+<ul>
+<li>run</li>
+<li>call</li>
+<li>Popen 前两种的底层实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import subprocess</span><br><span class="line"></span><br><span class="line">a = subprocess.run([&apos;df&apos;,&apos;-h&apos;])</span><br><span class="line">print(a.args) # 命令的参数</span><br><span class="line">print(a.returncode) # 命令行的返回结果 0代表成功</span><br><span class="line">a.stderr</span><br><span class="line">a.stdout</span><br><span class="line">a.check_returncode() 非 0 报错</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>进程   word无法访问 qq的内存数据 不然就会把qq搞崩了， 所以每个应用的内存数据是相互独立的</p>
+</blockquote>
+<p>疑问?  qq里 别人一段消息  你ctrl + c之后 在word里 ctrl + v 数据就过去了？ 因为这是操作系统帮你做的</p>
+<blockquote>
+<h4 id="subprocess-执行时会开启一个进程，那返回的结果-如何获取呢？-答案是通过操作系统的桥梁"><a href="#subprocess-执行时会开启一个进程，那返回的结果-如何获取呢？-答案是通过操作系统的桥梁" class="headerlink" title="subprocess 执行时会开启一个进程，那返回的结果  如何获取呢？ 答案是通过操作系统的桥梁"></a>subprocess 执行时会开启一个进程，那返回的结果  如何获取呢？ 答案是通过操作系统的桥梁</h4></blockquote>
+<ul>
+<li>subprocess.PIPE 就是管道</li>
+<li>check=True 如果不加 执行命令出错了 整个程序没有出错  加了会有报错信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = subprocess.run([&apos;df&apos;,&apos;-h&apos;],stderr=subprocess.PIPE,stdout=subprocess.PIPE,check=True)</span><br><span class="line"></span><br><span class="line">print(s.stdout)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="如果我想执行-带管道的命令呢？-答案是报错-因为subprocess本身就带管道里-如果命令还带就报错"><a href="#如果我想执行-带管道的命令呢？-答案是报错-因为subprocess本身就带管道里-如果命令还带就报错" class="headerlink" title="如果我想执行 带管道的命令呢？  答案是报错  因为subprocess本身就带管道里  如果命令还带就报错"></a>如果我想执行 带管道的命令呢？  答案是报错  因为subprocess本身就带管道里  如果命令还带就报错</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># s = subprocess.run([&apos;df&apos;,&apos;-h&apos;,&apos;|&apos;,&apos;grep&apos;,&apos;disk1&apos;],stderr=subprocess.PIPE,stdout=subprocess.PIPE,check=True)</span><br><span class="line"></span><br><span class="line"># 发现还是报错</span><br><span class="line"># s = subprocess.run(&apos;df -h |grep disk1&apos;,stderr=subprocess.PIPE,stdout=subprocess.PIPE,check=True)</span><br><span class="line"></span><br><span class="line"># 添加shell参数 意思是之前是列表里 拼参数  现在你别管了 把整条命令传给 shell执行</span><br><span class="line">s = subprocess.run(&apos;df -h |grep disk1&apos;, stderr = subprocess.PIPE, stdout = subprocess.PIPE, shell=True)</span><br></pre></td></tr></table></figure>
+<h4 id="call方法"><a href="#call方法" class="headerlink" title="call方法"></a>call方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#执行命令，返回命令执行状态 ， 0 or 非0</span><br><span class="line">&gt;&gt;&gt; retcode = subprocess.call([&quot;ls&quot;, &quot;-l&quot;])</span><br><span class="line"></span><br><span class="line">#执行命令，如果命令结果为0，就正常返回，否则抛异常</span><br><span class="line">&gt;&gt;&gt; subprocess.check_call([&quot;ls&quot;, &quot;-l&quot;])</span><br><span class="line">0</span><br><span class="line"></span><br><span class="line">#接收字符串格式命令，返回元组形式，第1个元素是执行状态，第2个是命令结果 </span><br><span class="line">&gt;&gt;&gt; subprocess.getstatusoutput(&apos;ls /bin/ls&apos;)</span><br><span class="line">(0, &apos;/bin/ls&apos;)</span><br><span class="line"></span><br><span class="line">#接收字符串格式命令，并返回结果</span><br><span class="line">&gt;&gt;&gt; subprocess.getoutput(&apos;ls /bin/ls&apos;)</span><br><span class="line">&apos;/bin/ls&apos;</span><br><span class="line"></span><br><span class="line">#执行命令，并返回结果，注意是返回结果，不是打印，下例结果返回给res</span><br><span class="line">&gt;&gt;&gt; res=subprocess.check_output([&apos;ls&apos;,&apos;-l&apos;])</span><br><span class="line">&gt;&gt;&gt; res</span><br><span class="line">b&apos;total 0\ndrwxr-xr-x 12 alex staff 408 Nov 2 11:05 OldBoyCRM\n&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="Popen-方法"><a href="#Popen-方法" class="headerlink" title="Popen()方法"></a>Popen()方法</h4><ul>
+<li>args：shell命令，可以是字符串或者序列类型（如：list，元组）</li>
+<li>stdin, stdout, stderr：分别表示程序的标准输入、输出、错误句柄</li>
+<li>preexec_fn：只在Unix平台下有效，用于指定一个可执行对象（callable object），它将在子进程运行之前被调用</li>
+<li>shell：同上</li>
+<li>cwd：用于设置子进程的当前目录</li>
+<li>env：用于指定子进程的环境变量。如果env = None，子进程的环境变量将从父进程中继承。</li>
+</ul>
+<blockquote>
+<p>下面这2条语句执行会有什么区别？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=subprocess.run(&apos;sleep 10&apos;,shell=True,stdout=subprocess.PIPE)</span><br><span class="line">a=subprocess.Popen(&apos;sleep 10&apos;,shell=True,stdout=subprocess.PIPE)</span><br></pre></td></tr></table></figure>
+<p>区别是Popen会在发起命令后立刻返回，而不等命令执行结果。这样的好处是什么呢？</p>
+<p>如果你调用的命令或脚本 需要执行10分钟，你的主程序不需卡在这里等10分钟，可以继续往下走，干别的事情，每过一会，通过一个什么方法来检测一下命令是否执行完成就好了。</p>
+<p>Popen调用后会返回一个对象，可以通过这个对象拿到命令执行结果或状态等，该对象有以下方法</p>
+<ul>
+<li>poll()</li>
+</ul>
+<p>结论：run方法同步，Popen会新开一个进程不影响主程序，可以通过poll方法获取命令的返回结果</p>
+<blockquote>
+<p>preexex_fn是什么鬼？代表执行命令前先执行的方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import subprocess</span><br><span class="line"></span><br><span class="line">def sayHi():</span><br><span class="line">    print(&apos;hello&apos;)</span><br><span class="line"></span><br><span class="line">a = subprocess.Popen(&apos;sleep 10&apos;,stdout=subprocess.PIPE,shell=True,preexec_fn=sayHi)</span><br><span class="line">a.stdout</span><br><span class="line">s = a.stdout.read()</span><br><span class="line"></span><br><span class="line">print(s)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>cwd 用于设置子进程的当前目录</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = subprocess.Popen(&apos;echo $PWD&apos;,cwd=&apos;/Users/almost/Desktop/pycode&apos;,stdout=subprocess.PIPE,shell=True)</span><br><span class="line">a.stdout</span><br><span class="line">s = a.stdout.read()</span><br><span class="line"></span><br><span class="line">print(s) # b&apos;/Users/almost/Desktop/pycode\n&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>wait() 等待子进程的结果</p>
+</blockquote>
+<blockquote>
+<p>terminate()终止所启动的进程Terminate the process with SIGTERM</p>
+</blockquote>
+<blockquote>
+<p>kill() 杀死所启动的进程 Kill the process with SIGKILL</p>
+</blockquote>
+<blockquote>
+<p>communicate()与启动的进程交互，发送数据到stdin,并从stdout接收输出，然后等待任务结束</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = subprocess.Popen(&apos;python3 guess_age.py&apos;,stdout=subprocess.PIPE,stderr=subprocess.PIPE,stdin=subprocess.PIPE,shell=True)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; a.communicate(b&apos;22&apos;)</span><br><span class="line">(b&apos;your guess:try bigger\n&apos;, b&apos;&apos;)</span><br></pre></td></tr></table></figure>
+<p>send_signal(signal.xxx)发送系统信号</p>
+<p>pid 拿到所启动进程的进程号</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#subprocess-模块"><span class="toc-number">1.</span> <span class="toc-text">subprocess 模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#subprocess-执行时会开启一个进程，那返回的结果-如何获取呢？-答案是通过操作系统的桥梁"><span class="toc-number">1.1.</span> <span class="toc-text">subprocess 执行时会开启一个进程，那返回的结果  如何获取呢？ 答案是通过操作系统的桥梁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果我想执行-带管道的命令呢？-答案是报错-因为subprocess本身就带管道里-如果命令还带就报错"><span class="toc-number">1.2.</span> <span class="toc-text">如果我想执行 带管道的命令呢？  答案是报错  因为subprocess本身就带管道里  如果命令还带就报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call方法"><span class="toc-number">1.3.</span> <span class="toc-text">call方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Popen-方法"><span class="toc-number">1.4.</span> <span class="toc-text">Popen()方法</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&text=Py002-02-09常用模块八(subprocess)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&is_video=false&description=Py002-02-09常用模块八(subprocess)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py002-02-09常用模块八(subprocess)&body=Check out this article: https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&title=Py002-02-09常用模块八(subprocess)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/22/Py002-02-09常用模块八(subprocess)/&name=Py002-02-09常用模块八(subprocess)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

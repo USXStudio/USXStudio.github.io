@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="常用模块 collections(不太重要) 时间模块 random(随机相关) os模块(和操作系统打交道的) sys模块(和python解释器打交道的) 序列化模块(非常重要的) re模块(前面已经用了)  collections模块 namedtuple: 生成可以使用名字来访问元素内容的tuple deque: 双端队列，可以快速的从另外一侧追加和推出对象 Counter: 计数器，主要用">
+<meta name="keywords" content="fullstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P019_01_python常用模块一">
+<meta property="og:url" content="https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="常用模块 collections(不太重要) 时间模块 random(随机相关) os模块(和操作系统打交道的) sys模块(和python解释器打交道的) 序列化模块(非常重要的) re模块(前面已经用了)  collections模块 namedtuple: 生成可以使用名字来访问元素内容的tuple deque: 双端队列，可以快速的从另外一侧追加和推出对象 Counter: 计数器，主要用">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P019_01_python常用模块一">
+<meta name="twitter:description" content="常用模块 collections(不太重要) 时间模块 random(随机相关) os模块(和操作系统打交道的) sys模块(和python解释器打交道的) 序列化模块(非常重要的) re模块(前面已经用了)  collections模块 namedtuple: 生成可以使用名字来访问元素内容的tuple deque: 双端队列，可以快速的从另外一侧追加和推出对象 Counter: 计数器，主要用">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>P019_01_python常用模块一</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/29/P019_02_python常用模块二/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/28/P018_01_python认识正则表达式/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&text=P019_01_python常用模块一"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&is_video=false&description=P019_01_python常用模块一"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P019_01_python常用模块一&body=Check out this article: https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&name=P019_01_python常用模块一&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用模块"><span class="toc-number">1.</span> <span class="toc-text">常用模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#collections模块"><span class="toc-number">2.</span> <span class="toc-text">collections模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#namedtuple"><span class="toc-number">2.1.</span> <span class="toc-text">namedtuple</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#万能公式：-namedtuple-‘名称’-属性list"><span class="toc-number">3.</span> <span class="toc-text">万能公式： namedtuple(‘名称’, [属性list]):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#queue-队列-FIFO"><span class="toc-number">3.1.</span> <span class="toc-text">queue 队列 FIFO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#deque-双端队列"><span class="toc-number">3.2.</span> <span class="toc-text">deque 双端队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#deque除了实现list的append-和pop-外，还支持appendleft-和popleft-，这样就可以非常高效地往头部添加或删除元素。"><span class="toc-number">3.3.</span> <span class="toc-text">deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OrderedDict-有序字典"><span class="toc-number">3.4.</span> <span class="toc-text">OrderedDict 有序字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#defaultdict"><span class="toc-number">3.5.</span> <span class="toc-text">defaultdict</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项："><span class="toc-number">4.</span> <span class="toc-text">注意事项：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Counter-计数用的最没用的一个知识点"><span class="toc-number">4.1.</span> <span class="toc-text">Counter(计数用的最没用的一个知识点)</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P019_01_python常用模块一
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-28T10:59:11.000Z" itemprop="datePublished">2018-07-28</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/fullstack/">fullstack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h3><ul>
+<li>collections(不太重要)</li>
+<li>时间模块</li>
+<li>random(随机相关)</li>
+<li>os模块(和操作系统打交道的)</li>
+<li>sys模块(和python解释器打交道的)</li>
+<li>序列化模块(非常重要的)</li>
+<li>re模块(前面已经用了)</li>
+</ul>
+<h3 id="collections模块"><a href="#collections模块" class="headerlink" title="collections模块"></a>collections模块</h3><ol>
+<li>namedtuple: 生成可以使用名字来访问元素内容的tuple</li>
+<li>deque: 双端队列，可以快速的从另外一侧追加和推出对象</li>
+<li>Counter: 计数器，主要用来计数</li>
+<li>OrderedDict: 有序字典</li>
+<li>defaultdict: 带有默认值的字典</li>
+</ol>
+<h4 id="namedtuple"><a href="#namedtuple" class="headerlink" title="namedtuple"></a>namedtuple</h4><p>我们知道tuple可以表示不变集合，例如，一个点的二维坐标就可以表示成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = (1, 2)</span><br></pre></td></tr></table></figure>
+<p>但是，看到(1, 2)，很难看出这个tuple是用来表示一个坐标的。</p>
+<p>这时，namedtuple就派上了用场：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from collections import namedtuple</span><br><span class="line">Point = namedtuple(&apos;Point&apos;, [&apos;x&apos;, &apos;y&apos;])</span><br><span class="line">p = Point(1, 2)</span><br><span class="line">p.x # 1</span><br><span class="line">p.y # 2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="万能公式：-namedtuple-‘名称’-属性list"><a href="#万能公式：-namedtuple-‘名称’-属性list" class="headerlink" title="万能公式： namedtuple(‘名称’, [属性list]):"></a>万能公式： namedtuple(‘名称’, [属性list]):</h3></blockquote>
+<p>类似的，如果要用坐标和半径表示一个圆，也可以用namedtuple定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle = namedtuple(&apos;Circle&apos;, [&apos;x&apos;, &apos;y&apos;, &apos;r&apos;])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>扑克牌功能</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from collections import namedtuple</span><br><span class="line"># namedtuple(&apos;扑克牌&apos;, [&apos;花色&apos;, &apos;数字&apos;])</span><br><span class="line">Card = namedtuple(&apos;Card&apos;, [&apos;color&apos;, &apos;num&apos;])</span><br><span class="line">c = Card(&apos;红桃&apos;,&apos;2&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="queue-队列-FIFO"><a href="#queue-队列-FIFO" class="headerlink" title="queue 队列 FIFO"></a>queue 队列 FIFO</h4><blockquote>
+<p>first in first out</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import queue</span><br><span class="line"></span><br><span class="line">q = queue.Queue()</span><br><span class="line">q.put(10)</span><br><span class="line">q.put(1)</span><br><span class="line">q.put(12)</span><br><span class="line"></span><br><span class="line">print(q.get()) # 10</span><br><span class="line">print(q.get()) # 1</span><br><span class="line">print(q.get()) # 12</span><br><span class="line">print(q.get()) # 阻塞 队列里只有3个元素 再次进行取值就会阻塞在这里</span><br><span class="line">print(q.get()) # 阻塞 队列里只有3个元素 再次进行取值就会阻塞在这里</span><br><span class="line"></span><br><span class="line">print(q.qsize()) # 查看队列里元素个数 取一个少一个</span><br></pre></td></tr></table></figure>
+<p>例如电影票200张但是500个人买，前200人顺利买了票，后面的只能停在哪里等待票</p>
+<h4 id="deque-双端队列"><a href="#deque-双端队列" class="headerlink" title="deque 双端队列"></a>deque 双端队列</h4><p>使用list存储数据时，按索引访问元素很快，但是插入和删除元素就很慢了，因为list是线性存储，数据量大的时候，插入和删除效率很低。</p>
+<blockquote>
+<p>deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from collections import deque</span><br><span class="line"></span><br><span class="line">dq = deque([1,2])</span><br><span class="line">dq.append(&apos;a&apos;) # 从后面放数据 [1,2,&apos;a&apos;]</span><br><span class="line">dq.appendleft(&apos;b&apos;) # 从前面放数据 [&apos;b&apos;,1,2,&apos;a&apos;]</span><br><span class="line">dq.insert(2,3)  # 根据索引放数据 [&apos;b&apos;,&apos;1&apos;,&apos;3&apos;,&apos;2&apos;,&apos;a&apos;]</span><br><span class="line">print(dq.pop()) # 从后面取数据 a</span><br><span class="line">print(dq.pop()) # 从后面取数据 2</span><br><span class="line">print(dq.popleft()) # 从前面取数据 b</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<h4 id="deque除了实现list的append-和pop-外，还支持appendleft-和popleft-，这样就可以非常高效地往头部添加或删除元素。"><a href="#deque除了实现list的append-和pop-外，还支持appendleft-和popleft-，这样就可以非常高效地往头部添加或删除元素。" class="headerlink" title="deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素。"></a>deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素。</h4></blockquote>
+<h4 id="OrderedDict-有序字典"><a href="#OrderedDict-有序字典" class="headerlink" title="OrderedDict 有序字典"></a>OrderedDict 有序字典</h4><blockquote>
+<p>使用dict时，Key是无序的。在对dict做迭代时，我们无法确定Key的顺序。</p>
+</blockquote>
+<blockquote>
+<p>如果要保持Key的顺序，可以用OrderedDict：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from collections import OrderedDict</span><br><span class="line"></span><br><span class="line">d = dict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</span><br><span class="line"># dict的Key是无序的 &#123;&apos;a&apos;: 1, &apos;c&apos;: 3, &apos;b&apos;: 2&#125;</span><br><span class="line"></span><br><span class="line">od = OrderedDict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</span><br><span class="line">od</span><br><span class="line"># OrderedDict的Key是有序的 OrderedDict([(&apos;a&apos;, 1), (&apos;b&apos;, 2), (&apos;c&apos;, 3)])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，OrderedDict的Key会按照插入的顺序排列，不是Key本身排序：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">od = OrderedDict()</span><br><span class="line">od[&apos;z&apos;] = 1</span><br><span class="line">od[&apos;y&apos;] = 2</span><br><span class="line">od[&apos;x&apos;] = 3</span><br><span class="line">od.keys() # 按照插入的Key的顺序返回 [&apos;z&apos;, &apos;y&apos;, &apos;x&apos;]</span><br></pre></td></tr></table></figure>
+<h4 id="defaultdict"><a href="#defaultdict" class="headerlink" title="defaultdict"></a>defaultdict</h4><blockquote>
+<p>有如下值集合 [11,22,33,44,55,66,77,88,99,90…]，将所有大于 66 的值保存至字典的第一个key中，将小于 66 的值保存至第二个key的值中。</p>
+</blockquote>
+<blockquote>
+<p>即： {‘k1’: 大于66 , ‘k2’: 小于66}</p>
+</blockquote>
+<p>原生字典解决方法:很麻烦</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">values = [11, 22, 33,44,55,66,77,88,99,90]</span><br><span class="line"></span><br><span class="line">my_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">for value in  values:</span><br><span class="line">    if value&gt;66:</span><br><span class="line">        if my_dict.has_key(&apos;k1&apos;):</span><br><span class="line">            my_dict[&apos;k1&apos;].append(value)</span><br><span class="line">        else:</span><br><span class="line">            my_dict[&apos;k1&apos;] = [value]</span><br><span class="line">    else:</span><br><span class="line">        if my_dict.has_key(&apos;k2&apos;):</span><br><span class="line">            my_dict[&apos;k2&apos;].append(value)</span><br><span class="line">        else:</span><br><span class="line">            my_dict[&apos;k2&apos;] = [value]</span><br></pre></td></tr></table></figure>
+<p>defaultdict字典解决方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from collections import defaultdict</span><br><span class="line"></span><br><span class="line">values = [11, 22, 33,44,55,66,77,88,99,90]</span><br><span class="line"></span><br><span class="line">my_dict = defaultdict(list) # key的默认值为列表</span><br><span class="line"></span><br><span class="line">for value in  values:</span><br><span class="line">    if value&gt;66:</span><br><span class="line">        my_dict[&apos;k1&apos;].append(value)</span><br><span class="line">    else:</span><br><span class="line">        my_dict[&apos;k2&apos;].append(value)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3></blockquote>
+<ul>
+<li>defaultdict()的参数必须是callable()的 </li>
+<li>如果默认值为数字5就不能写defaultdict(5)</li>
+<li>你可以使用lambda表达式来实现</li>
+</ul>
+<blockquote>
+<p>使用dict时，如果引用的Key不存在，就会抛出KeyError。如果希望key不存在时，返回一个默认值，就可以用defaultdict：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from collections import defaultdict</span><br><span class="line">dd = defaultdict(lambda: &apos;N/A&apos;)</span><br><span class="line">dd[&apos;key1&apos;] = &apos;abc&apos;</span><br><span class="line">dd[&apos;key1&apos;] # key1存在 &apos;abc&apos;</span><br><span class="line">dd[&apos;key2&apos;] # key2不存在，返回默认值 &apos;N/A&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="Counter-计数用的最没用的一个知识点"><a href="#Counter-计数用的最没用的一个知识点" class="headerlink" title="Counter(计数用的最没用的一个知识点)"></a>Counter(计数用的最没用的一个知识点)</h4><blockquote>
+<p>Counter类的目的是用来跟踪值出现的次数。它是一个无序的容器类型，以字典的键值对形式存储，其中元素作为key，其计数作为value。计数值可以是任意的Interger（包括0和负数）。Counter类和其他语言的bags或multisets很相似。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(&apos;abcdeabcdabcaba&apos;)</span><br><span class="line">print c</span><br><span class="line">输出：Counter(&#123;&apos;a&apos;: 5, &apos;b&apos;: 4, &apos;c&apos;: 3, &apos;d&apos;: 2, &apos;e&apos;: 1&#125;)</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.cnblogs.com/Eva-J/articles/7291842.html" target="_blank" rel="noopener">其他详细内容</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用模块"><span class="toc-number">1.</span> <span class="toc-text">常用模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#collections模块"><span class="toc-number">2.</span> <span class="toc-text">collections模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#namedtuple"><span class="toc-number">2.1.</span> <span class="toc-text">namedtuple</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#万能公式：-namedtuple-‘名称’-属性list"><span class="toc-number">3.</span> <span class="toc-text">万能公式： namedtuple(‘名称’, [属性list]):</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#queue-队列-FIFO"><span class="toc-number">3.1.</span> <span class="toc-text">queue 队列 FIFO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#deque-双端队列"><span class="toc-number">3.2.</span> <span class="toc-text">deque 双端队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#deque除了实现list的append-和pop-外，还支持appendleft-和popleft-，这样就可以非常高效地往头部添加或删除元素。"><span class="toc-number">3.3.</span> <span class="toc-text">deque除了实现list的append()和pop()外，还支持appendleft()和popleft()，这样就可以非常高效地往头部添加或删除元素。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OrderedDict-有序字典"><span class="toc-number">3.4.</span> <span class="toc-text">OrderedDict 有序字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#defaultdict"><span class="toc-number">3.5.</span> <span class="toc-text">defaultdict</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项："><span class="toc-number">4.</span> <span class="toc-text">注意事项：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Counter-计数用的最没用的一个知识点"><span class="toc-number">4.1.</span> <span class="toc-text">Counter(计数用的最没用的一个知识点)</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&text=P019_01_python常用模块一"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&is_video=false&description=P019_01_python常用模块一"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P019_01_python常用模块一&body=Check out this article: https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&title=P019_01_python常用模块一"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/28/P019_01_python常用模块一/&name=P019_01_python常用模块一&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

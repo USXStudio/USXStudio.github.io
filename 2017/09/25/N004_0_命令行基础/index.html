@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="###　为什么学命令行  这关系到一个程序员的初始 现代的前端工具都没有提供图形界面、只有命令行界面、从使用角度、前端必须学会命令行   Gulp/Webpack/SASS/Node.js/Vue/React/Angular 这么多工具你不学咋混啊  基本概述(注意请使用gitbash的命令窗口) 文件与目录(文件夹) ~ / . .. $的意思   ~ 代表用户目录(linux/unix是没有盘">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令行基础">
+<meta property="og:url" content="https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="###　为什么学命令行  这关系到一个程序员的初始 现代的前端工具都没有提供图形界面、只有命令行界面、从使用角度、前端必须学会命令行   Gulp/Webpack/SASS/Node.js/Vue/React/Angular 这么多工具你不学咋混啊  基本概述(注意请使用gitbash的命令窗口) 文件与目录(文件夹) ~ / . .. $的意思   ~ 代表用户目录(linux/unix是没有盘">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命令行基础">
+<meta name="twitter:description" content="###　为什么学命令行  这关系到一个程序员的初始 现代的前端工具都没有提供图形界面、只有命令行界面、从使用角度、前端必须学会命令行   Gulp/Webpack/SASS/Node.js/Vue/React/Angular 这么多工具你不学咋混啊  基本概述(注意请使用gitbash的命令窗口) 文件与目录(文件夹) ~ / . .. $的意思   ~ 代表用户目录(linux/unix是没有盘">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>命令行基础</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/05/N004_2_hexo博客初始/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/09/22/N002_计算机是如何存数据的/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&text=命令行基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&is_video=false&description=命令行基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=命令行基础&body=Check out this article: https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&name=命令行基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概述-注意请使用gitbash的命令窗口"><span class="toc-number">1.</span> <span class="toc-text">基本概述(注意请使用gitbash的命令窗口)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令行难吗？"><span class="toc-number">2.</span> <span class="toc-text">命令行难吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何学习"><span class="toc-number">3.</span> <span class="toc-text">如何学习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number"></span> <span class="toc-text">缩写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实践"><span class="toc-number">1.</span> <span class="toc-text">实践</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的自带命令"><span class="toc-number">2.</span> <span class="toc-text">常见的自带命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快捷键"><span class="toc-number"></span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行技巧"><span class="toc-number"></span> <span class="toc-text">命令行技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动运行"><span class="toc-number"></span> <span class="toc-text">自动运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alias"><span class="toc-number"></span> <span class="toc-text">alias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-number"></span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-PATH"><span class="toc-number"></span> <span class="toc-text">设置 PATH</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        命令行基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-09-24T16:01:56.000Z" itemprop="datePublished">2017-09-25</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>###　为什么学命令行</p>
+<ol>
+<li>这关系到一个程序员的初始</li>
+<li>现代的前端工具都没有提供图形界面、只有命令行界面、从使用角度、前端必须学会命令行</li>
+</ol>
+<ul>
+<li>Gulp/Webpack/SASS/Node.js/Vue/React/Angular</li>
+<li>这么多工具你不学咋混啊</li>
+</ul>
+<h4 id="基本概述-注意请使用gitbash的命令窗口"><a href="#基本概述-注意请使用gitbash的命令窗口" class="headerlink" title="基本概述(注意请使用gitbash的命令窗口)"></a>基本概述(注意请使用gitbash的命令窗口)</h4><ol>
+<li>文件与目录(文件夹)</li>
+<li>~ / . .. $的意思</li>
+</ol>
+<blockquote>
+<p>~ 代表用户目录(linux/unix是没有盘符的概念的)</p>
+</blockquote>
+<p>windows前提安装了gitbash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~   //切换到用户目录</span><br><span class="line">pwd    //输出当前路径 ==&gt;  /c/Users/hjx</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>/ 代表硬盘(没有c d e f盘)</p>
+</blockquote>
+<blockquote>
+<p>. 代表当前目录</p>
+</blockquote>
+<blockquote>
+<p>.. 代表上一层目录</p>
+</blockquote>
+<blockquote>
+<p>$ 代表没有实际意义只是提示你可以输入命令了</p>
+</blockquote>
+<h4 id="命令行难吗？"><a href="#命令行难吗？" class="headerlink" title="命令行难吗？"></a>命令行难吗？</h4><p>实际上命令行简单，你觉得难是因为你在命令行上待的时间还不足24小时，而你在window上待的时间超过了10年，简单你学了那么多年？</p>
+<h4 id="如何学习"><a href="#如何学习" class="headerlink" title="如何学习"></a>如何学习</h4><p>首先背单词：</p>
+<ul>
+<li>英文    翻译</li>
+<li>directory    目录、文件夹</li>
+<li>file    文件</li>
+<li>make    新建</li>
+<li>remove    删除</li>
+<li>move    移动</li>
+<li>copy    复制</li>
+<li>list    罗列</li>
+<li>link    链接</li>
+<li>find    查找</li>
+<li>echo    发出回音、重复</li>
+<li>touch    触摸</li>
+<li>change    改变</li>
+</ul>
+<p>背下来了吗？每个单词都很短，应该不难背。好的，你基本已经学会命令行了。接下来我们学习这些单词的缩写</p>
+<h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>全写</th>
+<th>缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建目录</td>
+<td>make directory</td>
+<td>mkdir</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>remove</td>
+<td>rm</td>
+</tr>
+<tr>
+<td>移动 / 重命名</td>
+<td>move</td>
+<td>mv</td>
+</tr>
+<tr>
+<td>复制</td>
+<td>copy</td>
+<td>cp</td>
+</tr>
+<tr>
+<td>罗列</td>
+<td>list</td>
+<td>ls</td>
+</tr>
+<tr>
+<td>改变目录</td>
+<td>change directory</td>
+<td>cd</td>
+</tr>
+</tbody>
+</table>
+<p>缩写规则就是：删掉元音字幕（A E I O U），保留前 2 到 3 个辅音字母</p>
+<p>好了，你已经学会 50% 了，接下来我们来试试。</p>
+<h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><ol>
+<li>cd ~/Desktop 进入桌面</li>
+<li>mkdir demo-1 创建目录，这时你可以切到桌面，看到 demo-1 目录</li>
+<li>rm -rf demo-1 删除目录</li>
+<li>touch 1.txt 创建文件，如果你发现文件后缀不见了，请让该死的 Windows 显示文件后缀</li>
+<li>mv 1.txt 2.txt 这样我们就把 1.txt 移到 2.txt 了，也就是重命名</li>
+</ol>
+<h4 id="常见的自带命令"><a href="#常见的自带命令" class="headerlink" title="常见的自带命令"></a>常见的自带命令</h4><ul>
+<li>操作    命令</li>
+<li>进入目录    cd</li>
+<li>显示当前目录    pwd</li>
+<li>创建目录    mkdir 目录名</li>
+<li>创建目录    mkdir -p 目录路径</li>
+<li>我是谁    whoami</li>
+</ul>
+<hr>
+<ul>
+<li>查看路径    ls 路径</li>
+<li>查看路径    ls -a 路径 包含隐藏的一些文件</li>
+<li>查看路径    ls -l 路径 </li>
+<li>查看路径    ls -al 路径</li>
+</ul>
+<hr>
+<ul>
+<li>创建文件    echo ‘1’ &gt; 文件路径</li>
+<li>强制创建文件    echo ‘1’ &gt;! 文件路径</li>
+<li>追加文件内容    echo ‘1’ &gt;&gt; 文件路径</li>
+<li>创建文件    touch 文件名</li>
+<li>改变文件更新时间    touch 文件名</li>
+</ul>
+<hr>
+<ul>
+<li>复制文件    cp 源路径 目标路径</li>
+<li>复制目录    cp -r 源路径 目标路径 递归的复制一个目录和其内容</li>
+</ul>
+<hr>
+<ul>
+<li>移动节点    mv 源路径 目标路径</li>
+</ul>
+<hr>
+<ul>
+<li>删除文件    rm 文件路径</li>
+<li>强制删除文件    rm -f 文件路径</li>
+<li>删除目录    rm -r 目录路径 递归的删除目录每次删都问你一次</li>
+<li>强制删除目录    rm -rf 目录路径 递归的删除目录而且不提示</li>
+</ul>
+<hr>
+<ul>
+<li>查看目录结构    tree</li>
+<li>建立软链接    ln -s 真实文件 链接</li>
+</ul>
+<hr>
+<ul>
+<li>下载文件    curl -L <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> &gt; baidu.html</li>
+<li>拷贝网页    wget -p -H -e robots=off <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a></li>
+<li>磁盘占用    df -kh</li>
+<li>当前目录大小    du -sh .</li>
+<li>各文件大小    du -h</li>
+</ul>
+<p>如何学习我目前还没有掌握的命令？</p>
+<p>Google: Linux 查看文件内容</p>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
+<li>↑↓ 上一命令 / 下一命令</li>
+<li>!! 上一命令占位符</li>
+<li>Tab 自动补全路径</li>
+<li>Alt+. 上一命令的最后一个参数</li>
+<li>&amp;&amp; 前面的执行成功了，再执行后面的</li>
+<li>|| 前面的执行失败了，就执行后面的</li>
+<li>; 前面执行完了，不管成功失败，就执行后面的</li>
+<li>“&gt;” 重定向</li>
+<li>| 管道<h3 id="命令行技巧"><a href="#命令行技巧" class="headerlink" title="命令行技巧"></a>命令行技巧</h3>~/.bashrc 文件的功能很强大。</li>
+</ul>
+<h3 id="自动运行"><a href="#自动运行" class="headerlink" title="自动运行"></a>自动运行</h3><ol>
+<li>首先 touch ~/.bashrc 创建一下这个文件</li>
+<li>start ~/.bashrc 选用编辑器编辑这个文件，内容为 echo ‘Hi’</li>
+<li>你也可以用命令行编辑文件 echo “echo ‘hi’” &gt;&gt; ~/.bashrc</li>
+<li>关闭退出 Git Bash，然后打开 Git Bash，是不是看到了 Hi，这说明每次进入 Git Bash，就会优先运行 ~/.bashrc 里面的命令</li>
+<li>重新编辑 ~/.bashrc，内容改为 cd ~/Desktop，重启 Git Bash，有没有发现默认就进入桌面目录了？<br>你可以用 ~/.bashrc 在进入 Git Bash 前执行任何命令，十分方便。</li>
+</ol>
+<h3 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h3><p>1.在 ~/.bashrc 里新增一行 alias f=”echo ‘frank is awesome’”，等于号两边不能有空格，你最好一个字都不要错。<br>2.运行 source ~/.bashrc，作用是执行 ~/.bashrc<br>3.运行 f，就会看到 frank is awesome<br>4.也就是说，现在 f 就是 echo ‘frank is awesome’ 的缩写了，利用这个技巧，我们可以把很多常见的命令缩写一下，比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alias la=&apos;ls -a&apos;</span><br><span class="line">alias ll=&apos;ls -l&apos;</span><br><span class="line">alias gst=&apos;git status -sb&apos;</span><br><span class="line">alias ga=&apos;git add&apos;</span><br><span class="line">alias ga.=&apos;git add .&apos;</span><br><span class="line">alias gc=&apos;git commit&apos;</span><br><span class="line">alias gc.=&apos;git commit .&apos;</span><br></pre></td></tr></table></figure></p>
+<p>保存退出，然后运行 source ~/.bashrc<br>这样一来，你的 Git 操作就会简单很多：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ga 1.txt</span><br><span class="line">ga .</span><br><span class="line">gc 1.txt</span><br><span class="line">gc.</span><br><span class="line">gst</span><br></pre></td></tr></table></figure></p>
+<p>接下来说两个目前用不到的技巧。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>还可以在 ~/.bashrc 里面设置一些环境变量，比如你可以在 ~/.bashrc 里面添加一行</p>
+<p>export SASS_BINARY_SITE=”<a href="https://npm.taobao.org/mirrors/node-sass&quot;" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node-sass&quot;</a><br>那么以后你安装 node-sass 的时候就不会因为被墙而报错了。以后会用到的，现在先说一下。</p>
+<h3 id="设置-PATH"><a href="#设置-PATH" class="headerlink" title="设置 PATH"></a>设置 PATH</h3><p>export PATH=”目录的绝对路径:$PATH”<br>可以在 PATH 里添加一个目录，不要运行，等用到的时候再来查。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概述-注意请使用gitbash的命令窗口"><span class="toc-number">1.</span> <span class="toc-text">基本概述(注意请使用gitbash的命令窗口)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#命令行难吗？"><span class="toc-number">2.</span> <span class="toc-text">命令行难吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何学习"><span class="toc-number">3.</span> <span class="toc-text">如何学习</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number"></span> <span class="toc-text">缩写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实践"><span class="toc-number">1.</span> <span class="toc-text">实践</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的自带命令"><span class="toc-number">2.</span> <span class="toc-text">常见的自带命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快捷键"><span class="toc-number"></span> <span class="toc-text">快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行技巧"><span class="toc-number"></span> <span class="toc-text">命令行技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动运行"><span class="toc-number"></span> <span class="toc-text">自动运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alias"><span class="toc-number"></span> <span class="toc-text">alias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-number"></span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-PATH"><span class="toc-number"></span> <span class="toc-text">设置 PATH</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&text=命令行基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&is_video=false&description=命令行基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=命令行基础&body=Check out this article: https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&title=命令行基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/09/25/N004_0_命令行基础/&name=命令行基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

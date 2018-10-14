@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="继承123456789101112131415161718class Parent1:    passclass Parent2:    passclass Sub1(Parent1): # 单继承    pass    class Sub2(Parent1,Parent2): # 多继承    pass# 查看继承关系print(Sub1.__bases__)print(Sub2.__bases">
+<meta name="keywords" content="M03">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py003-01-02继承">
+<meta property="og:url" content="https://usxstudio.github.io/2018/09/03/Py003-01-02继承/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="继承123456789101112131415161718class Parent1:    passclass Parent2:    passclass Sub1(Parent1): # 单继承    pass    class Sub2(Parent1,Parent2): # 多继承    pass# 查看继承关系print(Sub1.__bases__)print(Sub2.__bases">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py003-01-02继承">
+<meta name="twitter:description" content="继承123456789101112131415161718class Parent1:    passclass Parent2:    passclass Sub1(Parent1): # 单继承    pass    class Sub2(Parent1,Parent2): # 多继承    pass# 查看继承关系print(Sub1.__bases__)print(Sub2.__bases">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py003-01-02继承</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/09/06/Py003-01-03子类使用父类属性和方法/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/31/Py003-01-01面向对象/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&text=Py003-01-02继承"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&is_video=false&description=Py003-01-02继承"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py003-01-02继承&body=Check out this article: https://usxstudio.github.io/2018/09/03/Py003-01-02继承/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&name=Py003-01-02继承&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#派生"><span class="toc-number">1.1.</span> <span class="toc-text">派生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#继承实现原理"><span class="toc-number">1.2.</span> <span class="toc-text">继承实现原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性查找之——MRO列表"><span class="toc-number">2.</span> <span class="toc-text">属性查找之——MRO列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新式类的内置mro方法-广度优先"><span class="toc-number">2.1.</span> <span class="toc-text">新式类的内置mro方法(广度优先)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经典类没有提供属性深度优先的查找方法"><span class="toc-number">2.2.</span> <span class="toc-text">经典类没有提供属性深度优先的查找方法</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py003-01-02继承
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-09-03T14:04:19.000Z" itemprop="datePublished">2018-09-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M03/">M03</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Parent1:</span><br><span class="line">    pass</span><br><span class="line">class Parent2:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class Sub1(Parent1): # 单继承</span><br><span class="line">    pass</span><br><span class="line">    </span><br><span class="line">class Sub2(Parent1,Parent2): # 多继承</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"># 查看继承关系</span><br><span class="line">print(Sub1.__bases__)</span><br><span class="line">print(Sub2.__bases__)</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">(&lt;class &apos;__main__.Parent1&apos;&gt;,)</span><br><span class="line">(&lt;class &apos;__main__.Parent1&apos;&gt;, &lt;class &apos;__main__.Parent2&apos;&gt;)</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>再看英雄类</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Hero:</span><br><span class="line">    def __init__(self,name,life_value,aggresivity):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.life_value = life_value</span><br><span class="line">        self.aggresivity = aggresivity</span><br><span class="line"></span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        enemy.life_value -= self.aggresivity</span><br><span class="line"></span><br><span class="line">class AX(Hero):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ax = AX(&apos;斧王&apos;,30,40)</span><br><span class="line">print(ax.__dict__) # &#123;&apos;name&apos;: &apos;斧王&apos;, &apos;life_value&apos;: 30, &apos;aggresivity&apos;: 40&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>属性查找顺序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Hero:</span><br><span class="line">    x = 1</span><br><span class="line">    y = 3</span><br><span class="line">    def __init__(self,name,life_value,aggresivity):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.life_value = life_value</span><br><span class="line">        self.aggresivity = aggresivity</span><br><span class="line"></span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        enemy.life_value -= self.aggresivity</span><br><span class="line"></span><br><span class="line">class AX(Hero):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class Sevn(Hexo):</span><br><span class="line">    y = 4</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">ax = AX(&apos;斧王&apos;,30,40)</span><br><span class="line">ax.x # 1 自己本身没有去父类查找  如果父类没有报错</span><br><span class="line"></span><br><span class="line">sevn = Sevn(&apos;斯温&apos;,50,60)</span><br><span class="line"></span><br><span class="line">sevn.y # 4 子类有就不去父级查找</span><br></pre></td></tr></table></figure>
+<p>高深的属性查找，看你晕不晕</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class Foo:</span><br><span class="line">    def f1(self):</span><br><span class="line">        print(&apos;from Foo.f1&apos;)</span><br><span class="line">    def f2(self):</span><br><span class="line">        print(&apos;from Foo.f2&apos;)</span><br><span class="line"></span><br><span class="line">class Bar(Foo):</span><br><span class="line">    def f2(self):</span><br><span class="line">        print(&apos;from Bar.f2&apos;)</span><br><span class="line"></span><br><span class="line">b = Bar()</span><br><span class="line">b.f2() # from Bar.f2</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">再看</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">class Foo:</span><br><span class="line">    def f1(self):</span><br><span class="line">        print(&apos;from Foo.f1&apos;)</span><br><span class="line">    def f2(self):</span><br><span class="line">        print(&apos;from Foo.f2&apos;)</span><br><span class="line">        self.f1()</span><br><span class="line"></span><br><span class="line">class Bar(Foo):</span><br><span class="line">    def f1(self):</span><br><span class="line">        print(&apos;from Bar.f1&apos;)</span><br><span class="line"></span><br><span class="line">b = Bar()</span><br><span class="line">b.f2()</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">from Foo.f2</span><br><span class="line">from Bar.f1 为啥是这个？不是就近吗？ 要看self是谁  self一直是b   </span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="派生"><a href="#派生" class="headerlink" title="派生"></a>派生</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Hero:</span><br><span class="line">    def __init__(self,name,life_value,aggresivity):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.life_value = life_value</span><br><span class="line">        self.aggresivity = aggresivity</span><br><span class="line"></span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        enemy.life_value -= self.aggresivity</span><br><span class="line"></span><br><span class="line">class AX(Hero):</span><br><span class="line">    camp = &apos;斧子&apos;</span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        print(&apos;反刺螺旋&apos;)</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class Sevn(Hexo):</span><br><span class="line">    camp = &apos;真男人&apos;</span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        print(&apos;锤子&apos;)</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<h4 id="继承实现原理"><a href="#继承实现原理" class="headerlink" title="继承实现原理"></a>继承实现原理</h4><ul>
+<li>子类会先于父类被检查</li>
+<li>多个父类会根据它们在列表中的顺序被检查</li>
+<li>如果对下一个类存在两个合法的选择,选择第一个父类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class Foo(a1,a2,a3,a4....an):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<ul>
+<li>仅在python2中有 新式类和经典类 </li>
+<li>python3中没有经典类  统一新式类</li>
+</ul>
+<p>什么是新式类？</p>
+<blockquote>
+<p>继承object的类，以及它的子类都叫 新式类</p>
+</blockquote>
+<p>什么是经典类？</p>
+<blockquote>
+<p>没有继承object的类，以及它的子类都称之为经典类</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 经典类:没有继承object的类，以及它的子类都称之为经典类</span><br><span class="line"># py2</span><br><span class="line">class Foo:</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line">class Bar(Foo):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"># py2  继承object的类，以及它的子类都叫 新式类</span><br><span class="line">class Foo(object):</span><br><span class="line">    pass</span><br><span class="line">class Bar(Foo):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"># py3中  统一是新式类 (默认继承object)</span><br><span class="line">class Foo:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<h3 id="属性查找之——MRO列表"><a href="#属性查找之——MRO列表" class="headerlink" title="属性查找之——MRO列表"></a>属性查找之——MRO列表</h3><p>属性查找方式有</p>
+<ul>
+<li>深度优先</li>
+<li>广度优先</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当类是经典类时：在要查找的属性不存在时，会按照深度优先的方式查找下去</span><br><span class="line"></span><br><span class="line">当类是新式类时：在要查找的属性不存在时，会按照广度优先的方式查找下去</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class A(object):</span><br><span class="line">    def test(self):</span><br><span class="line">        print(&apos;from A&apos;)</span><br><span class="line"></span><br><span class="line">class B(A):</span><br><span class="line">    def test(self):</span><br><span class="line">        print(&apos;from B&apos;)</span><br><span class="line"></span><br><span class="line">class C(A):</span><br><span class="line">    def test(self):</span><br><span class="line">        print(&apos;from C&apos;)</span><br><span class="line"></span><br><span class="line">class D(B):</span><br><span class="line">    def test(self):</span><br><span class="line">        print(&apos;from D&apos;)</span><br><span class="line"></span><br><span class="line">class E(C):</span><br><span class="line">    def test(self):</span><br><span class="line">        print(&apos;from E&apos;)</span><br><span class="line"></span><br><span class="line">class F(D,E):</span><br><span class="line">    # def test(self):</span><br><span class="line">    #     print(&apos;from F&apos;)</span><br><span class="line">    pass</span><br><span class="line">f1=F()</span><br><span class="line">f1.test()</span><br><span class="line">print(F.__mro__) #只有新式才有这个属性可以查看线性列表，经典类没有这个属性</span><br><span class="line"></span><br><span class="line">#新式类继承顺序:F-&gt;D-&gt;B-&gt;E-&gt;C-&gt;A</span><br><span class="line">#经典类继承顺序:F-&gt;D-&gt;B-&gt;A-&gt;E-&gt;C</span><br><span class="line">#python3中统一都是新式类</span><br><span class="line">#pyhon2中才分新式类与经典类</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="新式类的内置mro方法-广度优先"><a href="#新式类的内置mro方法-广度优先" class="headerlink" title="新式类的内置mro方法(广度优先)"></a>新式类的内置mro方法(广度优先)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F.mro() # 查看属性查找的顺序</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="经典类没有提供属性深度优先的查找方法"><a href="#经典类没有提供属性深度优先的查找方法" class="headerlink" title="经典类没有提供属性深度优先的查找方法"></a>经典类没有提供属性深度优先的查找方法</h4></blockquote>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#派生"><span class="toc-number">1.1.</span> <span class="toc-text">派生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#继承实现原理"><span class="toc-number">1.2.</span> <span class="toc-text">继承实现原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性查找之——MRO列表"><span class="toc-number">2.</span> <span class="toc-text">属性查找之——MRO列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新式类的内置mro方法-广度优先"><span class="toc-number">2.1.</span> <span class="toc-text">新式类的内置mro方法(广度优先)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经典类没有提供属性深度优先的查找方法"><span class="toc-number">2.2.</span> <span class="toc-text">经典类没有提供属性深度优先的查找方法</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&text=Py003-01-02继承"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&is_video=false&description=Py003-01-02继承"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py003-01-02继承&body=Check out this article: https://usxstudio.github.io/2018/09/03/Py003-01-02继承/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&title=Py003-01-02继承"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/09/03/Py003-01-02继承/&name=Py003-01-02继承&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
