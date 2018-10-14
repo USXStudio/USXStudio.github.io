@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="学习仪式 hello world1234567#!/usr/bin/env pythonprint(&amp;apos;hello world&amp;apos;)#!/usr/bin/env python 在linux里代表查找系统环境变量的 python命令路径  但是linux里默认的是2.x版本 而你自己安装的3.x版本python在 usr/local/bin#!/usr/bin/python  pyt">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python001基础">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/16/Python001基础/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="学习仪式 hello world1234567#!/usr/bin/env pythonprint(&amp;apos;hello world&amp;apos;)#!/usr/bin/env python 在linux里代表查找系统环境变量的 python命令路径  但是linux里默认的是2.x版本 而你自己安装的3.x版本python在 usr/local/bin#!/usr/bin/python  pyt">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python001基础">
+<meta name="twitter:description" content="学习仪式 hello world1234567#!/usr/bin/env pythonprint(&amp;apos;hello world&amp;apos;)#!/usr/bin/env python 在linux里代表查找系统环境变量的 python命令路径  但是linux里默认的是2.x版本 而你自己安装的3.x版本python在 usr/local/bin#!/usr/bin/python  pyt">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Python001基础</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/16/Python002字符串/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/14/Vim001编辑器使用/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/16/Python001基础/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/16/Python001基础/&text=Python001基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/16/Python001基础/&is_video=false&description=Python001基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python001基础&body=Check out this article: https://usxstudio.github.io/2018/06/16/Python001基础/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/16/Python001基础/&name=Python001基础&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#学习仪式-hello-world"><span class="toc-number">1.</span> <span class="toc-text">学习仪式 hello world</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明"><span class="toc-number">3.</span> <span class="toc-text">变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本类型转换方法"><span class="toc-number">4.</span> <span class="toc-text">基本类型转换方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出"><span class="toc-number">5.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">6.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件判断if"><span class="toc-number">7.</span> <span class="toc-text">条件判断if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#或且非"><span class="toc-number">8.</span> <span class="toc-text">或且非</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-not-in"><span class="toc-number">9.</span> <span class="toc-text">in,not in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while循环"><span class="toc-number">10.</span> <span class="toc-text">while循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#while-else"><span class="toc-number">10.1.</span> <span class="toc-text">while else</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-循环"><span class="toc-number">11.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下标"><span class="toc-number">12.</span> <span class="toc-text">下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片"><span class="toc-number">13.</span> <span class="toc-text">切片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切片之炮打隔一子"><span class="toc-number">13.1.</span> <span class="toc-text">切片之炮打隔一子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#切片之反序"><span class="toc-number">13.2.</span> <span class="toc-text">切片之反序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#切片其他用法"><span class="toc-number">13.3.</span> <span class="toc-text">切片其他用法</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python001基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-16T05:27:34.000Z" itemprop="datePublished">2018-06-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="学习仪式-hello-world"><a href="#学习仪式-hello-world" class="headerlink" title="学习仪式 hello world"></a>学习仪式 hello world</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line">print(&apos;hello world&apos;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#!/usr/bin/env python 在linux里代表查找系统环境变量的 python命令路径 </span><br><span class="line"> 但是linux里默认的是2.x版本 而你自己安装的3.x版本python在 usr/local/bin</span><br><span class="line">#!/usr/bin/python</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>python2 解释器在加载 .py 文件中的代码时，会对内容进行编码（默认ascill）如果有中文就会报错</p>
+</blockquote>
+<p>你应该指定编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">print(&quot;你好，世界&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 单行注释</span><br><span class="line"># 我是注释</span><br><span class="line"># 我是注释</span><br><span class="line"># 我是注释</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;文档注释&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">dd</span><br><span class="line">dd  多行注释</span><br><span class="line">dd</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 与js类似 动态类型具体有那些自行百度</span><br><span class="line"></span><br><span class="line">注意布尔值为 True / False</span><br></pre></td></tr></table></figure>
+<h3 id="基本类型转换方法"><a href="#基本类型转换方法" class="headerlink" title="基本类型转换方法"></a>基本类型转换方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = 1;</span><br><span class="line">str(a)  &apos;1&apos;</span><br><span class="line">b = &apos;2&apos;</span><br><span class="line">int(b)  2</span><br></pre></td></tr></table></figure>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># 格式化输出</span><br><span class="line"></span><br><span class="line"># \n换行</span><br><span class="line"># \t tab制表</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">name = &quot;hjx&quot;</span><br><span class="line">age = 18</span><br><span class="line">height = 199</span><br><span class="line"># print(name+age) 报错  因为 name 和 age类型不一样 相加报错</span><br><span class="line"># print(name+str(age))  要把age 转换为字符串</span><br><span class="line"></span><br><span class="line">print(&quot;========================&quot;)</span><br><span class="line">print(&quot;我叫%s&quot;%name)</span><br><span class="line">print(&quot;我叫%s,今年%d岁,身高%dcm&quot;%(name,age,height))</span><br><span class="line">print(&quot;========================&quot;)</span><br><span class="line"># 检查类型</span><br><span class="line">print(type(name))</span><br><span class="line">print(type(age))</span><br><span class="line">print(&quot;========================&quot;)</span><br><span class="line"># 输出字符</span><br><span class="line">char1 = 65</span><br><span class="line">char2 = 98</span><br><span class="line"></span><br><span class="line">print(&quot;%c&quot;%char1)</span><br><span class="line">print(&quot;%c&quot;%char2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#如果我想输出 %</span><br><span class="line">print(&quot;%&quot;) #  这样会报错的，因为在格式化输出里，你出现%默认为就是占位符的%</span><br><span class="line">print(&quot;%%&quot;) # 第一个%是对第二个%的转译，告诉Python解释器这只是一个单纯的%，而不是占位符。</span><br><span class="line"></span><br><span class="line">print(&quot;========================&quot;)</span><br><span class="line"></span><br><span class="line"># 帮助文档</span><br><span class="line"></span><br><span class="line">help(print)</span><br></pre></td></tr></table></figure>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">+ 懒得说</span><br><span class="line">- 懒得说</span><br><span class="line">* 懒得说</span><br><span class="line">/ 懒得说</span><br><span class="line">// 取整除  商</span><br><span class="line"></span><br><span class="line">11/2     5</span><br><span class="line">11.0/2   5.5</span><br><span class="line"></span><br><span class="line">11//2    5</span><br><span class="line">2**2  4</span><br><span class="line">3**3  27</span><br><span class="line">a = 100</span><br><span class="line">b = 111</span><br><span class="line">交换a b的值</span><br><span class="line">a,b = b,a</span><br></pre></td></tr></table></figure>
+<h3 id="条件判断if"><a href="#条件判断if" class="headerlink" title="条件判断if"></a>条件判断if</h3><p>多重嵌套if使用 tab缩进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if a &gt;10 and a &lt;20 :</span><br><span class="line">    if a == 15 :</span><br><span class="line">        print(&quot;满足条件&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="或且非"><a href="#或且非" class="headerlink" title="或且非"></a>或且非</h3><ul>
+<li>and</li>
+<li>or </li>
+<li>not</li>
+</ul>
+<p>猜拳游戏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">com = random.randint(0,2)</span><br><span class="line">user = int(input(&quot;猜拳：0剪刀 1石头 2布&quot;))</span><br><span class="line"></span><br><span class="line">if (com==0 and user ==1) or (com==1 and user ==2) or (com==2 and user ==0):</span><br><span class="line">    print(&apos;算你厉害&apos;)</span><br><span class="line">elif com == user:</span><br><span class="line">    print(&apos;平&apos;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;输了&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="in-not-in"><a href="#in-not-in" class="headerlink" title="in,not in"></a>in,not in</h3><p>判断子元素是否在原字符串（字典，列表，集合）中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#print(&apos;喜欢&apos; in &apos;dkfljadklf喜欢hfjdkas&apos;)</span><br><span class="line">#print(&apos;a&apos; in &apos;bcvd&apos;)</span><br><span class="line">#print(&apos;y&apos; not in &apos;ofkjdslaf&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i = 1</span><br><span class="line">while i&lt;=9:</span><br><span class="line">    j = 1</span><br><span class="line">    while j&lt;=i:</span><br><span class="line">        print(&quot;%d*%d=%d&quot;%(j,i,i*j),end=&quot;&quot;)</span><br><span class="line">        j+=1</span><br><span class="line">    print(&quot;&quot;)</span><br><span class="line">    i+=1</span><br></pre></td></tr></table></figure>
+<h4 id="while-else"><a href="#while-else" class="headerlink" title="while else"></a>while else</h4><blockquote>
+<p>与其它语言else 一般只与if 搭配不同，在Python 中还有个while …else 语句</p>
+</blockquote>
+<blockquote>
+<p>while 后面的else 作用是指，当while 循环正常执行完，中间没有被break 中止的话，就会执行else后面的语句</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">count = 0</span><br><span class="line">while count &lt;= 5 :</span><br><span class="line">    count += 1</span><br><span class="line">    print(&quot;Loop&quot;,count)</span><br><span class="line"></span><br><span class="line">else:</span><br><span class="line">    print(&quot;循环正常执行完啦&quot;)</span><br><span class="line">print(&quot;-----out of while loop ------&quot;)</span><br><span class="line"></span><br><span class="line">输出如下：</span><br><span class="line"></span><br><span class="line">Loop 1</span><br><span class="line">Loop 2</span><br><span class="line">Loop 3</span><br><span class="line">Loop 4</span><br><span class="line">Loop 5</span><br><span class="line">Loop 6</span><br><span class="line">循环正常执行完啦</span><br><span class="line">-----out of while loop ------</span><br></pre></td></tr></table></figure>
+<p>如果执行过程中被break啦，就不会执行else的语句啦</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">count = 0</span><br><span class="line">while count &lt;= 5 :</span><br><span class="line">    count += 1</span><br><span class="line">    if count == 3:break</span><br><span class="line">    print(&quot;Loop&quot;,count)</span><br><span class="line"></span><br><span class="line">else:</span><br><span class="line">    print(&quot;循环正常执行完啦&quot;)</span><br><span class="line">print(&quot;-----out of while loop ------&quot;)</span><br><span class="line"></span><br><span class="line">输出如下：</span><br><span class="line"></span><br><span class="line">Loop 1</span><br><span class="line">Loop 2</span><br><span class="line">-----out of while loop ------</span><br></pre></td></tr></table></figure>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;abcdef&apos;</span><br><span class="line">for temp in name</span><br><span class="line">    print(temp)</span><br></pre></td></tr></table></figure>
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;abcdef&apos;</span><br><span class="line">name[0]   &apos;a&apos;</span><br><span class="line">name[1]   &apos;b&apos;</span><br><span class="line">name[2]   &apos;c&apos;</span><br><span class="line">name[3]   &apos;d&apos;</span><br><span class="line">name[4]   &apos;e&apos;</span><br><span class="line">name[5]   &apos;f&apos;</span><br></pre></td></tr></table></figure>
+<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;abcdef&apos;</span><br><span class="line"></span><br><span class="line">name[0]  &apos;a&apos;</span><br><span class="line"></span><br><span class="line">#注意切片来了 ,口诀包头不包尾</span><br><span class="line"></span><br><span class="line">name[0:4] &apos;abcd&apos;</span><br><span class="line">name[1:4] &apos;bcd&apos;</span><br><span class="line"></span><br><span class="line">#超过字符串长度咋办？</span><br><span class="line">name[0:70] &apos;abcdef&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>获取字符长度之len</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#js里  &apos;abc&apos;.length = 3 </span><br><span class="line">#python里 </span><br><span class="line">name = &apos;abcdef&apos;</span><br><span class="line"># 获取字符串长度</span><br><span class="line">len(name)  # 6</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>想要切片返回当前字符串的内容</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;fasfasdfl;kfdl;askfl;daskl;fkasl;&apos;</span><br><span class="line">length = len(name)</span><br><span class="line">name[0:length]</span><br><span class="line"></span><br><span class="line">#简洁写法 都可以获取整个字符串</span><br><span class="line">name[0:]</span><br><span class="line">name[:]</span><br><span class="line">name[::]</span><br><span class="line"></span><br><span class="line"># name[]报错</span><br></pre></td></tr></table></figure>
+<h4 id="切片之炮打隔一子"><a href="#切片之炮打隔一子" class="headerlink" title="切片之炮打隔一子"></a>切片之炮打隔一子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;ababababab&apos;</span><br><span class="line">name[::2]  &apos;aaaaa&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name[起始位置:结束位置:步长]</span><br></pre></td></tr></table></figure>
+<h4 id="切片之反序"><a href="#切片之反序" class="headerlink" title="切片之反序"></a>切片之反序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;123456789&apos;</span><br><span class="line">name[::-1]  &apos;987654321&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="切片其他用法"><a href="#切片其他用法" class="headerlink" title="切片其他用法"></a>切片其他用法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">name = &apos;abcdef&apos;</span><br><span class="line">name[-1] &apos;f&apos;</span><br><span class="line">name[-2] &apos;e&apos;</span><br><span class="line"></span><br><span class="line">name[0:-1]  &apos;abcde&apos;</span><br><span class="line"></span><br><span class="line">name[0:0] &apos;&apos;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#学习仪式-hello-world"><span class="toc-number">1.</span> <span class="toc-text">学习仪式 hello world</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注释"><span class="toc-number">2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量声明"><span class="toc-number">3.</span> <span class="toc-text">变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本类型转换方法"><span class="toc-number">4.</span> <span class="toc-text">基本类型转换方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出"><span class="toc-number">5.</span> <span class="toc-text">格式化输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">6.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件判断if"><span class="toc-number">7.</span> <span class="toc-text">条件判断if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#或且非"><span class="toc-number">8.</span> <span class="toc-text">或且非</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-not-in"><span class="toc-number">9.</span> <span class="toc-text">in,not in</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#while循环"><span class="toc-number">10.</span> <span class="toc-text">while循环</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#while-else"><span class="toc-number">10.1.</span> <span class="toc-text">while else</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for-循环"><span class="toc-number">11.</span> <span class="toc-text">for 循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下标"><span class="toc-number">12.</span> <span class="toc-text">下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切片"><span class="toc-number">13.</span> <span class="toc-text">切片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#切片之炮打隔一子"><span class="toc-number">13.1.</span> <span class="toc-text">切片之炮打隔一子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#切片之反序"><span class="toc-number">13.2.</span> <span class="toc-text">切片之反序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#切片其他用法"><span class="toc-number">13.3.</span> <span class="toc-text">切片其他用法</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/16/Python001基础/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/16/Python001基础/&text=Python001基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/16/Python001基础/&is_video=false&description=Python001基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python001基础&body=Check out this article: https://usxstudio.github.io/2018/06/16/Python001基础/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/16/Python001基础/&title=Python001基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/16/Python001基础/&name=Python001基础&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

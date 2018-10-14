@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="函数的命名空间 命名空间一共分为三种：   内置命名空间 —— Python解释器 就是python解释器一启动就可以使用的名字存储在内置命名空间中 内置的名字在启动解释器的时候被加载进内存里print() 、len()、list、tuple等   全局命名空间 —— 我们写的代码但不是函数中的代码 是在程序从上到下被执行的过程中依次加载进内存的 放置了我们设置的所有变量名和函数名   局部命名空">
+<meta name="keywords" content="fullstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P010_01_python命名空间和作用域">
+<meta property="og:url" content="https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="函数的命名空间 命名空间一共分为三种：   内置命名空间 —— Python解释器 就是python解释器一启动就可以使用的名字存储在内置命名空间中 内置的名字在启动解释器的时候被加载进内存里print() 、len()、list、tuple等   全局命名空间 —— 我们写的代码但不是函数中的代码 是在程序从上到下被执行的过程中依次加载进内存的 放置了我们设置的所有变量名和函数名   局部命名空">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P010_01_python命名空间和作用域">
+<meta name="twitter:description" content="函数的命名空间 命名空间一共分为三种：   内置命名空间 —— Python解释器 就是python解释器一启动就可以使用的名字存储在内置命名空间中 内置的名字在启动解释器的时候被加载进内存里print() 、len()、list、tuple等   全局命名空间 —— 我们写的代码但不是函数中的代码 是在程序从上到下被执行的过程中依次加载进内存的 放置了我们设置的所有变量名和函数名   局部命名空">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>P010_01_python命名空间和作用域</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/23/P011_01_python装饰器初识/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/22/P009_01_python函数/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&text=P010_01_python命名空间和作用域"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&is_video=false&description=P010_01_python命名空间和作用域"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P010_01_python命名空间和作用域&body=Check out this article: https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&name=P010_01_python命名空间和作用域&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的命名空间"><span class="toc-number">1.</span> <span class="toc-text">函数的命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命名空间的使用"><span class="toc-number">1.1.</span> <span class="toc-text">命名空间的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域"><span class="toc-number">2.</span> <span class="toc-text">作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作用域的种类"><span class="toc-number">2.1.</span> <span class="toc-text">作用域的种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#global关键字的作用"><span class="toc-number">2.2.</span> <span class="toc-text">global关键字的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的嵌套和作用域链"><span class="toc-number">3.</span> <span class="toc-text">函数的嵌套和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-函数的嵌套调用"><span class="toc-number">3.1.</span> <span class="toc-text">1.函数的嵌套调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-函数的嵌套定义"><span class="toc-number">3.2.</span> <span class="toc-text">2.函数的嵌套定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-函数的作用域链"><span class="toc-number">3.3.</span> <span class="toc-text">3.函数的作用域链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nonlocal"><span class="toc-number">3.4.</span> <span class="toc-text">nonlocal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#区别：一个函数里面嵌套了一个函数。当使用-nonlocal-时，就声明了该变量不只在嵌套函数inner（）里面才有效，-而是在整个大函数里面都有效。"><span class="toc-number">3.5.</span> <span class="toc-text">区别：一个函数里面嵌套了一个函数。当使用 nonlocal 时，就声明了该变量不只在嵌套函数inner（）里面才有效， 而是在整个大函数里面都有效。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-函数的本质"><span class="toc-number">3.6.</span> <span class="toc-text">4.函数的本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-闭包"><span class="toc-number">3.7.</span> <span class="toc-text">5.闭包</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P010_01_python命名空间和作用域
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-23T03:25:58.000Z" itemprop="datePublished">2018-07-23</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/fullstack/">fullstack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="函数的命名空间"><a href="#函数的命名空间" class="headerlink" title="函数的命名空间"></a>函数的命名空间</h3><blockquote>
+<p>命名空间一共分为三种：</p>
+</blockquote>
+<ul>
+<li>内置命名空间 —— Python解释器<ol>
+<li>就是python解释器一启动就可以使用的名字存储在内置命名空间中</li>
+<li>内置的名字在启动解释器的时候被加载进内存里<br>print() 、len()、list、tuple等</li>
+</ol>
+</li>
+<li>全局命名空间 —— 我们写的代码但不是函数中的代码<ol>
+<li>是在程序从上到下被执行的过程中依次加载进内存的</li>
+<li>放置了我们设置的所有变量名和函数名</li>
+</ol>
+</li>
+<li>局部命名空间 —— 函数<ol>
+<li>就是函数内部定义的名字</li>
+<li>当调用函数的时候，才会产生这个名称空间，随着函数执行的结束，这个命名空间又消失了</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+</blockquote>
+<ul>
+<li>在局部:可以使用全局、内置命名空间中的名字</li>
+<li>在全局:可以使用内置命名空间中的名字，但是不能用局部的</li>
+<li>在内置:不能使用局部和全局的名字的</li>
+</ul>
+<h4 id="命名空间的使用"><a href="#命名空间的使用" class="headerlink" title="命名空间的使用"></a>命名空间的使用</h4><blockquote>
+<p>全局不能访问局部</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    a = 1</span><br><span class="line"></span><br><span class="line">func()</span><br><span class="line">print(a) # 报错 a为 func函数内部定义的变量为局部变量，不能在全局中访问</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>内置和全局都存在的max方法</p>
+</blockquote>
+<p>这个非常神似js的作用域链</p>
+<ol>
+<li>max为系统定义过的</li>
+<li>你在全局里重新定义max</li>
+<li>调用的时候就会使用全局里定义的(就近原则)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def max(l):</span><br><span class="line">    print(&apos;in max func&apos;)</span><br><span class="line"></span><br><span class="line">print(max([1,2,3]))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>python的关怀</p>
+</blockquote>
+<ul>
+<li>func  –&gt; 函数的内存地址</li>
+<li>函数名() 函数的调用</li>
+<li>函数的内存地址() 函数的调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def xxx():</span><br><span class="line">    print(1)</span><br><span class="line"></span><br><span class="line">print(xxx) # 打印出一个地址  &lt;function xxx at 0x00000000004D2E18&gt;</span><br></pre></td></tr></table></figure>
+<p>通过函数名调用明显比 调用形如「0x00000000004D2E18 」的十六进制数表示的内存地址要快。</p>
+<p>(在一个班级的环境中：你是选择用人名来产生会话？还是身份证号。)</p>
+<blockquote>
+<p>xxx函数的调用过程</p>
+</blockquote>
+<ol>
+<li>xxx() 的时候</li>
+<li>会现在全局范围内找有没有 xxx的定义，有则调用，反之去它的上一层也就是 内置命名空间，有则调用，反之报错</li>
+</ol>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><h4 id="作用域的种类"><a href="#作用域的种类" class="headerlink" title="作用域的种类"></a>作用域的种类</h4><ul>
+<li>全局作用域 —— 作用在全局 —— 内置和全局名字空间中的名字都属于全局作用域  ——globals()<br>  注：永远打印全局的名字</li>
+<li>局部作用域 —— 作用在局部 —— 函数（局部名字空间中的名字属于局部作用域） ——locals()<br>  注：输出什么，根据locals所在的位置(根据调用位置来输出结果)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(globals())</span><br><span class="line">print(locals())</span><br><span class="line"># 结果一样  因为都在全局作用域里</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    a = 12</span><br><span class="line">    b = 20</span><br><span class="line">    print(locals())</span><br><span class="line">    print(globals())</span><br><span class="line"></span><br><span class="line">func()</span><br><span class="line"># 结果不一样 </span><br><span class="line"># globals在哪里调用都是输出全局作用域里的内容</span><br><span class="line"># locals 这里只有   &#123;&apos;a&apos;: 12 , &apos;b&apos;: 20&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="global关键字的作用"><a href="#global关键字的作用" class="headerlink" title="global关键字的作用"></a>global关键字的作用</h4><ol>
+<li>对于不可变数据类型，在局部可查看全局作用域中的变量，但是不能直接修改</li>
+<li>如果想要修改的时候影响到全局，需要在程序的一开始添加global声明</li>
+<li>如果在一个局部（函数）内声明了一个global变量，那么这个变量在局部的所有操作将对全局的变量有效</li>
+</ol>
+<blockquote>
+<p>不修改的情况下可以直接访问全局作用域的变量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">def xxx():</span><br><span class="line">    print(a)</span><br><span class="line"></span><br><span class="line">xxx() # 1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改全局变量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">a = 1</span><br><span class="line">def xxx():</span><br><span class="line">    a = 2</span><br><span class="line">    print(a)</span><br><span class="line"></span><br><span class="line">xxx() # 2</span><br><span class="line">print(a) # 1</span><br><span class="line"></span><br><span class="line"># 影响到全局</span><br><span class="line">b = 1</span><br><span class="line">def xxx():</span><br><span class="line">    global b</span><br><span class="line">    b = 2</span><br><span class="line">    print(b)</span><br><span class="line"></span><br><span class="line">xxx() # 2</span><br><span class="line">print(b) # 2</span><br></pre></td></tr></table></figure>
+<h3 id="函数的嵌套和作用域链"><a href="#函数的嵌套和作用域链" class="headerlink" title="函数的嵌套和作用域链"></a>函数的嵌套和作用域链</h3><h4 id="1-函数的嵌套调用"><a href="#1-函数的嵌套调用" class="headerlink" title="1.函数的嵌套调用"></a>1.函数的嵌套调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def max(a,b):</span><br><span class="line">    return a if a&gt;b else b</span><br><span class="line"></span><br><span class="line">def the_max(x,y,z):  #函数的嵌套调用</span><br><span class="line">    c = max(x,y)</span><br><span class="line">    return max(c,z)</span><br><span class="line"></span><br><span class="line">print(the_max(1,2,3))</span><br></pre></td></tr></table></figure>
+<h4 id="2-函数的嵌套定义"><a href="#2-函数的嵌套定义" class="headerlink" title="2.函数的嵌套定义"></a>2.函数的嵌套定义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def f1():</span><br><span class="line">    print(&quot;f1&quot;)</span><br><span class="line">    def f2():</span><br><span class="line">        print(&quot;f2&quot;)</span><br><span class="line">    f2()</span><br><span class="line"></span><br><span class="line">f1()</span><br></pre></td></tr></table></figure>
+<h4 id="3-函数的作用域链"><a href="#3-函数的作用域链" class="headerlink" title="3.函数的作用域链"></a>3.函数的作用域链</h4><blockquote>
+<p>初学让你疑惑的执行结果！！！ 尤其是你会js </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def f1():</span><br><span class="line">    a = 1</span><br><span class="line">    def f2():</span><br><span class="line">        a = 2</span><br><span class="line">    f2()</span><br><span class="line">    print(&apos;a in f1 : &apos;,a)</span><br><span class="line"></span><br><span class="line">f1() # a in f1 :  1</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">f2中修改了 局部变量 a 的值</span><br><span class="line">但是 在 f1中a值仍然为 1 </span><br><span class="line"></span><br><span class="line">ps ： js里这个肯定是 2 </span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原来python里要加 nonlocal 声明</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def f1():</span><br><span class="line">    a = 1</span><br><span class="line">    def f2():</span><br><span class="line">        nonlocal a</span><br><span class="line">        a = 2</span><br><span class="line">    f2()</span><br><span class="line">    print(&apos;a in f1 : &apos;,a)</span><br><span class="line"></span><br><span class="line">f1() # a in f1 :  2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="nonlocal"><a href="#nonlocal" class="headerlink" title="nonlocal"></a>nonlocal</h4></blockquote>
+<p>首先，要明确 nonlocal 关键字是定义在闭包里面的。请看以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">x = 0</span><br><span class="line">def outer():</span><br><span class="line">    x = 1</span><br><span class="line">    def inner():</span><br><span class="line">        x = 2</span><br><span class="line">        print(&quot;inner:&quot;, x)</span><br><span class="line"></span><br><span class="line">    inner()</span><br><span class="line">    print(&quot;outer:&quot;, x)</span><br><span class="line"> </span><br><span class="line">outer()</span><br><span class="line">print(&quot;global:&quot;, x)</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">inner: 2</span><br><span class="line">outer: 1</span><br><span class="line">global: 0</span><br></pre></td></tr></table></figure>
+<p>现在，在闭包里面加入nonlocal关键字进行声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x = 0</span><br><span class="line">def outer():</span><br><span class="line">    x = 1</span><br><span class="line">    def inner():</span><br><span class="line">        nonlocal x</span><br><span class="line">        x = 2</span><br><span class="line">        print(&quot;inner:&quot;, x)</span><br><span class="line"></span><br><span class="line">    inner()</span><br><span class="line">    print(&quot;outer:&quot;, x)</span><br><span class="line"> </span><br><span class="line">outer()</span><br><span class="line">print(&quot;global:&quot;, x)</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">inner: 2</span><br><span class="line">outer: 2</span><br><span class="line">global: 0</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="区别：一个函数里面嵌套了一个函数。当使用-nonlocal-时，就声明了该变量不只在嵌套函数inner（）里面才有效，-而是在整个大函数里面都有效。"><a href="#区别：一个函数里面嵌套了一个函数。当使用-nonlocal-时，就声明了该变量不只在嵌套函数inner（）里面才有效，-而是在整个大函数里面都有效。" class="headerlink" title="区别：一个函数里面嵌套了一个函数。当使用 nonlocal 时，就声明了该变量不只在嵌套函数inner（）里面才有效， 而是在整个大函数里面都有效。"></a>区别：一个函数里面嵌套了一个函数。当使用 nonlocal 时，就声明了该变量不只在嵌套函数inner（）里面才有效， 而是在整个大函数里面都有效。</h4></blockquote>
+<p>我们在看 global</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x = 0</span><br><span class="line">def outer():</span><br><span class="line">    x = 1</span><br><span class="line">    def inner():</span><br><span class="line">        global x</span><br><span class="line">        x = 2</span><br><span class="line">        print(&quot;inner:&quot;, x)</span><br><span class="line"></span><br><span class="line">    inner()</span><br><span class="line">    print(&quot;outer:&quot;, x)</span><br><span class="line"> </span><br><span class="line">outer()</span><br><span class="line">print(&quot;global:&quot;, x)</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">inner: 2</span><br><span class="line">outer: 1</span><br><span class="line">global: 2</span><br></pre></td></tr></table></figure>
+<p>结论：global 是对整个环境下的变量起作用，而不是对函数类的变量起作用。</p>
+<h4 id="4-函数的本质"><a href="#4-函数的本质" class="headerlink" title="4.函数的本质"></a>4.函数的本质</h4><ol>
+<li><p>可以被引用</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    print(&apos;in func&apos;)</span><br><span class="line"></span><br><span class="line">f = func</span><br><span class="line">print(f)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以被当作容器类型的元素</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def f1():</span><br><span class="line">    print(&apos;f1&apos;)</span><br><span class="line"></span><br><span class="line">def f2():</span><br><span class="line">    print(&apos;f2&apos;)</span><br><span class="line"></span><br><span class="line">def f3():</span><br><span class="line">    print(&apos;f3&apos;)</span><br><span class="line"></span><br><span class="line">l = [f1,f2,f3]</span><br><span class="line">d = &#123;&apos;f1&apos;:f1,&apos;f2&apos;:f2,&apos;f3&apos;:f3&#125;</span><br><span class="line">#调用</span><br><span class="line">l[0]()</span><br><span class="line">d[&apos;f2&apos;]()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以当作的参数和返回值</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    print(123)</span><br><span class="line"></span><br><span class="line">def wahaha(f):</span><br><span class="line">    f()</span><br><span class="line">    return f           #函数名可以作为函数的返回值</span><br><span class="line"></span><br><span class="line">qqxing = wahaha(func)   # 函数名可以作为函数的参数</span><br><span class="line">qqxing()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="5-闭包"><a href="#5-闭包" class="headerlink" title="5.闭包"></a>5.闭包</h4><blockquote>
+<p>嵌套函数，内部函数调用外部函数的变量</p>
+</blockquote>
+<ol>
+<li><p>常用方式</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def func():</span><br><span class="line">    name = &apos;eva&apos;</span><br><span class="line">    def inner():</span><br><span class="line">        print(name)</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">f = func()</span><br><span class="line">f()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断闭包函数的方法 closure</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#输出的__closure__有cell元素 ：是闭包函数</span><br><span class="line">def func():</span><br><span class="line">    name = &apos;eva&apos;</span><br><span class="line">    def inner():</span><br><span class="line">        print(name)</span><br><span class="line">    print(inner.__closure__)</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">f = func()</span><br><span class="line">f()</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">(&lt;cell at 0x0000000001ECA4C8: str object at 0x0000000001DCB1B8&gt;,)</span><br><span class="line">eva</span><br><span class="line">-------------------------华丽的分割线--------------------------------------------------------------</span><br><span class="line">#输出的__closure__为None ：不是闭包函数</span><br><span class="line">name = &apos;egon&apos;</span><br><span class="line">def func2():</span><br><span class="line">    def inner():</span><br><span class="line">        print(name)</span><br><span class="line">    print(inner.__closure__)</span><br><span class="line">    return inner</span><br><span class="line"></span><br><span class="line">f2 = func2()</span><br><span class="line">f2()</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">None</span><br><span class="line">egon</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>闭包嵌套</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def wrapper():</span><br><span class="line">    money = 1000</span><br><span class="line">    def func():</span><br><span class="line">        name = &apos;eva&apos;</span><br><span class="line">        def inner():</span><br><span class="line">            print(name,money)</span><br><span class="line">        return inner</span><br><span class="line">    return func</span><br><span class="line"></span><br><span class="line">f = wrapper()</span><br><span class="line">i = f()</span><br><span class="line">i()</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">eva 1000</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>闭包函数获取网络应用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from urllib.request import urlopen</span><br><span class="line"></span><br><span class="line">def index():</span><br><span class="line">    url = &quot;http://www.xiaohua100.cn/index.html&quot;</span><br><span class="line">    def get():</span><br><span class="line">        return urlopen(url).read()</span><br><span class="line">    return get</span><br><span class="line"></span><br><span class="line">xiaohua = index()</span><br><span class="line">content = xiaohua()</span><br><span class="line">print(content)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的命名空间"><span class="toc-number">1.</span> <span class="toc-text">函数的命名空间</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命名空间的使用"><span class="toc-number">1.1.</span> <span class="toc-text">命名空间的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域"><span class="toc-number">2.</span> <span class="toc-text">作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#作用域的种类"><span class="toc-number">2.1.</span> <span class="toc-text">作用域的种类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#global关键字的作用"><span class="toc-number">2.2.</span> <span class="toc-text">global关键字的作用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的嵌套和作用域链"><span class="toc-number">3.</span> <span class="toc-text">函数的嵌套和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-函数的嵌套调用"><span class="toc-number">3.1.</span> <span class="toc-text">1.函数的嵌套调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-函数的嵌套定义"><span class="toc-number">3.2.</span> <span class="toc-text">2.函数的嵌套定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-函数的作用域链"><span class="toc-number">3.3.</span> <span class="toc-text">3.函数的作用域链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nonlocal"><span class="toc-number">3.4.</span> <span class="toc-text">nonlocal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#区别：一个函数里面嵌套了一个函数。当使用-nonlocal-时，就声明了该变量不只在嵌套函数inner（）里面才有效，-而是在整个大函数里面都有效。"><span class="toc-number">3.5.</span> <span class="toc-text">区别：一个函数里面嵌套了一个函数。当使用 nonlocal 时，就声明了该变量不只在嵌套函数inner（）里面才有效， 而是在整个大函数里面都有效。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-函数的本质"><span class="toc-number">3.6.</span> <span class="toc-text">4.函数的本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-闭包"><span class="toc-number">3.7.</span> <span class="toc-text">5.闭包</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&text=P010_01_python命名空间和作用域"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&is_video=false&description=P010_01_python命名空间和作用域"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P010_01_python命名空间和作用域&body=Check out this article: https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&title=P010_01_python命名空间和作用域"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/23/P010_01_python命名空间和作用域/&name=P010_01_python命名空间和作用域&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

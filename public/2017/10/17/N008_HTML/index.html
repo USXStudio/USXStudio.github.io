@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="HTML Hypertext Markup Language维基百科HTML HTML 的版本（W3C 组织制定规范） HTML 4.01 XHTML HTML 5 √(我们从这里开始学) HTML 5.1  规范文档（Specifications） 你可以google 搜  html spec 这个网址   由 W3C 写文档（李爵士） W3C 根据浏览器的实际情况总结文档，并不是凭空想象DOC">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/17/N008_HTML/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="HTML Hypertext Markup Language维基百科HTML HTML 的版本（W3C 组织制定规范） HTML 4.01 XHTML HTML 5 √(我们从这里开始学) HTML 5.1  规范文档（Specifications） 你可以google 搜  html spec 这个网址   由 W3C 写文档（李爵士） W3C 根据浏览器的实际情况总结文档，并不是凭空想象DOC">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note008_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note008_02.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML">
+<meta name="twitter:description" content="HTML Hypertext Markup Language维基百科HTML HTML 的版本（W3C 组织制定规范） HTML 4.01 XHTML HTML 5 √(我们从这里开始学) HTML 5.1  规范文档（Specifications） 你可以google 搜  html spec 这个网址   由 W3C 写文档（李爵士） W3C 根据浏览器的实际情况总结文档，并不是凭空想象DOC">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note008_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HTML</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/18/N009_0_HTML续/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/15/N007_网络_ip_server/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/17/N008_HTML/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&text=HTML"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&is_video=false&description=HTML"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML&body=Check out this article: https://usxstudio.github.io/2017/10/17/N008_HTML/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&name=HTML&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-Hypertext-Markup-Language"><span class="toc-number">1.</span> <span class="toc-text">HTML Hypertext Markup Language</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML-的版本（W3C-组织制定规范）"><span class="toc-number">1.1.</span> <span class="toc-text">HTML 的版本（W3C 组织制定规范）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规范文档（Specifications）"><span class="toc-number">1.2.</span> <span class="toc-text">规范文档（Specifications）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOCTYPE-文档头"><span class="toc-number">1.3.</span> <span class="toc-text">DOCTYPE 文档头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#html-head-body"><span class="toc-number">1.4.</span> <span class="toc-text">html / head / body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略标签"><span class="toc-number">1.5.</span> <span class="toc-text">省略标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg"><span class="toc-number">1.6.</span> <span class="toc-text">常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何查看-MDN-文档"><span class="toc-number">1.7.</span> <span class="toc-text">如何查看 MDN 文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML-中-b-标签和-strong-标签有什么区别"><span class="toc-number">1.8.</span> <span class="toc-text">HTML 中 b 标签和 strong 标签有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#p-标签的英文全称是什么？"><span class="toc-number">1.9.</span> <span class="toc-text">p 标签的英文全称是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-标签的英文全称是什么"><span class="toc-number">1.10.</span> <span class="toc-text">a 标签的英文全称是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是空元素"><span class="toc-number">1.11.</span> <span class="toc-text">什么是空元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML5推荐写法"><span class="toc-number">1.12.</span> <span class="toc-text">HTML5推荐写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div-span-可以写在head里吗？"><span class="toc-number">1.13.</span> <span class="toc-text">div span 可以写在head里吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可替换元素"><span class="toc-number">1.14.</span> <span class="toc-text">可替换元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#w3cschool-html测试题"><span class="toc-number">1.15.</span> <span class="toc-text">w3cschool html测试题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML究竟要不要管元素是不是块级元素还是内联元素"><span class="toc-number">1.16.</span> <span class="toc-text">HTML究竟要不要管元素是不是块级元素还是内联元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#写页面千万别自己设计"><span class="toc-number">1.17.</span> <span class="toc-text">写页面千万别自己设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初学HTML时写页面你可能会这样想"><span class="toc-number">1.18.</span> <span class="toc-text">初学HTML时写页面你可能会这样想</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HTML
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-17T13:02:23.000Z" itemprop="datePublished">2017-10-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="HTML-Hypertext-Markup-Language"><a href="#HTML-Hypertext-Markup-Language" class="headerlink" title="HTML Hypertext Markup Language"></a>HTML Hypertext Markup Language</h3><p><a href="https://en.wikipedia.org/wiki/HTML" target="_blank" rel="noopener">维基百科HTML</a></p>
+<h4 id="HTML-的版本（W3C-组织制定规范）"><a href="#HTML-的版本（W3C-组织制定规范）" class="headerlink" title="HTML 的版本（W3C 组织制定规范）"></a>HTML 的版本（W3C 组织制定规范）</h4><ul>
+<li>HTML 4.01</li>
+<li>XHTML</li>
+<li>HTML 5 √(我们从这里开始学)</li>
+<li>HTML 5.1</li>
+</ul>
+<h4 id="规范文档（Specifications）"><a href="#规范文档（Specifications）" class="headerlink" title="规范文档（Specifications）"></a>规范文档（Specifications）</h4><blockquote>
+<p>你可以google 搜  html spec <a href="https://www.w3.org/TR/html5/" target="_blank" rel="noopener">这个网址</a></p>
+</blockquote>
+<ol>
+<li>由 W3C 写文档（李爵士）</li>
+<li>W3C 根据浏览器的实际情况总结文档，并不是凭空想象<h4 id="DOCTYPE-文档头"><a href="#DOCTYPE-文档头" class="headerlink" title="DOCTYPE 文档头"></a>DOCTYPE 文档头</h4></li>
+</ol>
+<ul>
+<li>用来选择文档类型</li>
+<li>除了 HTML 5 的 DOCTYPE，其他都很难记：<a href="https://www.w3.org/QA/2002/04/valid-dtd-list.html" target="_blank" rel="noopener">https://www.w3.org/QA/2002/04/valid-dtd-list.html</a></li>
+<li>如果你没写 DOCTYPE，那你就惨了</li>
+</ul>
+<h4 id="html-head-body"><a href="#html-head-body" class="headerlink" title="html / head / body"></a>html / head / body</h4><p>head可省略吗？ body可省略吗？ 可以</p>
+<h4 id="省略标签"><a href="#省略标签" class="headerlink" title="省略标签"></a>省略标签</h4><h4 id="常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg"><a href="#常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg" class="headerlink" title="常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg"></a>常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg</h4><ul>
+<li>基本上，你知道标签对应单词的意思，就知道这个标签怎么用了（语义化）</li>
+<li>除了 div 和 span，其他标签都有默认样式</li>
+<li>MDN 上有所有标签的文档</li>
+</ul>
+<h4 id="如何查看-MDN-文档"><a href="#如何查看-MDN-文档" class="headerlink" title="如何查看 MDN 文档"></a>如何查看 MDN 文档</h4><p>Google：关键词 + MDN</p>
+<h4 id="HTML-中-b-标签和-strong-标签有什么区别"><a href="#HTML-中-b-标签和-strong-标签有什么区别" class="headerlink" title="HTML 中 b 标签和 strong 标签有什么区别"></a>HTML 中 b 标签和 strong 标签有什么区别</h4><p>b 表示样式上的加粗，strong 是逻辑状态表示内容重要。strong表示语气很强烈含有感情成分</p>
+<h4 id="p-标签的英文全称是什么？"><a href="#p-标签的英文全称是什么？" class="headerlink" title="p 标签的英文全称是什么？"></a>p 标签的英文全称是什么？</h4><p>paragraph</p>
+<h4 id="a-标签的英文全称是什么"><a href="#a-标签的英文全称是什么" class="headerlink" title="a 标签的英文全称是什么"></a>a 标签的英文全称是什么</h4><p>anchor</p>
+<h4 id="什么是空元素"><a href="#什么是空元素" class="headerlink" title="什么是空元素"></a>什么是空元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input/img/meta/link/hr/br/col....</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/%E7%A9%BA%E5%85%83%E7%B4%A0" target="_blank" rel="noopener">空元素</a></p>
+<h4 id="HTML5推荐写法"><a href="#HTML5推荐写法" class="headerlink" title="HTML5推荐写法"></a>HTML5推荐写法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;-- 更加严格的写法要自闭合 --&gt;</span><br><span class="line">&lt;input type=&quot;text&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;-- H5推荐的用法 --&gt;</span><br><span class="line">&lt;input type=&quot;text&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="div-span-可以写在head里吗？"><a href="#div-span-可以写在head里吗？" class="headerlink" title="div span 可以写在head里吗？"></a>div span 可以写在head里吗？</h4><p>答案是不可以，但是你写了HTML会自动纠错将你写的div放到body里</p>
+<h4 id="可替换元素"><a href="#可替换元素" class="headerlink" title="可替换元素"></a>可替换元素</h4><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Replaced_element" target="_blank" rel="noopener">可替换元素</a></p>
+<h4 id="w3cschool-html测试题"><a href="#w3cschool-html测试题" class="headerlink" title="w3cschool html测试题"></a>w3cschool html测试题</h4><p><a href="https://www.w3schools.com/quiztest/quiztest.asp?qtest=HTML" target="_blank" rel="noopener">测试题</a></p>
+<h4 id="HTML究竟要不要管元素是不是块级元素还是内联元素"><a href="#HTML究竟要不要管元素是不是块级元素还是内联元素" class="headerlink" title="HTML究竟要不要管元素是不是块级元素还是内联元素"></a>HTML究竟要不要管元素是不是块级元素还是内联元素</h4><ul>
+<li>HTML是不管块级元素和内联元素的区别的</li>
+<li>HTML只定义这是什么，不管样式</li>
+<li>样式由CSS控制     </li>
+</ul>
+<p>所以写HTML时候一定不要想样式问题 </p>
+<h4 id="写页面千万别自己设计"><a href="#写页面千万别自己设计" class="headerlink" title="写页面千万别自己设计"></a>写页面千万别自己设计</h4><blockquote>
+<p>你可以去 dribbble.com 你可以看到外国优秀设计师的作品</p>
+</blockquote>
+<h4 id="初学HTML时写页面你可能会这样想"><a href="#初学HTML时写页面你可能会这样想" class="headerlink" title="初学HTML时写页面你可能会这样想"></a>初学HTML时写页面你可能会这样想</h4><p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note008_01.png" alt="想着上面两个一左一右下面是一个盒子"></p>
+<blockquote>
+<p>实际上这样的布局是很难实现的因为目前<br>CSS只支持横向布局和纵向布局</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note008_02.png" alt="实际应该这样"></p>
+<blockquote>
+<p>实际上应该上面两个左右的盒子外面包一个div当做一个整体</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-Hypertext-Markup-Language"><span class="toc-number">1.</span> <span class="toc-text">HTML Hypertext Markup Language</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML-的版本（W3C-组织制定规范）"><span class="toc-number">1.1.</span> <span class="toc-text">HTML 的版本（W3C 组织制定规范）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#规范文档（Specifications）"><span class="toc-number">1.2.</span> <span class="toc-text">规范文档（Specifications）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOCTYPE-文档头"><span class="toc-number">1.3.</span> <span class="toc-text">DOCTYPE 文档头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#html-head-body"><span class="toc-number">1.4.</span> <span class="toc-text">html / head / body</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略标签"><span class="toc-number">1.5.</span> <span class="toc-text">省略标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg"><span class="toc-number">1.6.</span> <span class="toc-text">常见标签：a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何查看-MDN-文档"><span class="toc-number">1.7.</span> <span class="toc-text">如何查看 MDN 文档</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML-中-b-标签和-strong-标签有什么区别"><span class="toc-number">1.8.</span> <span class="toc-text">HTML 中 b 标签和 strong 标签有什么区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#p-标签的英文全称是什么？"><span class="toc-number">1.9.</span> <span class="toc-text">p 标签的英文全称是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-标签的英文全称是什么"><span class="toc-number">1.10.</span> <span class="toc-text">a 标签的英文全称是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是空元素"><span class="toc-number">1.11.</span> <span class="toc-text">什么是空元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML5推荐写法"><span class="toc-number">1.12.</span> <span class="toc-text">HTML5推荐写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div-span-可以写在head里吗？"><span class="toc-number">1.13.</span> <span class="toc-text">div span 可以写在head里吗？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可替换元素"><span class="toc-number">1.14.</span> <span class="toc-text">可替换元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#w3cschool-html测试题"><span class="toc-number">1.15.</span> <span class="toc-text">w3cschool html测试题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML究竟要不要管元素是不是块级元素还是内联元素"><span class="toc-number">1.16.</span> <span class="toc-text">HTML究竟要不要管元素是不是块级元素还是内联元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#写页面千万别自己设计"><span class="toc-number">1.17.</span> <span class="toc-text">写页面千万别自己设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初学HTML时写页面你可能会这样想"><span class="toc-number">1.18.</span> <span class="toc-text">初学HTML时写页面你可能会这样想</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/17/N008_HTML/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&text=HTML"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&is_video=false&description=HTML"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML&body=Check out this article: https://usxstudio.github.io/2017/10/17/N008_HTML/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&title=HTML"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/17/N008_HTML/&name=HTML&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

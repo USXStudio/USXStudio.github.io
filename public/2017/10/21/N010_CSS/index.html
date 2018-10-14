@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="CSS (Cascading Style Sheets)CSS历史英文维基百科  凯斯kei丁(如果你实在不知道第一个咋读)注意！中文维基已经落后很久了   两个人合作发明了 CSS1994年哈肯·维姆·莱提出了CSS的最初建议。伯特·波斯（Bert Bos）当时正在设计一个叫做“Argo”的浏览器，他们决定一起合作设计CSS。  W3C 开始接管 CSS1997年初，W3C内组织了专门管CSS的">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/21/N010_CSS/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="CSS (Cascading Style Sheets)CSS历史英文维基百科  凯斯kei丁(如果你实在不知道第一个咋读)注意！中文维基已经落后很久了   两个人合作发明了 CSS1994年哈肯·维姆·莱提出了CSS的最初建议。伯特·波斯（Bert Bos）当时正在设计一个叫做“Argo”的浏览器，他们决定一起合作设计CSS。  W3C 开始接管 CSS1997年初，W3C内组织了专门管CSS的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note010_01.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS">
+<meta name="twitter:description" content="CSS (Cascading Style Sheets)CSS历史英文维基百科  凯斯kei丁(如果你实在不知道第一个咋读)注意！中文维基已经落后很久了   两个人合作发明了 CSS1994年哈肯·维姆·莱提出了CSS的最初建议。伯特·波斯（Bert Bos）当时正在设计一个叫做“Argo”的浏览器，他们决定一起合作设计CSS。  W3C 开始接管 CSS1997年初，W3C内组织了专门管CSS的">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note010_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>CSS</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/22/N011CSS布局与定位/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/19/N009_1_HTML续2/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/21/N010_CSS/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&text=CSS"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&is_video=false&description=CSS"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS&body=Check out this article: https://usxstudio.github.io/2017/10/21/N010_CSS/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&name=CSS&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-Cascading-Style-Sheets"><span class="toc-number">1.</span> <span class="toc-text">CSS (Cascading Style Sheets)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS历史"><span class="toc-number">1.1.</span> <span class="toc-text">CSS历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-学习资源"><span class="toc-number">1.2.</span> <span class="toc-text">CSS 学习资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始写-CSS"><span class="toc-number">1.3.</span> <span class="toc-text">开始写 CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入CSS的四种方式"><span class="toc-number">1.3.1.</span> <span class="toc-text">引入CSS的四种方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#li-的小圆点问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">li 的小圆点问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认样式"><span class="toc-number">1.3.3.</span> <span class="toc-text">默认样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#float-一定会出问题"><span class="toc-number">1.3.4.</span> <span class="toc-text">float 一定会出问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择器-“-gt-”加与不加的区别"><span class="toc-number">1.3.5.</span> <span class="toc-text">选择器 “&gt;”加与不加的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认字体大小-16px"><span class="toc-number">1.3.6.</span> <span class="toc-text">默认字体大小 16px</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a标签默认样式"><span class="toc-number">1.3.7.</span> <span class="toc-text">a标签默认样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ul里li-鼠标滑过有边框的效果"><span class="toc-number">1.3.8.</span> <span class="toc-text">ul里li 鼠标滑过有边框的效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#li里的a标签为什么有时候比li大"><span class="toc-number">1.3.9.</span> <span class="toc-text">li里的a标签为什么有时候比li大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inherit-值啥意思"><span class="toc-number">1.3.10.</span> <span class="toc-text">inherit 值啥意思</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#span之间有什么"><span class="toc-number">1.3.11.</span> <span class="toc-text">span之间有什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给你个需求"><span class="toc-number">1.3.12.</span> <span class="toc-text">给你个需求</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CSS
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-21T14:44:20.000Z" itemprop="datePublished">2017-10-21</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="CSS-Cascading-Style-Sheets"><a href="#CSS-Cascading-Style-Sheets" class="headerlink" title="CSS (Cascading Style Sheets)"></a>CSS (Cascading Style Sheets)</h2><h3 id="CSS历史"><a href="#CSS历史" class="headerlink" title="CSS历史"></a>CSS历史</h3><p><a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets#History" target="_blank" rel="noopener">英文维基百科</a></p>
+<blockquote>
+<p>凯斯kei丁(如果你实在不知道第一个咋读)注意！中文维基已经落后很久了</p>
+</blockquote>
+<ol>
+<li><p>两个人合作发明了 CSS<br>1994年哈肯·维姆·莱提出了CSS的最初建议。伯特·波斯（Bert Bos）当时正在设计一个叫做“Argo”的浏览器，他们决定一起合作设计CSS。</p>
+</li>
+<li><p>W3C 开始接管 CSS<br>1997年初，W3C内组织了专门管CSS的工作组，其负责人是克里斯·里雷。</p>
+</li>
+<li><p>CSS 2.1<br>1998年5月W3C发表了CSS2<br>CSS2.1修改了CSS2中的一些错误，删除了其中基本不被支持的内容和增加了一些已有的浏览器的扩展内容。</p>
+</li>
+<li><p>CSS 3<br>从 2011 年开始 CSS 被分为多个模块单独升级，统称为 CSS 3。这些模块有：<br>CSS 选择器 level 3<br>CSS 媒体查询 level 3<br>CSS Color level 3<br>更多请 google 搜索 CSS spec <a href="https://www.w3.org/Style/CSS/specs.en.html" target="_blank" rel="noopener">你可以看看</a></p>
+</li>
+<li><p>CSS 4?<br>不好意思，没有 CSS 4，只有各个模块的 level 4(每个功能独立写文档)</p>
+</li>
+</ol>
+<blockquote>
+<p>ps 文档很多 学海无涯生命有限，所以我们要先用在学，碰到了再去细究</p>
+</blockquote>
+<p>周边工具</p>
+<ul>
+<li>LESS CSS<br>一种简化、功能更多的 CSS 语言 中文官网 英文官网</li>
+<li>SASS<br>一种简化、功能更多的 CSS 语言（请自行搜索中英文官网）</li>
+<li>PostCSS<br>一种 CSS 处理程序</li>
+</ul>
+<blockquote>
+<p>建议是，先不要看周边工具，学好最朴素的 CSS，然后升级就很容易了。</p>
+</blockquote>
+<h3 id="CSS-学习资源"><a href="#CSS-学习资源" class="headerlink" title="CSS 学习资源"></a>CSS 学习资源</h3><ol>
+<li>Google: 关键词 MDN</li>
+<li><a href="https://css-tricks.com/" target="_blank" rel="noopener">CSS Tricks</a>（ 「居中」搜索 center css tricks）</li>
+<li>Google: 阮一峰 css</li>
+<li>张鑫旭的 240 多篇 CSS 博客</li>
+<li><a href="https://tympanus.net/codrops/category/playground/" target="_blank" rel="noopener">Codrops 炫酷 CSS 效果</a></li>
+<li>CSS揭秘 (如果买书只推荐这一本,你买前端书千万别买中国人写的。。。)</li>
+<li><a href="http://cndevdocs.com/" target="_blank" rel="noopener">CSS 2.1 中文 spec</a></li>
+<li><a href="http://adamschwartz.co/magic-of-css/" target="_blank" rel="noopener">Magic of CSS 免费在线书</a>(如果你三天8h看完直接成为CSS大神)</li>
+</ol>
+<blockquote>
+<p>建议是：中文学习资源只看大 V 的（毕竟他们要维护形象不能瞎写），英文资源看 CSS Tricks、MDN 和 Codrops。书的话作用不大，最权威的书其实是文档。</p>
+</blockquote>
+<ul>
+<li>如果你想快速上手，就先写小 demo 再学理论。</li>
+<li>如果你想一鸣惊人，就仔细看 CSS 规范文档。</li>
+</ul>
+<h3 id="开始写-CSS"><a href="#开始写-CSS" class="headerlink" title="开始写 CSS"></a>开始写 CSS</h3><ol>
+<li>引入 CSS 的三/四种方式</li>
+<li>从最小的东西开始入手</li>
+<li>逐渐变大</li>
+<li>学会组织 CSS（以后再说）</li>
+<li>自己写 CSS UI 库</li>
+</ol>
+<h4 id="引入CSS的四种方式"><a href="#引入CSS的四种方式" class="headerlink" title="引入CSS的四种方式"></a>引入CSS的四种方式</h4><ol>
+<li><p>行间样式(内联样式)</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p style=&quot;color:red;&quot;&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>style标签 (内嵌样式)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        p&#123;color:red;&#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>link引入</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;mystyle.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>import导入</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=&quot;text/css&quot;&gt; @import url(./b.css)&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="li-的小圆点问题"><a href="#li-的小圆点问题" class="headerlink" title="li 的小圆点问题"></a>li 的小圆点问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">li&#123;list-style:none;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h4><blockquote>
+<p>除了div和span其他所有标签都有默认样式（css一个问题就是要清除默认样式）具体你可以搜 base.css/reset.css</p>
+</blockquote>
+<h4 id="float-一定会出问题"><a href="#float-一定会出问题" class="headerlink" title="float 一定会出问题"></a>float 一定会出问题</h4><blockquote>
+<p>如果你非要深究为什么那你就回答我为啥 color:red;字会变红</p>
+</blockquote>
+<p>解决 float 的bug 业界已经同一有了一个规范就是 .clearfix</p>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note010_01.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after&#123;</span><br><span class="line">    content:&apos;&apos;,</span><br><span class="line">    display:block;</span><br><span class="line">    clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>口诀</p>
+<ol>
+<li>子集浮动父级要清浮动(class=”clearfix”)</li>
+<li>同级一个浮动其他都浮动</li>
+</ol>
+<h4 id="选择器-“-gt-”加与不加的区别"><a href="#选择器-“-gt-”加与不加的区别" class="headerlink" title="选择器 “&gt;”加与不加的区别"></a>选择器 “&gt;”加与不加的区别</h4><p>直接子集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/* 匹配.topNavBar的儿子nav nav的儿子ul */</span><br><span class="line">.topNavBar &gt; nav &gt; ul</span><br></pre></td></tr></table></figure>
+<h4 id="默认字体大小-16px"><a href="#默认字体大小-16px" class="headerlink" title="默认字体大小 16px"></a>默认字体大小 16px</h4><p>工具使用</p>
+<blockquote>
+<p>chrome ==&gt; F12 ==&gt;Elements==&gt; styles/computed</p>
+</blockquote>
+<h4 id="a标签默认样式"><a href="#a标签默认样式" class="headerlink" title="a标签默认样式"></a>a标签默认样式</h4><p>text-decoration:underline</p>
+<blockquote>
+<p>如果你实在不知道用法，搜索 mdn text-decoration</p>
+</blockquote>
+<h4 id="ul里li-鼠标滑过有边框的效果"><a href="#ul里li-鼠标滑过有边框的效果" class="headerlink" title="ul里li 鼠标滑过有边框的效果"></a>ul里li 鼠标滑过有边框的效果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    .clearfix::after&#123;</span><br><span class="line">      content:&apos;&apos;;</span><br><span class="line">      display:block;</span><br><span class="line">      clear:both;</span><br><span class="line">    &#125;</span><br><span class="line">    ul&#123;border:1px solid red;&#125;</span><br><span class="line">    li&#123;list-style:none;&#125;</span><br><span class="line">    li&#123;float:left; ;&#125;</span><br><span class="line">    li:hover&#123;border:1px solid red;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul class=&quot;clearfix&quot;&gt;</span><br><span class="line">    &lt;li&gt;111&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;222&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;333&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>你会发现鼠标滑过的时候字在发抖</p>
+<blockquote>
+<p>套路就是在li一开始就设置边框，只不过颜色是透明的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">li&#123;border:1px solid transparent;&#125;</span><br><span class="line">li:hover:&#123;border:1px solid red;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="li里的a标签为什么有时候比li大"><a href="#li里的a标签为什么有时候比li大" class="headerlink" title="li里的a标签为什么有时候比li大"></a>li里的a标签为什么有时候比li大</h4><p>答案是因为a是 display:inline</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a&#123;display:block;&#125;</span><br><span class="line"></span><br><span class="line">&lt;li&gt;</span><br><span class="line">    &lt;a href=&quot;javascrip:;&quot;&gt;关于&lt;/a&gt;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="inherit-值啥意思"><a href="#inherit-值啥意思" class="headerlink" title="inherit 值啥意思"></a>inherit 值啥意思</h4><p>inherit意思是继承的意思就是你爸爸什么样你就继承过来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">body&#123;color:#333;&#125;</span><br><span class="line">a&#123;color:inherit;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你不写a{color:inherit;} a标签有默认样式就会是蓝色的</p>
+<p>清除a的默认样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a&#123;color:inherit;text-decoration:none;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="span之间有什么"><a href="#span之间有什么" class="headerlink" title="span之间有什么"></a>span之间有什么</h4><p>如果你回车了不管你空了多少行，span直接都会有一个空格</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;aaa&lt;/span&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;span&gt;bbb&lt;/span&gt;</span><br><span class="line">&lt;span&gt;ccc&lt;/span&gt;</span><br><span class="line">&lt;span&gt;ddd&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<p>你应该这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;aaa&lt;/span&gt;&lt;span&gt;bbb&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="给你个需求"><a href="#给你个需求" class="headerlink" title="给你个需求"></a>给你个需求</h4><blockquote>
+<p>我需要一个 div 高30px，div 里有一行字垂直居中，字的大小为 14px，应该怎么写 CSS?</p>
+</blockquote>
+<ul>
+<li>给 div 的样式为 font-size: 14px; line-height: 20px; padding: 5px 0;</li>
+<li>给 div 的样式为 font-size: 14px; line-height: 24px; padding: 3px 0;</li>
+<li>给 div 的样式为 font-size: 14px; line-height: 30px; </li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-Cascading-Style-Sheets"><span class="toc-number">1.</span> <span class="toc-text">CSS (Cascading Style Sheets)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS历史"><span class="toc-number">1.1.</span> <span class="toc-text">CSS历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-学习资源"><span class="toc-number">1.2.</span> <span class="toc-text">CSS 学习资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开始写-CSS"><span class="toc-number">1.3.</span> <span class="toc-text">开始写 CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#引入CSS的四种方式"><span class="toc-number">1.3.1.</span> <span class="toc-text">引入CSS的四种方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#li-的小圆点问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">li 的小圆点问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认样式"><span class="toc-number">1.3.3.</span> <span class="toc-text">默认样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#float-一定会出问题"><span class="toc-number">1.3.4.</span> <span class="toc-text">float 一定会出问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#选择器-“-gt-”加与不加的区别"><span class="toc-number">1.3.5.</span> <span class="toc-text">选择器 “&gt;”加与不加的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#默认字体大小-16px"><span class="toc-number">1.3.6.</span> <span class="toc-text">默认字体大小 16px</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a标签默认样式"><span class="toc-number">1.3.7.</span> <span class="toc-text">a标签默认样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ul里li-鼠标滑过有边框的效果"><span class="toc-number">1.3.8.</span> <span class="toc-text">ul里li 鼠标滑过有边框的效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#li里的a标签为什么有时候比li大"><span class="toc-number">1.3.9.</span> <span class="toc-text">li里的a标签为什么有时候比li大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inherit-值啥意思"><span class="toc-number">1.3.10.</span> <span class="toc-text">inherit 值啥意思</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#span之间有什么"><span class="toc-number">1.3.11.</span> <span class="toc-text">span之间有什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#给你个需求"><span class="toc-number">1.3.12.</span> <span class="toc-text">给你个需求</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/21/N010_CSS/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&text=CSS"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&is_video=false&description=CSS"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS&body=Check out this article: https://usxstudio.github.io/2017/10/21/N010_CSS/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&title=CSS"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/21/N010_CSS/&name=CSS&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

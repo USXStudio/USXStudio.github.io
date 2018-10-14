@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="hashhash值计算过程中依据这个值一些特征计算的，这就要求hash值必须固定，因此被hash的值必须是不可变的  不可变数据类型   数字 字符串 元组   可变数据类型   列表   hash函数 123hash(&amp;apos;aaa&amp;apos;) hash(1)hash((1,2,3)) 字典键值对 k/v  特性   k/v key必须放可hash ，且必须为不可变数据类型，必须唯一 va">
+<meta name="keywords" content="M01">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py001_02_05Python哈希和字典">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="hashhash值计算过程中依据这个值一些特征计算的，这就要求hash值必须固定，因此被hash的值必须是不可变的  不可变数据类型   数字 字符串 元组   可变数据类型   列表   hash函数 123hash(&amp;apos;aaa&amp;apos;) hash(1)hash((1,2,3)) 字典键值对 k/v  特性   k/v key必须放可hash ，且必须为不可变数据类型，必须唯一 va">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.281Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py001_02_05Python哈希和字典">
+<meta name="twitter:description" content="hashhash值计算过程中依据这个值一些特征计算的，这就要求hash值必须固定，因此被hash的值必须是不可变的  不可变数据类型   数字 字符串 元组   可变数据类型   列表   hash函数 123hash(&amp;apos;aaa&amp;apos;) hash(1)hash((1,2,3)) 字典键值对 k/v  特性   k/v key必须放可hash ，且必须为不可变数据类型，必须唯一 va">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py001_02_05Python哈希和字典</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/14/Py001_02_06Python进制拾遗/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/13/Py001_02_04Python再看字符串/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&text=Py001_02_05Python哈希和字典"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&is_video=false&description=Py001_02_05Python哈希和字典"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_05Python哈希和字典&body=Check out this article: https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&name=Py001_02_05Python哈希和字典&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hash"><span class="toc-number">1.</span> <span class="toc-text">hash</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hash函数"><span class="toc-number">1.1.</span> <span class="toc-text">hash函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典"><span class="toc-number">2.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合类型"><span class="toc-number">3.</span> <span class="toc-text">集合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CRUD"><span class="toc-number">3.1.</span> <span class="toc-text">CRUD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的关系测试"><span class="toc-number">3.2.</span> <span class="toc-text">集合的关系测试</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py001_02_05Python哈希和字典
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-14T03:08:43.000Z" itemprop="datePublished">2018-08-14</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M01/">M01</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>hash值计算过程中依据这个值一些特征计算的，这就要求hash值必须固定，因此被hash的值必须是不可变的</p>
+<blockquote>
+<p>不可变数据类型</p>
+</blockquote>
+<ul>
+<li>数字</li>
+<li>字符串</li>
+<li>元组</li>
+</ul>
+<blockquote>
+<p>可变数据类型</p>
+</blockquote>
+<ul>
+<li>列表</li>
+</ul>
+<blockquote>
+<h4 id="hash函数"><a href="#hash函数" class="headerlink" title="hash函数"></a>hash函数</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hash(&apos;aaa&apos;) </span><br><span class="line">hash(1)</span><br><span class="line">hash((1,2,3))</span><br></pre></td></tr></table></figure>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p>键值对 k/v</p>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<ul>
+<li>k/v</li>
+<li>key必须放可hash ，且必须为不可变数据类型，必须唯一</li>
+<li>value可存放任意多个值，可修改，可以不唯一</li>
+<li>无序</li>
+<li>查找速度快</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">infos = &#123;</span><br><span class="line">    &quot;name&quot;:&apos;alex&apos;,</span><br><span class="line">    &quot;age&quot;:22</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>crud</p>
+</blockquote>
+<blockquote>
+<p>增加</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info = &#123;&#125;</span><br><span class="line">info[&apos;a&apos;] = 2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>修改</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">info = &#123;&quot;a&quot;:2&#125;</span><br><span class="line">info[&apos;a&apos;] = 3</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查找</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">info = &#123;</span><br><span class="line">    &quot;a&quot;:1,</span><br><span class="line">    &quot;b&quot;:2,</span><br><span class="line">    &quot;c&quot;:3</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&quot;aa&quot; in info  # 判断key在不在info里</span><br><span class="line">info.get(&apos;a&apos;) # 1</span><br><span class="line">info.get(&apos;aaa&apos;) # None</span><br><span class="line"></span><br><span class="line">如果直接 info[&apos;aaa&apos;] 会报错</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>删除</p>
+</blockquote>
+<ul>
+<li>pop(删除的key)</li>
+<li>popitem() 随机删</li>
+<li>del  info[key]删除某个key</li>
+<li>clear() 清空字典</li>
+</ul>
+<blockquote>
+<p>其他方法</p>
+</blockquote>
+<ul>
+<li>keys() 获取key的列表</li>
+<li>values() 获取值的列表</li>
+<li>items() 将key和value放入到元组里，返回一个列表</li>
+<li>setdefault() 查看字典是否有这个key没有则设置默认值，有没有都返回这个key对应的值</li>
+<li>fromkeys() 批量生成字典，并设置默认值</li>
+</ul>
+<h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3><p>如何找出既买了iphone7和8的人</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i7 = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</span><br><span class="line">i8 = [&quot;a&quot;,&quot;b&quot;,&quot;d&quot;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>什么是集合</p>
+</blockquote>
+<p>无序的，不重复的数据集合</p>
+<ul>
+<li>去重，把一个列表变成集合就自动去重了</li>
+<li>关系测试</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;&#125;</span><br><span class="line">type(s) # dict 集合是空的时候被认为是字典</span><br><span class="line"></span><br><span class="line">s = &#123;1&#125;</span><br><span class="line">type(s) # set</span><br><span class="line"></span><br><span class="line">s = set([1,2,2,3,4]) # &#123;1,2,3,4&#125;</span><br><span class="line"></span><br><span class="line">s = &#123;1,2,3,4,5,6,2,3,4&#125; #  &#123;1,2,3,4,5,6&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">s = &#123;1,2,3,4,5&#125;</span><br><span class="line">s.add(2) # &#123;1,2,3,4,5&#125;</span><br><span class="line">s.add(6) # &#123;1,2,3,4,5,6&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.discard(6) # 删除指定元素 &#123;1,2,3,4,5&#125;</span><br><span class="line"></span><br><span class="line">s.discard(6) # 如果元素不存在不报错 &#123;1,2,3,4,5&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s.remove(5) # &#123;1,2,3,4&#125;</span><br><span class="line">s.remove(5) # 不存在报错</span><br><span class="line"></span><br><span class="line">s.pop() # 随机删</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s2 = &#123;1,2,3&#125;</span><br><span class="line">s2.update([3,4,5,6])</span><br><span class="line"># &#123;1,2,3,4,5,6&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="集合的关系测试"><a href="#集合的关系测试" class="headerlink" title="集合的关系测试"></a>集合的关系测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i7 = &#123;&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;&#125;</span><br><span class="line">i8 = &#123;&quot;a&quot;,&quot;b&quot;,&quot;e&quot;,&quot;f&quot;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>交集 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一种</span><br><span class="line">i7.intersection(i8) # &#123;&quot;a&quot;,&quot;b&quot;&#125;</span><br><span class="line"></span><br><span class="line">第二种</span><br><span class="line">i7 &amp; i8 # &#123;&quot;a&quot;,&quot;b&quot;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>差集</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 买了i7没买i8的人</span><br><span class="line">i7.difference(i8) # &#123;&quot;c&quot;,&quot;d&quot;&#125;</span><br><span class="line">i7-i8</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 买了i8没买i7的人</span><br><span class="line">i8.difference(i7) # &#123;&quot;e&quot;,&quot;f&quot;&#125;</span><br><span class="line">i8-i7</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>并集</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i7.union(i8) # &#123;&apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;&#125;</span><br><span class="line"></span><br><span class="line">i7|i8</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对称差集</p>
+</blockquote>
+<p>并集取反</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i7.symmetric_difference(i8) # &#123;&apos;f&apos;, &apos;e&apos;, &apos;c&apos;, &apos;d&apos;&#125;</span><br><span class="line"></span><br><span class="line">i7 ^ i8</span><br></pre></td></tr></table></figure>
+<ul>
+<li>difference_update 将差集的结果赋值给集合</li>
+</ul>
+<blockquote>
+<p>关系</p>
+</blockquote>
+<ul>
+<li>isdisjoint 判断两个集合是不是不相交</li>
+<li>issuperset 是否包含</li>
+<li>issubset 是否被其他集合包含</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;1,2,3,4&#125;</span><br><span class="line">b = &#123;1,2,3&#125;</span><br><span class="line">print(b.issubset(a)) # False</span><br><span class="line">print(b.issubset(a)) # True</span><br><span class="line"></span><br><span class="line">print(b.issuperset(a)) # False</span><br><span class="line">print(a.issuperset(b)) # True</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#hash"><span class="toc-number">1.</span> <span class="toc-text">hash</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#hash函数"><span class="toc-number">1.1.</span> <span class="toc-text">hash函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字典"><span class="toc-number">2.</span> <span class="toc-text">字典</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合类型"><span class="toc-number">3.</span> <span class="toc-text">集合类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CRUD"><span class="toc-number">3.1.</span> <span class="toc-text">CRUD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合的关系测试"><span class="toc-number">3.2.</span> <span class="toc-text">集合的关系测试</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&text=Py001_02_05Python哈希和字典"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&is_video=false&description=Py001_02_05Python哈希和字典"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py001_02_05Python哈希和字典&body=Check out this article: https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&title=Py001_02_05Python哈希和字典"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/14/Py001_02_05Python哈希和字典/&name=Py001_02_05Python哈希和字典&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

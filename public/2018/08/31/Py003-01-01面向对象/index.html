@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="编程范式 面向过程(国民党的路线,一直在一次一次的解决问题,氪金,高级装备,最后败走台湾) 面向对象(我党的路线,一直在建立统一思想,思想就是种信仰,为信仰而奋斗,从军人员的壮大,7月建党8月建军10月建国。你懂的)  1234生活实例： 从北京到上海面向过程: 学驾照,买车,摇号,冲油,油门,百度地图,上海(你必须考证，买车，挂牌，会看地图)面向对象: 找大巴车,火车,高铁,飞机 (你需要会开车">
+<meta name="keywords" content="M03">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Py003-01-01面向对象">
+<meta property="og:url" content="https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="编程范式 面向过程(国民党的路线,一直在一次一次的解决问题,氪金,高级装备,最后败走台湾) 面向对象(我党的路线,一直在建立统一思想,思想就是种信仰,为信仰而奋斗,从军人员的壮大,7月建党8月建军10月建国。你懂的)  1234生活实例： 从北京到上海面向过程: 学驾照,买车,摇号,冲油,油门,百度地图,上海(你必须考证，买车，挂牌，会看地图)面向对象: 找大巴车,火车,高铁,飞机 (你需要会开车">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.310Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Py003-01-01面向对象">
+<meta name="twitter:description" content="编程范式 面向过程(国民党的路线,一直在一次一次的解决问题,氪金,高级装备,最后败走台湾) 面向对象(我党的路线,一直在建立统一思想,思想就是种信仰,为信仰而奋斗,从军人员的壮大,7月建党8月建军10月建国。你懂的)  1234生活实例： 从北京到上海面向过程: 学驾照,买车,摇号,冲油,油门,百度地图,上海(你必须考证，买车，挂牌，会看地图)面向对象: 找大巴车,火车,高铁,飞机 (你需要会开车">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Py003-01-01面向对象</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/09/03/Py003-01-02继承/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/08/28/Vue_222_vue路由实现原理/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&text=Py003-01-01面向对象"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&is_video=false&description=Py003-01-01面向对象"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py003-01-01面向对象&body=Check out this article: https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&name=Py003-01-01面向对象&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编程范式"><span class="toc-number">1.</span> <span class="toc-text">编程范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提到面向对象就不得不说的——类"><span class="toc-number">2.</span> <span class="toc-text">提到面向对象就不得不说的——类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类的定义和实例化对象"><span class="toc-number">2.1.</span> <span class="toc-text">类的定义和实例化对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用类"><span class="toc-number">2.2.</span> <span class="toc-text">使用类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何使用对象"><span class="toc-number">2.3.</span> <span class="toc-text">如何使用对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性查找和绑定方法"><span class="toc-number">2.4.</span> <span class="toc-text">属性查找和绑定方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#练习"><span class="toc-number">2.5.</span> <span class="toc-text">练习</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Py003-01-01面向对象
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-31T15:22:39.000Z" itemprop="datePublished">2018-08-31</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/M03/">M03</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="编程范式"><a href="#编程范式" class="headerlink" title="编程范式"></a>编程范式</h3><ul>
+<li>面向过程(国民党的路线,一直在一次一次的解决问题,氪金,高级装备,最后败走台湾)</li>
+<li>面向对象(我党的路线,一直在建立统一思想,思想就是种信仰,为信仰而奋斗,从军人员的壮大,7月建党8月建军10月建国。你懂的)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">生活实例： 从北京到上海</span><br><span class="line">面向过程: 学驾照,买车,摇号,冲油,油门,百度地图,上海(你必须考证，买车，挂牌，会看地图)</span><br><span class="line"></span><br><span class="line">面向对象: 找大巴车,火车,高铁,飞机 (你需要会开车吗？)</span><br></pre></td></tr></table></figure>
+<h3 id="提到面向对象就不得不说的——类"><a href="#提到面向对象就不得不说的——类" class="headerlink" title="提到面向对象就不得不说的——类"></a>提到面向对象就不得不说的——类</h3><ul>
+<li>同类事物的抽象描述——类</li>
+</ul>
+<h4 id="类的定义和实例化对象"><a href="#类的定义和实例化对象" class="headerlink" title="类的定义和实例化对象"></a>类的定义和实例化对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 学生对象</span><br><span class="line"># 001先定义类</span><br><span class="line">class Student:</span><br><span class="line">    school = &apos;清华&apos;</span><br><span class="line"></span><br><span class="line">    def learn(self):</span><br><span class="line">        print(&apos;学习啦&apos;)</span><br><span class="line"></span><br><span class="line">    def eat(self):</span><br><span class="line">        print(&apos;吃饭啦&apos;)</span><br><span class="line"></span><br><span class="line">    def sleep(self):</span><br><span class="line">        print(&apos;睡觉啦&apos;)</span><br><span class="line"></span><br><span class="line"># 最后产生对象</span><br><span class="line">student_a = Student()</span><br></pre></td></tr></table></figure>
+<h4 id="使用类"><a href="#使用类" class="headerlink" title="使用类"></a>使用类</h4><p>相关属性的增删改查</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 在类定义后 内部的代码就会执行 生成对应的名字空间(dict)</span><br><span class="line">class Student:</span><br><span class="line">    # 数据属性</span><br><span class="line">    school = &apos;xx大学&apos;</span><br><span class="line">    # 函数属性</span><br><span class="line">    def learn(self):</span><br><span class="line">        print(&apos;is learning&apos;)</span><br><span class="line">    </span><br><span class="line">    print(&apos;=====running=====&apos;) # 会被执行  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看类的名字空间</span><br><span class="line">print(Student.__dict__)</span><br><span class="line">print(Student.__dict__[&apos;school&apos;])</span><br><span class="line">print(Student.__dict__[&apos;learn&apos;])</span><br><span class="line"></span><br><span class="line"># 查</span><br><span class="line">print(Student.school)</span><br><span class="line">print(Student.learn)</span><br><span class="line"></span><br><span class="line"># 增 可以动态添加(如下);也可以在定义的时候添加属性如 school属性</span><br><span class="line">Student.county = &apos;China&apos;</span><br><span class="line">print(Student.__dict__)</span><br><span class="line">print(Student.county)</span><br><span class="line"></span><br><span class="line"># 删</span><br><span class="line">del Student.county</span><br><span class="line"></span><br><span class="line"># 改</span><br><span class="line">Student.school = &apos;清华池&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="如何使用对象"><a href="#如何使用对象" class="headerlink" title="如何使用对象"></a>如何使用对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># __init__方法用来为对象定制自己独有的特征</span><br><span class="line"></span><br><span class="line">class Student:</span><br><span class="line">    # 数据属性</span><br><span class="line">    school = &apos;xx大学&apos;</span><br><span class="line"></span><br><span class="line">    # __init__</span><br><span class="line">    def __init__(self,name,sex,age):</span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Sex = sex</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line">    # 函数属性</span><br><span class="line">    def learn(self):</span><br><span class="line">        print(&apos;is learning&apos;)</span><br><span class="line"></span><br><span class="line"># 此时创建对象的时候  就不能直接 Student()了而是如下：</span><br><span class="line">stu = Student(&apos;张三&apos;,&apos;男&apos;,18)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">__init__是你实例化的时候调用</span><br><span class="line">1. 产生一个空对象 tmp</span><br><span class="line">2. Student.__init__(tmp,&apos;张三&apos;,&apos;男&apos;,18)</span><br><span class="line">  tmp.Name = &apos;张三&apos;</span><br><span class="line">  tmp.Sex = &apos;男&apos;</span><br><span class="line">  tmp.Age = 18</span><br><span class="line">3. 返回tmp的地址给 stu</span><br><span class="line">&apos;&apos;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 对象属性的CRUD</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 查</span><br><span class="line">stu = Student(&apos;张三&apos;,&apos;男&apos;,18)</span><br><span class="line">print(stu.__dict__)</span><br><span class="line">print(stu.Name)</span><br><span class="line">print(stu.Age)</span><br><span class="line"></span><br><span class="line"># 改</span><br><span class="line">stu.Name = &apos;李四&apos; </span><br><span class="line"></span><br><span class="line"># 删</span><br><span class="line">del stu.Name</span><br><span class="line"></span><br><span class="line"># 增</span><br><span class="line">stu.className = &apos;前端部&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="属性查找和绑定方法"><a href="#属性查找和绑定方法" class="headerlink" title="属性查找和绑定方法"></a>属性查找和绑定方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">class Student:</span><br><span class="line">    school = &apos;xx大学&apos;</span><br><span class="line"></span><br><span class="line">    def __init__(self,name,sex,age):</span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Sex = sex</span><br><span class="line">        self.Age = age</span><br><span class="line"></span><br><span class="line">    def learn(self):</span><br><span class="line">        print(&apos;%sis learning&apos;%self.Name)</span><br><span class="line"></span><br><span class="line"># 后产生对象</span><br><span class="line">stu1 = Student(&apos;张三&apos;,&apos;男&apos;,11)</span><br><span class="line">stu2 = Student(&apos;李四&apos;,&apos;男&apos;,22)</span><br><span class="line">stu3 = Student(&apos;王五&apos;,&apos;男&apos;,33)</span><br><span class="line"></span><br><span class="line"># 对象：特征和技能的结合体</span><br><span class="line"># 类一系列对象相似的特征和相似的技能的结合体</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 类中的数据属性：是所有对象共有的</span><br><span class="line">print(Student.school,id(Student.school))</span><br><span class="line">print(stu1.school,id(stu1.school))</span><br><span class="line">print(stu2.school,id(stu2.school))</span><br><span class="line">print(stu3.school,id(stu3.school))</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"># 它们的id值都一样</span><br><span class="line">xx大学 2644686064016</span><br><span class="line">xx大学 2644686064016</span><br><span class="line">xx大学 2644686064016</span><br><span class="line">xx大学 2644686064016</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">#----------------------------------------------------------</span><br><span class="line"># 类中的函数属性：是绑定给对象使用的，绑定到不同的对象是不同的绑定方法,对象调用绑定方法时,把对象本身当作第一个参数传入也就是self</span><br><span class="line">print(Student.learn)</span><br><span class="line">print(stu1.learn)</span><br><span class="line">print(stu2.learn)</span><br><span class="line">print(stu3.learn)</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"># 它们的learn方法 地址都不一样</span><br><span class="line">&lt;function Student.learn at 0x00000271C5AFAEA0&gt;</span><br><span class="line">&lt;bound method Student.learn of &lt;__main__.Student object at 0x00000271C5B045C0&gt;&gt;</span><br><span class="line">&lt;bound method Student.learn of &lt;__main__.Student object at 0x00000271C5B04710&gt;&gt;</span><br><span class="line">&lt;bound method Student.learn of &lt;__main__.Student object at 0x00000271C5B04748&gt;&gt;</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line"># Student.learn() 报错  因为默认有个self参数 没有传递 learn() missing 1 required positional argument: &apos;self&apos;</span><br><span class="line">Student.learn(123)  # 继续报错</span><br><span class="line">Student.learn(stu1) # 张三is learning</span><br><span class="line">Student.learn(stu2) # 李四is learning</span><br><span class="line">Student.learn(stu3) # 王五is learning</span><br><span class="line"></span><br><span class="line"># 起始你可以这样调用</span><br><span class="line">stu1.learn() # 张三is learning</span><br><span class="line">stu2.learn() # 李四is learning</span><br><span class="line">stu3.learn() # 王五is learning</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类中的数据属性：</p>
+</blockquote>
+<ul>
+<li>是所有对象共有的</li>
+</ul>
+<blockquote>
+<p> 类中的函数属性：</p>
+</blockquote>
+<ul>
+<li>是绑定给对象使用的</li>
+<li>绑定到不同的对象是不同的绑定方法</li>
+<li>对象调用绑定方法时,把对象本身当作第一个参数传入也就是self</li>
+</ul>
+<blockquote>
+<p>属性查找</p>
+</blockquote>
+<ul>
+<li>先从实例对象上找，没有去类找，在没有就报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">stu1.x = &apos;from stu1&apos;</span><br><span class="line">Student.x = &apos;from Student class&apos;</span><br><span class="line">print(stu1.x) # 从自身找   &apos;from stu1&apos;</span><br><span class="line"></span><br><span class="line"># 如果对象stu1自身没有y属性 则从Student找</span><br><span class="line"># stu1.y = &apos;from stu1&apos;</span><br><span class="line">Student.y = &apos;from Student class&apos;</span><br><span class="line">print(stu1.y) # 从Student找  &apos;from Student class&apos;</span><br><span class="line"></span><br><span class="line"># 如果Student也没有  报错</span><br></pre></td></tr></table></figure>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">编写学生类，产生一堆学生对象</span><br><span class="line">要求：</span><br><span class="line">有一个计数器(属性)，统计共实例了多少个对象</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">class Student:</span><br><span class="line">    school = &apos;xx大学&apos;</span><br><span class="line">    count = 0</span><br><span class="line">    def __init__(self,name,sex,age):</span><br><span class="line">        self.Name = name</span><br><span class="line">        self.Sex = sex</span><br><span class="line">        self.Age = age</span><br><span class="line">        Student.count+=1</span><br><span class="line"></span><br><span class="line">    def learn(self):</span><br><span class="line">        print(&apos;%sis learning&apos;%self.Name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s1 = Student(&apos;a1&apos;,&apos;nan&apos;,11)</span><br><span class="line">s2 = Student(&apos;a2&apos;,&apos;nan&apos;,11)</span><br><span class="line">s3 = Student(&apos;a3&apos;,&apos;nan&apos;,11)</span><br><span class="line">print(Student.count)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">模拟王者荣耀定义两个英雄</span><br><span class="line">要求：</span><br><span class="line">英雄要有攻击力，生命，名字</span><br><span class="line">实例化两个英雄对象</span><br><span class="line">英雄之间可以互相殴打，被殴打一方掉血，血量少于0则判断死亡</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line">class Hero:</span><br><span class="line">    def __init__(self,name,life_value,aggresivity):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.life_value = life_value</span><br><span class="line">        self.aggresivity = aggresivity</span><br><span class="line"></span><br><span class="line">    def attack(self,enemy):</span><br><span class="line">        enemy.life_value -= self.aggresivity</span><br><span class="line"></span><br><span class="line">a = Hero(&apos;亚瑟&apos;,100,50)</span><br><span class="line">b = Hero(&apos;小乔&apos;,100,60)</span><br><span class="line"></span><br><span class="line">a.attack(b)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编程范式"><span class="toc-number">1.</span> <span class="toc-text">编程范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提到面向对象就不得不说的——类"><span class="toc-number">2.</span> <span class="toc-text">提到面向对象就不得不说的——类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类的定义和实例化对象"><span class="toc-number">2.1.</span> <span class="toc-text">类的定义和实例化对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用类"><span class="toc-number">2.2.</span> <span class="toc-text">使用类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如何使用对象"><span class="toc-number">2.3.</span> <span class="toc-text">如何使用对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性查找和绑定方法"><span class="toc-number">2.4.</span> <span class="toc-text">属性查找和绑定方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#练习"><span class="toc-number">2.5.</span> <span class="toc-text">练习</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&text=Py003-01-01面向对象"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&is_video=false&description=Py003-01-01面向对象"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Py003-01-01面向对象&body=Check out this article: https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&title=Py003-01-01面向对象"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/08/31/Py003-01-01面向对象/&name=Py003-01-01面向对象&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

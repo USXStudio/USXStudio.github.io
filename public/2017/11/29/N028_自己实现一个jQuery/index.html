@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="What is jQuery? 核心就是一句话 The Write Less,Do More（写更少，做更多）  ， ok ， let’s go！   addClass( )功能  （最渣版）  1234567&amp;lt;ul&amp;gt;    &amp;lt;li id=&amp;quot;item1&amp;quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&amp;quot;item2&amp;quot;&amp;gt;选">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己实现一个jQuery">
+<meta property="og:url" content="https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="What is jQuery? 核心就是一句话 The Write Less,Do More（写更少，做更多）  ， ok ， let’s go！   addClass( )功能  （最渣版）  1234567&amp;lt;ul&amp;gt;    &amp;lt;li id=&amp;quot;item1&amp;quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&amp;quot;item2&amp;quot;&amp;gt;选">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己实现一个jQuery">
+<meta name="twitter:description" content="What is jQuery? 核心就是一句话 The Write Less,Do More（写更少，做更多）  ， ok ， let’s go！   addClass( )功能  （最渣版）  1234567&amp;lt;ul&amp;gt;    &amp;lt;li id=&amp;quot;item1&amp;quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&amp;quot;item2&amp;quot;&amp;gt;选">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>自己实现一个jQuery</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/11/30/N029_01_JS避免相互影响之作用域/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/11/27/N027_DOM_API/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&text=自己实现一个jQuery"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&is_video=false&description=自己实现一个jQuery"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=自己实现一个jQuery&body=Check out this article: https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&name=自己实现一个jQuery&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-jQuery"><span class="toc-number">1.</span> <span class="toc-text">What is jQuery?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#addClass-签名版"><span class="toc-number">1.0.1.</span> <span class="toc-text">addClass( ) (签名版)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反正都是Node的api-我直接改原型不就好了-于是乎！你又挖了个坑"><span class="toc-number">1.0.2.</span> <span class="toc-text">反正都是Node的api 我直接改原型不就好了 于是乎！你又挖了个坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们是讲版权的我的就是我的"><span class="toc-number">1.0.3.</span> <span class="toc-text">我们是讲版权的我的就是我的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#我自创一个Node2行不行-以后可能还有Node3"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">我自创一个Node2行不行 以后可能还有Node3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说好的jQuery呢？-你把Node2替换成jQuery-在试试"><span class="toc-number">1.0.4.</span> <span class="toc-text">说好的jQuery呢？ 你把Node2替换成jQuery  在试试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery最强大的莫过于选择器-Selector"><span class="toc-number">1.0.5.</span> <span class="toc-text">jQuery最强大的莫过于选择器 Selector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果用过的人肯定知道jQuery选择器返回的是个伪数组才对"><span class="toc-number">1.0.6.</span> <span class="toc-text">如果用过的人肯定知道jQuery选择器返回的是个伪数组才对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你肯定会疑惑-为啥每次都-return-nodes-gt-答案就是链式操作"><span class="toc-number">1.0.7.</span> <span class="toc-text">你肯定会疑惑 为啥每次都 return nodes ==&gt; 答案就是链式操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#END"><span class="toc-number">1.0.8.</span> <span class="toc-text">END</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        自己实现一个jQuery
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-11-29T07:27:42.000Z" itemprop="datePublished">2017-11-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="What-is-jQuery"><a href="#What-is-jQuery" class="headerlink" title="What is jQuery?"></a>What is jQuery?</h1><blockquote>
+<p>核心就是一句话 The Write Less,Do More（写更少，做更多）  ， ok ， let’s go！</p>
+</blockquote>
+<ul>
+<li>addClass( )功能  （最渣版）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li id=&quot;item1&quot;&gt;选项1&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item2&quot;&gt;选项2&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item3&quot;&gt;选项3&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item4&quot;&gt;选项4&lt;/li&gt;</span><br><span class="line">    &lt;li id=&quot;item5&quot;&gt;选项5&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如何给id=”item3” 添加样式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function addClass(node,classArr)&#123;</span><br><span class="line">    var len = classArr.length;</span><br><span class="line">    for(let i = 0 ;i &lt; len ; i++)&#123;</span><br><span class="line">        node.classList.add(classArr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// item3 通过id名可以直接获取元素</span><br><span class="line">addClass(item3,[&apos;red&apos;]); </span><br><span class="line">// 你也可以这样</span><br><span class="line">addClass(document.getElementById(&apos;item4&apos;),[&apos;red&apos;])</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：通过id获取元素不是100%没问题的，你要是非 id=”parent”  这样就不好使,你可以打印看看parent是啥</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>这样只是初步封装了方法,但是方法是还在全局作用域,你叫addClass 到时候别人也叫addClass 你可能就被覆盖了  我们是有版权的   来来来 来个帅气签名！</p>
+</blockquote>
+<h3 id="addClass-签名版"><a href="#addClass-签名版" class="headerlink" title="addClass( ) (签名版)"></a>addClass( ) (签名版)</h3><blockquote>
+<p>命名空间：给全局对象挂载一个对象 window.myDom = { }<br>然后在你挂载的myDom 对象上挂载你的属性 、方法</p>
+</blockquote>
+<blockquote>
+<p>这比之前好在哪里？</p>
+</blockquote>
+<blockquote>
+<p>好在有“从属”关系而不是“零散“的变量<br>（至少在阿里没落前）我是阿里的前端  相比 我是一个前端 那个更有份量呢？ </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window.myDom = &#123;&#125;;</span><br><span class="line">myDom.addClass = function (node,classArr)&#123;</span><br><span class="line">    var len = classArr.length;</span><br><span class="line">    for(let i = 0 ;i &lt; len ; i++)&#123;</span><br><span class="line">        node.classList.add(classArr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">myDom.addClass(item3,[&apos;red&apos;]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>你肯定会不爽因为还不如之前用着爽了  每次还得加命名前缀<br>  myDom.fn(param)<br>  myDom.fn2(param)<br>  直接 item3.addClass([‘red’]) 才爽 有需求就会有改进</li>
+</ul>
+<h3 id="反正都是Node的api-我直接改原型不就好了-于是乎！你又挖了个坑"><a href="#反正都是Node的api-我直接改原型不就好了-于是乎！你又挖了个坑" class="headerlink" title="反正都是Node的api 我直接改原型不就好了 于是乎！你又挖了个坑"></a>反正都是Node的api 我直接改原型不就好了 于是乎！你又挖了个坑</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Node.prototype.addClass =  function (node,classArr)&#123;</span><br><span class="line">    var len = classArr.length;</span><br><span class="line">    for(let i = 0 ;i &lt; len ; i++)&#123;</span><br><span class="line">        this.classList.add(classArr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> item3.addClass([&apos;red&apos;]);  //你遂了心意了</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这样的后果是别人也这样改原型，而且也添加个addClass<br>是不是心好累！  为啥？此乃优良传统<br>山寨一下 改改加点“我想出”的功能 我就敢说我的比你好！ （王者荣耀 与 dota ）<br>why?你用上了爱迪生的电灯泡 我就问你，你是自己发明一个还是在借鉴他？<br>看得远是因为我站在巨人的肩膀上！</li>
+</ul>
+<h3 id="我们是讲版权的我的就是我的"><a href="#我们是讲版权的我的就是我的" class="headerlink" title="我们是讲版权的我的就是我的"></a>我们是讲版权的我的就是我的</h3><h4 id="我自创一个Node2行不行-以后可能还有Node3"><a href="#我自创一个Node2行不行-以后可能还有Node3" class="headerlink" title="我自创一个Node2行不行 以后可能还有Node3"></a>我自创一个Node2行不行 以后可能还有Node3</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.Node2 = function(node)&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                addClass:function(classArr)&#123;</span><br><span class="line">                    var len = classArr.length;</span><br><span class="line">                    for(let i = 0 ;i &lt; len ; i++)&#123;</span><br><span class="line">                        node.classList.add(classArr[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">var node2 = Node2(item4);</span><br><span class="line">node2.addClass([&apos;red&apos;]);  //完美</span><br><span class="line">// Node2(item5).addClass([&apos;red&apos;])   是不是有种似曾相识的感觉</span><br></pre></td></tr></table></figure>
+<h3 id="说好的jQuery呢？-你把Node2替换成jQuery-在试试"><a href="#说好的jQuery呢？-你把Node2替换成jQuery-在试试" class="headerlink" title="说好的jQuery呢？ 你把Node2替换成jQuery  在试试"></a>说好的jQuery呢？ 你把Node2替换成jQuery  在试试</h3><blockquote>
+<p>是不是有点感觉了   这是最简单版  以后会慢慢高大上的</p>
+</blockquote>
+<h3 id="jQuery最强大的莫过于选择器-Selector"><a href="#jQuery最强大的莫过于选择器-Selector" class="headerlink" title="jQuery最强大的莫过于选择器 Selector"></a>jQuery最强大的莫过于选择器 Selector</h3><blockquote>
+<p>你肯定听说过一句话  “选择大于能力” (啊！没听过？  现在听过了！)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">window.jQyery = function(nodeOrSelector)&#123;</span><br><span class="line">            let node ; </span><br><span class="line">            if(typeof nodeOrSelector ===&apos;string&apos;)&#123;</span><br><span class="line">                node = document.querySelector(nodeOrSelector);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                node = nodeOrSelector;</span><br><span class="line">            &#125;</span><br><span class="line">            return &#123;</span><br><span class="line">                addClass:function(classArr)&#123;</span><br><span class="line">                    var len = classArr.length;</span><br><span class="line">                    for(let i = 0 ;i &lt; len ; i++)&#123;</span><br><span class="line">                        node.classList.add(classArr[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">var jqyery = jQyery(item4);</span><br><span class="line">jqyery.addClass([&apos;red&apos;]);</span><br></pre></td></tr></table></figure>
+<h3 id="如果用过的人肯定知道jQuery选择器返回的是个伪数组才对"><a href="#如果用过的人肯定知道jQuery选择器返回的是个伪数组才对" class="headerlink" title="如果用过的人肯定知道jQuery选择器返回的是个伪数组才对"></a>如果用过的人肯定知道jQuery选择器返回的是个伪数组才对</h3><blockquote>
+<p>我们使用querySelectorAll()它返回的是一个节点数组（伪数组）</p>
+</blockquote>
+<blockquote>
+<p>然后给我们内部声明的 nodes 复制获取的每个节点</p>
+</blockquote>
+<blockquote>
+<p>如果是节点数组就挨个拷贝  如果是一个 我也把你搞成伪数组哪怕就一个甚至没有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">window.jQyery = function(nodeOrSelector)&#123;</span><br><span class="line">            let nodes = &#123;&#125;; </span><br><span class="line">            if(typeof nodeOrSelector ===&apos;string&apos;)&#123;</span><br><span class="line">                let temp = document.querySelectorAll(nodeOrSelector);</span><br><span class="line">                for(let i=0;i&lt;temp.length;i++)&#123;</span><br><span class="line">                    nodes[i] = temp[i];</span><br><span class="line">                &#125;   </span><br><span class="line">                nodes.length = temp.length;</span><br><span class="line">            &#125;else if(nodeOrSelector instanceof Node)&#123;</span><br><span class="line">                nodes = &#123;</span><br><span class="line">                    0:nodeOrSelector,</span><br><span class="line">                    length:1</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            nodes.addClass = function(classes)&#123;</span><br><span class="line">                for(let i=0;i&lt;classes.length;i++)&#123;</span><br><span class="line">                    for(let j=0;j&lt;nodes.length;j++)&#123;</span><br><span class="line">                        nodes[j].classList.add(classes[i]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                return nodes;</span><br><span class="line">            &#125; </span><br><span class="line">            return nodes;</span><br><span class="line">        &#125;</span><br><span class="line">//这样我们就可以用$(选择器)调用了</span><br><span class="line">window.$ = jQyery;</span><br><span class="line">//$(item3).addClass([&apos;red&apos;]);</span><br><span class="line">$(&apos;ul li&apos;).addClass([&apos;red&apos;])</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="你肯定会疑惑-为啥每次都-return-nodes-gt-答案就是链式操作"><a href="#你肯定会疑惑-为啥每次都-return-nodes-gt-答案就是链式操作" class="headerlink" title="你肯定会疑惑 为啥每次都 return nodes ==&gt; 答案就是链式操作"></a>你肯定会疑惑 为啥每次都 return nodes ==&gt; 答案就是链式操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;ul li&apos;).addClass([&apos;red&apos;]).Text(&apos;hi&apos;); //Text 我们还没有实现  ok 马上开始</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在内部继续挂载方法   Text( ) 你传递参数就代表设置text你不传递就代表get</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">nodes.Text = function (text)&#123;</span><br><span class="line">    if(text === undefined)&#123;</span><br><span class="line">        var texts = [];</span><br><span class="line">        for(let i=0;i&lt;nodes.length;i++)&#123;</span><br><span class="line">            texts.push(nodes[i].textContent);</span><br><span class="line">        &#125;</span><br><span class="line">        return texts;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        for(let i=0;i&lt;nodes.length;i++)&#123;</span><br><span class="line">            nodes[i].textContent = text;</span><br><span class="line">        &#125;</span><br><span class="line">        return nodes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>欢迎批评指正！ </p>
+</blockquote>
+<h3 id="END"><a href="#END" class="headerlink" title="END"></a>END</h3>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-is-jQuery"><span class="toc-number">1.</span> <span class="toc-text">What is jQuery?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#addClass-签名版"><span class="toc-number">1.0.1.</span> <span class="toc-text">addClass( ) (签名版)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反正都是Node的api-我直接改原型不就好了-于是乎！你又挖了个坑"><span class="toc-number">1.0.2.</span> <span class="toc-text">反正都是Node的api 我直接改原型不就好了 于是乎！你又挖了个坑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们是讲版权的我的就是我的"><span class="toc-number">1.0.3.</span> <span class="toc-text">我们是讲版权的我的就是我的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#我自创一个Node2行不行-以后可能还有Node3"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">我自创一个Node2行不行 以后可能还有Node3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说好的jQuery呢？-你把Node2替换成jQuery-在试试"><span class="toc-number">1.0.4.</span> <span class="toc-text">说好的jQuery呢？ 你把Node2替换成jQuery  在试试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jQuery最强大的莫过于选择器-Selector"><span class="toc-number">1.0.5.</span> <span class="toc-text">jQuery最强大的莫过于选择器 Selector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果用过的人肯定知道jQuery选择器返回的是个伪数组才对"><span class="toc-number">1.0.6.</span> <span class="toc-text">如果用过的人肯定知道jQuery选择器返回的是个伪数组才对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你肯定会疑惑-为啥每次都-return-nodes-gt-答案就是链式操作"><span class="toc-number">1.0.7.</span> <span class="toc-text">你肯定会疑惑 为啥每次都 return nodes ==&gt; 答案就是链式操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#END"><span class="toc-number">1.0.8.</span> <span class="toc-text">END</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&text=自己实现一个jQuery"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&is_video=false&description=自己实现一个jQuery"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=自己实现一个jQuery&body=Check out this article: https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&title=自己实现一个jQuery"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/11/29/N028_自己实现一个jQuery/&name=自己实现一个jQuery&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

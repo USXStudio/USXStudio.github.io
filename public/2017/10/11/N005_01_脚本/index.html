@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="理解脚本如果你打开一本 JavaScript 教程，那么很可能在第一章就看到这句话：  JavaScript 是一门动态类型、面向对象的脚本语言。  然而很多工作一年都不清楚这个脚本是什么意思。 其实脚本原本来自戏剧舞台，比如下面这个脚本：  公馆一室内王妈：（小心翼翼地）小姐，您还是得注意身子，就吃点东西吧。鸡小姐：（把碗砸在地上）不吃，我就是不吃。（王妈下）  脚本主要由人物对话和舞台提示组成">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="脚本">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/11/N005_01_脚本/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="理解脚本如果你打开一本 JavaScript 教程，那么很可能在第一章就看到这句话：  JavaScript 是一门动态类型、面向对象的脚本语言。  然而很多工作一年都不清楚这个脚本是什么意思。 其实脚本原本来自戏剧舞台，比如下面这个脚本：  公馆一室内王妈：（小心翼翼地）小姐，您还是得注意身子，就吃点东西吧。鸡小姐：（把碗砸在地上）不吃，我就是不吃。（王妈下）  脚本主要由人物对话和舞台提示组成">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.171Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="脚本">
+<meta name="twitter:description" content="理解脚本如果你打开一本 JavaScript 教程，那么很可能在第一章就看到这句话：  JavaScript 是一门动态类型、面向对象的脚本语言。  然而很多工作一年都不清楚这个脚本是什么意思。 其实脚本原本来自戏剧舞台，比如下面这个脚本：  公馆一室内王妈：（小心翼翼地）小姐，您还是得注意身子，就吃点东西吧。鸡小姐：（把碗砸在地上）不吃，我就是不吃。（王妈下）  脚本主要由人物对话和舞台提示组成">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>脚本</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/11/N005_02简单脚本的编写/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/11/N005_01_脚本/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&text=脚本"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&is_video=false&description=脚本"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=脚本&body=Check out this article: https://usxstudio.github.io/2017/10/11/N005_01_脚本/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&name=脚本&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解脚本"><span class="toc-number">1.</span> <span class="toc-text">理解脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自己写一个脚本"><span class="toc-number">1.1.</span> <span class="toc-text">自己写一个脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#path是什么"><span class="toc-number">1.2.</span> <span class="toc-text">path是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后续待更新"><span class="toc-number">1.3.</span> <span class="toc-text">后续待更新</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        脚本
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-10T16:50:18.000Z" itemprop="datePublished">2017-10-11</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="理解脚本"><a href="#理解脚本" class="headerlink" title="理解脚本"></a>理解脚本</h3><p>如果你打开一本 JavaScript 教程，那么很可能在第一章就看到这句话：</p>
+<blockquote>
+<p>JavaScript 是一门动态类型、面向对象的脚本语言。</p>
+</blockquote>
+<p>然而很多工作一年都不清楚这个脚本是什么意思。</p>
+<p>其实脚本原本来自戏剧舞台，比如下面这个脚本：</p>
+<blockquote>
+<p>公馆一室内<br>王妈：（小心翼翼地）小姐，您还是得注意身子，就吃点东西吧。<br>鸡小姐：（把碗砸在地上）不吃，我就是不吃。<br>（王妈下）</p>
+</blockquote>
+<p>脚本主要由人物对话和舞台提示组成。演员和道具组只需要按照脚本说的做即可。</p>
+<p>编程领域的脚本也是类似的，计算机只要照着脚本上说的做即可，比如下面这个脚本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Desktop</span><br><span class="line">mkdir demo</span><br><span class="line">cd demo</span><br><span class="line">echo &quot;hi&quot; &gt; index.html</span><br><span class="line">cd ~/Desktop</span><br></pre></td></tr></table></figure>
+<p>所以说，脚本就是给计算机照着做的。这是我们对「脚本」的一个感性认识。接下来我们写一个脚本。</p>
+<h4 id="自己写一个脚本"><a href="#自己写一个脚本" class="headerlink" title="自己写一个脚本"></a>自己写一个脚本</h4><p>默认你在window下并且安装了gitbash</p>
+<ol>
+<li>第一步</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/local   //切换到用户目录下的 local目录</span><br><span class="line">touch demo.txt   //新建一个txt文件  后续我们会改为.sh文件因为linux里sh后缀打开会认为是执行程序</span><br><span class="line">open demo.txt //window不支持  如果你会vim  可以vi demo.txt 不然你就双击好了</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>打开demo.txt后编辑</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir demo</span><br><span class="line">cd demo</span><br><span class="line">mkdir css js</span><br><span class="line">touch index.html css/style.css js/main.js</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>修改后缀为.sh（如果是非window 要添加可执行权限 chmod +x  demo.sh）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv demo.txt demo.sh</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>执行脚本,然后查看对应目录会有一个demo文件夹里面会有js css index.html</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh ~/local/demo.sh</span><br></pre></td></tr></table></figure>
+<h4 id="path是什么"><a href="#path是什么" class="headerlink" title="path是什么"></a>path是什么</h4><ul>
+<li>你每次在 Bash 里面输入一个命令时（比如 ls、cp、demo），- Bash 都会去 PATH 列表里面寻找对应的文件，如果找到了就执行。</li>
+<li>使用 type demo 可以看到寻找过程</li>
+<li>使用 which demo 可以看到寻找结果</li>
+<li>文件后缀的作用：毫无作用</li>
+</ul>
+<p>你以为一个文件以 .exe 结尾就一定可以双击吗？你以为一个文件以 .png 结尾就一定是图片吗？图样图森破！</p>
+<h4 id="后续待更新"><a href="#后续待更新" class="headerlink" title="后续待更新"></a>后续待更新</h4>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#理解脚本"><span class="toc-number">1.</span> <span class="toc-text">理解脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自己写一个脚本"><span class="toc-number">1.1.</span> <span class="toc-text">自己写一个脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#path是什么"><span class="toc-number">1.2.</span> <span class="toc-text">path是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后续待更新"><span class="toc-number">1.3.</span> <span class="toc-text">后续待更新</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/11/N005_01_脚本/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&text=脚本"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&is_video=false&description=脚本"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=脚本&body=Check out this article: https://usxstudio.github.io/2017/10/11/N005_01_脚本/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&title=脚本"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/11/N005_01_脚本/&name=脚本&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

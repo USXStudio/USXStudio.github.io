@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="html一些标签总结iframe通常用来嵌套一个页面如百度  它的宽高是由自己决定的，而且你只能设置宽度100%，高度100%是没用的(CSS蛋疼之处) 如果你用iframe会明显感觉页面变卡了 它一般会出现在五年前的项目里 frameborder=”0”是去除iframe的边框的(3d边框)  1&amp;lt;iframe src=&amp;quot;http://www.baidu.com&amp;quot; fr">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML续">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/18/N009_0_HTML续/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="html一些标签总结iframe通常用来嵌套一个页面如百度  它的宽高是由自己决定的，而且你只能设置宽度100%，高度100%是没用的(CSS蛋疼之处) 如果你用iframe会明显感觉页面变卡了 它一般会出现在五年前的项目里 frameborder=”0”是去除iframe的边框的(3d边框)  1&amp;lt;iframe src=&amp;quot;http://www.baidu.com&amp;quot; fr">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.177Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML续">
+<meta name="twitter:description" content="html一些标签总结iframe通常用来嵌套一个页面如百度  它的宽高是由自己决定的，而且你只能设置宽度100%，高度100%是没用的(CSS蛋疼之处) 如果你用iframe会明显感觉页面变卡了 它一般会出现在五年前的项目里 frameborder=”0”是去除iframe的边框的(3d边框)  1&amp;lt;iframe src=&amp;quot;http://www.baidu.com&amp;quot; fr">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HTML续</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/19/N009_1_HTML续2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/17/N008_HTML/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&text=HTML续"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&is_video=false&description=HTML续"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML续&body=Check out this article: https://usxstudio.github.io/2017/10/18/N009_0_HTML续/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&name=HTML续&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#html一些标签总结"><span class="toc-number">1.</span> <span class="toc-text">html一些标签总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe"><span class="toc-number">1.1.</span> <span class="toc-text">iframe</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe-和-a标签一起使用时会发生什么？"><span class="toc-number">1.1.1.</span> <span class="toc-text">iframe 和 a标签一起使用时会发生什么？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe的src属性也可以写相对路径，包含页面"><span class="toc-number">1.1.2.</span> <span class="toc-text">iframe的src属性也可以写相对路径，包含页面</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-标签"><span class="toc-number">1.2.</span> <span class="toc-text">a 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a标签之-download-属性"><span class="toc-number">1.2.1.</span> <span class="toc-text">a标签之 download 属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#a标签纸-href属性"><span class="toc-number">1.2.2.</span> <span class="toc-text">a标签纸 href属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-qq-com”是-无协议绝对地址自动继承协议"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">href=”//qq.com”是 无协议绝对地址自动继承协议</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”xxx-html”-相对路径"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">href=”xxx.html” 相对路径</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-name-hjx”"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">href=”?name=hjx”</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-sss”-锚点是不发请求了"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">href=”#sss” 锚点是不发请求了</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”javascript-”-伪协议"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">href=”javascript:;” 伪协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一些问题"><span class="toc-number">1.3.</span> <span class="toc-text">一些问题</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HTML续
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-18T13:02:23.000Z" itemprop="datePublished">2017-10-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="html一些标签总结"><a href="#html一些标签总结" class="headerlink" title="html一些标签总结"></a>html一些标签总结</h3><h4 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h4><p>通常用来嵌套一个页面如百度</p>
+<ul>
+<li>它的宽高是由自己决定的，而且你只能设置宽度100%，高度100%是没用的(CSS蛋疼之处)</li>
+<li>如果你用iframe会明显感觉页面变卡了</li>
+<li>它一般会出现在五年前的项目里</li>
+<li>frameborder=”0”是去除iframe的边框的(3d边框)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;http://www.baidu.com&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="iframe-和-a标签一起使用时会发生什么？"><a href="#iframe-和-a标签一起使用时会发生什么？" class="headerlink" title="iframe 和 a标签一起使用时会发生什么？"></a>iframe 和 a标签一起使用时会发生什么？</h5><ul>
+<li>给iframe 加上name属性  如name=”xxx”</li>
+<li>给a 加上target属性    如target=”xxx”</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe name=&quot;xxx&quot; src=&quot;#&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;a target=&quot;xxx&quot; href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">&lt;a target=&quot;xxx&quot; href=&quot;http://www.qq.com&quot;&gt;QQ&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>这样页面上你点击「百度」iframe就会显示百度的网页，点击「QQ」就会显示qq的网页</p>
+<h5 id="iframe的src属性也可以写相对路径，包含页面"><a href="#iframe的src属性也可以写相对路径，包含页面" class="headerlink" title="iframe的src属性也可以写相对路径，包含页面"></a>iframe的src属性也可以写相对路径，包含页面</h5><p>前提你至少得开一个本地服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe src=&quot;./index2.html&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="a-标签"><a href="#a-标签" class="headerlink" title="a 标签"></a>a 标签</h4><p>我们分别写四个target它们都会在哪里打开呢？</p>
+<p>建立如下文件 </p>
+<p>index3.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index3页面</span><br><span class="line">&lt;a target=&quot;_blank&quot; href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br><span class="line">&lt;a target=&quot;_self&quot; href=&quot;http://www.qq.com&quot;&gt;QQ&lt;/a&gt;</span><br><span class="line">&lt;a target=&quot;_parent&quot; href=&quot;http://www.jd.com&quot;&gt;京东&lt;/a&gt;</span><br><span class="line">&lt;a target=&quot;_top&quot; href=&quot;http://www.taobao.com&quot;&gt;淘宝&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>index2.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index2页面</span><br><span class="line">&lt;iframe src=&quot;./index3.html&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<p>index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">index页面</span><br><span class="line">&lt;iframe src=&quot;./index2.html&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你可以 http-server的工具 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#全局安装</span><br><span class="line">npm install http-server -g  </span><br><span class="line">#开启本地服务 </span><br><span class="line">http-server -c-1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>_blank 会新开一个窗口打开</li>
+<li>_self 会在自己页面打开，如上结果会在index3页面打开</li>
+<li>_parent 会在父页面打开，如上结果会在index2页面打开</li>
+<li>_top 会在顶级窗口打开， 如上结果会在index页面打开</li>
+</ul>
+<h5 id="a标签之-download-属性"><a href="#a标签之-download-属性" class="headerlink" title="a标签之 download 属性"></a>a标签之 download 属性</h5><blockquote>
+<p>download可以下载东西，可能是安装包可能是网页</p>
+</blockquote>
+<ul>
+<li><p>如果不加download<br>服务器要设置 Content-Type:application/octet-stream</p>
+</li>
+<li><p>加了 download 就可以直接下载</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a  href=&quot;http://www.qq.com&quot; download&gt;下载&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="a标签纸-href属性"><a href="#a标签纸-href属性" class="headerlink" title="a标签纸 href属性"></a>a标签纸 href属性</h5><blockquote>
+<p>只写qq.com会跳转到 qq.com的网页吗？  不会</p>
+</blockquote>
+<p>因为这是一个相对地址</p>
+<blockquote>
+<p>比如你在命令行里  touch 1.txt / open 1.txt 都是相对当前命令行的目录执行的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a  href=&quot;qq.com&quot;&gt;qq&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>修改 href=”//qq.com”</p>
+<blockquote>
+<p>代表以当前协议打开</p>
+</blockquote>
+<ul>
+<li><p>如果你是一个本地文件打开是文件协议 file协议</p>
+</li>
+<li><p>如果你想打开qq.com的网页,你需要以http协议打开</p>
+</li>
+</ul>
+<p>那么你要下载一个 http-server 的工具，这样就能本地开一个node服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#全局安装</span><br><span class="line">npm install http-server -g  </span><br><span class="line">#开启本地服务   -c-1代表不要缓存</span><br><span class="line">http-server -c-1</span><br></pre></td></tr></table></figure>
+<h6 id="href-”-qq-com”是-无协议绝对地址自动继承协议"><a href="#href-”-qq-com”是-无协议绝对地址自动继承协议" class="headerlink" title="href=”//qq.com”是 无协议绝对地址自动继承协议"></a>href=”//qq.com”是 无协议绝对地址自动继承协议</h6><h6 id="href-”xxx-html”-相对路径"><a href="#href-”xxx-html”-相对路径" class="headerlink" title="href=”xxx.html” 相对路径"></a>href=”xxx.html” 相对路径</h6><ul>
+<li>A /index.html/xxx.html</li>
+<li>B /xxx.html √</li>
+</ul>
+<h6 id="href-”-name-hjx”"><a href="#href-”-name-hjx”" class="headerlink" title="href=”?name=hjx”"></a>href=”?name=hjx”</h6><ul>
+<li>A 保存</li>
+<li>B 这样很自然 √  如果你点击会发起get请求并把参数拼接到当前url上</li>
+</ul>
+<h6 id="href-”-sss”-锚点是不发请求了"><a href="#href-”-sss”-锚点是不发请求了" class="headerlink" title="href=”#sss” 锚点是不发请求了"></a>href=”#sss” 锚点是不发请求了</h6><h6 id="href-”javascript-”-伪协议"><a href="#href-”javascript-”-伪协议" class="headerlink" title="href=”javascript:;” 伪协议"></a>href=”javascript:;” 伪协议</h6><h4 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;&quot;&gt;link&lt;/a&gt; 标签被点击后会发生什么？</span><br><span class="line">当前页面刷新</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;/..&quot;&gt;link&lt;/a&gt; 标签被点击后会发生什么？</span><br><span class="line">浏览器发起 GET / HTTP/1.1请求</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我想写一个a标签,但是点击之后不要跳转</p>
+</blockquote>
+<ul>
+<li>写#(锚点) 页面会动</li>
+<li>不写href属性 a就跟span一样了</li>
+<li>伪协议 href=”javascript:;”</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#html一些标签总结"><span class="toc-number">1.</span> <span class="toc-text">html一些标签总结</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#iframe"><span class="toc-number">1.1.</span> <span class="toc-text">iframe</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe-和-a标签一起使用时会发生什么？"><span class="toc-number">1.1.1.</span> <span class="toc-text">iframe 和 a标签一起使用时会发生什么？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#iframe的src属性也可以写相对路径，包含页面"><span class="toc-number">1.1.2.</span> <span class="toc-text">iframe的src属性也可以写相对路径，包含页面</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#a-标签"><span class="toc-number">1.2.</span> <span class="toc-text">a 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#a标签之-download-属性"><span class="toc-number">1.2.1.</span> <span class="toc-text">a标签之 download 属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#a标签纸-href属性"><span class="toc-number">1.2.2.</span> <span class="toc-text">a标签纸 href属性</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-qq-com”是-无协议绝对地址自动继承协议"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">href=”//qq.com”是 无协议绝对地址自动继承协议</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”xxx-html”-相对路径"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">href=”xxx.html” 相对路径</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-name-hjx”"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">href=”?name=hjx”</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”-sss”-锚点是不发请求了"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">href=”#sss” 锚点是不发请求了</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#href-”javascript-”-伪协议"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">href=”javascript:;” 伪协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一些问题"><span class="toc-number">1.3.</span> <span class="toc-text">一些问题</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&text=HTML续"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&is_video=false&description=HTML续"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML续&body=Check out this article: https://usxstudio.github.io/2017/10/18/N009_0_HTML续/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&title=HTML续"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/18/N009_0_HTML续/&name=HTML续&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="序列化模块 序列化——转向一个字符串的数据类型 序列——字符串  数据存储网络上传输的时候  序列化：从数据类型==&amp;gt; 字符串的过程  反序列化：从字符串==&amp;gt;数据类型 重要的几个知识点 「*」代表重要程度 json * pickle ** shelve ***  json通用序列化格式 只有很少的一部分数据类型能够通过json转化成字符串  pickle 所有python里的数据类型">
+<meta name="keywords" content="fullstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P020_01_python序列化模块">
+<meta property="og:url" content="https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="序列化模块 序列化——转向一个字符串的数据类型 序列——字符串  数据存储网络上传输的时候  序列化：从数据类型==&amp;gt; 字符串的过程  反序列化：从字符串==&amp;gt;数据类型 重要的几个知识点 「*」代表重要程度 json * pickle ** shelve ***  json通用序列化格式 只有很少的一部分数据类型能够通过json转化成字符串  pickle 所有python里的数据类型">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P020_01_python序列化模块">
+<meta name="twitter:description" content="序列化模块 序列化——转向一个字符串的数据类型 序列——字符串  数据存储网络上传输的时候  序列化：从数据类型==&amp;gt; 字符串的过程  反序列化：从字符串==&amp;gt;数据类型 重要的几个知识点 「*」代表重要程度 json * pickle ** shelve ***  json通用序列化格式 只有很少的一部分数据类型能够通过json转化成字符串  pickle 所有python里的数据类型">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>P020_01_python序列化模块</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/29/P020_02_python模块的导入/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/29/P019_03_python常用模块三/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&text=P020_01_python序列化模块"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&is_video=false&description=P020_01_python序列化模块"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P020_01_python序列化模块&body=Check out this article: https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&name=P020_01_python序列化模块&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化模块"><span class="toc-number">1.</span> <span class="toc-text">序列化模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#序列化：从数据类型-gt-字符串的过程"><span class="toc-number">1.1.</span> <span class="toc-text">序列化：从数据类型==&gt; 字符串的过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反序列化：从字符串-gt-数据类型"><span class="toc-number">1.2.</span> <span class="toc-text">反序列化：从字符串==&gt;数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重要的几个知识点-「-」代表重要程度"><span class="toc-number">1.3.</span> <span class="toc-text">重要的几个知识点 「*」代表重要程度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#json通用序列化格式"><span class="toc-number">1.3.1.</span> <span class="toc-text">json通用序列化格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pickle"><span class="toc-number">1.3.2.</span> <span class="toc-text">pickle</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shelve"><span class="toc-number">1.3.3.</span> <span class="toc-text">shelve</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json"><span class="toc-number">2.</span> <span class="toc-text">json</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意如果你用json的demp和load只能一次性写入和读取"><span class="toc-number">2.1.</span> <span class="toc-text">注意如果你用json的demp和load只能一次性写入和读取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pickle-1"><span class="toc-number">3.</span> <span class="toc-text">pickle</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pickle的dump和load可以分步序列化写入和读取-json不行"><span class="toc-number">3.1.</span> <span class="toc-text">pickle的dump和load可以分步序列化写入和读取 (json不行)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shelve-1"><span class="toc-number">4.</span> <span class="toc-text">shelve</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#json补充知识-格式化输出"><span class="toc-number">4.1.</span> <span class="toc-text">json补充知识 格式化输出</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P020_01_python序列化模块
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-29T07:23:05.000Z" itemprop="datePublished">2018-07-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/fullstack/">fullstack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="序列化模块"><a href="#序列化模块" class="headerlink" title="序列化模块"></a>序列化模块</h3><ul>
+<li>序列化——转向一个字符串的数据类型</li>
+<li>序列——字符串</li>
+</ul>
+<p>数据存储<br>网络上传输的时候</p>
+<blockquote>
+<h4 id="序列化：从数据类型-gt-字符串的过程"><a href="#序列化：从数据类型-gt-字符串的过程" class="headerlink" title="序列化：从数据类型==&gt; 字符串的过程"></a>序列化：从数据类型==&gt; 字符串的过程</h4></blockquote>
+<blockquote>
+<h4 id="反序列化：从字符串-gt-数据类型"><a href="#反序列化：从字符串-gt-数据类型" class="headerlink" title="反序列化：从字符串==&gt;数据类型"></a>反序列化：从字符串==&gt;数据类型</h4></blockquote>
+<h4 id="重要的几个知识点-「-」代表重要程度"><a href="#重要的几个知识点-「-」代表重要程度" class="headerlink" title="重要的几个知识点 「*」代表重要程度"></a>重要的几个知识点 「*」代表重要程度</h4><ul>
+<li>json <strong>*</strong></li>
+<li>pickle <em>**</em></li>
+<li>shelve ***</li>
+</ul>
+<h5 id="json通用序列化格式"><a href="#json通用序列化格式" class="headerlink" title="json通用序列化格式"></a>json通用序列化格式</h5><ul>
+<li>只有很少的一部分数据类型能够通过json转化成字符串</li>
+</ul>
+<h5 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h5><ul>
+<li>所有python里的数据类型都可以转化成字符串格式</li>
+<li>pickle序列化的内容只有python能理解</li>
+<li>且部分反序列化依赖代码</li>
+</ul>
+<p>例如网游 魔兽世界你退出游戏了 但是下次登录你还会在原来的数据基础上。这些信息如血量蓝量背包的物品经验值都是对应一些数据类型并依赖一些模块存在服务器或者你本地</p>
+<h5 id="shelve"><a href="#shelve" class="headerlink" title="shelve"></a>shelve</h5><ul>
+<li>序列化句柄</li>
+<li>使用句柄直接操作非常方便</li>
+</ul>
+<h3 id="json"><a href="#json" class="headerlink" title="json"></a>json</h3><blockquote>
+<p>内存相关</p>
+</blockquote>
+<ul>
+<li>dumps 序列化方法</li>
+<li>loads 反序列化方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;v1&quot;&#125;</span><br><span class="line"></span><br><span class="line">print(type(dic),dic)</span><br><span class="line"># &lt;class &apos;dict&apos;&gt; &#123;&apos;k1&apos;: &apos;v1&apos;&#125;</span><br><span class="line"></span><br><span class="line"># 序列化</span><br><span class="line">str_d = json.dumps(dic)</span><br><span class="line">print(type(str_d),str_d) </span><br><span class="line"># &lt;class &apos;str&apos;&gt; &#123;&quot;k1&quot;: &quot;v1&quot;&#125;</span><br><span class="line"></span><br><span class="line"># 反序列化</span><br><span class="line">dic_d = json.loads(str_d)</span><br><span class="line">print(type(dic_d),dic_d)</span><br><span class="line"># &lt;class &apos;dict&apos;&gt; &#123;&apos;k1&apos;: &apos;v1&apos;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>元组:序列化之后是列表,把元组序列号的内容反序列化后也是列表</p>
+</blockquote>
+<blockquote>
+<p>set不能进行序列化：报错</p>
+</blockquote>
+<blockquote>
+<p>文件相关：传递要序列话的内容，和文件句柄</p>
+</blockquote>
+<ul>
+<li>dump</li>
+<li>load</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;v1&quot;&#125;</span><br><span class="line">f = open(&apos;fff&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">json.dump(dic,f) # 序列化后的字符串写入到文件里</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;fff&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">res = json.load(f)</span><br><span class="line">f.close()</span><br><span class="line">print(res) # &#123;&apos;k1&apos;: &apos;v1&apos;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>序列化的时候有中文咋办？</p>
+</blockquote>
+<p>读取能正常但是你去看fff文件发现中文已经被转换了 {“k1”: “\u4e2d\u56fd”}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;中国&quot;&#125;</span><br><span class="line">f = open(&apos;fff&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">json.dump(dic,f) # 序列化后的字符串写入到文件里</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;fff&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">res = json.load(f)</span><br><span class="line">f.close()</span><br><span class="line">print(res) # &#123;&apos;k1&apos;: &apos;中国&apos;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决dump时 中文会转换为byte编码的问题</p>
+</blockquote>
+<ul>
+<li>ensure_ascii=False以指定的编码写入</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line"></span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;中国&quot;&#125;</span><br><span class="line">f = open(&apos;fff&apos;,&apos;w&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">json.dump(dic,f,ensure_ascii=False) # 序列化后的字符串写入到文件里</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;fff&apos;,encoding=&apos;utf-8&apos;)</span><br><span class="line">res = json.load(f)</span><br><span class="line">f.close()</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="注意如果你用json的demp和load只能一次性写入和读取"><a href="#注意如果你用json的demp和load只能一次性写入和读取" class="headerlink" title="注意如果你用json的demp和load只能一次性写入和读取"></a>注意如果你用json的demp和load只能一次性写入和读取</h4></blockquote>
+<p>如果想要分次写入和读取就不能用dump和load</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 分次写入</span><br><span class="line">import json</span><br><span class="line">a = [&#123;&quot;k1&quot;:1&#125;,&#123;&quot;k2&quot;:22&#125;,&#123;&quot;k3&quot;:33&#125;]</span><br><span class="line">f = open(&apos;file&apos;,&apos;w&apos;)</span><br><span class="line">for dic in a:</span><br><span class="line">    str_dic = json.dumps(dic)</span><br><span class="line">    f.write(str_dic+&apos;\n&apos;)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"># 分次读取</span><br><span class="line">b = []</span><br><span class="line">f = open(&apos;file&apos;)</span><br><span class="line">for line in f:</span><br><span class="line">    dic = json.loads(line.strip())</span><br><span class="line">    b.append(dic)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<h3 id="pickle-1"><a href="#pickle-1" class="headerlink" title="pickle"></a>pickle</h3><ul>
+<li>pickle也有json模块里的 dump/dumps ,load/loads方法</li>
+<li>pickle在dumps/dump的时候你是看不出来的(二进制内容)</li>
+<li>在调用dump/load 读写文件的时候要使用rb和wb模式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line"></span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;中国&quot;&#125;</span><br><span class="line">str = pickle.dumps(dic)</span><br><span class="line">print(str) # 一串二进制内容</span><br><span class="line"># b&apos;\x80\x03&#125;q\x00X\x02\x00\x00\x00k1q\x01X\x06\x00\x00\x00\xe4\xb8\xad\xe5\x9b\xbdq\x02s.&apos;</span><br><span class="line">res = pickle.loads(str)</span><br><span class="line">print(res)</span><br><span class="line"># &#123;&apos;k1&apos;: &apos;中国&apos;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于pickle序列化之后是二进制内容所以读写的时候要rb和wb模式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;中国&quot;&#125;</span><br><span class="line">f = open(&apos;fff3&apos;,&apos;wb&apos;)</span><br><span class="line">pickle.dump(dic,f) # 序列化后的字符串写入到文件里</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;fff3&apos;,&apos;rb&apos;)</span><br><span class="line">res = pickle.load(f)</span><br><span class="line">f.close()</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<h4 id="pickle的dump和load可以分步序列化写入和读取-json不行"><a href="#pickle的dump和load可以分步序列化写入和读取-json不行" class="headerlink" title="pickle的dump和load可以分步序列化写入和读取 (json不行)"></a>pickle的dump和load可以分步序列化写入和读取 (json不行)</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">dic = &#123;&quot;k1&quot;:&quot;中国&quot;&#125;</span><br><span class="line">dic2 = &#123;&quot;k2&quot;:&quot;中国2&quot;&#125;</span><br><span class="line">f = open(&apos;fff3&apos;,&apos;wb&apos;)</span><br><span class="line">pickle.dump(dic,f) #</span><br><span class="line">pickle.dump(dic2,f) #</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f = open(&apos;fff3&apos;,&apos;rb&apos;)</span><br><span class="line">res = pickle.load(f)</span><br><span class="line">res2 = pickle.load(f)</span><br><span class="line">f.close()</span><br><span class="line">print(res)</span><br><span class="line">print(res2)</span><br></pre></td></tr></table></figure>
+<h3 id="shelve-1"><a href="#shelve-1" class="headerlink" title="shelve"></a>shelve</h3><blockquote>
+<p>shelve也是python提供给我们的序列化工具，比pickle用起来更简单一些。</p>
+</blockquote>
+<blockquote>
+<p>shelve只提供给我们一个open方法，是用key来访问的，使用起来和字典类似。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import shelve</span><br><span class="line">f = shelve.open(&apos;shelve_file&apos;)</span><br><span class="line">f[&apos;key&apos;] = &#123;&apos;int&apos;:10, &apos;float&apos;:9.5, &apos;string&apos;:&apos;Sample data&apos;&#125;  #直接对文件句柄操作，就可以存入数据</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line">import shelve</span><br><span class="line">f1 = shelve.open(&apos;shelve_file&apos;)</span><br><span class="line">existing = f1[&apos;key&apos;]  #取出数据的时候也只需要直接用key获取即可，但是如果key不存在会报错</span><br><span class="line">f1.close()</span><br><span class="line">print(existing)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个模块有个限制，它不支持多个应用同一时间往同一个DB进行写操作。所以当我们知道我们的应用如果只进行读操作，我们可以让shelve通过只读方式打开DB</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import shelve</span><br><span class="line">f = shelve.open(&apos;shelve_file&apos;, flag=&apos;r&apos;)</span><br><span class="line">existing = f[&apos;key&apos;]</span><br><span class="line">f.close()</span><br><span class="line">print(existing)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于shelve在默认情况下是不会记录待持久化对象的任何修改的，所以我们在shelve.open()时候需要修改默认参数，否则对象的修改不会保存。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import shelve</span><br><span class="line">f1 = shelve.open(&apos;shelve_file&apos;)</span><br><span class="line">print(f1[&apos;key&apos;])</span><br><span class="line">f1[&apos;key&apos;][&apos;new_value&apos;] = &apos;this was not here before&apos;</span><br><span class="line">f1.close()</span><br><span class="line"></span><br><span class="line">f2 = shelve.open(&apos;shelve_file&apos;, writeback=True)</span><br><span class="line">print(f2[&apos;key&apos;])</span><br><span class="line">f2[&apos;key&apos;][&apos;new_value&apos;] = &apos;this was not here before&apos;</span><br><span class="line">f2.close()</span><br></pre></td></tr></table></figure>
+<p>writeback方式有优点也有缺点。优点是减少了我们出错的概率，并且让对象的持久化对用户更加的透明了；但这种方式并不是所有的情况下都需要，首先，使用writeback以后，shelf在open()的时候会增加额外的内存消耗，并且当DB在close()的时候会将缓存中的每一个对象都写入到DB，这也会带来额外的等待时间。因为shelve没有办法知道缓存中哪些对象修改了，哪些对象没有修改，因此所有的对象都会被写入。</p>
+<blockquote>
+<h4 id="json补充知识-格式化输出"><a href="#json补充知识-格式化输出" class="headerlink" title="json补充知识 格式化输出"></a>json补充知识 格式化输出</h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import json</span><br><span class="line">data = &#123;&apos;username&apos;:[&apos;李华&apos;,&apos;二愣子&apos;],&apos;sex&apos;:&apos;male&apos;,&apos;age&apos;:16&#125;</span><br><span class="line">json_dic2 = json.dumps(data,sort_keys=True,indent=2,separators=(&apos;,&apos;,&apos;:&apos;),ensure_ascii=False)</span><br><span class="line">print(json_dic2)</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#序列化模块"><span class="toc-number">1.</span> <span class="toc-text">序列化模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#序列化：从数据类型-gt-字符串的过程"><span class="toc-number">1.1.</span> <span class="toc-text">序列化：从数据类型==&gt; 字符串的过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反序列化：从字符串-gt-数据类型"><span class="toc-number">1.2.</span> <span class="toc-text">反序列化：从字符串==&gt;数据类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重要的几个知识点-「-」代表重要程度"><span class="toc-number">1.3.</span> <span class="toc-text">重要的几个知识点 「*」代表重要程度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#json通用序列化格式"><span class="toc-number">1.3.1.</span> <span class="toc-text">json通用序列化格式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pickle"><span class="toc-number">1.3.2.</span> <span class="toc-text">pickle</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shelve"><span class="toc-number">1.3.3.</span> <span class="toc-text">shelve</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#json"><span class="toc-number">2.</span> <span class="toc-text">json</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注意如果你用json的demp和load只能一次性写入和读取"><span class="toc-number">2.1.</span> <span class="toc-text">注意如果你用json的demp和load只能一次性写入和读取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pickle-1"><span class="toc-number">3.</span> <span class="toc-text">pickle</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pickle的dump和load可以分步序列化写入和读取-json不行"><span class="toc-number">3.1.</span> <span class="toc-text">pickle的dump和load可以分步序列化写入和读取 (json不行)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shelve-1"><span class="toc-number">4.</span> <span class="toc-text">shelve</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#json补充知识-格式化输出"><span class="toc-number">4.1.</span> <span class="toc-text">json补充知识 格式化输出</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&text=P020_01_python序列化模块"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&is_video=false&description=P020_01_python序列化模块"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P020_01_python序列化模块&body=Check out this article: https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&title=P020_01_python序列化模块"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/29/P020_01_python序列化模块/&name=P020_01_python序列化模块&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

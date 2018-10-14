@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="linux的文件目录 linux里没有盘符的概念(也就是没有windows里的cdef盘)它不分盘   它有一个顶层目录叫做根目录 「/」斜杠 它的目录像一棵树  12345678910-|/-|/bin-|/sbin-|/usr-|/usr/bin-|/usr/local-|/usr/local/include-|/usr/lib-|/lib-|/... 12345cd / linux中  /">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux001基本命令">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/13/Linux001基本命令/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="linux的文件目录 linux里没有盘符的概念(也就是没有windows里的cdef盘)它不分盘   它有一个顶层目录叫做根目录 「/」斜杠 它的目录像一棵树  12345678910-|/-|/bin-|/sbin-|/usr-|/usr/bin-|/usr/local-|/usr/local/include-|/usr/lib-|/lib-|/... 12345cd / linux中  /">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux001基本命令">
+<meta name="twitter:description" content="linux的文件目录 linux里没有盘符的概念(也就是没有windows里的cdef盘)它不分盘   它有一个顶层目录叫做根目录 「/」斜杠 它的目录像一棵树  12345678910-|/-|/bin-|/sbin-|/usr-|/usr/bin-|/usr/local-|/usr/local/include-|/usr/lib-|/lib-|/... 12345cd / linux中  /">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux001基本命令</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/13/Linux002难点命令/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/06/Vue_221_iview引入问题/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/13/Linux001基本命令/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&text=Linux001基本命令"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&is_video=false&description=Linux001基本命令"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux001基本命令&body=Check out this article: https://usxstudio.github.io/2018/06/13/Linux001基本命令/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&name=Linux001基本命令&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux的文件目录"><span class="toc-number">1.</span> <span class="toc-text">linux的文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux常用命令"><span class="toc-number">2.</span> <span class="toc-text">linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls-显示当前路径下的东西"><span class="toc-number">2.1.</span> <span class="toc-text">ls 显示当前路径下的东西</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cd-切换目录"><span class="toc-number">2.2.</span> <span class="toc-text">cd 切换目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pwd-显示当前路径-从头到尾"><span class="toc-number">2.3.</span> <span class="toc-text">pwd 显示当前路径(从头到尾)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clear-清屏"><span class="toc-number">2.4.</span> <span class="toc-text">clear 清屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tab自动补全"><span class="toc-number">2.5.</span> <span class="toc-text">tab自动补全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#touch创建文件"><span class="toc-number">2.6.</span> <span class="toc-text">touch创建文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则相关的操作"><span class="toc-number">2.7.</span> <span class="toc-text">正则相关的操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向-gt"><span class="toc-number">2.8.</span> <span class="toc-text">重定向 &gt;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分屏-more"><span class="toc-number">2.9.</span> <span class="toc-text">分屏 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#管道"><span class="toc-number">2.10.</span> <span class="toc-text">管道 |</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir创建目录"><span class="toc-number">2.11.</span> <span class="toc-text">mkdir创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tree-以目录树的方式显示目录结构"><span class="toc-number">2.12.</span> <span class="toc-text">tree 以目录树的方式显示目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rmdir删除目录"><span class="toc-number">2.13.</span> <span class="toc-text">rmdir删除目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-删除文件-慎用"><span class="toc-number">2.14.</span> <span class="toc-text">rm 删除文件(慎用)</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux001基本命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-13T13:41:57.000Z" itemprop="datePublished">2018-06-13</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="linux的文件目录"><a href="#linux的文件目录" class="headerlink" title="linux的文件目录"></a>linux的文件目录</h3><blockquote>
+<p>linux里没有盘符的概念(也就是没有windows里的cdef盘)它不分盘</p>
+</blockquote>
+<ul>
+<li>它有一个顶层目录叫做根目录 「/」斜杠</li>
+<li>它的目录像一棵树</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-|/</span><br><span class="line">-|/bin</span><br><span class="line">-|/sbin</span><br><span class="line">-|/usr</span><br><span class="line">-|/usr/bin</span><br><span class="line">-|/usr/local</span><br><span class="line">-|/usr/local/include</span><br><span class="line">-|/usr/lib</span><br><span class="line">-|/lib</span><br><span class="line">-|/...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd / </span><br><span class="line">linux中  / 代表根目录</span><br><span class="line"></span><br><span class="line">cd ~</span><br><span class="line">linux中 ~代表用户名录</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>linux里常用的文件夹</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/home 系统默认的用户家目录(也就是你可以随意操作的目录)最常用的目录</span><br><span class="line"></span><br><span class="line">/home 下的每一个文件夹代表的用户</span><br><span class="line">如 </span><br><span class="line">/home/xxx    张三目录</span><br><span class="line">/home/yyy    李四目录</span><br><span class="line"></span><br><span class="line">/home/xxx/   又会有一些文件夹 </span><br><span class="line">如 </span><br><span class="line">Desktop(桌面) </span><br><span class="line">Downloads(下载相关的)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/bin 不要随意操作(可运行命令的执行环境)</span><br><span class="line">/usr/bin 也不要随意操作(可运行命令的执行环境)</span><br><span class="line">/usr 存放用户的应用程序</span><br><span class="line">/tmp 临时性的文件(比如垃圾文件)</span><br><span class="line">/dev  和设备相关的(比如你插的U盘)</span><br></pre></td></tr></table></figure>
+<h3 id="linux常用命令"><a href="#linux常用命令" class="headerlink" title="linux常用命令"></a>linux常用命令</h3><h4 id="ls-显示当前路径下的东西"><a href="#ls-显示当前路径下的东西" class="headerlink" title="ls 显示当前路径下的东西"></a>ls 显示当前路径下的东西</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ls -l 按行显示文件及目录(不包含隐藏文件)</span><br><span class="line">ls -a 显示所有文件(包含隐藏的文件)</span><br><span class="line">ls -al 按行显示所有文件及详细信息</span><br><span class="line">ls -h 代表文件大小(多少k)</span><br><span class="line"></span><br><span class="line">-l后显示形如</span><br><span class="line">drwxr-xr-x 1 hjx hjx 197121     0 Apr  9 23:35 public</span><br><span class="line">-rw-r--r-- 1 hjx hjx 197121 76850 Mar 23 22:23 </span><br><span class="line">yarn.lock</span><br><span class="line"></span><br><span class="line">drwxr-xr-x  代表 一共十位  从第二位开始 后九个代表权限 </span><br><span class="line">-rw-r--r--  代表 一共十位  从第二位开始 后九个代表权限</span><br><span class="line"></span><br><span class="line">第一个字母代表文件</span><br><span class="line">第一个字母</span><br><span class="line">d 代表目录</span><br><span class="line">- 代表普通文件</span><br><span class="line"></span><br><span class="line">1      代表链接数</span><br><span class="line">第一个 hjx代表当前用户</span><br><span class="line">第二个 hjx代表用户组</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查看 Desktop目录里的东西</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 大前提是你在 Desktop的父目录</span><br><span class="line">ls Desktop</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>区分绝对路径和相对路径</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">绝对路径 cd /home/aaa</span><br><span class="line">相对路径 cd Desktop    </span><br><span class="line"></span><br><span class="line">. 表示当前路径</span><br><span class="line">.. 表示当前路径的上一层</span><br><span class="line">../.. 表示当前路径的上一层的上一层</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">cd - 跳转到上一次所在的路径(只在最近两次的目录直接进行直接跳转)</span><br><span class="line"></span><br><span class="line">cd Music 等价于  cd ./Music</span><br></pre></td></tr></table></figure>
+<h4 id="cd-切换目录"><a href="#cd-切换目录" class="headerlink" title="cd 切换目录"></a>cd 切换目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd 「跳转的目录」</span><br><span class="line">cd ~ 切换到当前用户目录</span><br><span class="line">cd / 切换到根目录</span><br><span class="line">cd .. 回到上一级目录(父目录)</span><br></pre></td></tr></table></figure>
+<h4 id="pwd-显示当前路径-从头到尾"><a href="#pwd-显示当前路径-从头到尾" class="headerlink" title="pwd 显示当前路径(从头到尾)"></a>pwd 显示当前路径(从头到尾)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd 当前目录的绝对路径从头到尾</span><br></pre></td></tr></table></figure>
+<h4 id="clear-清屏"><a href="#clear-清屏" class="headerlink" title="clear 清屏"></a>clear 清屏</h4><h4 id="tab自动补全"><a href="#tab自动补全" class="headerlink" title="tab自动补全"></a>tab自动补全</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 比如你在你的用户目录   里面有 Desktop 和 Downloads</span><br><span class="line"></span><br><span class="line">cd D 按tab 不会进行自动补全(因为存在两个开头一样的D目录)</span><br><span class="line"></span><br><span class="line">cd De 按 tab 就能自动补全</span><br></pre></td></tr></table></figure>
+<h4 id="touch创建文件"><a href="#touch创建文件" class="headerlink" title="touch创建文件"></a>touch创建文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 1.txt</span><br></pre></td></tr></table></figure>
+<h4 id="正则相关的操作"><a href="#正则相关的操作" class="headerlink" title="正则相关的操作"></a>正则相关的操作</h4><blockquote>
+<p>问题1 显示当前路径下所有的 .txt文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls *.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>问题2 显示当前目录下有.txt .tnt .tst</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls *.t?t</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>问题3 显示 当前目录下的 .txt .tnt文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls *.t[nx]t</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">? 代表一个字符有且仅有,不能没有</span><br><span class="line">[xn] 代表括号里任意一个字符</span><br><span class="line">[abcdef] 可以写为 [a-f] 表示a到f的任意字符</span><br><span class="line"></span><br><span class="line">如果有以下文件恰好叫 1a 2a 3a *a</span><br><span class="line">ls *a就会有歧义  会显示  1a 2a 3a *a</span><br><span class="line">ls \*a 转义  会显示 *a</span><br></pre></td></tr></table></figure>
+<h4 id="重定向-gt"><a href="#重定向-gt" class="headerlink" title="重定向 &gt;"></a>重定向 &gt;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ls &gt; 1.txt  文件不存在就创建，清空1.txt的内容 把ls显示的内容填充到1.txt里</span><br><span class="line"></span><br><span class="line">ls &gt;&gt; 1.txt 文件不存在就创建，不清空1.txt的内容 把ls的内容追加到1.txt</span><br></pre></td></tr></table></figure>
+<h4 id="分屏-more"><a href="#分屏-more" class="headerlink" title="分屏 more"></a>分屏 more</h4><p>用命令查看文件的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more 1.txt  如果文件内容超过一屏显示  就按当前内容所占比例显示在下方   按空格进行查看其余内容</span><br></pre></td></tr></table></figure>
+<h4 id="管道"><a href="#管道" class="headerlink" title="管道 |"></a>管道 |</h4><p>一行里写多个命令通常不好使此时就需要使用管道了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -alh | more</span><br></pre></td></tr></table></figure>
+<h4 id="mkdir创建目录"><a href="#mkdir创建目录" class="headerlink" title="mkdir创建目录"></a>mkdir创建目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 当前目录创建一个demo文件夹</span><br><span class="line">mkdir demo </span><br><span class="line"></span><br><span class="line"># 当前目录创建 a/b/c 嵌套目录的文件夹  需要添加 -p</span><br><span class="line">mkdir -p a/b/c</span><br></pre></td></tr></table></figure>
+<h4 id="tree-以目录树的方式显示目录结构"><a href="#tree-以目录树的方式显示目录结构" class="headerlink" title="tree 以目录树的方式显示目录结构"></a>tree 以目录树的方式显示目录结构</h4><h4 id="rmdir删除目录"><a href="#rmdir删除目录" class="headerlink" title="rmdir删除目录"></a>rmdir删除目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rmdir demo</span><br><span class="line"></span><br><span class="line"># 无法删除嵌套目录 如 demo/a/b</span><br></pre></td></tr></table></figure>
+<h4 id="rm-删除文件-慎用"><a href="#rm-删除文件-慎用" class="headerlink" title="rm 删除文件(慎用)"></a>rm 删除文件(慎用)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rm / 千万不要用,你就完蛋了从根目录开始删</span><br><span class="line">rm / 千万不要用,你就完蛋了从根目录开始删</span><br><span class="line">rm / 千万不要用,你就完蛋了从根目录开始删</span><br><span class="line"></span><br><span class="line">rm 文件名</span><br><span class="line">rm -f 强制删除,也就是不提示(你确认删除吗？)</span><br><span class="line">rm -r 目录 递归的删除目录(每删除一个文件问你一次 你确认删除吗？)</span><br><span class="line">rm -rf 递归的删除目录(没有任何提示)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#linux的文件目录"><span class="toc-number">1.</span> <span class="toc-text">linux的文件目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux常用命令"><span class="toc-number">2.</span> <span class="toc-text">linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls-显示当前路径下的东西"><span class="toc-number">2.1.</span> <span class="toc-text">ls 显示当前路径下的东西</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cd-切换目录"><span class="toc-number">2.2.</span> <span class="toc-text">cd 切换目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pwd-显示当前路径-从头到尾"><span class="toc-number">2.3.</span> <span class="toc-text">pwd 显示当前路径(从头到尾)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clear-清屏"><span class="toc-number">2.4.</span> <span class="toc-text">clear 清屏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tab自动补全"><span class="toc-number">2.5.</span> <span class="toc-text">tab自动补全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#touch创建文件"><span class="toc-number">2.6.</span> <span class="toc-text">touch创建文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正则相关的操作"><span class="toc-number">2.7.</span> <span class="toc-text">正则相关的操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重定向-gt"><span class="toc-number">2.8.</span> <span class="toc-text">重定向 &gt;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分屏-more"><span class="toc-number">2.9.</span> <span class="toc-text">分屏 more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#管道"><span class="toc-number">2.10.</span> <span class="toc-text">管道 |</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir创建目录"><span class="toc-number">2.11.</span> <span class="toc-text">mkdir创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tree-以目录树的方式显示目录结构"><span class="toc-number">2.12.</span> <span class="toc-text">tree 以目录树的方式显示目录结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rmdir删除目录"><span class="toc-number">2.13.</span> <span class="toc-text">rmdir删除目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm-删除文件-慎用"><span class="toc-number">2.14.</span> <span class="toc-text">rm 删除文件(慎用)</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/13/Linux001基本命令/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&text=Linux001基本命令"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&is_video=false&description=Linux001基本命令"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux001基本命令&body=Check out this article: https://usxstudio.github.io/2018/06/13/Linux001基本命令/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&title=Linux001基本命令"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/13/Linux001基本命令/&name=Linux001基本命令&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

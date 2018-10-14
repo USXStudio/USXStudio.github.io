@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="HTML续一些标签总结 跳转页面 a 发起get请求 form 发起post请求(默认get但是谁这么无聊)   回忆知识点：get是获取内容，post是上传内容  form 标签 如果form 里没有提交按钮就无法提交，除非你用JS method 请求方式(没人用get)只有两个值 get/post action 请求路径  12345&amp;lt;form action=&amp;quot;index2.h">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML续2">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="HTML续一些标签总结 跳转页面 a 发起get请求 form 发起post请求(默认get但是谁这么无聊)   回忆知识点：get是获取内容，post是上传内容  form 标签 如果form 里没有提交按钮就无法提交，除非你用JS method 请求方式(没人用get)只有两个值 get/post action 请求路径  12345&amp;lt;form action=&amp;quot;index2.h">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note009_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note009_02.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.179Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML续2">
+<meta name="twitter:description" content="HTML续一些标签总结 跳转页面 a 发起get请求 form 发起post请求(默认get但是谁这么无聊)   回忆知识点：get是获取内容，post是上传内容  form 标签 如果form 里没有提交按钮就无法提交，除非你用JS method 请求方式(没人用get)只有两个值 get/post action 请求路径  12345&amp;lt;form action=&amp;quot;index2.h">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note009_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>HTML续2</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/21/N010_CSS/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/18/N009_0_HTML续/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&text=HTML续2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&is_video=false&description=HTML续2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML续2&body=Check out this article: https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&name=HTML续2&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML续"><span class="toc-number">1.</span> <span class="toc-text">HTML续</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跳转页面"><span class="toc-number">1.1.</span> <span class="toc-text">跳转页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#form-标签"><span class="toc-number">1.2.</span> <span class="toc-text">form 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题1-form-标签在哪些情况下可以被用户提交"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题1 form 标签在哪些情况下可以被用户提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题2-form-标签里面的-input-加不加-name-属性由什么区别？"><span class="toc-number">1.2.2.</span> <span class="toc-text">问题2 form 标签里面的 input 加不加 name 属性由什么区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#form与-a标签一样-也有target属性"><span class="toc-number">1.2.3.</span> <span class="toc-text">form与 a标签一样 也有target属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkbox"><span class="toc-number">1.3.</span> <span class="toc-text">checkbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#radio-单选框"><span class="toc-number">1.4.</span> <span class="toc-text">radio 单选框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-下拉选"><span class="toc-number">1.5.</span> <span class="toc-text">select 下拉选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textarea-文本域"><span class="toc-number">1.6.</span> <span class="toc-text">textarea 文本域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#table-标签-用的很少"><span class="toc-number">1.7.</span> <span class="toc-text">table 标签 (用的很少)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#table之慎用标签-colgroup-col"><span class="toc-number">1.7.1.</span> <span class="toc-text">table之慎用标签 colgroup col</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#thead-tbody-tfoot如果顺序错了会咋样"><span class="toc-number">1.7.2.</span> <span class="toc-text">thead tbody tfoot如果顺序错了会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不写thead-tfoot-会咋样"><span class="toc-number">1.7.3.</span> <span class="toc-text">不写thead/tfoot 会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不写tbody会咋样"><span class="toc-number">1.7.4.</span> <span class="toc-text">不写tbody会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后说一下默认表格设置了边框是很丑的，一般要设置边框融合"><span class="toc-number">1.7.5.</span> <span class="toc-text">最后说一下默认表格设置了边框是很丑的，一般要设置边框融合</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HTML续2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-19T11:25:50.000Z" itemprop="datePublished">2017-10-19</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="HTML续"><a href="#HTML续" class="headerlink" title="HTML续"></a>HTML续</h2><p>一些标签总结</p>
+<h3 id="跳转页面"><a href="#跳转页面" class="headerlink" title="跳转页面"></a>跳转页面</h3><ul>
+<li>a 发起get请求</li>
+<li>form 发起post请求(默认get但是谁这么无聊)</li>
+</ul>
+<blockquote>
+<p>回忆知识点：get是获取内容，post是上传内容</p>
+</blockquote>
+<h3 id="form-标签"><a href="#form-标签" class="headerlink" title="form 标签"></a>form 标签</h3><ul>
+<li>如果form 里没有提交按钮就无法提交，除非你用JS</li>
+<li>method 请求方式(没人用get)只有两个值 get/post</li>
+<li>action 请求路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;index2.html&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;text&quot; name=&quot;password&quot;&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<p>如上你点击提交后我们在chrome里点击Network</p>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note009_01.png" alt=""></p>
+<blockquote>
+<p>如果提交的是中文,就把对应字符的UTF-8编码每个字节分开并加一个%</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note009_02.png" alt=""></p>
+<h4 id="问题1-form-标签在哪些情况下可以被用户提交"><a href="#问题1-form-标签在哪些情况下可以被用户提交" class="headerlink" title="问题1 form 标签在哪些情况下可以被用户提交"></a>问题1 form 标签在哪些情况下可以被用户提交</h4><ol>
+<li>form 标签里面有一个 input type=submit 的元素</li>
+<li>form 标签里面有一个 button 元素，button 的 type 属性为空</li>
+</ol>
+<p>详细讲一下第二种</p>
+<blockquote>
+<p>form里存在一个button它会升级为提交按钮</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;index2.html&quot; method=&quot;post&quot;&gt;</span><br><span class="line">     &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">     &lt;button&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你添加了 type=”button” 就无法提交</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button type=&quot;button&quot;&gt;提交&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你是 input的button也是无法提交的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;button&quot; value=&quot;提交&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="问题2-form-标签里面的-input-加不加-name-属性由什么区别？"><a href="#问题2-form-标签里面的-input-加不加-name-属性由什么区别？" class="headerlink" title="问题2 form 标签里面的 input 加不加 name 属性由什么区别？"></a>问题2 form 标签里面的 input 加不加 name 属性由什么区别？</h4><blockquote>
+<p>如果 input 不加 name，那么在表单提交时，input 的值就不会出现在请求里</p>
+</blockquote>
+<h4 id="form与-a标签一样-也有target属性"><a href="#form与-a标签一样-也有target属性" class="headerlink" title="form与 a标签一样 也有target属性"></a>form与 a标签一样 也有target属性</h4><p>行为同 a标签一样  具体看上一篇博客</p>
+<ul>
+<li>_blank</li>
+<li>_slef</li>
+<li>_parent</li>
+<li>_top</li>
+</ul>
+<h3 id="checkbox"><a href="#checkbox" class="headerlink" title="checkbox"></a>checkbox</h3><blockquote>
+<p>问题1 有时候你想点击「免单」也会勾选此时发现无法勾选</p>
+</blockquote>
+<ul>
+<li>给input添加id=”xxx” </li>
+<li>给触发的文本套上 label标签并指定 for=”xxx”</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot;&gt;免单</span><br><span class="line"></span><br><span class="line">&lt;!-- 你应该这样 --&gt;</span><br><span class="line">&lt;input type=&quot;checkbox&quot; id=&quot;free&quot;&gt;</span><br><span class="line">&lt;label for=&quot;free&quot;&gt;免单&lt;/label&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>老司机应该这样,直接用label把整体包起来</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;账号&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;&lt;/label&gt;</span><br><span class="line">&lt;label&gt;密码&lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;&lt;/label&gt;</span><br><span class="line">&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt;免单&lt;/label&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>问题2 如果是多个复选框</p>
+</blockquote>
+<p>你应该让它们的name相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;fruit&quot; value=&quot;apple&quot;&gt;苹果&lt;/label&gt;</span><br><span class="line">&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;fruit&quot; value=&quot;banana&quot;&gt;香蕉&lt;/label&gt;</span><br><span class="line"></span><br><span class="line">提交后参数会形如  fruit=apple&amp;fruir=banana</span><br></pre></td></tr></table></figure>
+<h3 id="radio-单选框"><a href="#radio-单选框" class="headerlink" title="radio 单选框"></a>radio 单选框</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;man&quot;&gt;男&lt;/label&gt;</span><br><span class="line">&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;woman&quot;&gt;女&lt;/label&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="select-下拉选"><a href="#select-下拉选" class="headerlink" title="select 下拉选"></a>select 下拉选</h3><blockquote>
+<p>如果想多选请添加 multiple属性</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;select name=&quot;local&quot;&gt;</span><br><span class="line">    &lt;option value=&quot;&quot;&gt;&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;1&quot;&gt;北京&lt;/option&gt;</span><br><span class="line">    &lt;option value=&quot;2&quot;&gt;天津&lt;/option&gt;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="textarea-文本域"><a href="#textarea-文本域" class="headerlink" title="textarea 文本域"></a>textarea 文本域</h3><ol>
+<li>默认它可以拖动的  要用style控制 resize:none;</li>
+<li>建议用CSS控制它的宽高</li>
+<li>它提供的cols和rows是不准的 列和行设置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;textarea name=&quot;&quot; cols=&quot;30&quot; style=&quot;resize:none;&quot;rows=&quot;10&quot;&gt;&lt;/textarea&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="table-标签-用的很少"><a href="#table-标签-用的很少" class="headerlink" title="table 标签 (用的很少)"></a>table 标签 (用的很少)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;班级&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;hjx&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;aaa&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;tfoot&gt;&lt;/tfoot&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="table之慎用标签-colgroup-col"><a href="#table之慎用标签-colgroup-col" class="headerlink" title="table之慎用标签 colgroup col"></a>table之慎用标签 colgroup col</h4><blockquote>
+<p>之所以慎用，就因为2017年11月某天我知道它的用法然后就用了，结果导致一个bug(firefox里不支持这个标签#仅对应2017年11月那个我使用的firefox版本)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;table border=1&gt;</span><br><span class="line">    &lt;colgroup&gt;</span><br><span class="line">      &lt;col width=100&gt;</span><br><span class="line">      &lt;col width=200&gt;</span><br><span class="line">    &lt;/colgroup&gt;</span><br><span class="line">    &lt;thead&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;th&gt;姓名&lt;/th&gt;</span><br><span class="line">        &lt;th&gt;班级&lt;/th&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/thead&gt;</span><br><span class="line">    &lt;tbody&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;hjx&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;1&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">      &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;aaa&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;2&lt;/td&gt;</span><br><span class="line">      &lt;/tr&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">    &lt;tfoot&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;xxx&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;22&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/tfoot&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PS建议控制 td 样式还是追随大众使用 class</p>
+</blockquote>
+<h4 id="thead-tbody-tfoot如果顺序错了会咋样"><a href="#thead-tbody-tfoot如果顺序错了会咋样" class="headerlink" title="thead tbody tfoot如果顺序错了会咋样"></a>thead tbody tfoot如果顺序错了会咋样</h4><blockquote>
+<p>不管你怎样放置它们的顺序，即使F12里查到对应标签顺序是你写的顺序，但是浏览器会自动纠错依然会以thead tbody tfoot的顺序展现在表格上</p>
+</blockquote>
+<h4 id="不写thead-tfoot-会咋样"><a href="#不写thead-tfoot-会咋样" class="headerlink" title="不写thead/tfoot 会咋样"></a>不写thead/tfoot 会咋样</h4><blockquote>
+<p>没有问题</p>
+</blockquote>
+<h4 id="不写tbody会咋样"><a href="#不写tbody会咋样" class="headerlink" title="不写tbody会咋样"></a>不写tbody会咋样</h4><blockquote>
+<p>它会自动帮你生成tbody 并把 tr放在里面</p>
+</blockquote>
+<h4 id="最后说一下默认表格设置了边框是很丑的，一般要设置边框融合"><a href="#最后说一下默认表格设置了边框是很丑的，一般要设置边框融合" class="headerlink" title="最后说一下默认表格设置了边框是很丑的，一般要设置边框融合"></a>最后说一下默认表格设置了边框是很丑的，一般要设置边框融合</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table&#123;border-collapse:collapse&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML续"><span class="toc-number">1.</span> <span class="toc-text">HTML续</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跳转页面"><span class="toc-number">1.1.</span> <span class="toc-text">跳转页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#form-标签"><span class="toc-number">1.2.</span> <span class="toc-text">form 标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题1-form-标签在哪些情况下可以被用户提交"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题1 form 标签在哪些情况下可以被用户提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题2-form-标签里面的-input-加不加-name-属性由什么区别？"><span class="toc-number">1.2.2.</span> <span class="toc-text">问题2 form 标签里面的 input 加不加 name 属性由什么区别？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#form与-a标签一样-也有target属性"><span class="toc-number">1.2.3.</span> <span class="toc-text">form与 a标签一样 也有target属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkbox"><span class="toc-number">1.3.</span> <span class="toc-text">checkbox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#radio-单选框"><span class="toc-number">1.4.</span> <span class="toc-text">radio 单选框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-下拉选"><span class="toc-number">1.5.</span> <span class="toc-text">select 下拉选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#textarea-文本域"><span class="toc-number">1.6.</span> <span class="toc-text">textarea 文本域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#table-标签-用的很少"><span class="toc-number">1.7.</span> <span class="toc-text">table 标签 (用的很少)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#table之慎用标签-colgroup-col"><span class="toc-number">1.7.1.</span> <span class="toc-text">table之慎用标签 colgroup col</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#thead-tbody-tfoot如果顺序错了会咋样"><span class="toc-number">1.7.2.</span> <span class="toc-text">thead tbody tfoot如果顺序错了会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不写thead-tfoot-会咋样"><span class="toc-number">1.7.3.</span> <span class="toc-text">不写thead/tfoot 会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不写tbody会咋样"><span class="toc-number">1.7.4.</span> <span class="toc-text">不写tbody会咋样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后说一下默认表格设置了边框是很丑的，一般要设置边框融合"><span class="toc-number">1.7.5.</span> <span class="toc-text">最后说一下默认表格设置了边框是很丑的，一般要设置边框融合</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&text=HTML续2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&is_video=false&description=HTML续2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTML续2&body=Check out this article: https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&title=HTML续2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/19/N009_1_HTML续2/&name=HTML续2&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

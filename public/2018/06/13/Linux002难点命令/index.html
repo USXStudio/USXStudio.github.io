@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ln软链接和硬链接12345678# 软链接，就是快捷方式  (源文件没了，现在的链接文件都不好使)# 修改源文件或链接文件操作的都是一个文件ln -s 源文件 链接文件 # 硬连接，就算删除了源文件不会影响硬链接的查看# 修改源文件或链接文件操作的都是一个文件ln 源文件 链接文件 cat 查看文件的内容1cat 1.txt 将一个文件的内容填充到一个文件里 1234cat 1.txt &amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux002难点命令">
+<meta property="og:url" content="https://usxstudio.github.io/2018/06/13/Linux002难点命令/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="ln软链接和硬链接12345678# 软链接，就是快捷方式  (源文件没了，现在的链接文件都不好使)# 修改源文件或链接文件操作的都是一个文件ln -s 源文件 链接文件 # 硬连接，就算删除了源文件不会影响硬链接的查看# 修改源文件或链接文件操作的都是一个文件ln 源文件 链接文件 cat 查看文件的内容1cat 1.txt 将一个文件的内容填充到一个文件里 1234cat 1.txt &amp;gt;">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.142Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux002难点命令">
+<meta name="twitter:description" content="ln软链接和硬链接12345678# 软链接，就是快捷方式  (源文件没了，现在的链接文件都不好使)# 修改源文件或链接文件操作的都是一个文件ln -s 源文件 链接文件 # 硬连接，就算删除了源文件不会影响硬链接的查看# 修改源文件或链接文件操作的都是一个文件ln 源文件 链接文件 cat 查看文件的内容1cat 1.txt 将一个文件的内容填充到一个文件里 1234cat 1.txt &amp;gt;">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Linux002难点命令</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/06/14/Linux003多用户多任务操作/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/13/Linux001基本命令/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/13/Linux002难点命令/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&text=Linux002难点命令"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&is_video=false&description=Linux002难点命令"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux002难点命令&body=Check out this article: https://usxstudio.github.io/2018/06/13/Linux002难点命令/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&name=Linux002难点命令&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ln软链接和硬链接"><span class="toc-number">1.</span> <span class="toc-text">ln软链接和硬链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-查看文件的内容"><span class="toc-number">2.</span> <span class="toc-text">cat 查看文件的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-文本搜索"><span class="toc-number">3.</span> <span class="toc-text">grep 文本搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#help"><span class="toc-number">4.</span> <span class="toc-text">help</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#man"><span class="toc-number">5.</span> <span class="toc-text">man</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#历史命令"><span class="toc-number">6.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find查找文件"><span class="toc-number">7.</span> <span class="toc-text">find查找文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-拷贝文件-mv剪切文件"><span class="toc-number">8.</span> <span class="toc-text">cp 拷贝文件 mv剪切文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩和解压缩"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#which查看命令位置"><span class="toc-number">10.</span> <span class="toc-text">which查看命令位置</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Linux002难点命令
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-13T15:07:48.000Z" itemprop="datePublished">2018-06-13</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="ln软链接和硬链接"><a href="#ln软链接和硬链接" class="headerlink" title="ln软链接和硬链接"></a>ln软链接和硬链接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 软链接，就是快捷方式  (源文件没了，现在的链接文件都不好使)</span><br><span class="line"># 修改源文件或链接文件操作的都是一个文件</span><br><span class="line">ln -s 源文件 链接文件 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 硬连接，就算删除了源文件不会影响硬链接的查看</span><br><span class="line"># 修改源文件或链接文件操作的都是一个文件</span><br><span class="line">ln 源文件 链接文件</span><br></pre></td></tr></table></figure>
+<h3 id="cat-查看文件的内容"><a href="#cat-查看文件的内容" class="headerlink" title="cat 查看文件的内容"></a>cat 查看文件的内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1.txt</span><br></pre></td></tr></table></figure>
+<p>将一个文件的内容填充到一个文件里</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat 1.txt &gt; 2.txt</span><br><span class="line"></span><br><span class="line"># step1 cat 1.txt 复制 1.txt的内容</span><br><span class="line"># step2 将1.txt的内容复制到 2.txt</span><br></pre></td></tr></table></figure>
+<p>复制多个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat 1.txt 2.txt &gt; 3.txt 将 1.txt和2.txt的内容复制到 3.txt</span><br></pre></td></tr></table></figure>
+<h3 id="grep-文本搜索"><a href="#grep-文本搜索" class="headerlink" title="grep 文本搜索"></a>grep 文本搜索</h3><p>从文件中搜索内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 如1.txt的内容</span><br><span class="line">abcdefg</span><br><span class="line">Abcdefg</span><br><span class="line">------1----m</span><br><span class="line">------2----n</span><br><span class="line">------3----m</span><br><span class="line">alown</span><br><span class="line">txt</span><br><span class="line">txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-v显示不包含匹配文本的所有行</span><br><span class="line">-n代表匹配内容的行号</span><br><span class="line">-i 忽略大小写</span><br><span class="line"></span><br><span class="line">grep -n &apos;a&apos; 1.txt 打印所有带a的打印出来</span><br><span class="line"></span><br><span class="line">grep -n &apos;^a&apos; 1.txt 打印所有以a开头的打印出来</span><br><span class="line"></span><br><span class="line">grep -n &apos;a$&apos; 1.txt 打印所有以a结尾的打印出来</span><br></pre></td></tr></table></figure>
+<h3 id="help"><a href="#help" class="headerlink" title="help"></a>help</h3><p>查看帮助文档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls --help</span><br></pre></td></tr></table></figure>
+<h3 id="man"><a href="#man" class="headerlink" title="man"></a>man</h3><p>是linux提供的手册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man ls</span><br></pre></td></tr></table></figure>
+<h3 id="历史命令"><a href="#历史命令" class="headerlink" title="历史命令"></a>历史命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">按上键</span><br><span class="line">或者 history</span><br><span class="line">history将历史命令列举出来</span><br></pre></td></tr></table></figure>
+<h3 id="find查找文件"><a href="#find查找文件" class="headerlink" title="find查找文件"></a>find查找文件</h3><p>从指定路径查找文件名(条件同样支持正则)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">find ./ -name test.sh 查找当前目录下所有名为 test.sh的文件</span><br><span class="line">find ./ -name .sh 查找当前目录下所有后缀为 .sh的文件</span><br><span class="line">find ./ -name &quot;[A-Z]&quot; 查找当前目录下所有以[A-Z]大写字母开头的文件</span><br><span class="line">find  /tmp -size 2M  查找/tmp目录下所有等于2M的文件</span><br><span class="line">find  /tmp -size +2M  查找/tmp目录下所有大于2M的文件</span><br><span class="line">find  /tmp -size -2M  查找/tmp目录下所有小于2M的文件</span><br><span class="line">find  ./ -size +4k -size -5M  查找当前目录下所有大于4k小于5m的文件</span><br><span class="line">find  ./  -perm 0777  查找当前目录下权限为777文件或目录</span><br></pre></td></tr></table></figure>
+<h3 id="cp-拷贝文件-mv剪切文件"><a href="#cp-拷贝文件-mv剪切文件" class="headerlink" title="cp 拷贝文件 mv剪切文件"></a>cp 拷贝文件 mv剪切文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">cp 源文件  目标文件</span><br><span class="line"></span><br><span class="line">选项</span><br><span class="line">-v 显示进度</span><br><span class="line">-r 递归的复制</span><br><span class="line">-i 交互式复制（你确认复制吗？）</span><br><span class="line">-f 强制复制</span><br><span class="line">-a 在复制目录时使用，保留链接/文件属性并递归的复制目录，保留文件原有的属性</span><br><span class="line">(比如失效的软链接文件也会被复制)</span><br><span class="line"></span><br><span class="line">递归的赋值目录</span><br><span class="line">cp -r 源文件目录  目标文件目录</span><br><span class="line"></span><br><span class="line">cp a b</span><br><span class="line">cp a/* b</span><br><span class="line"></span><br><span class="line">mv a b</span><br><span class="line">mv a/* b</span><br></pre></td></tr></table></figure>
+<h3 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h3><p>tar打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c 生成档案文件，创建打包文件</span><br><span class="line">-v 代表进度</span><br><span class="line">-f 指定档案文件名称f后面一定是.tar文件</span><br><span class="line"></span><br><span class="line">tar -cvf test.tar * 把当前路径所有东西打包到 test.tar里</span><br></pre></td></tr></table></figure>
+<p>tar打包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf test.tar 把打包文件还原</span><br></pre></td></tr></table></figure>
+<p>gzip 对已经打包的文件进行压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gzip test.tar </span><br><span class="line">就会产生 test.tar.gz 文件(打包压缩后的)</span><br><span class="line"></span><br><span class="line">gzip  test.tar test.tar.gz 跟上面的一样效果(麻烦)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gzip -d test.tar.gz 解压缩  ==&gt; test.tar</span><br></pre></td></tr></table></figure>
+<p>简单的方式打包压缩</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf test.tar.gz * 把当前目录的东西 打包压缩到 test.tar.gz文件里</span><br><span class="line"></span><br><span class="line">tar -zxvf test.tar.gz  把test.tar.gz文件解压缩并且解除打包</span><br></pre></td></tr></table></figure>
+<p>bzip2压缩解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -jcvf aa.tar.bz2 *</span><br><span class="line">tar -jxvf aa.tar.bz2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：这几种压缩解压不能混用，即gzip压缩后只能用gzip解压缩</p>
+</blockquote>
+<p>zip 压缩解压</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip  aa.tar.bz2 *</span><br><span class="line">unzip  aa.tar.bz2</span><br></pre></td></tr></table></figure>
+<h3 id="which查看命令位置"><a href="#which查看命令位置" class="headerlink" title="which查看命令位置"></a>which查看命令位置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which ls</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ln软链接和硬链接"><span class="toc-number">1.</span> <span class="toc-text">ln软链接和硬链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-查看文件的内容"><span class="toc-number">2.</span> <span class="toc-text">cat 查看文件的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-文本搜索"><span class="toc-number">3.</span> <span class="toc-text">grep 文本搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#help"><span class="toc-number">4.</span> <span class="toc-text">help</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#man"><span class="toc-number">5.</span> <span class="toc-text">man</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#历史命令"><span class="toc-number">6.</span> <span class="toc-text">历史命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find查找文件"><span class="toc-number">7.</span> <span class="toc-text">find查找文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-拷贝文件-mv剪切文件"><span class="toc-number">8.</span> <span class="toc-text">cp 拷贝文件 mv剪切文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#压缩和解压缩"><span class="toc-number">9.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#which查看命令位置"><span class="toc-number">10.</span> <span class="toc-text">which查看命令位置</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/06/13/Linux002难点命令/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&text=Linux002难点命令"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&is_video=false&description=Linux002难点命令"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux002难点命令&body=Check out this article: https://usxstudio.github.io/2018/06/13/Linux002难点命令/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&title=Linux002难点命令"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/06/13/Linux002难点命令/&name=Linux002难点命令&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

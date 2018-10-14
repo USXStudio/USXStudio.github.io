@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="注意本文使用的vue-cli是2.9.3 vue多页面配置调整方式 全局安装vue-cli  1npm install vue-cli@2.9.3 -g  生成模板，我使用的模板是webpack  1vue init webpack xxx  安装过程中的询问   是否安装vue-router(安装方便我们多页面里路由再次进行跳转) 是否安装eslint (这个配置比较繁琐这次不安装) 后面几个">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue多页面配置方式">
+<meta property="og:url" content="https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="注意本文使用的vue-cli是2.9.3 vue多页面配置调整方式 全局安装vue-cli  1npm install vue-cli@2.9.3 -g  生成模板，我使用的模板是webpack  1vue init webpack xxx  安装过程中的询问   是否安装vue-router(安装方便我们多页面里路由再次进行跳转) 是否安装eslint (这个配置比较繁琐这次不安装) 后面几个">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_03.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_04.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue多页面配置方式">
+<meta name="twitter:description" content="注意本文使用的vue-cli是2.9.3 vue多页面配置调整方式 全局安装vue-cli  1npm install vue-cli@2.9.3 -g  生成模板，我使用的模板是webpack  1vue init webpack xxx  安装过程中的询问   是否安装vue-router(安装方便我们多页面里路由再次进行跳转) 是否安装eslint (这个配置比较繁琐这次不安装) 后面几个">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>vue多页面配置方式</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/05/17/WEB_001_性能优化_DNS预解析/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/05/10/MONGODB_007_Schema和Model/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&text=vue多页面配置方式"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&is_video=false&description=vue多页面配置方式"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=vue多页面配置方式&body=Check out this article: https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&name=vue多页面配置方式&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意本文使用的vue-cli是2-9-3"><span class="toc-number">1.</span> <span class="toc-text">注意本文使用的vue-cli是2.9.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue多页面配置调整方式"><span class="toc-number">2.</span> <span class="toc-text">vue多页面配置调整方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充说明"><span class="toc-number">3.</span> <span class="toc-text">补充说明</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        vue多页面配置方式
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-05-17T14:09:33.000Z" itemprop="datePublished">2018-05-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/vue/">vue</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<h3 id="注意本文使用的vue-cli是2-9-3"><a href="#注意本文使用的vue-cli是2-9-3" class="headerlink" title="注意本文使用的vue-cli是2.9.3"></a>注意本文使用的vue-cli是2.9.3</h3></blockquote>
+<h3 id="vue多页面配置调整方式"><a href="#vue多页面配置调整方式" class="headerlink" title="vue多页面配置调整方式"></a>vue多页面配置调整方式</h3><ol>
+<li>全局安装vue-cli</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-cli@2.9.3 -g</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>生成模板，我使用的模板是webpack</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack xxx</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装过程中的询问</li>
+</ol>
+<ul>
+<li>是否安装vue-router(安装方便我们多页面里路由再次进行跳转)</li>
+<li>是否安装eslint (这个配置比较繁琐这次不安装)</li>
+<li>后面几个模块先不进行安装(这次的目标是多页面配置。。。。)</li>
+</ul>
+<blockquote>
+<p>初始化后会有提示如何进行运行</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_01.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 依照我们的项目，你应该</span><br><span class="line">cd xxx        //切换到生成的模板目录</span><br><span class="line">npm install   //安装依赖</span><br><span class="line">npm run dev   //如果出现经典的vue logo说明你初始化成功</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>多页面的目录结构调整</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_02.png" alt=""></p>
+<ul>
+<li>在开发路径src下增加modules和pages文件夹，分别存放模块和页面</li>
+<li>页面的所有文件都放到同一文件夹下就近管理：</li>
+<li>如上选中文件都移到index文件夹下，并把main.js改为index.js,保证页面的入口js文件和模板文件的名称一致<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">index.html(页面模板)</span><br><span class="line">main.js(页面入口文件)</span><br><span class="line">App.vue(页面使用的组件，公用组件放到components文件夹下)router(页面的路由配置)</span><br><span class="line">assets(页面的静态资源)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="5">
+<li>添加共同方法</li>
+</ol>
+<ul>
+<li>在build/utils.js中添加两个方法：webpack多入口文件和多页面输出</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">var glob = require(&apos;glob&apos;)</span><br><span class="line">var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;)</span><br><span class="line">var PAGE_PATH = path.resolve(__dirname, &apos;../src/pages&apos;)</span><br><span class="line">var merge = require(&apos;webpack-merge&apos;)</span><br><span class="line"></span><br><span class="line">//多入口配置</span><br><span class="line">exports.entries = function() &#123;</span><br><span class="line">  var entryFiles = glob.sync(PAGE_PATH + &apos;/*/*.js&apos;)</span><br><span class="line">  var map = &#123;&#125;</span><br><span class="line">  entryFiles.forEach((filePath) =&gt; &#123;</span><br><span class="line">    var filename = filePath.substring(filePath.lastIndexOf(&apos;\/&apos;) + 1, filePath.lastIndexOf(&apos;.&apos;))</span><br><span class="line">    map[filename] = filePath</span><br><span class="line">  &#125;)</span><br><span class="line">  return map</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//多页面输出配置</span><br><span class="line">exports.htmlPlugin = function() &#123;</span><br><span class="line">  let entryHtml = glob.sync(PAGE_PATH + &apos;/*/*.html&apos;)</span><br><span class="line">  let arr = []</span><br><span class="line">  entryHtml.forEach((filePath) =&gt; &#123;</span><br><span class="line">    let filename = filePath.substring(filePath.lastIndexOf(&apos;\/&apos;) + 1, filePath.lastIndexOf(&apos;.&apos;))</span><br><span class="line">    let conf = &#123;</span><br><span class="line">      template: filePath,</span><br><span class="line">      filename: filename + &apos;.html&apos;,</span><br><span class="line">      chunks: [filename],</span><br><span class="line">      inject: true</span><br><span class="line">    &#125;</span><br><span class="line">    if (process.env.NODE_ENV === &apos;production&apos;) &#123;</span><br><span class="line">      conf = merge(conf, &#123;</span><br><span class="line">        chunks: [&apos;manifest&apos;, &apos;vendor&apos;, filename],</span><br><span class="line">        minify: &#123;</span><br><span class="line">          removeComments: true,</span><br><span class="line">          collapseWhitespace: true,</span><br><span class="line">          removeAttributeQuotes: true</span><br><span class="line">        &#125;,</span><br><span class="line">        chunksSortMode: &apos;dependency&apos;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    arr.push(new HtmlWebpackPlugin(conf))</span><br><span class="line">  &#125;)</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>修改配置</li>
+</ol>
+<p>1) 修改build/webpack.base.conf.js的入口配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 替换默认的单页面入口</span><br><span class="line">// entry: &#123;</span><br><span class="line">//   app: &apos;./src/main.js&apos;</span><br><span class="line">// &#125;</span><br><span class="line">entry: utils.entries()</span><br></pre></td></tr></table></figure>
+<p>2)修改build/webpack.dev.conf.js和build/webpack.prod.conf.js的多页面配置：</p>
+<blockquote>
+<p>把原有的页面模板配置注释或删除，并把多页面配置添加到plugins</p>
+</blockquote>
+<p>webpack.dev.conf.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    ......</span><br><span class="line">    //  new HtmlWebpackPlugin(&#123;</span><br><span class="line">    //    filename: &apos;index.html&apos;,</span><br><span class="line">    //    template: &apos;index.html&apos;,</span><br><span class="line">    //    inject: true</span><br><span class="line">    //  &#125;),</span><br><span class="line">    ......</span><br><span class="line">  ].concat(utils.htmlPlugin())</span><br></pre></td></tr></table></figure>
+<p>webpack.prod.conf.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    ......</span><br><span class="line">    // new HtmlWebpackPlugin(&#123;</span><br><span class="line">    //   filename: config.build.index,</span><br><span class="line">    //   template: &apos;index.html&apos;,</span><br><span class="line">    //   inject: true,</span><br><span class="line">    //   minify: &#123;</span><br><span class="line">    //     removeComments: true,</span><br><span class="line">    //     collapseWhitespace: true,</span><br><span class="line">    //     removeAttributeQuotes: true</span><br><span class="line">    //   &#125;,</span><br><span class="line">    //   chunksSortMode: &apos;dependency&apos;</span><br><span class="line">    // &#125;),</span><br><span class="line">    ......</span><br><span class="line">  ].concat(utils.htmlPlugin())</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>在pages目录里创建cart目录</li>
+</ol>
+<ul>
+<li>新建cart.html</li>
+<li>新建cart.js</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_03.png" alt=""></p>
+<ol start="8">
+<li>终于你可以试试多页面是否成功了</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/vuenote_201_04.png" alt=""></p>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><blockquote>
+<p>在上面多页面输出配置utils.js中有这样一行代码：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chunks: [&apos;manifest&apos;, &apos;vendor&apos;, filename]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这是<a href="https://github.com/jantimon/html-webpack-plugin" target="_blank" rel="noopener">html-webpack-plugin</a>插件对页面入口文件(即js文件)的限定，如果不设置则会把整个项目下的所有入口文件全部引入</p>
+</blockquote>
+<ul>
+<li>为什么要引入’manifest’和’vendor’</li>
+</ul>
+<p>在build/webpack.prod.conf.js中有如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// split vendor js into its own file</span><br><span class="line">new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    name: &apos;vendor&apos;,</span><br><span class="line">    minChunks: function (module, count) &#123;</span><br><span class="line">    // any required modules inside node_modules are extracted to vendor</span><br><span class="line">    return (</span><br><span class="line">        module.resource &amp;&amp;</span><br><span class="line">        /\.js$/.test(module.resource) &amp;&amp;</span><br><span class="line">        module.resource.indexOf(</span><br><span class="line">        path.join(__dirname, &apos;../node_modules&apos;)</span><br><span class="line">        ) === 0</span><br><span class="line">    )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;),</span><br><span class="line">// extract webpack runtime and module manifest to its own file in order to</span><br><span class="line">// prevent vendor hash from being updated whenever app bundle is updated</span><br><span class="line">new webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">    name: &apos;manifest&apos;,</span><br><span class="line">    chunks: [&apos;vendor&apos;]</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<ul>
+<li>vendor模块是指提取涉及node_modules中的公共模块</li>
+<li>manifest模块是对vendor模块做的缓存</li>
+</ul>
+<p>关于CommonsChunkPlugin插件的详细说明请阅读<a href="https://webpack.js.org/plugins/commons-chunk-plugin/" target="_blank" rel="noopener">官方文档</a></p>
+<p>关于html-webpack-plugin插件的配置还有一行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chunksSortMode: &apos;dependency&apos;</span><br></pre></td></tr></table></figure>
+<p>插件会按照模块的依赖关系依次加载，即：manifest，vendor，本页面入口，其他页面入口…</p>
+<p>至此，多页面应用已经搭建完毕，只需要在pages文件夹创建相应的页面文件即可。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#注意本文使用的vue-cli是2-9-3"><span class="toc-number">1.</span> <span class="toc-text">注意本文使用的vue-cli是2.9.3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue多页面配置调整方式"><span class="toc-number">2.</span> <span class="toc-text">vue多页面配置调整方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充说明"><span class="toc-number">3.</span> <span class="toc-text">补充说明</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&text=vue多页面配置方式"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&is_video=false&description=vue多页面配置方式"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=vue多页面配置方式&body=Check out this article: https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&title=vue多页面配置方式"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/05/17/Vue_201_vue多页面配置方式/&name=vue多页面配置方式&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

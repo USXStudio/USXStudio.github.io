@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="CSS布局与定位题外话如果你想要一个高清的背景图你可以去 wallhaven div的高度由谁决定(核心知识点) div的高度由其内部文档流元素的高度总和决定  文档流是什么(核心知识点) 文档内元素的流动方向   如果你是一个内联元素,就是从左往右流动,如果宽度不够(流动遇到阻碍,它就换行继续从左往右)  123456&amp;lt;span&amp;gt;文字&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS布局与定位">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="CSS布局与定位题外话如果你想要一个高清的背景图你可以去 wallhaven div的高度由谁决定(核心知识点) div的高度由其内部文档流元素的高度总和决定  文档流是什么(核心知识点) 文档内元素的流动方向   如果你是一个内联元素,就是从左往右流动,如果宽度不够(流动遇到阻碍,它就换行继续从左往右)  123456&amp;lt;span&amp;gt;文字&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_03.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_04.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_05.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_06.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_07.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_08.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_11.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS布局与定位">
+<meta name="twitter:description" content="CSS布局与定位题外话如果你想要一个高清的背景图你可以去 wallhaven div的高度由谁决定(核心知识点) div的高度由其内部文档流元素的高度总和决定  文档流是什么(核心知识点) 文档内元素的流动方向   如果你是一个内联元素,就是从左往右流动,如果宽度不够(流动遇到阻碍,它就换行继续从左往右)  123456&amp;lt;span&amp;gt;文字&amp;lt;/span&amp;gt;&amp;lt;span&amp;gt;">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note011_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>CSS布局与定位</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/23/N012CSS伪元素和技巧/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/21/N010_CSS/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&text=CSS布局与定位"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&is_video=false&description=CSS布局与定位"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS布局与定位&body=Check out this article: https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&name=CSS布局与定位&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS布局与定位"><span class="toc-number">1.</span> <span class="toc-text">CSS布局与定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#div的高度由谁决定-核心知识点"><span class="toc-number">1.0.1.</span> <span class="toc-text">div的高度由谁决定(核心知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文档流是什么-核心知识点"><span class="toc-number">1.0.2.</span> <span class="toc-text">文档流是什么(核心知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#热干面的笑话"><span class="toc-number">1.0.3.</span> <span class="toc-text">热干面的笑话</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-block"><span class="toc-number">1.0.4.</span> <span class="toc-text">inline-block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内联元素的高度由什么决定-很难很难的知识点"><span class="toc-number">1.0.5.</span> <span class="toc-text">内联元素的高度由什么决定(很难很难的知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定"><span class="toc-number">1.0.6.</span> <span class="toc-text">结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我们怎么避免内联元素这些奇怪的问题"><span class="toc-number">1.0.7.</span> <span class="toc-text">我们怎么避免内联元素这些奇怪的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迫不得已的-height-最容易出bug的属性"><span class="toc-number">1.0.8.</span> <span class="toc-text">迫不得已的 height (最容易出bug的属性)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#脱离文档流"><span class="toc-number">1.0.9.</span> <span class="toc-text">脱离文档流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#width-100-bug的根源"><span class="toc-number">1.0.10.</span> <span class="toc-text">width:100%(bug的根源)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#背景图自适应"><span class="toc-number">1.0.11.</span> <span class="toc-text">背景图自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#宽度自适应"><span class="toc-number">1.0.12.</span> <span class="toc-text">宽度自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div水平居中的套路"><span class="toc-number">1.0.13.</span> <span class="toc-text">div水平居中的套路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不接受宽高设置的-span"><span class="toc-number">1.0.14.</span> <span class="toc-text">不接受宽高设置的 span</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css画三角形"><span class="toc-number">1.0.15.</span> <span class="toc-text">css画三角形</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iconfont-字体图标的使用"><span class="toc-number">1.0.16.</span> <span class="toc-text">iconfont 字体图标的使用</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CSS布局与定位
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-22T14:44:20.000Z" itemprop="datePublished">2017-10-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="CSS布局与定位"><a href="#CSS布局与定位" class="headerlink" title="CSS布局与定位"></a>CSS布局与定位</h2><p>题外话如果你想要一个高清的背景图你可以去 <a href="https://alpha.wallhaven.cc/" target="_blank" rel="noopener">wallhaven</a></p>
+<h4 id="div的高度由谁决定-核心知识点"><a href="#div的高度由谁决定-核心知识点" class="headerlink" title="div的高度由谁决定(核心知识点)"></a>div的高度由谁决定(核心知识点)</h4><blockquote>
+<p>div的高度由其内部文档流元素的高度总和决定</p>
+</blockquote>
+<h4 id="文档流是什么-核心知识点"><a href="#文档流是什么-核心知识点" class="headerlink" title="文档流是什么(核心知识点)"></a>文档流是什么(核心知识点)</h4><blockquote>
+<p>文档内元素的流动方向</p>
+</blockquote>
+<ol>
+<li>如果你是一个内联元素,就是从左往右流动,如果宽度不够(流动遇到阻碍,它就换行继续从左往右)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;文字&lt;/span&gt;</span><br><span class="line">&lt;span&gt;文字&lt;/span&gt;</span><br><span class="line">&lt;span&gt;文字&lt;/span&gt;</span><br><span class="line">...</span><br><span class="line">&lt;span&gt;文字&lt;/span&gt;</span><br><span class="line">&lt;span&gt;文字&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>如果你是一个块级元素,就是从上往下,每个块级元素另起一行</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br><span class="line">...</span><br><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br><span class="line">&lt;div&gt;文字&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如图</p>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_01.png" alt=""></p>
+<h4 id="热干面的笑话"><a href="#热干面的笑话" class="headerlink" title="热干面的笑话"></a>热干面的笑话</h4><p>外语认为单词的不可分割性导致 老外学中文 “热干面” 他会连续的把字向英语单词一样读出来</p>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_02.png" alt=""></p>
+<p>答案是因为文化差异「haaaaaaaaaaaaaaaaa」 会被当作一个单词而不像汉字一样可以分开</p>
+<blockquote>
+<p>你想分开它怎么办</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">span&#123;word-break:break-all&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="inline-block"><a href="#inline-block" class="headerlink" title="inline-block"></a>inline-block</h4><p>想要块级元素 变成一行 </p>
+<blockquote>
+<p>本来可以float实现,但是很多人不会于是css3推出 inline-block</p>
+</blockquote>
+<p>但是这是个触发很多问题的属性,会导致很多恶心的问题(建议float)</p>
+<h4 id="内联元素的高度由什么决定-很难很难的知识点"><a href="#内联元素的高度由什么决定-很难很难的知识点" class="headerlink" title="内联元素的高度由什么决定(很难很难的知识点)"></a>内联元素的高度由什么决定(很难很难的知识点)</h4><p>这要从与前端不相关的问题说起</p>
+<blockquote>
+<p>回忆起你上小学学汉语拼音的时候「四线谱」</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_03.png" alt=""></p>
+<blockquote>
+<p>你写汉字会中线对齐吗？ 明显不会<br>你写第二行的时候你会紧贴着第一行吗？明显也不会(多少都会留一些空隙表示分割)</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_04.png" alt=""></p>
+<blockquote>
+<p>即使在我们知道了字有「建议行高」的存在，但是内联元素的高度仍然是不确定的</p>
+</blockquote>
+<ul>
+<li>因为不同字体设计的建议行高不同 </li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_05.png" alt=""></p>
+<blockquote>
+<h4 id="结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定"><a href="#结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定" class="headerlink" title="结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定"></a>结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定</h4></blockquote>
+<h4 id="我们怎么避免内联元素这些奇怪的问题"><a href="#我们怎么避免内联元素这些奇怪的问题" class="headerlink" title="我们怎么避免内联元素这些奇怪的问题"></a>我们怎么避免内联元素这些奇怪的问题</h4><p>假设需求是 span 16px 高度40px</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    span&#123;font-size:16px;&#125;</span><br><span class="line">    div&#123;</span><br><span class="line">        line-height:24px;</span><br><span class="line">        padding:6px 0;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;span&gt;你好&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在font-size比较小的时候，可以用line-height控制</li>
+<li>建议设置的行高稍大于字体的大小</li>
+</ul>
+<h4 id="迫不得已的-height-最容易出bug的属性"><a href="#迫不得已的-height-最容易出bug的属性" class="headerlink" title="迫不得已的 height (最容易出bug的属性)"></a>迫不得已的 height (最容易出bug的属性)</h4><blockquote>
+<p>初学前端的你是不是经常看到设计图之后立刻一个 height:300px;</p>
+</blockquote>
+<ul>
+<li>一定不要写height,我们刚已经说了div的高度由其内部文档流元素的高度总和决定</li>
+<li><p>你上来一个 height:300px; 万一div里面文档流高度301你怎么办？</p>
+</li>
+<li><p>不到情非得已千万不要写高度</p>
+</li>
+</ul>
+<h4 id="脱离文档流"><a href="#脱离文档流" class="headerlink" title="脱离文档流"></a>脱离文档流</h4><blockquote>
+<p>请问 .main的高度是多少？ 300px</p>
+</blockquote>
+<ol>
+<li>div1 脱离了文档流</li>
+<li>.main的高度由其内部文档流元素的高度总和决定</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;div1&quot; style=&quot;position:fixed;height:40px;&quot;&gt;222&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;div2&quot; style=&quot;height:300px&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果一个元素它是fixed定位，它的宽度就不会向外扩展</p>
+</blockquote>
+<ul>
+<li>如果你fixed的元素原来是宽度占满的，通常要设置 width:100%;</li>
+</ul>
+<h4 id="width-100-bug的根源"><a href="#width-100-bug的根源" class="headerlink" title="width:100%(bug的根源)"></a>width:100%(bug的根源)</h4><ul>
+<li>如果你没什么事，千万不要加width:100%;</li>
+</ul>
+<blockquote>
+<p>如果你fixed定位的元素有padding:20px; 再加上width:100%;那么它就比它爸爸的宽度还要大</p>
+</blockquote>
+<p>div1的宽度已经比 main大了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;div1&quot; style=&quot;position:fixed;height:40px;padding:20px;width:100%&quot;&gt;222&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;div2&quot; style=&quot;height:300px&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>套路</p>
+</blockquote>
+<ul>
+<li>移除fixed元素的padding</li>
+<li>在fixed元素内部在包含一个div,让这个div有padding</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;main&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;div1&quot; style=&quot;position:fixed;height:40px;width:100%&quot;&gt;</span><br><span class="line">        &lt;div style=&quot;padding:20px;&quot;&gt;222&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;div2&quot; style=&quot;height:300px&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="背景图自适应"><a href="#背景图自适应" class="headerlink" title="背景图自适应"></a>背景图自适应</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    background-img:url(./img/aa.png);</span><br><span class="line">    background-position:center center;</span><br><span class="line">    background-size:cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="宽度自适应"><a href="#宽度自适应" class="headerlink" title="宽度自适应"></a>宽度自适应</h4><ul>
+<li>不要写 width:1000px 这样你怎么拖拽网页它都是1000px</li>
+</ul>
+<blockquote>
+<p>max-width:940px; 网页宽度小于940的时候它也跟着缩小</p>
+</blockquote>
+<h4 id="div水平居中的套路"><a href="#div水平居中的套路" class="headerlink" title="div水平居中的套路"></a>div水平居中的套路</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    margin-left:auto;</span><br><span class="line">    margin-right:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="不接受宽高设置的-span"><a href="#不接受宽高设置的-span" class="headerlink" title="不接受宽高设置的 span"></a>不接受宽高设置的 span</h4><ul>
+<li>因为span是内联元素(display:inline)设置宽高是无效的</li>
+<li>通常你要设置 display:inline-block</li>
+</ul>
+<blockquote>
+<p>需求一个span 内容是 hello 宽70 高30你会怎么办</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/*新手*/</span><br><span class="line">span&#123;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    height:30px;</span><br><span class="line">    width:70px;</span><br><span class="line">    line-height:30px;</span><br><span class="line">    text-align:center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*老司机   </span><br><span class="line">1.先看不设置样式时hello会占据多少的宽高</span><br><span class="line">2.经发现宽38px高22px</span><br><span class="line">3.设置line-height:22px因为不同机器上字体表现的高度有所差异</span><br><span class="line">*/</span><br><span class="line">span&#123;</span><br><span class="line">    display:inline-block;</span><br><span class="line">    padding:4px 16px;</span><br><span class="line">    line-height:22px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="css画三角形"><a href="#css画三角形" class="headerlink" title="css画三角形"></a>css画三角形</h4><ul>
+<li>border属性的使用</li>
+</ul>
+<ol>
+<li><p>先画个带边框的盒子</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    border:10px solid red;</span><br><span class="line">    height:50px;</span><br><span class="line">    width:50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给四个边框四个颜色</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    border:10px solid red;</span><br><span class="line">    height:50px;</span><br><span class="line">    width:50px;</span><br><span class="line">    border-top-color:black;</span><br><span class="line">    border-right-color:red;</span><br><span class="line">    border-bottom-color:green;</span><br><span class="line">    border-left-color:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把div高度和宽度设置为0，四个三角出现了</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    border:10px solid red;</span><br><span class="line">    height:0px;</span><br><span class="line">    width:0px;</span><br><span class="line">    border-top-color:black;</span><br><span class="line">    border-right-color:red;</span><br><span class="line">    border-bottom-color:green;</span><br><span class="line">    border-left-color:blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将上边框宽度设置为0</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    border:10px solid red;</span><br><span class="line">    height:0px;</span><br><span class="line">    width:0px;</span><br><span class="line">    border-top-color:black;</span><br><span class="line">    border-right-color:red;</span><br><span class="line">    border-bottom-color:green;</span><br><span class="line">    border-left-color:blue;</span><br><span class="line">    border-top-width:0px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将其他方向的border颜色设置为透明</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    border:10px solid transparent;</span><br><span class="line">    height:0px;</span><br><span class="line">    width:0px;</span><br><span class="line">    border-left-color:blue;</span><br><span class="line">    border-top-width:0px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="iconfont-字体图标的使用"><a href="#iconfont-字体图标的使用" class="headerlink" title="iconfont 字体图标的使用"></a>iconfont 字体图标的使用</h4><p><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">iconfont</a></p>
+<ol>
+<li>建议你先登录一下，有好几种那种都可以</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_06.png" alt=""></p>
+<ol start="2">
+<li>搜搜你需要的图标然后添加购物车</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_07.png" alt=""></p>
+<ol start="3">
+<li>点击购物车,添加新项目.如xxx</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_08.png" alt=""></p>
+<ol start="4">
+<li>添加项目成功后,你可以看到如下内容</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_09.png" alt=""></p>
+<ol start="5">
+<li>点击查看在线链接然后生成文件,然后引入到项目中,然后点击使用帮助对着文档抄</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_10.png" alt=""></p>
+<ol start="6">
+<li>以下是步骤</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note011_11.png" alt=""></p>
+<blockquote>
+<p>以上步骤后你就可以使用 svg了</p>
+</blockquote>
+<ul>
+<li>如何控制svg的大小 height/width</li>
+<li>如何控制svg的背景色 fill</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">svg&#123;</span><br><span class="line">    height:30px;</span><br><span class="line">    width:30px;</span><br><span class="line">    fill:#0089e1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS布局与定位"><span class="toc-number">1.</span> <span class="toc-text">CSS布局与定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#div的高度由谁决定-核心知识点"><span class="toc-number">1.0.1.</span> <span class="toc-text">div的高度由谁决定(核心知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文档流是什么-核心知识点"><span class="toc-number">1.0.2.</span> <span class="toc-text">文档流是什么(核心知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#热干面的笑话"><span class="toc-number">1.0.3.</span> <span class="toc-text">热干面的笑话</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inline-block"><span class="toc-number">1.0.4.</span> <span class="toc-text">inline-block</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内联元素的高度由什么决定-很难很难的知识点"><span class="toc-number">1.0.5.</span> <span class="toc-text">内联元素的高度由什么决定(很难很难的知识点)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定"><span class="toc-number">1.0.6.</span> <span class="toc-text">结论就是：多个span在一起的时候，它的高度由字体建议行高最高的那个span决定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我们怎么避免内联元素这些奇怪的问题"><span class="toc-number">1.0.7.</span> <span class="toc-text">我们怎么避免内联元素这些奇怪的问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迫不得已的-height-最容易出bug的属性"><span class="toc-number">1.0.8.</span> <span class="toc-text">迫不得已的 height (最容易出bug的属性)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#脱离文档流"><span class="toc-number">1.0.9.</span> <span class="toc-text">脱离文档流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#width-100-bug的根源"><span class="toc-number">1.0.10.</span> <span class="toc-text">width:100%(bug的根源)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#背景图自适应"><span class="toc-number">1.0.11.</span> <span class="toc-text">背景图自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#宽度自适应"><span class="toc-number">1.0.12.</span> <span class="toc-text">宽度自适应</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#div水平居中的套路"><span class="toc-number">1.0.13.</span> <span class="toc-text">div水平居中的套路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不接受宽高设置的-span"><span class="toc-number">1.0.14.</span> <span class="toc-text">不接受宽高设置的 span</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#css画三角形"><span class="toc-number">1.0.15.</span> <span class="toc-text">css画三角形</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#iconfont-字体图标的使用"><span class="toc-number">1.0.16.</span> <span class="toc-text">iconfont 字体图标的使用</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&text=CSS布局与定位"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&is_video=false&description=CSS布局与定位"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CSS布局与定位&body=Check out this article: https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&title=CSS布局与定位"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/22/N011CSS布局与定位/&name=CSS布局与定位&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

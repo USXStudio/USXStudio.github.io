@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="匿名函数为实现很简单需求而设计的一句话函数 匿名函数使用规范 匿名函数关键字是lambda lambda写在最前面其后跟参数，然后以「:」为分割,最后实际的逻辑也就是最后的结果 必须一行结束 多个参数用「,」分开   万能公式  lambda 参数 : 返回值  1234xxx = lambda n:n*n#两个参数xxx = lambda m,n:m*n  求字段里值最大的  1234567xx">
+<meta name="keywords" content="fullstack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P016_03_python匿名函数">
+<meta property="og:url" content="https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="匿名函数为实现很简单需求而设计的一句话函数 匿名函数使用规范 匿名函数关键字是lambda lambda写在最前面其后跟参数，然后以「:」为分割,最后实际的逻辑也就是最后的结果 必须一行结束 多个参数用「,」分开   万能公式  lambda 参数 : 返回值  1234xxx = lambda n:n*n#两个参数xxx = lambda m,n:m*n  求字段里值最大的  1234567xx">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.258Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P016_03_python匿名函数">
+<meta name="twitter:description" content="匿名函数为实现很简单需求而设计的一句话函数 匿名函数使用规范 匿名函数关键字是lambda lambda写在最前面其后跟参数，然后以「:」为分割,最后实际的逻辑也就是最后的结果 必须一行结束 多个参数用「,」分开   万能公式  lambda 参数 : 返回值  1234xxx = lambda n:n*n#两个参数xxx = lambda m,n:m*n  求字段里值最大的  1234567xx">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>P016_03_python匿名函数</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/28/P017_01_python递归/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/27/P016_02_python_memoryview用途/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&text=P016_03_python匿名函数"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&is_video=false&description=P016_03_python匿名函数"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P016_03_python匿名函数&body=Check out this article: https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&name=P016_03_python匿名函数&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.</span> <span class="toc-text">匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数使用规范"><span class="toc-number">1.1.</span> <span class="toc-text">匿名函数使用规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容易拿分的面试题"><span class="toc-number">1.2.</span> <span class="toc-text">容易拿分的面试题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐一个流程图的工具ProcessOn"><span class="toc-number">1.3.</span> <span class="toc-text">推荐一个流程图的工具ProcessOn</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        P016_03_python匿名函数
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-28T03:55:36.000Z" itemprop="datePublished">2018-07-28</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/fullstack/">fullstack</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><p>为实现很简单需求而设计的一句话函数</p>
+<h4 id="匿名函数使用规范"><a href="#匿名函数使用规范" class="headerlink" title="匿名函数使用规范"></a>匿名函数使用规范</h4><ul>
+<li>匿名函数关键字是lambda</li>
+<li>lambda写在最前面其后跟参数，然后以「:」为分割,最后实际的逻辑也就是最后的结果</li>
+<li>必须一行结束</li>
+<li>多个参数用「,」分开</li>
+</ul>
+<blockquote>
+<p>万能公式  lambda 参数 : 返回值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xxx = lambda n:n*n</span><br><span class="line"></span><br><span class="line">#两个参数</span><br><span class="line">xxx = lambda m,n:m*n</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>求字段里值最大的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xx = &#123;&apos;k1&apos;:10,&apos;k2&apos;:20,&apos;k3&apos;:30&#125;</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def fn(key):</span><br><span class="line">    return xx[key]</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">max(xx,key=lambda k:xx[k])</span><br></pre></td></tr></table></figure>
+<h4 id="容易拿分的面试题"><a href="#容易拿分的面试题" class="headerlink" title="容易拿分的面试题"></a>容易拿分的面试题</h4><blockquote>
+<p>1.问执行结果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">d = lambda p:p*2</span><br><span class="line">t = lambda p:p*3</span><br><span class="line"></span><br><span class="line">x = 2</span><br><span class="line">x = d(x) # 4</span><br><span class="line">x = t(x) # 12</span><br><span class="line">x = d(x) # 24</span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2.有俩元组((‘a’),(‘b’)),((‘c’),(‘d’))如何转换为列表[{‘a’:’c’},{‘b’:’d’}]</p>
+</blockquote>
+<p>提示zip拉链方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># step001 先用zip把格式转换</span><br><span class="line">a = ((&apos;a&apos;),(&apos;b&apos;))</span><br><span class="line">b = ((&apos;c&apos;),(&apos;d&apos;))</span><br><span class="line"></span><br><span class="line">res = zip(a,b) # 此时是一个生成器</span><br><span class="line"></span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">for i in res:</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">结果：</span><br><span class="line">(&apos;a&apos;,&apos;c&apos;) </span><br><span class="line">(&apos;b&apos;:&apos;d&apos;)</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line"></span><br><span class="line"># step002 遍历这个生成器 将元组变为字典</span><br><span class="line"># filter/map/sorted/max/min</span><br><span class="line"></span><br><span class="line"># 分析出：明显是用map</span><br><span class="line">def func(tup):</span><br><span class="line">    return &#123;tup[0]:tup[1]&#125;</span><br><span class="line">res = map(func,res)</span><br><span class="line"></span><br><span class="line"># step003 优化用lambda</span><br><span class="line"></span><br><span class="line">res = map(lambda tup:&#123;tup[0]:tup[1]&#125;,res)</span><br><span class="line">print(list(res))</span><br><span class="line"></span><br><span class="line"># step004 各种优化</span><br><span class="line">res = map(lambda tup:&#123;tup[0]:tup[1]&#125;,zip(a,b))</span><br><span class="line"></span><br><span class="line">res = list(map(lambda tup:&#123;tup[0]:tup[1]&#125;,zip(a,b)))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3.刁钻面试题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">def xx():</span><br><span class="line">    return (lambda x:i*x for i in range(4))</span><br><span class="line"></span><br><span class="line">[m(2) for m in xx()]</span><br><span class="line"></span><br><span class="line">结果</span><br><span class="line">[0,2,4,6]</span><br><span class="line"></span><br><span class="line">解析</span><br><span class="line">先看xx函数</span><br><span class="line">def xx():</span><br><span class="line">    return (lambda x:0*x,lambda x:1*x,lambda x:2*x,lambda x:3*x)</span><br><span class="line">[m(2) for m in xx()]</span><br><span class="line"></span><br><span class="line">m(2)实际就是个函数 并传递参数2带入。。。</span><br><span class="line">[0,2,4,6]</span><br></pre></td></tr></table></figure>
+<h4 id="推荐一个流程图的工具ProcessOn"><a href="#推荐一个流程图的工具ProcessOn" class="headerlink" title="推荐一个流程图的工具ProcessOn"></a>推荐一个流程图的工具ProcessOn</h4>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名函数"><span class="toc-number">1.</span> <span class="toc-text">匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#匿名函数使用规范"><span class="toc-number">1.1.</span> <span class="toc-text">匿名函数使用规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#容易拿分的面试题"><span class="toc-number">1.2.</span> <span class="toc-text">容易拿分的面试题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐一个流程图的工具ProcessOn"><span class="toc-number">1.3.</span> <span class="toc-text">推荐一个流程图的工具ProcessOn</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&text=P016_03_python匿名函数"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&is_video=false&description=P016_03_python匿名函数"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P016_03_python匿名函数&body=Check out this article: https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&title=P016_03_python匿名函数"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/07/28/P016_03_python匿名函数/&name=P016_03_python匿名函数&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="编程语言的佛魔道 流派  面向对象  总所周知的Java 一切皆对象（一不自觉我就想到think in java里的特别形象的灯泡图，真的是秒懂什么是方法什么是类） 什么是类（同一事物的抽象描述） 对象（实例） 封装 继承 多态 反射  函数式  JavaScript 算子 lamda 柯里化 高阶函数 纯函数   所以这就好比佛教和道教，每个流派都有自己的信仰。所以说编程语言上升到宗教层面还是挺">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承">
+<meta property="og:url" content="https://usxstudio.github.io/2018/04/20/N062_01_继承/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="编程语言的佛魔道 流派  面向对象  总所周知的Java 一切皆对象（一不自觉我就想到think in java里的特别形象的灯泡图，真的是秒懂什么是方法什么是类） 什么是类（同一事物的抽象描述） 对象（实例） 封装 继承 多态 反射  函数式  JavaScript 算子 lamda 柯里化 高阶函数 纯函数   所以这就好比佛教和道教，每个流派都有自己的信仰。所以说编程语言上升到宗教层面还是挺">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note062_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note062_02.png">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="继承">
+<meta name="twitter:description" content="编程语言的佛魔道 流派  面向对象  总所周知的Java 一切皆对象（一不自觉我就想到think in java里的特别形象的灯泡图，真的是秒懂什么是方法什么是类） 什么是类（同一事物的抽象描述） 对象（实例） 封装 继承 多态 反射  函数式  JavaScript 算子 lamda 柯里化 高阶函数 纯函数   所以这就好比佛教和道教，每个流派都有自己的信仰。所以说编程语言上升到宗教层面还是挺">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/slTrust/note/master/img/note062_01.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>继承</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/04/24/NODE_001_HTTP/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/20/Vue_220_axios设置token/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/04/20/N062_01_继承/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&text=继承"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&is_video=false&description=继承"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=继承&body=Check out this article: https://usxstudio.github.io/2018/04/20/N062_01_继承/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&name=继承&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言的佛魔道"><span class="toc-number">1.</span> <span class="toc-text">编程语言的佛魔道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS之假继承"><span class="toc-number">2.</span> <span class="toc-text">JS之假继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JS是没有类的概念的，只有原型"><span class="toc-number">2.1.</span> <span class="toc-text">JS是没有类的概念的，只有原型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是类"><span class="toc-number">3.</span> <span class="toc-text">什么是类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#但是IE里不允许你操作「下划线proto下划线」"><span class="toc-number">4.</span> <span class="toc-text">但是IE里不允许你操作「下划线proto下划线」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6诞生了"><span class="toc-number">5.</span> <span class="toc-text">ES6诞生了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题外话"><span class="toc-number">6.</span> <span class="toc-text">题外话</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。"><span class="toc-number">6.1.</span> <span class="toc-text">也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果你想给-Human-的原型添加一个种族是-人类"><span class="toc-number">6.2.</span> <span class="toc-text">如果你想给 Human 的原型添加一个种族是 人类</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        继承
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-20T15:58:22.000Z" itemprop="datePublished">2018-04-20</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="编程语言的佛魔道"><a href="#编程语言的佛魔道" class="headerlink" title="编程语言的佛魔道"></a>编程语言的佛魔道</h3><blockquote>
+<p>流派</p>
+</blockquote>
+<p>面向对象</p>
+<ul>
+<li>总所周知的Java 一切皆对象（一不自觉我就想到think in java里的特别形象的灯泡图，真的是秒懂什么是方法什么是类）</li>
+<li>什么是类（同一事物的抽象描述）</li>
+<li>对象（实例）</li>
+<li>封装</li>
+<li>继承</li>
+<li>多态</li>
+<li>反射</li>
+</ul>
+<p>函数式</p>
+<ul>
+<li>JavaScript</li>
+<li>算子</li>
+<li>lamda</li>
+<li>柯里化</li>
+<li>高阶函数</li>
+<li>纯函数</li>
+</ul>
+<blockquote>
+<p>所以这就好比佛教和道教，每个流派都有自己的信仰。所以说编程语言上升到宗教层面还是挺可怕的</p>
+</blockquote>
+<blockquote>
+<p>如果说上面不好理解，可以说说军队，武警和解放军虽然都是国防力量，但是性质不一样，一个对内(处突维稳，抢险救灾)一个对外(抵抗外敌)</p>
+</blockquote>
+<p>所以说不能拿java特有的东西去看待js</p>
+<h3 id="JS之假继承"><a href="#JS之假继承" class="headerlink" title="JS之假继承"></a>JS之假继承</h3><blockquote>
+<p>ES6新特性class出来之前 JS是没有继承的(都是模拟的)</p>
+</blockquote>
+<p>JS有原型「prototype」共有属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = new Object()</span><br><span class="line">// a可以调用toString()</span><br><span class="line">a.toString() </span><br><span class="line"></span><br><span class="line">//我们知道 a.__proto__ = Object.prototype</span><br><span class="line">Object.prototype 上有toString()</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note062_01.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Object是所有对象的基类</span><br><span class="line"></span><br><span class="line">var a = new Array()</span><br><span class="line">a.valueOf()  //a自己没有valueOf()</span><br><span class="line"></span><br><span class="line">//Array的原型没有valueOf()</span><br><span class="line">Array.__proto__ = Array.prototype</span><br><span class="line">//Object的原型有valueOf() 二次的原型查找</span><br><span class="line">Array.__proto__.__proto__ = Object.prototype</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/slTrust/note/master/img/note062_02.png" alt=""></p>
+<blockquote>
+<h4 id="JS是没有类的概念的，只有原型"><a href="#JS是没有类的概念的，只有原型" class="headerlink" title="JS是没有类的概念的，只有原型"></a>JS是没有类的概念的，只有原型</h4></blockquote>
+<blockquote>
+<p>但是面试官认为是有的。。。(因为人都会拿相似的东西去推测没接深入触过的东西)</p>
+</blockquote>
+<h3 id="什么是类"><a href="#什么是类" class="headerlink" title="什么是类"></a>什么是类</h3><blockquote>
+<p>能产生对象的东西就是「类」</p>
+</blockquote>
+<ol>
+<li>非常纯粹的人类对象</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Human()&#123;&#125;</span><br><span class="line">var person = new Human()</span><br><span class="line">// person就是一个对象了</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>人类应该有个名字</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">var person = new Human(&apos;aa&apos;)</span><br><span class="line">person.name // aa</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>人类应该有些技能比如 跑</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">Human.prototype.run = function()&#123; </span><br><span class="line">    console.log(&apos;run&apos;)</span><br><span class="line">&#125;</span><br><span class="line">var person = new Human(&apos;aa&apos;)</span><br><span class="line">person.name // aa</span><br><span class="line">person.run() // run</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>人类还有子类 比如  男人</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 男人类 他有一个属性就是性别</span><br><span class="line">function Man(name)&#123;</span><br><span class="line">    this.gender = &apos;男&apos;</span><br><span class="line">&#125;</span><br><span class="line">// 男人天生会打架</span><br><span class="line">Man.prototype.fight = function()&#123;</span><br><span class="line">    console.log(&apos;糊你熊脸&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>我们希望 Man 应该有个名字</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//人类</span><br><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">// 男人类 他有一个属性就是性别</span><br><span class="line">function Man(name)&#123;</span><br><span class="line">    Human.call(this,name)</span><br><span class="line">    this.gender = &apos;男&apos;</span><br><span class="line">&#125;</span><br><span class="line">// 男人天生会打架</span><br><span class="line">Man.prototype.fight = function()&#123;</span><br><span class="line">    console.log(&apos;糊你熊脸&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>我们希望 Man 会跑</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//人类</span><br><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">Human.prototype.run = function()&#123; </span><br><span class="line">    console.log(&apos;run&apos;)</span><br><span class="line">&#125;</span><br><span class="line">// 男人类 他有一个属性就是性别</span><br><span class="line">function Man(name)&#123;</span><br><span class="line">    Human.call(this,name)</span><br><span class="line">    this.gender = &apos;男&apos;</span><br><span class="line">&#125;</span><br><span class="line">// 男人天生会打架</span><br><span class="line">Man.prototype.fight = function()&#123;</span><br><span class="line">    console.log(&apos;糊你熊脸&apos;)</span><br><span class="line">&#125;</span><br><span class="line">Man.prototype.__proto__ = Human.prototype;</span><br><span class="line"></span><br><span class="line">//然后你声明一个 m1</span><br><span class="line">var m1 = new Man(&apos;m1&apos;)</span><br><span class="line">m1.__proto__ = Man.prototype</span><br><span class="line">m1.__proto__.__proto__ = Human.prototype</span><br><span class="line">m1.__proto__.__proto__.__proto__ = Object.prototype</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上就是一个ES5完整的继承</p>
+</blockquote>
+<p>核心只有两句话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Human.call(this,name)</span><br><span class="line">Man.prototype.__proto__ = Human.prototype;</span><br></pre></td></tr></table></figure>
+<h3 id="但是IE里不允许你操作「下划线proto下划线」"><a href="#但是IE里不允许你操作「下划线proto下划线」" class="headerlink" title="但是IE里不允许你操作「下划线proto下划线」"></a>但是IE里不允许你操作「下划线proto下划线」</h3><p>我们可以像这样来模拟继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Man.prototype = new Human()</span><br></pre></td></tr></table></figure>
+<p>虽然 new Human()产生的对象的 </p>
+<blockquote>
+<p>但是这样 new Human( )会产生一个对象 假设为temp</p>
+</blockquote>
+<blockquote>
+<p>temp会自带一个name属性 这个是我们不想要的</p>
+</blockquote>
+<blockquote>
+<p>我们只想要Human的原型上的东西</p>
+</blockquote>
+<p>于是我们用这三句代替</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//step1声明一个空函数，里面什么属性也没有</span><br><span class="line">var f = function()&#123;&#125;</span><br><span class="line"></span><br><span class="line">//step2 让空函数「f」原型 = Human.prototype</span><br><span class="line">f.prototype = Human.prototype</span><br><span class="line"></span><br><span class="line">//step3 生成一个「f」对象因为它是个空函数</span><br><span class="line">Man.prototype = new f()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function Human(name)&#123;</span><br><span class="line">    this.name = name</span><br><span class="line">&#125;</span><br><span class="line">Human.prototype.run = function()&#123;</span><br><span class="line">    console.log(&quot;我叫&quot;+this.name+&quot;，我在跑&quot;)</span><br><span class="line">    return undefined</span><br><span class="line">&#125;</span><br><span class="line">function Man(name)&#123;</span><br><span class="line">    Human.call(this, name)</span><br><span class="line">    this.gender = &apos;男&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var f = function()&#123;&#125;</span><br><span class="line">f.prototype = Human.prototype</span><br><span class="line">Man.prototype = new f()</span><br><span class="line"></span><br><span class="line">Man.prototype.fight = function()&#123;</span><br><span class="line">console.log(&apos;糊你熊脸&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ES6诞生了"><a href="#ES6诞生了" class="headerlink" title="ES6诞生了"></a>ES6诞生了</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Human&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    run()&#123;</span><br><span class="line">        console.log(&quot;我叫&quot;+this.name+&quot;，我在跑&quot;)</span><br><span class="line">        return undefined</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Man extends Human&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        super(name)</span><br><span class="line">        this.gender = &apos;男&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    fight()&#123;</span><br><span class="line">        console.log(&apos;糊你熊脸&apos;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>extends就是为了连接原型链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Man extends Human 就是为了实现</span><br><span class="line">Man.prototype.__proto__ = Human.prototype</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super(name) 就是Human.call(this,name)</span><br></pre></td></tr></table></figure>
+<h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><blockquote>
+<p>ES5方式的继承印证了，我对JS内存的理解</p>
+</blockquote>
+<blockquote>
+<p>ES6方式你可以自行去浏览器里打印，你会发现它还是用的prototype实现继承的</p>
+</blockquote>
+<blockquote>
+<h4 id="也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。"><a href="#也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。" class="headerlink" title="也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。"></a>也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。</h4></blockquote>
+<h4 id="如果你想给-Human-的原型添加一个种族是-人类"><a href="#如果你想给-Human-的原型添加一个种族是-人类" class="headerlink" title="如果你想给 Human 的原型添加一个种族是 人类"></a>如果你想给 Human 的原型添加一个种族是 人类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// ES5</span><br><span class="line">Human.prototype.s = &apos;人类&apos;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// ES6 对不起,不支持,有一种变通的写法</span><br><span class="line"></span><br><span class="line">class Human&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name</span><br><span class="line">    &#125;</span><br><span class="line">    //麻烦不？？？？</span><br><span class="line">    //麻烦不？？？？</span><br><span class="line">    //麻烦不？？？？</span><br><span class="line">    get s()&#123;</span><br><span class="line">        return &apos;人类&apos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    run()&#123;</span><br><span class="line">        console.log(&quot;我叫&quot;+this.name+&quot;，我在跑&quot;)</span><br><span class="line">        return undefined</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ES5写法证明你是JS程序员</p>
+</blockquote>
+<blockquote>
+<p>ES6写法证明你是Java程序员</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#编程语言的佛魔道"><span class="toc-number">1.</span> <span class="toc-text">编程语言的佛魔道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS之假继承"><span class="toc-number">2.</span> <span class="toc-text">JS之假继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#JS是没有类的概念的，只有原型"><span class="toc-number">2.1.</span> <span class="toc-text">JS是没有类的概念的，只有原型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是类"><span class="toc-number">3.</span> <span class="toc-text">什么是类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#但是IE里不允许你操作「下划线proto下划线」"><span class="toc-number">4.</span> <span class="toc-text">但是IE里不允许你操作「下划线proto下划线」</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6诞生了"><span class="toc-number">5.</span> <span class="toc-text">ES6诞生了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题外话"><span class="toc-number">6.</span> <span class="toc-text">题外话</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。"><span class="toc-number">6.1.</span> <span class="toc-text">也就是说ES6的继承会翻译成ES5的写法，如果你是Js程序员应该用ES5的写法，ES6是方便java程序员的写法。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#如果你想给-Human-的原型添加一个种族是-人类"><span class="toc-number">6.2.</span> <span class="toc-text">如果你想给 Human 的原型添加一个种族是 人类</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/04/20/N062_01_继承/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&text=继承"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&is_video=false&description=继承"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=继承&body=Check out this article: https://usxstudio.github.io/2018/04/20/N062_01_继承/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&title=继承"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/04/20/N062_01_继承/&name=继承&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

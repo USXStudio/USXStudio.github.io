@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="至少你得先安装git bash 然后才能启动  右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了配置12345git config --global user.name xxx #方便产品经理找（怼）你git config --global user.email yyy #方便产品经理找（怼）你git config --global push.defau">
+<meta name="keywords" content="前端知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git入门">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/05/N004_1_git入门/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="至少你得先安装git bash 然后才能启动  右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了配置12345git config --global user.name xxx #方便产品经理找（怼）你git config --global user.email yyy #方便产品经理找（怼）你git config --global push.defau">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git入门">
+<meta name="twitter:description" content="至少你得先安装git bash 然后才能启动  右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了配置12345git config --global user.name xxx #方便产品经理找（怼）你git config --global user.email yyy #方便产品经理找（怼）你git config --global push.defau">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>git入门</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/05/N004_4_git分支操作/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/05/N004_1_git入门/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&text=git入门"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&is_video=false&description=git入门"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=git入门&body=Check out this article: https://usxstudio.github.io/2017/10/05/N004_1_git入门/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&name=git入门&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#右键git-bash-here-依次输入下面的命令-不要管为啥-用多了自然而然就知道了"><span class="toc-number">1.</span> <span class="toc-text">右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的只有几个"><span class="toc-number">1.2.</span> <span class="toc-text">常用的只有几个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果你不知道一个命令啥意思-又不想去查-可以安装插件tldr-to-long-don’t-read"><span class="toc-number">1.3.</span> <span class="toc-text">如果你不知道一个命令啥意思 又不想去查 可以安装插件tldr  to long don’t read</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置远程仓库"><span class="toc-number">1.4.</span> <span class="toc-text">配置远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释每个命令推荐你去这个"><span class="toc-number">1.5.</span> <span class="toc-text">解释每个命令推荐你去这个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何上传更新"><span class="toc-number">1.6.</span> <span class="toc-text">如何上传更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#你在本地目录有任何改变就按下面的命令"><span class="toc-number">1.6.1.</span> <span class="toc-text">你在本地目录有任何改变就按下面的命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果你已经commit了-但是发现这次改的需要跟上次commit合并"><span class="toc-number">1.7.</span> <span class="toc-text">如果你已经commit了 但是发现这次改的需要跟上次commit合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他-中级命令"><span class="toc-number">1.8.</span> <span class="toc-text">其他 中级命令</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        git入门
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-05T12:13:32.000Z" itemprop="datePublished">2017-10-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/前端知识点/">前端知识点</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>至少你得先安装git bash 然后才能启动</p>
+</blockquote>
+<h2 id="右键git-bash-here-依次输入下面的命令-不要管为啥-用多了自然而然就知道了"><a href="#右键git-bash-here-依次输入下面的命令-不要管为啥-用多了自然而然就知道了" class="headerlink" title="右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了"></a>右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name xxx <span class="comment">#方便产品经理找（怼）你</span></span><br><span class="line">git config --global user.email yyy <span class="comment">#方便产品经理找（怼）你</span></span><br><span class="line">git config --global push.default matching <span class="comment"># 原因参考： https://stackoverflow.com/a/21865319/1262580</span></span><br><span class="line">git config --global core.quotepath <span class="literal">false</span> <span class="comment">#防止文件名变成数字</span></span><br><span class="line">git config --global core.editor <span class="string">"vim"</span> <span class="comment"># 使用vim编辑提交信息</span></span><br></pre></td></tr></table></figure>
+<h3 id="常用的只有几个"><a href="#常用的只有几个" class="headerlink" title="常用的只有几个"></a>常用的只有几个</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">git status -sb 查看文件信息</span><br><span class="line">git add . 添加当前目录里所有文件到暂存区</span><br><span class="line">git commit -m <span class="string">'提交信息'</span>  提交到本地仓库</span><br><span class="line">git pull 建议先执行  同步远程仓库的代码</span><br><span class="line">git push 提交到远程仓库</span><br><span class="line">git <span class="built_in">log</span> </span><br><span class="line">mkdir a  创建目录a</span><br><span class="line">mkdir -p  <span class="string">'a/b/c'</span>目录路径</span><br><span class="line">rm -r 递归删除目录  但是每次都会问你确认删除吗?</span><br><span class="line">rm -rf 强制删除目录  不停的问你确认删除吗？</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"hello"</span>&gt;newFile.txt 创建文件</span><br><span class="line">rm newFile.txt 删除文件</span><br><span class="line">mv 1.txt 2.txt 重命名==》  把1.txt移动到2.txt</span><br><span class="line"><span class="built_in">pwd</span> 显示当前目录</span><br><span class="line">ls 查看路径  所有以.开头的都不显示</span><br><span class="line">ls -a 路径  显示所有文件及目录</span><br><span class="line">ls -l 路径  显示更多信息  读写权限 </span><br><span class="line">ls -al 路径 显示所有文件及目录  还有读写权限</span><br><span class="line">curl -L http://www.baidu.com &gt; baidu.html   下载文件</span><br></pre></td></tr></table></figure>
+<h3 id="如果你不知道一个命令啥意思-又不想去查-可以安装插件tldr-to-long-don’t-read"><a href="#如果你不知道一个命令啥意思-又不想去查-可以安装插件tldr-to-long-don’t-read" class="headerlink" title="如果你不知道一个命令啥意思 又不想去查 可以安装插件tldr  to long don’t read"></a>如果你不知道一个命令啥意思 又不想去查 可以安装插件tldr  to long don’t read</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm  install -g tldr</span><br><span class="line">tldr cat 会告诉 cat命令的用法</span><br></pre></td></tr></table></figure>
+<h3 id="配置远程仓库"><a href="#配置远程仓库" class="headerlink" title="配置远程仓库"></a>配置远程仓库</h3><p>1.进入 <a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a><br>2.如果页面里已经有一些 key，就点「delete」按钮把这些 key 全删掉。如果没有，就往下看<br>3.点击 New SSH key，你需要输入 Title 和 Key，但是你现在没有 key，往下看<br>4.打开 Git Bash<br>5.复制并运行 rm -rf ~/.ssh/* 把现有的 ssh key 都删掉，这句命令行如果你多打一个空格，可能就要重装系统了，建议复制运行。<br>6.运行 ssh-keygen -t rsa -b 4096 -C “你的邮箱”，注意填写你的邮箱！<br>7.按回车三次<br>8.运行 cat ~/.ssh/id_rsa.pub，得到一串东西，完整的复制这串东西<br>9.回到上面第 3 步的页面，在 Title 输入「我的第一个 key」<br>10.在 Key 里粘贴刚刚你你复制的那串东西<br>11.点击 Add SSH key<br>12.回到 Git Bash<br>13.运行 ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>，你可能会看到这样的提示：</p>
+<pre><code>Are you sure you want to continue connecting (yes/no)?
+</code></pre><p>输入 yes 回车……问你话你就答，别傻在那<br>14.然后如果你看到 Permission denied (publickey). 就说明你失败了，请回到第 1 步重来，是的，回到第 1 步重来；如果你看到 Hi FrankFang! You’ve successfully authenticated, but GitHub does not provide shell access. 就说明你成功了！<br>好了，终于 TMD 添加了一个无聊的 SSH key，不要问我这个有什么用，因为一会儿你就会用到它，你想了解原理就看这篇 文章</p>
+<blockquote>
+<p>如果要讲清楚，太浪费时间了，我们只是想用用 GitHub 而已。</p>
+</blockquote>
+<p><em>一台电脑只需要一个 SSH key
+</em>一个 SSH key 可以访问你的所有仓库，即使你有 1000000 个仓库，都没问题<br><em>如果你新买了电脑，就在新电脑上重新生成一个 SSH key，把这个 key 也上传到 GitHub，它可以和之前的 key 共存在 GitHub 上
+</em>如果你把 key 从电脑上删除了，重新生成一个 key 即可，替换之前的 key</p>
+<h3 id="解释每个命令推荐你去这个"><a href="#解释每个命令推荐你去这个" class="headerlink" title="解释每个命令推荐你去这个"></a>解释每个命令推荐你去这个</h3><blockquote>
+<p><a href="https://explainshell.com/explain?cmd=ls+-lrt" target="_blank" rel="noopener">https://explainshell.com/explain?cmd=ls+-lrt</a></p>
+</blockquote>
+<h3 id="如何上传更新"><a href="#如何上传更新" class="headerlink" title="如何上传更新"></a>如何上传更新</h3><h4 id="你在本地目录有任何改变就按下面的命令"><a href="#你在本地目录有任何改变就按下面的命令" class="headerlink" title="你在本地目录有任何改变就按下面的命令"></a>你在本地目录有任何改变就按下面的命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add 文件路径</span><br><span class="line">git commit -m &apos;提交信息&apos;</span><br><span class="line">git pull 相信我 你一定会忘记这个</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h3 id="如果你已经commit了-但是发现这次改的需要跟上次commit合并"><a href="#如果你已经commit了-但是发现这次改的需要跟上次commit合并" class="headerlink" title="如果你已经commit了 但是发现这次改的需要跟上次commit合并"></a>如果你已经commit了 但是发现这次改的需要跟上次commit合并</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 修复之前的commit,和本次修改一并提交</span><br><span class="line">git commit --amend -v .</span><br><span class="line"># 上传到远程仓库</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h3 id="其他-中级命令"><a href="#其他-中级命令" class="headerlink" title="其他 中级命令"></a>其他 中级命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:xxxxxxx.git 将本地仓库与远程仓库关联</span><br><span class="line">git remote set-url origin git@github.com:xxxxx.git 上一步手抖了，可以用这个命令来挽回</span><br><span class="line">git branch 新建分支</span><br><span class="line">git merge 合并分支</span><br><span class="line">git stash 通灵术</span><br><span class="line">git stash pop 反转通灵术</span><br><span class="line">git revert 后悔了</span><br><span class="line">git reset 另一种后悔了</span><br><span class="line">git diff 查看详细变化</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#右键git-bash-here-依次输入下面的命令-不要管为啥-用多了自然而然就知道了"><span class="toc-number">1.</span> <span class="toc-text">右键git bash here 依次输入下面的命令  不要管为啥  用多了自然而然就知道了</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">1.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用的只有几个"><span class="toc-number">1.2.</span> <span class="toc-text">常用的只有几个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果你不知道一个命令啥意思-又不想去查-可以安装插件tldr-to-long-don’t-read"><span class="toc-number">1.3.</span> <span class="toc-text">如果你不知道一个命令啥意思 又不想去查 可以安装插件tldr  to long don’t read</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置远程仓库"><span class="toc-number">1.4.</span> <span class="toc-text">配置远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释每个命令推荐你去这个"><span class="toc-number">1.5.</span> <span class="toc-text">解释每个命令推荐你去这个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何上传更新"><span class="toc-number">1.6.</span> <span class="toc-text">如何上传更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#你在本地目录有任何改变就按下面的命令"><span class="toc-number">1.6.1.</span> <span class="toc-text">你在本地目录有任何改变就按下面的命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果你已经commit了-但是发现这次改的需要跟上次commit合并"><span class="toc-number">1.7.</span> <span class="toc-text">如果你已经commit了 但是发现这次改的需要跟上次commit合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他-中级命令"><span class="toc-number">1.8.</span> <span class="toc-text">其他 中级命令</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/05/N004_1_git入门/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&text=git入门"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&is_video=false&description=git入门"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=git入门&body=Check out this article: https://usxstudio.github.io/2017/10/05/N004_1_git入门/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&title=git入门"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/05/N004_1_git入门/&name=git入门&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

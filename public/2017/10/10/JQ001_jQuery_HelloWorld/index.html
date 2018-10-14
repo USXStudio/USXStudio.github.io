@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="What is jQuery?jQuery is a fast, small, and feature-rich JavaScript library. ready()123$(document).ready(function() &amp;#123;    //逻辑处理&amp;#125;);  ready() 的作用是等页面的文档（document）中的节点都加载完毕后，再执行后续的代码，因为我们在执行代码的">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery_HelloWorld">
+<meta property="og:url" content="https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="What is jQuery?jQuery is a fast, small, and feature-rich JavaScript library. ready()123$(document).ready(function() &amp;#123;    //逻辑处理&amp;#125;);  ready() 的作用是等页面的文档（document）中的节点都加载完毕后，再执行后续的代码，因为我们在执行代码的">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-14T05:14:26.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery_HelloWorld">
+<meta name="twitter:description" content="What is jQuery?jQuery is a fast, small, and feature-rich JavaScript library. ready()123$(document).ready(function() &amp;#123;    //逻辑处理&amp;#125;);  ready() 的作用是等页面的文档（document）中的节点都加载完毕后，再执行后续的代码，因为我们在执行代码的">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>jQuery_HelloWorld</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/10/11/N005_01_脚本/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/10/05/N004_1_git入门/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&text=jQuery_HelloWorld"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&is_video=false&description=jQuery_HelloWorld"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jQuery_HelloWorld&body=Check out this article: https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&name=jQuery_HelloWorld&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-jQuery"><span class="toc-number">1.</span> <span class="toc-text">What is jQuery?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ready"><span class="toc-number">1.1.</span> <span class="toc-text">ready()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原生JS-和-jQ"><span class="toc-number">1.2.</span> <span class="toc-text">原生JS 和 jQ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dom对象和-jq对象相互转换"><span class="toc-number">1.3.</span> <span class="toc-text">dom对象和 jq对象相互转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#id选择器"><span class="toc-number">1.4.</span> <span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class选择器"><span class="toc-number">1.5.</span> <span class="toc-text">class选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标签选择器"><span class="toc-number">1.6.</span> <span class="toc-text">标签选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通配符选择器"><span class="toc-number">1.7.</span> <span class="toc-text">通配符选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各种选择器"><span class="toc-number">1.8.</span> <span class="toc-text">各种选择器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this选择器"><span class="toc-number">2.</span> <span class="toc-text">this选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性与样式"><span class="toc-number">3.</span> <span class="toc-text">属性与样式</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        jQuery_HelloWorld
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-10T06:11:46.000Z" itemprop="datePublished">2017-10-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/jQuery/">jQuery</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="What-is-jQuery"><a href="#What-is-jQuery" class="headerlink" title="What is jQuery?"></a>What is jQuery?</h3><p>jQuery is a fast, small, and feature-rich JavaScript library.</p>
+<h4 id="ready"><a href="#ready" class="headerlink" title="ready()"></a>ready()</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function() &#123;</span><br><span class="line">    //逻辑处理</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ready() 的作用是等页面的文档（document）中的节点都加载完毕后，再执行后续的代码，因为我们在执行代码的时候，可能会依赖页面的某一个元素，我们要确保这个元素真正的的被加载完毕后才能正确的使用。</p>
+</blockquote>
+<h4 id="原生JS-和-jQ"><a href="#原生JS-和-jQ" class="headerlink" title="原生JS 和 jQ"></a>原生JS 和 jQ</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">window.onload = function()&#123;</span><br><span class="line">    var p = document.getElementById(&apos;#xxx&apos;);</span><br><span class="line">    p.innerHTML = &apos;hello 我是原生方式操作dom&apos;;</span><br><span class="line">    p.style.color = &apos;red&apos;;</span><br><span class="line">&#125;</span><br><span class="line">.....</span><br><span class="line">// jquery</span><br><span class="line"></span><br><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    var $p = $(&apos;#yyy&apos;);</span><br><span class="line">    $p.html(&apos;hello 我是jqery方式操作dom&apos;).css(&apos;color&apos;,&apos;red&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过jQuery方法包装后的对象，是一个类数组对象。它与DOM对象完全不同，唯一相似的是它们都能操作DOM。</p>
+<h4 id="dom对象和-jq对象相互转换"><a href="#dom对象和-jq对象相互转换" class="headerlink" title="dom对象和 jq对象相互转换"></a>dom对象和 jq对象相互转换</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line">&lt;div&gt;&lt;/div&gt;</span><br><span class="line">...</span><br><span class="line">// 返回一个类数组对象  包含三个div的jq对象</span><br><span class="line">var $div = $(&apos;div&apos;);</span><br><span class="line">// 转换为原生对象</span><br><span class="line">var oDiv = $div[0]</span><br><span class="line">oDiv.style.color = &apos;red&apos;;</span><br><span class="line"></span><br><span class="line">//也可以使用get(索引) 转换成dom对象</span><br><span class="line">var oDiv2 = $div.get(1);</span><br><span class="line"></span><br><span class="line">... dom对象转 jq对象</span><br><span class="line">//getElementsByTagName()  返回的是一个集合,dom对象数组  三个div</span><br><span class="line">var aDiv = document.getElementsByTagName(&apos;div&apos;);</span><br><span class="line">// 转换jq对象只需要这样</span><br><span class="line">var $div = $(aDiv)</span><br><span class="line">$div.first().css(&apos;background&apos;,&apos;red&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a>id选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;oDiv&quot;&gt;&lt;/div&gt;</span><br><span class="line">//注意 id是唯一的  如果存在多个相同id的元素 ，则只返回第一个dom元素</span><br><span class="line">$(&apos;#oDiv&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="class选择器"><a href="#class选择器" class="headerlink" title="class选择器"></a>class选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">...</span><br><span class="line">//通过原生方法处理</span><br><span class="line">//样式是可以多选的，所以得到的是一个合集</span><br><span class="line">//需要通过循环给合集中每一个元素修改样式</span><br><span class="line">var aDiv = document.getElementsByClassName(&apos;xxx&apos;);</span><br><span class="line">for (var i = 0; i &lt; aDiv.length; i++) &#123;</span><br><span class="line">    aDiv[i].style.border = &quot;3px solid blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line">-------------------------------------------------</span><br><span class="line">//通过jQuery直接传入class</span><br><span class="line">//class选择器可以选择多个元素</span><br><span class="line">$(&quot;.xxx&quot;).css(&quot;border&quot;, &quot;3px solid red&quot;);</span><br><span class="line">//$(&quot;.xxx&quot;).css()方法内部肯定是带了一个隐式的循环处理</span><br></pre></td></tr></table></figure>
+<h4 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;xxx&quot;&gt;&lt;/div&gt;</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line">//通过原生方法处理</span><br><span class="line">//获取到所有的节点标记名为div的元素</span><br><span class="line">//给每一个div加上蓝色的边框</span><br><span class="line">var aDiv = document.getElementsByTagName(&apos;div&apos;);</span><br><span class="line">for (var i = 0; i &lt; aDiv.length; i++) &#123;</span><br><span class="line">    aDiv[i].style.border = &quot;3px solid blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line">------------------------------------</span><br><span class="line">$(&quot;div&quot;).css(&quot;border&quot;, &quot;3px solid red&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="通配符选择器"><a href="#通配符选择器" class="headerlink" title="通配符选择器"></a>通配符选择器</h4><p>如果要获取文档中所有的元素，通过document.getElementsByTagName()中传递”*”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var elements1 = document.getElementsByTagName(&apos;*&apos;);</span><br><span class="line">//jquery</span><br><span class="line">var elements2 = $(&quot;*&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="各种选择器"><a href="#各种选择器" class="headerlink" title="各种选择器"></a>各种选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;parent &gt; child&apos;) //子选择器  直接子集  父子关系  </span><br><span class="line">$(&apos;parent xxx&apos;) //后代选择器  儿子 孙子 曾孙子</span><br><span class="line">$(&apos;prev + next&apos;) //相邻兄弟选择器 选择紧邻在 prev元素后的 next元素</span><br><span class="line">$(&apos;prev ~ siblings&apos;) //匹配prev元素后的  所有siblings元素</span><br><span class="line"></span><br><span class="line">$(&quot;.div:first&quot;)</span><br><span class="line">$(&quot;.div:last&quot;)</span><br><span class="line">$(&quot;.div:even&quot;)</span><br><span class="line">$(&quot;.div:odd&quot;)</span><br><span class="line">$(&quot;.div:eq(2)&quot;)</span><br><span class="line">$(&quot;.div:gt(3)&quot;)</span><br><span class="line">$(&quot;.div:lt(4)&quot;)</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">$(&apos;input:enabled&apos;)</span><br><span class="line">$(&apos;input:disabled&apos;)</span><br><span class="line">$(&apos;input:checked&apos;)</span><br><span class="line">$(&apos;option:selected&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="this选择器"><a href="#this选择器" class="headerlink" title="this选择器"></a>this选择器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var aaa = &#123;</span><br><span class="line">    name:&quot;almost&quot;,</span><br><span class="line">    getName:function()&#123;</span><br><span class="line">        //this,就是aaa对象</span><br><span class="line">        return this.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">aaa.getName(); //almost</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var p1 = document.getElementById(&apos;test1&apos;)</span><br><span class="line">p1.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">    // this === p1</span><br><span class="line">    //直接通过dom的方法改变颜色</span><br><span class="line">    this.style.color = &quot;red&quot;; </span><br><span class="line">&#125;,false);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$(&apos;#test2&apos;).click(function()&#123;</span><br><span class="line">    //这里的this 是原生dom对象 需要转换为jquery对象才可以使用</span><br><span class="line">    //通过包装成jQuery对象改变颜色</span><br><span class="line">    $(this).css(&apos;color&apos;,&apos;blue&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="属性与样式"><a href="#属性与样式" class="headerlink" title="属性与样式"></a>属性与样式</h3><p>设置属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//找到第一个input，通过attr设置属性value的值</span><br><span class="line">$(&apos;input&apos;).attr(&apos;value&apos;,&apos;001&apos;)</span><br></pre></td></tr></table></figure>
+<p>获取属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;input&apos;).attr(&apos;value&apos;)</span><br></pre></td></tr></table></figure>
+<p>通过function设置属性值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;input&apos;).attr(&apos;value&apos;,function(i, val)&#123;</span><br><span class="line">    		return &apos;通过function设置&apos; + val</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>删除属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;input&apos;).removeAttr(&apos;aaa&apos;)</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-is-jQuery"><span class="toc-number">1.</span> <span class="toc-text">What is jQuery?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ready"><span class="toc-number">1.1.</span> <span class="toc-text">ready()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原生JS-和-jQ"><span class="toc-number">1.2.</span> <span class="toc-text">原生JS 和 jQ</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dom对象和-jq对象相互转换"><span class="toc-number">1.3.</span> <span class="toc-text">dom对象和 jq对象相互转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#id选择器"><span class="toc-number">1.4.</span> <span class="toc-text">id选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class选择器"><span class="toc-number">1.5.</span> <span class="toc-text">class选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#标签选择器"><span class="toc-number">1.6.</span> <span class="toc-text">标签选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通配符选择器"><span class="toc-number">1.7.</span> <span class="toc-text">通配符选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各种选择器"><span class="toc-number">1.8.</span> <span class="toc-text">各种选择器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this选择器"><span class="toc-number">2.</span> <span class="toc-text">this选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性与样式"><span class="toc-number">3.</span> <span class="toc-text">属性与样式</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&text=jQuery_HelloWorld"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&is_video=false&description=jQuery_HelloWorld"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=jQuery_HelloWorld&body=Check out this article: https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&title=jQuery_HelloWorld"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2017/10/10/JQ001_jQuery_HelloWorld/&name=jQuery_HelloWorld&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
