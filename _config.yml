@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Aileen Zone
+title: USXStudio
 subtitle: 
-description: Aileen's description
+description: USXStudio 
 keywords:
 author: Chaos Wang
 language: en
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.鲜颖.com
+url: https://usxstudio.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -85,5 +85,5 @@ theme_config:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:USXStudio.github.io.git
+  repo: git@github.com:USXStudio/USXStudio.github.io.git
   branch: master
