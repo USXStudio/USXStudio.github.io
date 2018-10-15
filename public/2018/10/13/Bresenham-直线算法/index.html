@@ -4,6 +4,7 @@
     <!-- so meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="OaWLnxO7T5" />
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="简介Bresenham 算法在计算机图形图像中，因为屏幕是一个一个的像素点。所以在屏幕上展示的直线也是一个一个的点组成的，这个很好理解。生活中的电视屏幕，电脑显示屏像素点都比较小，可能不直观，但是我们可以看见户外那些一个个LED灯组成的LED广告牌，就会明白这个事情。Bresenham 算法就是将连续的线段计算为一个个连续的点，然后绘制在屏幕上的。 事实上Bresenham算法现在应用非常广泛，基">
@@ -13,10 +14,12 @@
 <meta property="og:site_name" content="USXStudio">
 <meta property="og:description" content="简介Bresenham 算法在计算机图形图像中，因为屏幕是一个一个的像素点。所以在屏幕上展示的直线也是一个一个的点组成的，这个很好理解。生活中的电视屏幕，电脑显示屏像素点都比较小，可能不直观，但是我们可以看见户外那些一个个LED灯组成的LED广告牌，就会明白这个事情。Bresenham 算法就是将连续的线段计算为一个个连续的点，然后绘制在屏幕上的。 事实上Bresenham算法现在应用非常广泛，基">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-14T04:17:15.840Z">
+<meta property="og:image" content="https://usxstudio.github.io/2018/10/13/Bresenham-直线算法/bres1.gif">
+<meta property="og:updated_time" content="2018-10-15T02:35:26.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bresenham 直线算法">
 <meta name="twitter:description" content="简介Bresenham 算法在计算机图形图像中，因为屏幕是一个一个的像素点。所以在屏幕上展示的直线也是一个一个的点组成的，这个很好理解。生活中的电视屏幕，电脑显示屏像素点都比较小，可能不直观，但是我们可以看见户外那些一个个LED灯组成的LED广告牌，就会明白这个事情。Bresenham 算法就是将连续的线段计算为一个个连续的点，然后绘制在屏幕上的。 事实上Bresenham算法现在应用非常广泛，基">
+<meta name="twitter:image" content="https://usxstudio.github.io/2018/10/13/Bresenham-直线算法/bres1.gif">
     
     
         
@@ -102,7 +105,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介Bresenham-算法"><span class="toc-number">1.</span> <span class="toc-text">简介Bresenham 算法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介Bresenham-算法"><span class="toc-number">1.</span> <span class="toc-text">简介Bresenham 算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本的Bresenham算法-原理"><span class="toc-number">2.</span> <span class="toc-text">基本的Bresenham算法 原理</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -138,7 +141,7 @@
   <div class="content" itemprop="articleBody">
     <h1 id="简介Bresenham-算法"><a href="#简介Bresenham-算法" class="headerlink" title="简介Bresenham 算法"></a>简介Bresenham 算法</h1><p>在计算机图形图像中，因为屏幕是一个一个的像素点。所以在屏幕上展示的直线也是一个一个的点组成的，这个很好理解。生活中的电视屏幕，电脑显示屏像素点都比较小，可能不直观，但是我们可以看见户外那些一个个LED灯组成的LED广告牌，就会明白这个事情。Bresenham 算法就是将连续的线段计算为一个个连续的点，然后绘制在屏幕上的。</p>
 <p>事实上Bresenham算法现在应用非常广泛，基于它的改进算法已经应用到很多其他地方，比如画圆，比如硬化到硬件芯片。不过这些都不是我们进行讨论的内容。</p>
-<p># </p>
+<h1 id="基本的Bresenham算法-原理"><a href="#基本的Bresenham算法-原理" class="headerlink" title="基本的Bresenham算法 原理"></a>基本的Bresenham算法 原理</h1><p>在（x，y）处绘制了一个点，那么很明显下一个点就是（x + 1，y）或：（x + 1，y + 1）。如图所示<br><img src="/2018/10/13/Bresenham-直线算法/./bres1.gif"><br>咋这里我们引入两个参数，用来决定到底选择那个点绘制。<br>第一个参数就是</p>
 
   </div>
 </article>
@@ -165,7 +168,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介Bresenham-算法"><span class="toc-number">1.</span> <span class="toc-text">简介Bresenham 算法</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介Bresenham-算法"><span class="toc-number">1.</span> <span class="toc-text">简介Bresenham 算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本的Bresenham算法-原理"><span class="toc-number">2.</span> <span class="toc-text">基本的Bresenham算法 原理</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
