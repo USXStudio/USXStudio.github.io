@@ -131,4 +131,13 @@ drawTriangle()
 
  ### Barycentric 三角形光栅化算法
 
- http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
+本文主要翻译自   
+http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
+
+---
+原文作者: [Chaos](https://github.com/ChowBu)
+---
+原文链接: https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/
+---
+许可协议: [知识共享署名-非商业性使用 4.0 国际许可协议](http://creativecommons.org/licenses/by-nc/4.0/)
+---

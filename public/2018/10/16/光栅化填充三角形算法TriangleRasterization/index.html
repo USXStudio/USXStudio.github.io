@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="OaWLnxO7T5" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="简介 triangle 光栅化算法 本文讨论三角形光栅化算法，也就是三角形的填充算法，在平时的开发中其实该算法很少会遇到，目前的光栅化其实都是已经固化到了显卡芯片里， 但是里面的很多思路我们还是可以借鉴的，比如扫描线算法在gis，计算几何的应用中很广泛。 标准三角形光栅化算法标准算法主要主要考虑了底部平行x轴和顶部平行x轴这两种情况，事实上大家都知道这两种情况很好绘制。如下图所示">
+<meta name="keywords" content="计算机图形图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光栅化填充三角形算法TriangleRasterization">
+<meta property="og:url" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="简介 triangle 光栅化算法 本文讨论三角形光栅化算法，也就是三角形的填充算法，在平时的开发中其实该算法很少会遇到，目前的光栅化其实都是已经固化到了显卡芯片里， 但是里面的很多思路我们还是可以借鉴的，比如扫描线算法在gis，计算几何的应用中很广泛。 标准三角形光栅化算法标准算法主要主要考虑了底部平行x轴和顶部平行x轴这两种情况，事实上大家都知道这两种情况很好绘制。如下图所示">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/flatbottomtriangle.png">
+<meta property="og:image" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/flattoptriangle.png">
+<meta property="og:image" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/flattoptriangle.png">
+<meta property="og:image" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/generalTriangle.png">
+<meta property="og:updated_time" content="2018-10-18T06:34:22.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="光栅化填充三角形算法TriangleRasterization">
+<meta name="twitter:description" content="简介 triangle 光栅化算法 本文讨论三角形光栅化算法，也就是三角形的填充算法，在平时的开发中其实该算法很少会遇到，目前的光栅化其实都是已经固化到了显卡芯片里， 但是里面的很多思路我们还是可以借鉴的，比如扫描线算法在gis，计算几何的应用中很广泛。 标准三角形光栅化算法标准算法主要主要考虑了底部平行x轴和顶部平行x轴这两种情况，事实上大家都知道这两种情况很好绘制。如下图所示">
+<meta name="twitter:image" content="https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/flatbottomtriangle.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>光栅化填充三角形算法TriangleRasterization</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/10/14/Py004-01-16信号量和Event/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&text=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&is_video=false&description=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=光栅化填充三角形算法TriangleRasterization&body=Check out this article: https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&name=光栅化填充三角形算法TriangleRasterization&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介-triangle-光栅化算法"><span class="toc-number">1.</span> <span class="toc-text">简介 triangle 光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准三角形光栅化算法"><span class="toc-number">2.</span> <span class="toc-text">标准三角形光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bresenham-三角形光栅化算法"><span class="toc-number">3.</span> <span class="toc-text">Bresenham 三角形光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Barycentric-三角形光栅化算法"><span class="toc-number">4.</span> <span class="toc-text">Barycentric 三角形光栅化算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文作者-Chaos"><span class="toc-number"></span> <span class="toc-text">原文作者: Chaos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文链接-https-usxstudio-github-io-2018-10-16-E5-85-89-E6-A0-85-E5-8C-96-E5-A1-AB-E5-85-85-E4-B8-89-E8-A7-92-E5-BD-A2-E7-AE-97-E6-B3-95TriangleRasterization"><span class="toc-number"></span> <span class="toc-text">原文链接: https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#许可协议-知识共享署名-非商业性使用-4-0-国际许可协议"><span class="toc-number"></span> <span class="toc-text">许可协议: 知识共享署名-非商业性使用 4.0 国际许可协议</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        光栅化填充三角形算法TriangleRasterization
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-16T06:08:57.000Z" itemprop="datePublished">2018-10-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机图形图像/">计算机图形图像</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="简介-triangle-光栅化算法"><a href="#简介-triangle-光栅化算法" class="headerlink" title="简介 triangle 光栅化算法"></a>简介 triangle 光栅化算法</h3><p> 本文讨论三角形光栅化算法，也就是三角形的填充算法，在平时的开发中其实该算法很少会遇到，目前的光栅化其实都是已经固化到了显卡芯片里，<br> 但是里面的很多思路我们还是可以借鉴的，比如扫描线算法在gis，计算几何的应用中很广泛。</p>
+<h3 id="标准三角形光栅化算法"><a href="#标准三角形光栅化算法" class="headerlink" title="标准三角形光栅化算法"></a>标准三角形光栅化算法</h3><p>标准算法主要主要考虑了底部平行x轴和顶部平行x轴这两种情况，事实上大家都知道这两种情况很好绘制。<br>如下图所示</p>
+<div><br>        <img src="/2018/10/16/光栅化填充三角形算法TriangleRasterization/flatbottomtriangle.png" alt="flatbottomtriangle" style="float:left"><img src="/2018/10/16/光栅化填充三角形算法TriangleRasterization/flattoptriangle.png" alt="flattoptriangle" style="float:left"><br>        <br style="clear:both"><br></div><br>如左图所示我们从点v1开始平行于底部边v2v3开始绘制一条一条的平行线。他们的交点分别为p1 ，p2。<br>显而易见，p1.y = p2.y，他们的y值是一样的。<br><br><br>同时v1.y1 - p1.y = v1.y - p2.y。 这个算法的主要流程就是从点v1 开始，沿着边v2v3一步一步的绘制直线填充这个三角形。<br><br><br>从点v1开始每一次一条线都是向下扫描前进的单位是dy = 1。两条腿的斜率为 slope =  dy/dx ,dx = dy/slope;<br><br><br>这个的算法思想如下:<br>1. 计算边 v1v2,v1v3斜率的倒数invslope1 , invslope2<br>2. 然后从v1.y 开始不断的 vec2 p1 = v1 + vec2(invslope1,1) vec2 p2 = v1 + vec2(invslope2,1)(这里偷懒用向量表示下)一步一步的前进构建直线<br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 采用笛卡尔坐标系，下为正y，右为正x</span><br><span class="line">fillBottomFlatTriangle(Vertice v1, Vertice v2, Vertice v3)</span><br><span class="line">&#123;</span><br><span class="line">  float invslope1 = (v2.x - v1.x) / (v2.y - v1.y);</span><br><span class="line">  float invslope2 = (v3.x - v1.x) / (v3.y - v1.y);</span><br><span class="line"> </span><br><span class="line">  </span><br><span class="line">  float curx1 = v1.x;</span><br><span class="line">  float curx2 = v1.x;</span><br><span class="line"></span><br><span class="line">  for (int scanlineY = v1.y; scanlineY &lt;= v2.y; scanlineY++)</span><br><span class="line">  &#123;</span><br><span class="line">    drawLine((int)curx1, scanlineY, (int)curx2, scanlineY);</span><br><span class="line">    // 勘误 假设左边的点x为curx1，那么curx1 -= invslope1 原文为 +=</span><br><span class="line">    // 可能坐标系不一样</span><br><span class="line">    curx1 += invslope1;</span><br><span class="line">    curx2 += invslope2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br>然后考虑后面一种情况<br><br><div><br>    <img src="/2018/10/16/光栅化填充三角形算法TriangleRasterization/flattoptriangle.png" alt="flattoptriangle"><br></div>
+
+<p>同理绘制下面这个三角形。只不过，开始的点不一样，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 采用笛卡尔坐标系，下为正y，右为正x</span><br><span class="line">fillTopFlatTriangle(Vertice v1, Vertice v2, Vertice v3)</span><br><span class="line">&#123;</span><br><span class="line">  float invslope1 = (v3.x - v1.x) / (v3.y - v1.y);</span><br><span class="line">  float invslope2 = (v3.x - v2.x) / (v3.y - v2.y);</span><br><span class="line"></span><br><span class="line">  float curx1 = v3.x;</span><br><span class="line">  float curx2 = v3.x;</span><br><span class="line"></span><br><span class="line">  for (int scanlineY = v3.y; scanlineY &gt; v1.y; scanlineY--)</span><br><span class="line">  &#123;</span><br><span class="line">    drawLine((int)curx1, scanlineY, (int)curx2, scanlineY);</span><br><span class="line">    // 勘误 假设左边的点x为curx1，那么curx1 -= invslope1 原文为 +=</span><br><span class="line">    // 可能坐标系不一样</span><br><span class="line">    curx1 -= invslope1;</span><br><span class="line">    curx2 -= invslope2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>有了前面的基础，现在我们考虑一下如下图所示的更加一般的情况,基本思路就是将该三角形分解为和上面类型一样的两个三角形<br>一个平顶的一个平底的。这样我们就能将一个新问题转化为已经解决了的问题了。现在问题的关键点就是我们如何使用切分这个一般的三角形，如下图所示。<br><img src="/2018/10/16/光栅化填充三角形算法TriangleRasterization/generalTriangle.png" alt="generalTriangle"><br>现在我们穿过点v2 沿着x轴构建一条直线。假设这条直线与三角形的交点为v4，并且v4.y = v2.y。至于v4.x 我们可以使用截线定理(Intercept theorem)获得。<br>具体的推导过程上图的右边已经给出了，最终我们获得了两个三角形Δ1 = (V1, V2, V4) ， Δ2 = (V2, V4, V3)，分割成这两个三角形之后，我们就能使用上面的两种特殊情况来拼凑成一般情况下的三角形光栅化算法了，稳！！<br>一下为具体的三角形绘制算法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 采用笛卡尔坐标系，下为正y，右为正x</span><br><span class="line">drawTriangle()</span><br><span class="line">&#123;</span><br><span class="line">   /* at first sort the three vertices by y-coordinate ascending so v1 is the topmost vertice */</span><br><span class="line">   /* 第一步将三个点按照y值大小进行排序，确定顶部的第一个点 */</span><br><span class="line">  sortVerticesAscendingByY();</span><br><span class="line"></span><br><span class="line">  /* here we know that v1.y &lt;= v2.y &lt;= v3.y */</span><br><span class="line">  /* 这里默认的是 v1.y &lt;= v2.y &lt;= v3.y */</span><br><span class="line">  /* check for trivial case of bottom-flat triangle */</span><br><span class="line">  /* 这种情况下是一个底部平行于x轴的三角形 */</span><br><span class="line">  if (v2.y == v3.y)</span><br><span class="line">  &#123;</span><br><span class="line">    fillBottomFlatTriangle(v1, v2, v3);</span><br><span class="line">  &#125;</span><br><span class="line">  /* check for trivial case of top-flat triangle */</span><br><span class="line">  /* 这种情况下是一个顶部平行于x轴的三角形 */</span><br><span class="line">  else if (vt1.y == vt2.y)</span><br><span class="line">  &#123;</span><br><span class="line">    fillTopFlatTriangle(g, vt1, vt2, vt3);</span><br><span class="line">  &#125; </span><br><span class="line">  else</span><br><span class="line">  &#123;</span><br><span class="line">    /* general case - split the triangle in a topflat and bottom-flat one */</span><br><span class="line">    /* 一般情况下算法 */</span><br><span class="line">    /* 这里默认的是 v1.y &lt;= v2.y &lt;= v3.y */</span><br><span class="line">    /* 所以 第二个点是v2 但是在实际的应用中我们这个需要先对整个点进行排序 */</span><br><span class="line">    Vertice v4 = new Vertice( (int)(vt1.x + ((float)(vt2.y - vt1.y) / (float)(vt3.y - vt1.y)) * (vt3.x - vt1.x)), vt2.y);</span><br><span class="line">    fillBottomFlatTriangle(g, vt1, vt2, v4);</span><br><span class="line">    fillTopFlatTriangle(g, vt2, v4, vt3);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Bresenham-三角形光栅化算法"><a href="#Bresenham-三角形光栅化算法" class="headerlink" title="Bresenham 三角形光栅化算法"></a>Bresenham 三角形光栅化算法</h3><h3 id="Barycentric-三角形光栅化算法"><a href="#Barycentric-三角形光栅化算法" class="headerlink" title="Barycentric 三角形光栅化算法"></a>Barycentric 三角形光栅化算法</h3><p>本文主要翻译自<br><a href="http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html" target="_blank" rel="noopener">http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html</a></p>
+<hr>
+<h2 id="原文作者-Chaos"><a href="#原文作者-Chaos" class="headerlink" title="原文作者: Chaos"></a>原文作者: <a href="https://github.com/ChowBu" target="_blank" rel="noopener">Chaos</a></h2><h2 id="原文链接-https-usxstudio-github-io-2018-10-16-E5-85-89-E6-A0-85-E5-8C-96-E5-A1-AB-E5-85-85-E4-B8-89-E8-A7-92-E5-BD-A2-E7-AE-97-E6-B3-95TriangleRasterization"><a href="#原文链接-https-usxstudio-github-io-2018-10-16-E5-85-89-E6-A0-85-E5-8C-96-E5-A1-AB-E5-85-85-E4-B8-89-E8-A7-92-E5-BD-A2-E7-AE-97-E6-B3-95TriangleRasterization" class="headerlink" title="原文链接: https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/"></a>原文链接: <a href="https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/">https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/</a></h2><h2 id="许可协议-知识共享署名-非商业性使用-4-0-国际许可协议"><a href="#许可协议-知识共享署名-非商业性使用-4-0-国际许可协议" class="headerlink" title="许可协议: 知识共享署名-非商业性使用 4.0 国际许可协议"></a>许可协议: <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">知识共享署名-非商业性使用 4.0 国际许可协议</a></h2>
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介-triangle-光栅化算法"><span class="toc-number">1.</span> <span class="toc-text">简介 triangle 光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准三角形光栅化算法"><span class="toc-number">2.</span> <span class="toc-text">标准三角形光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bresenham-三角形光栅化算法"><span class="toc-number">3.</span> <span class="toc-text">Bresenham 三角形光栅化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Barycentric-三角形光栅化算法"><span class="toc-number">4.</span> <span class="toc-text">Barycentric 三角形光栅化算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文作者-Chaos"><span class="toc-number"></span> <span class="toc-text">原文作者: Chaos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原文链接-https-usxstudio-github-io-2018-10-16-E5-85-89-E6-A0-85-E5-8C-96-E5-A1-AB-E5-85-85-E4-B8-89-E8-A7-92-E5-BD-A2-E7-AE-97-E6-B3-95TriangleRasterization"><span class="toc-number"></span> <span class="toc-text">原文链接: https://usxstudio.github.io/2018/10/16/%E5%85%89%E6%A0%85%E5%8C%96%E5%A1%AB%E5%85%85%E4%B8%89%E8%A7%92%E5%BD%A2%E7%AE%97%E6%B3%95TriangleRasterization/</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#许可协议-知识共享署名-非商业性使用-4-0-国际许可协议"><span class="toc-number"></span> <span class="toc-text">许可协议: 知识共享署名-非商业性使用 4.0 国际许可协议</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&text=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&is_video=false&description=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=光栅化填充三角形算法TriangleRasterization&body=Check out this article: https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&title=光栅化填充三角形算法TriangleRasterization"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/16/光栅化填充三角形算法TriangleRasterization/&name=光栅化填充三角形算法TriangleRasterization&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a245175567f8e41cfa7ed9f95e12c96";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
