@@ -126,6 +126,23 @@ drawTriangle()
 
 
  ### Bresenham 三角形光栅化算法
+首先假定大家都知道Bresenham 直线算法，假如你不知道的话，请看另外一篇介绍Bresenham算法的文章。
+
+上面介绍了三角形光栅化的核心标准算法，但是这里会遇到一个问题。光栅化的算法是将直线绘制到屏幕上，但是因为屏幕是一个一个离散独立的点，所以在光栅化的算法中点坐标各个分量的值都应该是整数。
+但是上面的算法在考虑三角形边界的时候没有考虑这个问题。所以有了 Bresenham 三角形光栅化算法。
+<img src="bresenhamIdea.png" alt="generalTriangle">
+
+```
+这一段因为涉及到bresenham细节问题，暂时先不翻译，后续理解bresenham算法后再翻译
+
+So let's start: Suppose we just want to draw the line from v1 to v2 using the bresenham algorithm. Ignoring breshenham details like swapping variables depending on the slope etc, we also assume for our example without loss of generality that we go in y-direction and having the error value e = dx/dy. So we iterate in the y-direction and in each step as long as e >= 0 go into the x-direction. Till this point we completely comply with the bresenham algorithm - nothing special.
+
+考虑到简化不必要的额外细节，这里先忽略 bresenham 算法的一些细节问题，比如根据坡度交换变量等等。
+如下图所示，假如我们在绘制线v1v2的时候，使用bresenham algorithm，
+
+```
+
+我们
 
 
 
