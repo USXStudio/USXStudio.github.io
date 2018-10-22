@@ -7,7 +7,9 @@ tags: 计算机图形图像
  本文讨论三角形光栅化算法，也就是三角形的填充算法，在平时的开发中其实该算法很少会遇到，目前的光栅化其实都是已经固化到了显卡芯片里，
  但是里面的很多思路我们还是可以借鉴的，比如扫描线算法在gis，计算几何的应用中很广泛。
 
- ### 标准三角形光栅化算法
+
+
+ ### I. 标准三角形光栅化算法
 标准算法主要主要考虑了底部平行x轴和顶部平行x轴这两种情况，事实上大家都知道这两种情况很好绘制。
 如下图所示
 
@@ -125,7 +127,11 @@ drawTriangle()
 ```
 
 
- ### Bresenham 三角形光栅化算法
+
+
+
+
+ ### II. Bresenham 三角形光栅化算法
 首先假定大家都知道Bresenham 直线算法，假如你不知道的话，请看另外一篇介绍Bresenham算法的文章。
 
 上面介绍了三角形光栅化的核心标准算法，但是这里会遇到一个问题。光栅化的算法是将直线绘制到屏幕上，但是因为屏幕是一个一个离散独立的点，所以在光栅化的算法中点坐标各个分量的值都应该是整数。
@@ -142,11 +148,72 @@ So let's start: Suppose we just want to draw the line from v1 to v2 using the br
 
 ```
 
-我们
+显然，我们是在y轴方向一步步的扫描线段，bresenham算法提前为我们提供了线v1v2上点的y值。同样的我们也能使用bresenham算法为我们计算v1v3的点。
+现在我们分别获取了v1v2和线v1v3获取了两个点,这些点他们的他们y值是一样的。现在我们只需要取绘制水平线即可。
+
+整个算法的意思大约：就是我们先使用 bresenham 分别绘制v1v2，v1v3，绘制边的同时，通过获取的点，绘制两个点之间的水平线。
+
+当然了个人理解上面是一种实现，也可以先用bresenham绘制出边的信息，然后再结合这些边信息，采用标准光栅化算法去填充三角形。
+
+具体的实现如下所示：
+1. 使用bresenham算法绘制v1v2一个点p1
+2. 使用bresenham算法绘制v1v2一个点p2，其中p1.y = p2.y
+3. 利用 p1，p2 使用上面的标准算法（也就是大名鼎鼎的扫描线算法）绘制p1，p2 之间的水平线。
+4. 重复上面的过程，直到完成整个三角形的光栅化
 
 
 
- ### Barycentric 三角形光栅化算法
+
+
+
+
+
+
+ ### III. Barycentric 三角形光栅化算法
+ Barycentric 三角形光栅化算法，我们基于前面介绍的知识。通过Barycentric 算法判断点是否在三角形内。
+ 
+ 主要思想如下：
+ 首先确定三角形的包围盒，然后测试包围盒每个点是否在三角形内，如果是，就绘制这个点，非常简单。
+
+ <img src="boundingbox.png" alt="boundingbox">
+
+ 与上面的那些算法不同的是，这个算法不需要先对点进行排序。
+
+ 以下算法用来去定三角形的包围盒
+ ```javascript
+ /* get the bounding box of the triangle */
+int maxX = Math.max(v1.x, Math.max(v2.x, v3.x));
+int minX = Math.min(v1.x, Math.min(v2.x, v3.x));
+int maxY = Math.max(v1.y, Math.max(v2.y, v3.y));
+int minY = Math.min(v1.y, Math.min(v2.y, v3.y));
+ ```
+
+最后使用两个嵌套循环，迭代包围盒的每一个点，如果点在三角形内就绘制这个点。
+至于如何判断一个点是否在三角形内 []()
+```
+/* spanning vectors of edge (v1,v2) and (v1,v3) */
+/* 使用点生成两个边(v1,v2)(v1,v3) 的向量 */
+Vertice vs1 = new Vertice(vt2.x - vt1.x, vt2.y - vt1.y);
+Vertice vs2 = new Vertice(vt3.x - vt1.x, vt3.y - vt1.y);
+
+for (int x = minX; x <= maxX; x++)
+{
+  for (int y = minY; y <= maxY; y++)
+  {
+    // 以下内容需要看 另外一篇文章 
+    
+    Vertice q = new Vertice(x - vt1.x, y - vt1.y);
+
+    float s = (float)crossProduct(q, vs2) / crossProduct(vs1, vs2);
+    float t = (float)crossProduct(vs1, q) / crossProduct(vs1, vs2);
+
+    if ( (s >= 0) && (t >= 0) && (s + t <= 1))
+    { /* inside triangle */
+      drawPixel(x, y);
+    }
+  }
+}
+```
 
 本文主要翻译自   
 http://www.sunshine2k.de/coding/java/TriangleRasterization/TriangleRasterization.html
