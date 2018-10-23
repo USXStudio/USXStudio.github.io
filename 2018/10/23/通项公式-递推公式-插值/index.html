@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="OaWLnxO7T5" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="本文章将从高中数学角度，阐述数列里面的通项公式，递推公式的用途。用于连接在数列与数值计算方面，高中数学与高等数学的鸿沟，毕竟工作了这么久数学差不多已经回退到高中阶段。用这篇文章记录下思路，方便以后使用。 数列的通项公式：从高数角度的数值计算角度看，来说本质上是为数值计算的离散化计算做准备。毕竟计算机是个离散系统，常常需要将连续的函数离散化处理，函数转换到数列的表示一般就是通项公式，比如f(x) =">
+<meta name="keywords" content="数学，算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通项公式,递推公式,插值">
+<meta property="og:url" content="https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="本文章将从高中数学角度，阐述数列里面的通项公式，递推公式的用途。用于连接在数列与数值计算方面，高中数学与高等数学的鸿沟，毕竟工作了这么久数学差不多已经回退到高中阶段。用这篇文章记录下思路，方便以后使用。 数列的通项公式：从高数角度的数值计算角度看，来说本质上是为数值计算的离散化计算做准备。毕竟计算机是个离散系统，常常需要将连续的函数离散化处理，函数转换到数列的表示一般就是通项公式，比如f(x) =">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-10-23T05:50:55.516Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通项公式,递推公式,插值">
+<meta name="twitter:description" content="本文章将从高中数学角度，阐述数列里面的通项公式，递推公式的用途。用于连接在数列与数值计算方面，高中数学与高等数学的鸿沟，毕竟工作了这么久数学差不多已经回退到高中阶段。用这篇文章记录下思路，方便以后使用。 数列的通项公式：从高数角度的数值计算角度看，来说本质上是为数值计算的离散化计算做准备。毕竟计算机是个离散系统，常常需要将连续的函数离散化处理，函数转换到数列的表示一般就是通项公式，比如f(x) =">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>通项公式,递推公式,插值</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/10/16/光栅化填充三角形算法TriangleRasterization/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&text=通项公式,递推公式,插值"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&is_video=false&description=通项公式,递推公式,插值"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=通项公式,递推公式,插值&body=Check out this article: https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&name=通项公式,递推公式,插值&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        通项公式,递推公式,插值
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-10-23T05:20:59.000Z" itemprop="datePublished">2018-10-23</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/数学，算法/">数学，算法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>本文章将从高中数学角度，阐述数列里面的通项公式，递推公式的用途。用于连接在数列与数值计算方面，高中数学与高等数学的鸿沟，毕竟工作了这么久数学差不多已经回退到高中阶段。用这篇文章记录下思路，方便以后使用。</p>
+<p>数列的通项公式：<br>从高数角度的数值计算角度看，来说本质上是为数值计算的离散化计算做准备。毕竟计算机是个离散系统，常常需要将连续的函数离散化处理，函数转换到数列的表示一般就是通项公式，比如f(x) = 2<em>x + 3。数列就是f(n) = 2</em>n +3(n 为整数，区间为N0~Nn)。这样我们就能直接用循环来计算f(x)了。</p>
+<p>不如现在我们返回f(x) 的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(i)&#123;</span><br><span class="line">    return  2*i +3</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">数列的通项公式：</span><br><span class="line">在写业务的时候，其实循环基本已经能够解决所有问题了，但是有些问题还是递归比较方便，比如斐波那契额数列。其实递归就是递推公式了。例如上面的通项公式f(n) = 2*n +3。 递推是f(n)  =  f(n-1) + 2。</span><br></pre></td></tr></table></figure>
+<p>function fn(i){<br>    if(i = 0){<br>        return 2;<br>    } else{<br>        return fn(i-1) + 2;<br>    }<br>}<br><code>`</code><br>通过上面的例子我们发现很多时候，通项公式也就是循环，其实是更简单，更通俗的。但是这并不代表递归不好用。<br>比如我们的斐波那契数问题，虽然很递归低效但是的确用递归比较直观易读性较强。当然了，评定程序的标准很多，比如，性能，稳定性，实现的难易程度，易读性（理解的难易程度）。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&text=通项公式,递推公式,插值"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&is_video=false&description=通项公式,递推公式,插值"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=通项公式,递推公式,插值&body=Check out this article: https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&title=通项公式,递推公式,插值"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/10/23/通项公式-递推公式-插值/&name=通项公式,递推公式,插值&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a245175567f8e41cfa7ed9f95e12c96";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
