@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="OaWLnxO7T5" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="I. Introduction本文内容是如何判断一个点是否在指定三角形内。主要介绍了两种方式（原文实现为Java applet）。文章的描述针对的是二维的案例。 简而言之，问题的描述为：现给出三角形T,其三个顶点为V1= (vx1, vy1), V2= (vx2, vy2), V3= (vx3, vy3) 和测试点P = (px，py)。 问题：如何判断P是否包含在T中？ II. Algorith">
+<meta name="keywords" content="计算机图形图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PointInTriangle">
+<meta property="og:url" content="https://usxstudio.github.io/2018/12/26/PointInTriangle/index.html">
+<meta property="og:site_name" content="USXStudio">
+<meta property="og:description" content="I. Introduction本文内容是如何判断一个点是否在指定三角形内。主要介绍了两种方式（原文实现为Java applet）。文章的描述针对的是二维的案例。 简而言之，问题的描述为：现给出三角形T,其三个顶点为V1= (vx1, vy1), V2= (vx2, vy2), V3= (vx3, vy3) 和测试点P = (px，py)。 问题：如何判断P是否包含在T中？ II. Algorith">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://usxstudio.github.io/2018/12/26/PointInTriangle/perpDotProductVisual.png">
+<meta property="og:image" content="https://usxstudio.github.io/2018/12/26/PointInTriangle/triangleplane.png">
+<meta property="og:image" content="https://usxstudio.github.io/2018/12/26/PointInTriangle/vectorNotation.png">
+<meta property="og:updated_time" content="2018-12-26T11:23:44.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PointInTriangle">
+<meta name="twitter:description" content="I. Introduction本文内容是如何判断一个点是否在指定三角形内。主要介绍了两种方式（原文实现为Java applet）。文章的描述针对的是二维的案例。 简而言之，问题的描述为：现给出三角形T,其三个顶点为V1= (vx1, vy1), V2= (vx2, vy2), V3= (vx3, vy3) 和测试点P = (px，py)。 问题：如何判断P是否包含在T中？ II. Algorith">
+<meta name="twitter:image" content="https://usxstudio.github.io/2018/12/26/PointInTriangle/perpDotProductVisual.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>PointInTriangle</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/12/26/RasterisingLinesCircles/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/10/23/通项公式-递推公式-插值/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/12/26/PointInTriangle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&text=PointInTriangle"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&is_video=false&description=PointInTriangle"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PointInTriangle&body=Check out this article: https://usxstudio.github.io/2018/12/26/PointInTriangle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&name=PointInTriangle&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#I-Introduction"><span class="toc-number">1.</span> <span class="toc-text">I. Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#II-Algorithm-1-“Crossproduct-Side-Algorithm”"><span class="toc-number">2.</span> <span class="toc-text">II. Algorithm 1: “Crossproduct Side Algorithm”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#III-Algorithm-2-“Barycentric-Algorithm”"><span class="toc-number">3.</span> <span class="toc-text">III. Algorithm 2: “Barycentric Algorithm”</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        PointInTriangle
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">USXStudio</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-26T07:20:32.000Z" itemprop="datePublished">2018-12-26</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/计算机图形图像/">计算机图形图像</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="I-Introduction"><a href="#I-Introduction" class="headerlink" title="I. Introduction"></a>I. Introduction</h3><p>本文内容是如何判断一个点是否在指定三角形内。主要介绍了两种方式（原文实现为Java applet）。文章的描述针对的是二维的案例。</p>
+<p>简而言之，问题的描述为：现给出三角形T,其三个顶点为V1= (vx1, vy1), V2= (vx2, vy2), V3= (vx3, vy3) 和测试点P = (px，py)。</p>
+<p>问题：如何判断P是否包含在T中？</p>
+<h3 id="II-Algorithm-1-“Crossproduct-Side-Algorithm”"><a href="#II-Algorithm-1-“Crossproduct-Side-Algorithm”" class="headerlink" title="II. Algorithm 1: “Crossproduct Side Algorithm”"></a>II. Algorithm 1: “Crossproduct Side Algorithm”</h3><p>注意，上面这个算法的名称不是官方的，而是原文作者自己发明的（希望你们喜欢这个德国哥们取得这个名字！）。 请注意，以下主题和我在另外一篇文章中关于多边形凸性[1]的问题非常类似，但是在这里我们可以从另外一个角度看看这个问题。</p>
+<p>也许你现在问自己如何在2D中定义 Crossproduct(叉乘？)  以及如何在几何上解释它？ 其实对于2D的情况，Crossproduct 实际上没有很好地定义，但是通常的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perpDotProduct(v1, v2) = vx1 * vy2 - vy1 * vx2</span><br></pre></td></tr></table></figure></p>
+<p>这也被称为’perp dot’ 乘积，并且有很多有趣的属性 。如果您有兴趣，请阅读引用[2]。 有一点需要注意的是它返回标量而不是矢量（与3D叉乘相反），并且它与两个二元矢量的行列式相同。 从后面这点来看，显而易见（我的意思是一个优秀的数学家）可以得到以下有用的信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perpDotProduct(v1, v2) = 0   =&gt; v1, v2 平行</span><br><span class="line">perpDotProduct(v1, v2) &gt; 0   =&gt; v2 is clockwise from v1</span><br><span class="line">perpDotProduct(v1, v2) &lt; 0   =&gt; v1 is counterclockwise from v2</span><br></pre></td></tr></table></figure></p>
+<p>perpDotProduct的几何意义如下图所示。</p>
+<p><img src="/2018/12/26/PointInTriangle/perpDotProductVisual.png" alt="perpDotProductVisual.png">  </p>
+<p>以上就是我们所需要的算法核心:)。用测试点P计算所有三个点V1，V2，V3 的 perpDotProduct / crossproduct。（此处请注意，在实际的三次计算中，P作为参数的位置需要保持不变。需要作为第一个或者第二个参数，否则在下面的检测算法中你可能会遇到麻烦！）。<br>计算<br>c1 = crossproduct(V1, P),<br>c2 = crossproduct(V2, P),<br>c3 = crossproduct(V3, P)。</p>
+<p>最终点是否包含在三角形当中，取决于三角形相关的先验知识：</p>
+<ul>
+<li><p>若点 V1, V2, V3 是按照顺时针排列的，并且满足c1 &gt; 0 &amp;&amp; c2 &gt; 0 &amp;&amp; c3 &gt; 0 为真,那么点P在三角形内。</p>
+</li>
+<li><p>若点 V1, V2, V3 是按照逆时针排列的，并且满足c1 &lt; 0 &amp;&amp; c2 &lt; 0 &amp;&amp; c3 &lt; 0 为真,那么点P在三角形内。</p>
+</li>
+<li><p>若点 V1, V2, V3 的顺序未知，并且满足(c1&gt; 0 &amp;&amp; c2&gt; 0 &amp;&amp; c3 &gt; 0) || (c1&lt; 0 &amp;&amp; c2&lt; 0 &amp;&amp; c3 &lt; 0)为真,那么点P在三角形内。</p>
+</li>
+</ul>
+<h3 id="III-Algorithm-2-“Barycentric-Algorithm”"><a href="#III-Algorithm-2-“Barycentric-Algorithm”" class="headerlink" title="III. Algorithm 2: “Barycentric Algorithm”"></a>III. Algorithm 2: “Barycentric Algorithm”</h3><p>重心法是另外一个判断点是否包含在三角形内的算法。因为三角形是一个平面，所以它的所有顶点都在这个平面内。现在选择三角形的其中一个顶点以及包含这个点的两条边，从他们开始整个算法:</p>
+<p><img src="/2018/12/26/PointInTriangle/triangleplane.png" alt="triangleplane.png"></p>
+<ul>
+<li><p>定义w1 = V2-V1和w2 = V3-V1。<br>然后包含在三角形平面中的每个点都可以写成：<br>P（s，t）= V1 + s * w1 + t * w2 [定义域 R].</p>
+</li>
+<li><p>通过限制s和t<br>s &gt;= 0，t &gt;= 0且（s + t）&lt;= 1，<br>然后函数 P（s，t）可以表示为三角形内的点！(也就是说这个函数的值域为三角形内的点)</p>
+</li>
+</ul>
+<p>因此，只要选择合适的s和t的值，通过满足三个限制 s &gt;= 0，t &gt;= 0 和（s + t）&lt;= 1，函数P（s，t）可以表示三角形内部的任意点。</p>
+<p>这意味着对于我们的测试点P而言，我们可以用这个函数P（s，t）来描述它，并且需要s和t满足P在T内的条件。为了达到我们的目的：检测P是否包含在T内部。显然，我们的目标是计算合适s和t的值，用来表示测试点P。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V1 + s * w1 + t * w2 = P</span><br></pre></td></tr></table></figure></p>
+<p>重新组织以上公式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s * w1 + t * w2 = P - V1</span><br></pre></td></tr></table></figure></p>
+<p>或者使用向量的表达方式：<br><img src="/2018/12/26/PointInTriangle/vectorNotation.png" alt="vectorNotation.png"></p>
+<p>现在我们可以手工解决这个问题，也可以应用克莱姆法则（Cramer’s Rule）[3]（但是对于我们现在的2D情况来说比较特殊，行列式的计算方法与perpDotProduct是相同的相同！）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = determinant(P - V1, V2) / determinant(V1, V2)</span><br><span class="line">t = determinant(V1, P - V2) / determinant(V1, V2)</span><br></pre></td></tr></table></figure></p>
+<p>得到s,t 后若满足：<br>s &gt;= 0 &amp;&amp; t &gt;= 0 &amp;&amp; (s + t) &lt;= 1 为真。那么即可判断点P位于三角形内。</p>
+<p>希望这篇文章对大家有所帮助，如果有什么不理解的，可以看原文以及原文作者给出的applet源码，或者联系我。</p>
+<p>引用<br>[1] <a href="http://www.sunshine2k.de/coding/java/Polygon/Convex/polygon.htm" target="_blank" rel="noopener">Polygon Convexity </a><br>[2] <a href="https://books.google.de/books?id=CCqzMm_-WucC&amp;pg=PA138&amp;lpg=PA138&amp;dq=The+pleasures+of+%E2%80%9Cperp+dot%E2%80%9D+products&amp;source=bl&amp;ots=mshu03FLgf&amp;sig=H3n95BgmF8pAAOIn87vwpkF_XAA&amp;hl=de&amp;sa=X&amp;ei=-YfvTs-XDIbl4QSO3JH-CA#v=onepage&amp;q=The%20pleasures%20of%20%E2%80%9Cperp%20dot%E2%80%9D%20products&amp;f=false" target="_blank" rel="noopener">The pleasures of “Perp Dot” Products by Hill in Graphics Gem IV on Google Books</a><br>[3] <a href="https://en.wikipedia.org/wiki/Cramer&#39;s_rule" target="_blank" rel="noopener">Cramer’s Rule @ Wikipedia</a></p>
+<hr>
+<p>本文翻译自<a href="http://www.sunshine2k.de/coding/java/PointInTriangle/PointInTriangle.html" target="_blank" rel="noopener">Sunshine 的 PointInTriangle</a> </p>
+<p>原文作者: <a href="https://github.com/ChowBu" target="_blank" rel="noopener">Chaos</a></p>
+<p>许可协议: <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">知识共享署名-非商业性使用 4.0 国际许可协议</a></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#I-Introduction"><span class="toc-number">1.</span> <span class="toc-text">I. Introduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#II-Algorithm-1-“Crossproduct-Side-Algorithm”"><span class="toc-number">2.</span> <span class="toc-text">II. Algorithm 1: “Crossproduct Side Algorithm”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#III-Algorithm-2-“Barycentric-Algorithm”"><span class="toc-number">3.</span> <span class="toc-text">III. Algorithm 2: “Barycentric Algorithm”</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://usxstudio.github.io/2018/12/26/PointInTriangle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&text=PointInTriangle"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&is_video=false&description=PointInTriangle"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PointInTriangle&body=Check out this article: https://usxstudio.github.io/2018/12/26/PointInTriangle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&title=PointInTriangle"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://usxstudio.github.io/2018/12/26/PointInTriangle/&name=PointInTriangle&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Chaos Wang
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4a245175567f8e41cfa7ed9f95e12c96";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+<!-- Disqus Comments -->
+
+
